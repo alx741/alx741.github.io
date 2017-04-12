@@ -285,6 +285,24 @@ $ git commit -m &quot;Build&quot;</code></pre>
 <li>A <em>deployment</em> consists of copying the content of the <code>docs</code> directory to the <code>sillybytes.github.io</code> repository.</li>
 <li>Point the domain name with a <em>CNAME</em> record to <code>sillybytes.github.io</code>.</li>
 </ul>
+<h1 id="new-cli-tool">New CLI tool</h1>
+<div class="figure">
+<img src="../img/bloggerhakyll/shot.png" class="img-responsive" />
+
+</div>
+<p>The <a href="https://github.com/sillybytes/sillybytes_tool">CLI tool</a> I was using before for Blogger deployment is no longer useful, but I can still adapt it to the new deployment schema:</p>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="fu">cp</span> -rfv _site/* ../sillybytes.github.io/
+<span class="bu">cd</span> ../sillybytes.github.io
+<span class="ex">display_info</span> <span class="st">&quot;Deploying...&quot;</span>
+<span class="fu">git</span> add .
+<span class="fu">git</span> commit -m <span class="st">&quot;Deploy&quot;</span>
+<span class="fu">git</span> push origin master
+<span class="ex">display_success</span> <span class="st">&quot;Deployed!&quot;</span></code></pre></div>
+<p>As well as aliasing common <em>Hakyll</em> commands:</p>
+<div class="figure">
+<img src="../img/bloggerhakyll/shot1.png" class="img-responsive" />
+
+</div>
         </div>
     </div>
 </div>
