@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Silly Bytes</title>
+
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="shortcut icon" type="image/png" href="../img/favicon.png" />
+
+        <link rel="stylesheet" href="../css/default.css" />
+        <link rel="stylesheet" href="../css/post-list.css" />
+        <link rel="stylesheet" href="../css/post.css" />
+
+        <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="../bower_components/highlight/src/styles/solarized-light.css" />
+
+        <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="../bower_components/highlight/src/highlight.pack.js"></script>
+
+        <script> hljs.initHighlightingOnLoad(); </script>
+
+    </head>
+    <body>
+        <header class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12">
+                    <a href="../">
+                        <img alt="Silly Bytes" id="logo" class="image-responsive" src="../img/silly-bytes_logo.png" />
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <div id="blog" class="container-fluid">
+            <div class="row">
+
+                <div id="sidebar" class="hidden-xs hidden-sm col-md-3">
+                    <div id="author">
+    <img id="author-pic" src="../img/daniel.jpg">
+    <h3 id="author-name">Daniel Campoverde [alx741]</h3>
+    <img id="location-icon" src="../img/location_icon.png">
+    <span id="location">Cuenca, Ecuador</span>
+</div>
+
+<div id="findme">
+    <h2 class="sidebar-h2">FIND ME</h2>
+    <a target="_blank" href="https://github.com/alx741">
+        <img class="icon" src="../img/github.png">
+    </a>
+    <a target="_blank" href="https://twitter.com/alx741alx">
+        <img class="icon" src="../img/twitter.png">
+    </a>
+    <a target="_blank" href="https://www.facebook.com/sillybytes/">
+        <img class="icon" src="../img/facebook.png">
+    </a>
+    <a target="_blank" href="https://plus.google.com/116038619580828681039">
+        <img class="icon" src="../img/google.png">
+    </a>
+    <a target="_blank" href="https://www.joindiaspora.com/u/alx741">
+        <img class="icon" src="../img/diaspora.png">
+    </a>
+
+    <div id="findme-textual">
+        <b>Freenode:</b> #vim, #archlinux, #avr, #rust, #haskell,
+        #yesod, #zsh, #sillybytes
+        <hr>
+        <b>Mailto:</b> alx@sillybytes.net
+        <br>
+        <b>GPG Key ID:</b> 12622B78
+        <hr>
+        <b>Chat</b> with me <a target="_blank" href="http://webchat.freenode.net/?channels=sillybytes">here</a>
+    </div>
+
+
+    <div id="facebook-embed">
+        <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fsillybytes&amp;width&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true" scrolling="yes" style="border:none; overflow:hidden;" allowtransparency="false" frameborder="0"></iframe>
+    </div>
+</div>
+
+
+<div id="about">
+    <h2 class="sidebar-h2">ABOUT</h2>
+
+    <a target="_blank" href="http://www.haskellers.com/user/4249">
+        <img id="haskellers-img" class="badge" alt="I'm a Haskeller" src="../img/haskellers.png">
+    </a>
+
+    <img id="fsf-img" class="badge" alt="Free Software Fundation Member" src="../img/fsf.png">
+
+    <a target="_blank" href="http://internetdefenseleague.org/">
+        <img id="idl-img" class="badge" alt="Internet Defesen League" src="../img/idl.png">
+    </a>
+</div>
+
+<div id="dotfiles">
+    <h2 class="sidebar-h2">DOTFILES</h2>
+    <p>
+        Software configuration, scripts, tools and magic.
+        Be sure to add <b>attribution </b> when using them
+        (fully or partially).
+    </p>
+    <a target="_blank" href="https://github.com/alx741/dotfiles#readme">
+        <img id="dotfiles-img" src="../img/dotfiles.png">
+    </a>
+</div>
+
+
+<div id="license">
+    <h2 class="sidebar-h2">LICENSE</h2>
+
+    <a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
+        <img id="cc-img" alt="Creative Commons - SA - BY" src="../img/cc.png">
+    </a>
+    <p id="cc-text">
+        Silly Bytes by Daniel Alejandro Campoverde Carrión
+        [alx741] is licensed under a
+        <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
+            Creative Commons Attribution-ShareAlike 3.0 Unported License.
+        </a>
+    </p>
+</div>
+
+                </div>
+
+                <div id="content" class="col-xs-12 col-md-9">
+                    <div class="row">
+    <div class="post col-xs-12">
+        <h2 class="post-title">What's wrong with Java?</h2>
+        <div class="post-date-author">
+            Posted on April 14, 2017
+            
+                by Daniel Campoverde
+            
+        </div>
+        <div class="post-content">
+            <p><img src="../img/javawrong/thumbnail.png" id="thumbnail" /><br />
+I’ve spitted out quite a bit of rant about Java before in <a href="http://www.sillybytes.net/2016/03/why-do-i-hate-java.html">this post</a>, in which I basically list the annoyances that the ecosystem around Java imposes and how those problems are pretty much a big intersection with the problems of IDEs.</p>
+<p>Here I’d like to talk about the problems of Java as a language. Although there are a few problems with Java as a language I can live with them if I have no other option but to write Java code; My <em>hate</em> to Java doesn’t really arise from Java being a bad <em>language</em> but rather from its <a href="http://www.sillybytes.net/2016/03/why-do-i-hate-java.html">surroundings</a>.</p>
+<!--more-->
+<h1 id="pointers-pointers-everywhere">Pointers, Pointers everywhere</h1>
+<p>Java claims to be a <em>pointers free language</em>. Pointers, although elegant and very powerful, are a low level construct that should not be present in a higher level language, that’s for sure. Most of the time I want to be as far as possible from pointers when programming unless I really need them, in which case I will just write in <em>C</em>.</p>
+<p>The problem is Java does have pointers; Moreover it manages to keep most of the inconveniences of having pointers while giving almost none of the benefits of not having them. If you’re not giving me the power of pointers, at least be kind enough to remove the problems they arise!</p>
+<h2 id="everything-is-a-reference-everything-is-a-pointer">Everything is a reference, everything is a pointer</h2>
+<p>Java loves to call pointers as “references”, which is only a way to pretend that there are no pointers.</p>
+<p>Java makes pretty much everything a pointer, thus the heavy usage of the <code>new</code> keyword. Making everything a pointer gives <em>JVM</em> the ability to manage memory with the Garbage Collector of course, but the consequences of this are not as shallow and beneficial as you’d like to think.</p>
+<p>Having no means to manipulate an object other than via <em>references</em> weakens data locality (a problem that other high level languages actually does manage to solve), and thus cache misses become bread and butter for a Java programmer which, most likely, isn’t aware of it or don’t even know what I’m talking about or how is it important. Which takes us to the problems of Java as a first programming language, but we’ll talk about that latter.</p>
+<h2 id="nullpointerexception">NullPointerException</h2>
+<p>The book <em>Elegant Objects</em> by Yegor Bugayenko says:</p>
+<blockquote>
+<p>In a nutshell, you’re making a big mistake if you use NULL anywhere in your code. Anywhere – I mean it.</p>
+</blockquote>
+<p>And I completely agree with that. The problem is having to take into account the possibility of <em>NULL</em> in a high level language that supposedly doesn’t have pointers.</p>
+<p>In <em>C</em> or <em>C++,</em> when you dereference a <em>NULL</em> pointer, you get a <em>Segmentation Fault</em> and your program crashes. In Java, when you try to use a <em>NULL</em> reference you get a <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html">NullPointerException</a> and your program crashes as well. So what gives?</p>
+<p>You may say that the sources of these crashes are different, the <em>Segmentation Fault</em> comes from the OS trying to stop you from crashing the entire system, while the <em>NullPointerException</em> comes from the JVM that… Well, has nothing left to do but crash… I don’t see how is that any better.</p>
+<p><em>NullPointerException</em> are terribly common in Java, and you have to hunt them down just as any null pointer dereference bug. And if you’re thinking the actual benefit of this is having the <em>GC</em> taking care of the memory instead of having to remember to manually free memory, then you’re wrong, there are ways to statically take care of that, without having the <em>GC</em> behemoth eating your CPU time every time, but I’ll get to that in a moment.</p>
+<h2 id="useless-pointers">Useless pointers</h2>
+<p>So java is cluttered with pointers, useless pointers. In <em>C/C++</em> pointers are one of the most powerful constructs, they allow you to get closer to the machine and control its actions with scalpel precision; In Java you get your programs to crash due to <em>NULL</em> pointers while getting nothing on exchange.</p>
+<p>But pointers in Java percolates in even more creative ways, take for instance the Equality comparison problem: When you perform equality comparison <code>==</code> what you’re actually comparing is <em>pointers equality</em>, not <em>values equality</em> for which you need a special method <code>equal()</code>, this is a low level language trait as its best, not to mention terribly counterintuitive.</p>
+<h1 id="the-bad-the-worst-and-the-ugly">The bad, the worst and the ugly</h1>
+<p>Java have a lot of additional traits that make it not only a low level language in disguise, but also a bad language in general.</p>
+<div class="figure">
+<img src="../img/javawrong/good_bad_ugly.jpg" class="img-responsive" />
+
+</div>
+<h2 id="portability">Portability</h2>
+<p>People usually get confused by the “Java is portable” thing. When we say that “Java is portable” what we actually mean is that Java <em>Bytecode</em> can be ported.</p>
+<p>Lower level languages as <em>C</em> or <em>C++</em> are portable too, the difference is that these need to be recompiled for the target system. You don’t believe me? Take a look at <a href="https://www.gimp.org/">Gimp</a>, <a href="https://gcc.gnu.org/">GCC</a> and <a href="https://inkscape.org/en/">Inkscape</a>, just to mention a few.</p>
+<p>When you distribute <em>C/C++</em> software for multiple platforms you distribute the binaries compiled for each platform, while with Java you just distribute one <em>Bytecode</em> executable for every platform, sure, it is a benefit, but no where near a big one.</p>
+<h2 id="awful-verbosity">Awful Verbosity</h2>
+<p>Most of the Java ugly verbosity is attributed to its static, strong typing discipline, that force you to annotate the types of everything, everywhere. But this is not the type discipline fault.</p>
+<p>In Java, you declare, for instance, a vector of integers:</p>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="bu">Vector</span>&lt;<span class="bu">Integer</span>&gt; vector = <span class="kw">new</span> <span class="bu">Vector</span>&lt;<span class="bu">Integer</span>&gt;();</code></pre></div>
+<p>Or a vector of vectors of integers (a Matrix of integers):</p>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="bu">Vector</span>&lt;<span class="bu">Vector</span>&lt;<span class="bu">Integer</span>&gt;&gt; vector = <span class="kw">new</span> <span class="bu">Vector</span>&lt;<span class="bu">Vector</span>&lt;<span class="bu">Integer</span>&gt;&gt;();</code></pre></div>
+<p>Java’s way of dealing with this to some extent, is the <em>diamond</em> operator <code>&lt;&gt;</code>, so instead we could write:</p>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="bu">Vector</span>&lt;<span class="bu">Vector</span>&lt;<span class="bu">Integer</span>&gt;&gt; vector = <span class="kw">new</span> <span class="bu">Vector</span>&lt;&gt;();</code></pre></div>
+<p>But that’s pretty much as far as it gets. <em>C++11</em> on the other hand has the <code>auto</code> keyword to let the compiler do what compilers are good at: mechanical, repetitive, deterministic tasks; Type inference is one of those tasks.</p>
+<p>Every time, everywhere a time annotation is needed, you provide one only if it’s absolutely needed to avoid ambiguity, otherwise, just use <code>auto</code> and let the compiler do it for you.</p>
+<h2 id="resources-un-safety">Resources un-safety</h2>
+<p>One the main Java selling points is <em>Memory Safety</em>, you see, in <em>C</em> you have to free your memory with <code>free()</code> in the right place, at the right time after every memory allocation with <code>malloc()</code> and friends. If you forget to free your memory you’ll have memory leaks, if you free it twice, or if you free it at the wrong time you’ll have a segmentation fault.</p>
+<p>Java on the other hand leverages the Garbage Collector to do it for you, the problem is, this works for memory only!</p>
+<p>Whenever you initialize a socket, or a database connection, or open a file, you still need to <em>close</em> it at the right time; So you still can and will have resources leakage.</p>
+<div class="figure">
+<img src="../img/javawrong/leak.jpg" class="img-responsive" />
+
+</div>
+<p><em>C++</em> solves all of those problems beautifully by using <a href="http://en.cppreference.com/w/cpp/language/raii">Resource Acquisition Is Initialization</a> or RAII for short. And by the way, if you hit the same kind of problems you face in <em>C</em> with <code>mallow()</code> and <code>free()</code> but with <em>C++</em>’s <code>new</code> and <code>delete</code>, then you’re doing it wrong.</p>
+<p>By using <em>C++</em>’s RAII mechanisms you’ll never have to remember to free memory, close files, sockets, database connections or anything else. Java is supposed to be a higher level language than <em>C++</em> isn’t it?</p>
+<h2 id="exceptions-driven-programming">Exceptions Driven Programming</h2>
+<p><em>C++</em> and a lot of other imperative and OOP languages suffer form the <em>Exceptions</em> problems as well, but Java manages to screw it up even further.</p>
+<p>The heavy use of exceptions forces the programmer to write tons of</p>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">try</span> {
+    ...
+}
+<span class="kw">catch</span>(someExcetption e) {
+    ...
+}
+<span class="kw">catch</span>(someOtherExcetption e) {
+    ...
+}
+<span class="kw">catch</span>(yetAnotherExcetption e) {
+    ...
+}</code></pre></div>
+<p>The usual alternative is just:</p>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">try</span> {
+    ...
+}
+<span class="kw">catch</span>(Excetption e) {
+    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;An exception has occurred, sorry ¯\_(ツ)_/¯&quot;</span>);
+}</code></pre></div>
+<p>The result of this is that the code that matters, the actual logic we’re trying to encode in the program gets deeply buried in there, making it hard to read, hard to understand, hard to maintain, hard to modify and awfully ugly. Although most languages suffer from a variant of this issue, some other languages handle it gracefully by encoding the possibility of failure in the type system.</p>
+<h1 id="everything-is-an-object">Everything is an object</h1>
+<p>As I have already said in my <a href="http://www.sillybytes.net/2016/03/why-do-i-hate-java.html">previous post</a>, No, not everything is a object. OOP has a lot of problems on its own, and it deserves its own post. Here I’m talking about the way Java forces OOP.</p>
+<p>Most OOP languages have this paradigm as a <em>feature</em>, but still allow for free functions, free data and so on. The problem with Java being strictly OOP is that it forces objects even when they don’t fit, even when they adversely affect compostability, modularity or readability.</p>
+<blockquote>
+<p>The problem with object-oriented languages is they’ve got all this implicit environment that they carry around with them. You wanted a banana but what you got was a gorilla holding the banana and the entire jungle. – Joe Armstrong</p>
+</blockquote>
+<p>In most languages you can perform <em>actions</em>, but in Java, having objects as the only mean of abstraction, you must have <em>“actioners”</em> to perform any <em>actions</em>, and you must force them into existent to do anything. OOP is usually bad in general, although useful in certain contexts; Java makes it soul up from everything that is wrong with OOP.</p>
+<p>Those and more are the common pains of Javaland, that Steve Yegge describes wonderfully in <a href="http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html">Execution in the Kingdom of Nouns</a>.</p>
+<h1 id="performance">Performance</h1>
+<p>Java is both fast and slow, depending on what language you compare it with. When you compare it with higher level languages, Java is reasonably faster, but when you compare it with C or C++, Java is miserably slow and heavy on resources.</p>
+<p>Taking into account that Java is more of a low level language rather than a high level one as we have seen, it should be compared to is closes cousins C and C++, in which case you inevitably conclude it’s just slow, very slow.</p>
+<h1 id="java-sits-in-a-dead-spot">Java sits in a dead spot</h1>
+<p>As we’ve seen, Java is mostly a low level programming language that doesn’t really provides the benefits of one, while at the same time it pretends to be a high level language and fails miserably.</p>
+<p>This leads to the current situation:</p>
+<pre><code>| C | C++ | Rust | Java | Ruby | Python | PHP | Perl | Earlang | OCaml | Haskell
+
+|--- Low Level --| ???  |---                  Hight Level                   ---|</code></pre>
+<h2 id="java-is-a-bad-low-level-language">Java is a bad low level language</h2>
+<p>From the low level languages, Java can perfectly be replaced byp <em>C++</em>, <em>RUST</em> and others. Both of these languages provides low level capabilities (like writing operating systems, real time systems and such), while at the same time providing better high level traits like <em>C++</em>’s RAII or <em>RUST</em>’s statically guaranteed thread safety, both of these languages will avoid Java’s stupid <code>NullPointerException</code>.</p>
+<h2 id="java-is-a-bad-high-level-language">Java is a bad high level language</h2>
+<p>From the high level languages, Java can be replaced by virtually <strong>any</strong> other language. Almost any other language will provide a nicer syntax, better and more powerful ways of abstraction, more terseness, better tooling, better everything.</p>
+<p>This makes Java completely replaceable by any other language, it serves no particular purpose and is particularly good at nothing.</p>
+<h1 id="stupid-programmers-abstractfactory">Stupid programmers abstractFactory</h1>
+<p>Professors in computer science Robert B.K. Dewar and Edmond Schonberg, published <a href="http://static1.1.sqspcdn.com/static/f/702523/9242013/1288741087497/200801-Dewar.pdf?token=%2B5Thxkc7TmMcmP0qpas4Xaozf%2Bg%3D">an article</a> in the “Journal of Defense Software Engineering” discussing how Java is a bad programming language for CS education, and how it produces programmers that are incapable of doing actual problem solving.</p>
+<p>Java produces programmers that have no idea about how the computer actually works, how to face complex problems, and the intrinsic need of an IDE only makes the problem 10 times worst. These people will be completely incompetent if their IDEs would be taken away for one second.</p>
+<p>Moreover, programmers that are only capable of writing Java are notoriously ignorant in programming languages theory or even CS in general for that matter, no computation theory knowledge, no algorithms knowledge, no nothing. The issue goes much more further into the same direction when you take into account IDE.</p>
+<p>As Joel puts it in his article <a href="https://www.joelonsoftware.com/2005/12/29/the-perils-of-javaschools-2/">“The Perils of JavaSchools”</a></p>
+<blockquote>
+<p>I’ve seen that the 100% Java schools have started churning out quite a few CS graduates who are simply not smart enough to work as programmers on anything more sophisticated than Yet Another Java Accounting Applications</p>
+</blockquote>
+<p>Ah… Java Accounting Applications… It pretty much sums up the skills of Java-only programmers.</p>
+        </div>
+    </div>
+</div>
+
+                    <a id="archive" href="../archive.html">Read Older Posts</a>
+                </div>
+
+            </div>
+        </div>
+
+
+        <footer class="container-fluid">
+            <div class="row">
+                <div id="sidebar" class="visible-xs visible-sm col-xs-12">
+                    <div id="author">
+    <img id="author-pic" src="../img/daniel.jpg">
+    <h3 id="author-name">Daniel Campoverde [alx741]</h3>
+    <img id="location-icon" src="../img/location_icon.png">
+    <span id="location">Cuenca, Ecuador</span>
+</div>
+
+<div id="findme">
+    <h2 class="sidebar-h2">FIND ME</h2>
+    <a target="_blank" href="https://github.com/alx741">
+        <img class="icon" src="../img/github.png">
+    </a>
+    <a target="_blank" href="https://twitter.com/alx741alx">
+        <img class="icon" src="../img/twitter.png">
+    </a>
+    <a target="_blank" href="https://www.facebook.com/sillybytes/">
+        <img class="icon" src="../img/facebook.png">
+    </a>
+    <a target="_blank" href="https://plus.google.com/116038619580828681039">
+        <img class="icon" src="../img/google.png">
+    </a>
+    <a target="_blank" href="https://www.joindiaspora.com/u/alx741">
+        <img class="icon" src="../img/diaspora.png">
+    </a>
+
+    <div id="findme-textual">
+        <b>Freenode:</b> #vim, #archlinux, #avr, #rust, #haskell,
+        #yesod, #zsh, #sillybytes
+        <hr>
+        <b>Mailto:</b> alx@sillybytes.net
+        <br>
+        <b>GPG Key ID:</b> 12622B78
+        <hr>
+        <b>Chat</b> with me <a target="_blank" href="http://webchat.freenode.net/?channels=sillybytes">here</a>
+    </div>
+
+
+    <div id="facebook-embed">
+        <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fsillybytes&amp;width&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true" scrolling="yes" style="border:none; overflow:hidden;" allowtransparency="false" frameborder="0"></iframe>
+    </div>
+</div>
+
+
+<div id="about">
+    <h2 class="sidebar-h2">ABOUT</h2>
+
+    <a target="_blank" href="http://www.haskellers.com/user/4249">
+        <img id="haskellers-img" class="badge" alt="I'm a Haskeller" src="../img/haskellers.png">
+    </a>
+
+    <img id="fsf-img" class="badge" alt="Free Software Fundation Member" src="../img/fsf.png">
+
+    <a target="_blank" href="http://internetdefenseleague.org/">
+        <img id="idl-img" class="badge" alt="Internet Defesen League" src="../img/idl.png">
+    </a>
+</div>
+
+<div id="dotfiles">
+    <h2 class="sidebar-h2">DOTFILES</h2>
+    <p>
+        Software configuration, scripts, tools and magic.
+        Be sure to add <b>attribution </b> when using them
+        (fully or partially).
+    </p>
+    <a target="_blank" href="https://github.com/alx741/dotfiles#readme">
+        <img id="dotfiles-img" src="../img/dotfiles.png">
+    </a>
+</div>
+
+
+<div id="license">
+    <h2 class="sidebar-h2">LICENSE</h2>
+
+    <a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
+        <img id="cc-img" alt="Creative Commons - SA - BY" src="../img/cc.png">
+    </a>
+    <p id="cc-text">
+        Silly Bytes by Daniel Alejandro Campoverde Carrión
+        [alx741] is licensed under a
+        <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
+            Creative Commons Attribution-ShareAlike 3.0 Unported License.
+        </a>
+    </p>
+</div>
+
+                </div>
+            </div>
+        </footer>
+
+
+    </body>
+</html>
