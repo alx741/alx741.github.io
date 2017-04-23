@@ -1,145 +1,1149 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <title>Silly Bytes</title>
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>Silly Bytes</title>
+    <link href="http://www.sillybytes.net/atom.xml" rel="self" />
+    <link href="http://www.sillybytes.net" />
+    <id>http://www.sillybytes.net/atom.xml</id>
+    <author>
+        <name>Daniel Campoverde [alx741]</name>
+        <email>alx@sillybytes.net</email>
+    </author>
+    <updated>2017-04-14T00:00:00Z</updated>
+    <entry>
+    <title>What's wrong with Java?</title>
+    <link href="http://www.sillybytes.net/posts/whats_wrong_with_java.html" />
+    <id>http://www.sillybytes.net/posts/whats_wrong_with_java.html</id>
+    <published>2017-04-14T00:00:00Z</published>
+    <updated>2017-04-14T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p><img src="/img/javawrong/thumbnail.png" id="thumbnail" /><br />
+I’ve spitted out quite a bit of rant about Java before in <a href="http://www.sillybytes.net/2016/03/why-do-i-hate-java.html">this post</a>, in which I basically list the annoyances that the ecosystem around Java imposes and how those problems are pretty much a big intersection with the problems of IDEs.</p>
+<p>Here I’d like to talk about the problems of Java as a language. Although there are a few problems with Java, I can live with them if I have no other option but to write Java code; My <em>hate</em> to Java doesn’t really arise from Java being a bad <em>language</em> but rather from its <a href="http://www.sillybytes.net/2016/03/why-do-i-hate-java.html">surroundings</a>.</p>
+<!--more-->
+<h1 id="pointers-pointers-everywhere">Pointers, Pointers everywhere</h1>
+<p>Java claims to be a <em>pointers free language</em>. Pointers, although elegant and very powerful, are a low level construct that should not be present in a higher level language, that’s for sure. Most of the time I want to be as far as possible from pointers when programming unless I really need them, in which case I will just write in <em>C</em>.</p>
+<p>The problem is Java does have pointers; Moreover it manages to keep most of the inconveniences of having pointers while giving almost none of the benefits of not having them. If you’re not giving me the power of pointers, at least be kind enough to remove the problems they arise!</p>
+<h2 id="everything-is-a-reference-everything-is-a-pointer">Everything is a reference, everything is a pointer</h2>
+<p>Java loves to call pointers as “references”, which is only a way to pretend that there are no pointers.</p>
+<p>Java makes pretty much everything a pointer, thus the heavy usage of the <code>new</code> keyword. Making everything a pointer gives <em>JVM</em> the ability to manage memory with the Garbage Collector of course, but the consequences of this are not as shallow and beneficial as you’d like to think.</p>
+<p>Having no means to manipulate an object other than via <em>references</em> weakens data locality (a problem that other high level languages actually does manage to solve), and thus cache misses become bread and butter for a Java programmer which, most likely, isn’t aware of it or don’t even know what I’m talking about or how is it important. Which takes us to the problems of Java as a first programming language, but we’ll talk about that latter.</p>
+<h2 id="nullpointerexception">NullPointerException</h2>
+<p>The book <em>Elegant Objects</em> by Yegor Bugayenko says:</p>
+<blockquote>
+<p>In a nutshell, you’re making a big mistake if you use NULL anywhere in your code. Anywhere – I mean it.</p>
+</blockquote>
+<p>And I completely agree with that. The problem is having to take into account the possibility of <em>NULL</em> in a high level language that supposedly doesn’t have pointers.</p>
+<p>In <em>C</em> or <em>C++,</em> when you dereference a <em>NULL</em> pointer, you get a <em>Segmentation Fault</em> and your program crashes. In Java, when you try to use a <em>NULL</em> reference you get a <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html">NullPointerException</a> and your program crashes as well. So what gives?</p>
+<p>You may say that the sources of these crashes are different, the <em>Segmentation Fault</em> comes from the OS trying to stop you from crashing the entire system, while the <em>NullPointerException</em> comes from the JVM that… Well, has nothing left to do but crash… I don’t see how is that any better.</p>
+<p><em>NullPointerException</em> are terribly common in Java, and you have to hunt them down just as any null pointer dereference bug. And if you’re thinking the actual benefit of this is having the <em>GC</em> taking care of the memory instead of having to remember to manually free memory, then you’re wrong, there are ways to statically take care of that, without having the <em>GC</em> behemoth eating your CPU time every time, but I’ll get to that in a moment.</p>
+<p>By the way, Tony Hoare himself calls <em>NULL</em> the <a href="https://en.wikipedia.org/wiki/Nullable_type#Compared_with_null_pointers">“Billion-Dollar mistake”</a>.</p>
+<h2 id="useless-pointers">Useless pointers</h2>
+<p>So java is cluttered with pointers, useless pointers. In <em>C/C++</em> pointers are one of the most powerful constructs, they allow you to get closer to the machine and control its actions with scalpel precision; In Java you get your programs to crash due to <em>NULL</em> pointers while getting nothing on exchange.</p>
+<p>But pointers in Java percolates in even more creative ways, take for instance the Equality comparison problem: When you perform equality comparison <code>==</code> what you’re actually comparing is <em>pointers equality</em>, not <em>values equality</em> for which you need a special method <code>equal()</code>, this is a low level language trait as its best, not to mention terribly counterintuitive.</p>
+<h1 id="the-bad-the-worst-and-the-ugly">The bad, the worst and the ugly</h1>
+<p>Java have a lot of additional traits that make it not only a low level language in disguise, but also a bad language in general.</p>
+<div class="figure">
+<img src="/img/javawrong/good_bad_ugly.jpg" class="img-responsive" />
 
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <link rel="shortcut icon" type="image/png" href="../../img/favicon.png" />
-
-        <link rel="stylesheet" href="../../css/default.css" />
-        <link rel="stylesheet" href="../../css/post-list.css" />
-        <link rel="stylesheet" href="../../css/post.css" />
-
-        <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="../../bower_components/highlight/src/styles/solarized-light.css" />
-
-        <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
-        <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="../../bower_components/highlight/src/highlight.pack.js"></script>
-
-        <script> hljs.initHighlightingOnLoad(); </script>
-
-    </head>
-    <body>
-        <header class="container-fluid">
-            <div class="row">
-                <div class="col-xs-12">
-                    <a href="../../">
-                        <img alt="Silly Bytes" id="logo" class="image-responsive" src="../../img/silly-bytes_logo.png" />
-                    </a>
-                </div>
-            </div>
-        </header>
-
-        <div id="blog" class="container-fluid">
-            <div class="row">
-
-                <div id="sidebar" class="hidden-xs hidden-sm col-md-3">
-                    <div id="author">
-    <img id="author-pic" src="../../img/daniel.jpg">
-    <h3 id="author-name">Daniel Campoverde [alx741]</h3>
-    <img id="location-icon" src="../../img/location_icon.png">
-    <span id="location">Cuenca, Ecuador</span>
 </div>
+<h2 id="portability">Portability</h2>
+<p>People usually get confused by the “Java is portable” thing. When we say that “Java is portable” what we actually mean is that Java <em>Bytecode</em> can be ported.</p>
+<p>Lower level languages as <em>C</em> or <em>C++</em> are portable too, the difference is that these need to be recompiled for the target system. You don’t believe me? Take a look at <a href="https://www.gimp.org/">Gimp</a>, <a href="https://gcc.gnu.org/">GCC</a> and <a href="https://inkscape.org/en/">Inkscape</a>, just to mention a few.</p>
+<p>When you distribute <em>C/C++</em> software for multiple platforms you distribute the binaries compiled for each platform, while with Java you just distribute one <em>Bytecode</em> executable for every platform, sure, it is a benefit, but no where near a big one.</p>
+<h2 id="awful-verbosity">Awful Verbosity</h2>
+<p>Most of the Java ugly verbosity is attributed to its static, strong typing discipline, that force you to annotate the types of everything, everywhere. But this is not the type discipline fault.</p>
+<p>In Java, you declare, for instance, a vector of integers:</p>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="bu">Vector</span>&lt;<span class="bu">Integer</span>&gt; vector = <span class="kw">new</span> <span class="bu">Vector</span>&lt;<span class="bu">Integer</span>&gt;();</code></pre></div>
+<p>Or a vector of vectors of integers (a Matrix of integers):</p>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="bu">Vector</span>&lt;<span class="bu">Vector</span>&lt;<span class="bu">Integer</span>&gt;&gt; vector = <span class="kw">new</span> <span class="bu">Vector</span>&lt;<span class="bu">Vector</span>&lt;<span class="bu">Integer</span>&gt;&gt;();</code></pre></div>
+<p>Java’s way of dealing with this to some extent, is the <em>diamond</em> operator <code>&lt;&gt;</code>, so instead we could write:</p>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="bu">Vector</span>&lt;<span class="bu">Vector</span>&lt;<span class="bu">Integer</span>&gt;&gt; vector = <span class="kw">new</span> <span class="bu">Vector</span>&lt;&gt;();</code></pre></div>
+<p>But that’s pretty much as far as it gets. <em>C++11</em> on the other hand has the <code>auto</code> keyword to let the compiler do what compilers are good at: mechanical, repetitive, deterministic tasks; Type inference is one of those tasks.</p>
+<p>Every time, everywhere a time annotation is needed, you provide one only if it’s absolutely needed to avoid ambiguity, otherwise, just use <code>auto</code> and let the compiler do it for you.</p>
+<h2 id="resources-un-safety">Resources un-safety</h2>
+<p>One the main Java selling points is <em>Memory Safety</em>, you see, in <em>C</em> you have to free your memory with <code>free()</code> in the right place, at the right time after every memory allocation with <code>malloc()</code> and friends. If you forget to free your memory you’ll have memory leaks, if you free it twice, or if you free it at the wrong time you’ll have a segmentation fault.</p>
+<p>Java on the other hand leverages the Garbage Collector to do it for you, the problem is, this works for memory only!</p>
+<p>Whenever you initialize a socket, or a database connection, or open a file, you still need to <em>close</em> it at the right time; So you still can and will have resources leakage.</p>
+<div class="figure">
+<img src="/img/javawrong/leak.jpg" class="img-responsive" />
 
-<div id="findme">
-    <h2 class="sidebar-h2">FIND ME</h2>
-    <a target="_blank" href="https://github.com/alx741">
-        <img class="icon" src="../../img/github.png">
-    </a>
-    <a target="_blank" href="https://twitter.com/alx741alx">
-        <img class="icon" src="../../img/twitter.png">
-    </a>
-    <a target="_blank" href="https://www.facebook.com/sillybytes/">
-        <img class="icon" src="../../img/facebook.png">
-    </a>
-    <a target="_blank" href="https://plus.google.com/116038619580828681039">
-        <img class="icon" src="../../img/google.png">
-    </a>
-    <a target="_blank" href="https://www.joindiaspora.com/u/alx741">
-        <img class="icon" src="../../img/diaspora.png">
-    </a>
-
-    <div id="findme-textual">
-        <b>Freenode:</b> #vim, #archlinux, #avr, #rust, #haskell,
-        #yesod, #zsh, #sillybytes
-        <hr>
-        <b>Mailto:</b> alx@sillybytes.net
-        <br>
-        <b>GPG Key ID:</b> 12622B78
-        <hr>
-        <b>Chat</b> with me <a target="_blank" href="http://webchat.freenode.net/?channels=sillybytes">here</a>
-        <hr>
-        <b>Subscribe:</b> <a href="http://www.sillybytes.net/atom.xml">
-            <img id="rss-img" alt="rss" src="../../img/rss.png" /> </a>
-    </div>
-
-
-    <div id="facebook-embed">
-        <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fsillybytes&amp;width&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true" scrolling="yes" style="border:none; overflow:hidden;" allowtransparency="false" frameborder="0"></iframe>
-    </div>
 </div>
+<p><em>C++</em> solves all of those problems beautifully by using <a href="http://en.cppreference.com/w/cpp/language/raii">Resource Acquisition Is Initialization</a> or RAII for short. And by the way, if you hit the same kind of problems you face in <em>C</em> with <code>mallow()</code> and <code>free()</code> but with <em>C++</em>’s <code>new</code> and <code>delete</code>, then you’re doing it wrong.</p>
+<p>By using <em>C++</em>’s RAII mechanisms you’ll never have to remember to free memory, close files, sockets, database connections or anything else. Java is supposed to be a higher level language than <em>C++</em> isn’t it?</p>
+<h2 id="exceptions-driven-programming">Exceptions Driven Programming</h2>
+<p><em>C++</em> and a lot of other imperative and OOP languages suffer form the <em>Exceptions</em> problems as well, but Java manages to screw it up even further.</p>
+<p>The heavy use of exceptions forces the programmer to write tons of</p>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">try</span> {
+    ...
+}
+<span class="kw">catch</span>(someExcetption e) {
+    ...
+}
+<span class="kw">catch</span>(someOtherExcetption e) {
+    ...
+}
+<span class="kw">catch</span>(yetAnotherExcetption e) {
+    ...
+}</code></pre></div>
+<p>The usual alternative is just:</p>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">try</span> {
+    ...
+}
+<span class="kw">catch</span>(Excetption e) {
+    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;An exception has occurred, sorry ¯\_(ツ)_/¯&quot;</span>);
+}</code></pre></div>
+<p>The result of this is that the code that matters, the actual logic we’re trying to encode in the program gets deeply buried in there, making it hard to read, hard to understand, hard to maintain, hard to modify and awfully ugly. Although most languages suffer from a variant of this issue, some other languages handle it gracefully by encoding the possibility of failure in the type system.</p>
+<p>Most programming languages break equational reasoning, but that’s pretty much normal; Exceptions go further by even breaking the imperative sequentiality (<em>cough</em> GOTO <em>cough</em>).</p>
+<h1 id="everything-is-an-object">Everything is an object</h1>
+<p>As I have already said in my <a href="http://www.sillybytes.net/2016/03/why-do-i-hate-java.html">previous post</a>, No, not everything is a object. OOP has a lot of problems on its own, and it deserves its own post. Here I’m talking about the way Java forces OOP.</p>
+<p>Most OOP languages have this paradigm as a <em>feature</em>, but still allow for free functions, free data and so on. The problem with Java being strictly OOP is that it forces objects even when they don’t fit, even when they adversely affect compostability, modularity or readability.</p>
+<blockquote>
+<p>The problem with object-oriented languages is they’ve got all this implicit environment that they carry around with them. You wanted a banana but what you got was a gorilla holding the banana and the entire jungle. – Joe Armstrong</p>
+</blockquote>
+<p>In most languages you can perform <em>actions</em>, but in Java, having objects as the only mean of abstraction, you must have <em>“actioners”</em> to perform any <em>actions</em>, and you must force them into existent to do anything. OOP is usually bad in general, although useful in certain contexts; Java makes it soul up from everything that is wrong with OOP.</p>
+<p>Those and more are the common pains of Javaland, that Steve Yegge describes wonderfully in <a href="http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html">Execution in the Kingdom of Nouns</a>.</p>
+<h1 id="performance">Performance</h1>
+<p>Java is both fast and slow, depending on what language you compare it with. When you compare it with higher level languages, Java is reasonably faster, but when you compare it with C or C++, Java is miserably slow and heavy on resources.</p>
+<p>Taking into account that Java is more of a low level language rather than a high level one as we have seen, it should be compared to is closes cousins C and C++, in which case you inevitably conclude it’s just slow, very slow.</p>
+<h1 id="java-sits-in-a-dead-spot">Java sits in a dead spot</h1>
+<p>As we’ve seen, Java is mostly a low level programming language that doesn’t really provides the benefits of one, while at the same time it pretends to be a high level language and fails miserably.</p>
+<p>This leads to the current situation:</p>
+<pre><code>| C | C++ | Rust | Java | Ruby | Python | PHP | Perl | Earlang | OCaml | Haskell
+
+|--- Low Level --| ???  |---                  Hight Level                   ---|</code></pre>
+<h2 id="java-is-a-bad-low-level-language">Java is a bad low level language</h2>
+<p>From the low level languages, Java can perfectly be replaced byp <em>C++</em>, <em>RUST</em> and others. Both of these languages provides low level capabilities (like writing operating systems, real time systems and such), while at the same time providing better high level traits like <em>C++</em>’s RAII or <em>RUST</em>’s statically guaranteed thread safety, both of these languages will avoid Java’s stupid <code>NullPointerException</code>.</p>
+<h2 id="java-is-a-bad-high-level-language">Java is a bad high level language</h2>
+<p>From the high level languages, Java can be replaced by virtually <strong>any</strong> other language. Almost any other language will provide a nicer syntax, better and more powerful ways of abstraction, more terseness, better tooling, better everything.</p>
+<p>This makes Java completely replaceable by any other language, it serves no particular purpose and is particularly good at nothing.</p>
+<h1 id="stupid-programmers-abstractfactory">Stupid programmers abstractFactory</h1>
+<p>Professors in computer science Robert B.K. Dewar and Edmond Schonberg, published <a href="http://static1.1.sqspcdn.com/static/f/702523/9242013/1288741087497/200801-Dewar.pdf?token=%2B5Thxkc7TmMcmP0qpas4Xaozf%2Bg%3D">an article</a> in the “Journal of Defense Software Engineering” discussing how Java is a bad programming language for CS education, and how it produces programmers that are incapable of doing actual problem solving.</p>
+<p>Java produces programmers that have no idea about how the computer actually works, how to face complex problems, and the intrinsic need of an IDE only makes the problem 10 times worst. These people will be completely incompetent if their IDEs would be taken away for one second.</p>
+<p>Moreover, programmers that are only capable of writing Java are notoriously ignorant in programming languages theory or even CS in general for that matter, no computation theory knowledge, no algorithms knowledge, no nothing. The issue goes much more further into the same direction when you take into account IDE.</p>
+<p>As Joel puts it in his article <a href="https://www.joelonsoftware.com/2005/12/29/the-perils-of-javaschools-2/">“The Perils of JavaSchools”</a></p>
+<blockquote>
+<p>I’ve seen that the 100% Java schools have started churning out quite a few CS graduates who are simply not smart enough to work as programmers on anything more sophisticated than Yet Another Java Accounting Applications</p>
+</blockquote>
+<p>Ah… Java Accounting Applications… It pretty much sums up the skills of Java-only programmers.</p>]]></summary>
+</entry>
+<entry>
+    <title>Using Cassius (Shakespearean template) with Hakyll</title>
+    <link href="http://www.sillybytes.net/posts/using_hakyll_with_cassius.html" />
+    <id>http://www.sillybytes.net/posts/using_hakyll_with_cassius.html</id>
+    <published>2017-04-11T00:00:00Z</published>
+    <updated>2017-04-11T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p><img src="/img/hakyllcassius/thumbnail.png" id="thumbnail" /><br />
+As a user of the <a href="http://www.yesodweb.com/">Yesod</a> framework, I’ve came to know and love the <a href="https://www.stackage.org/haddock/lts-8.4/shakespeare-2.0.12.1/Text-Cassius.html#v:cassius">Cassius</a> CSS templating language, although its reliance on Template Haskell is meant to fit better with the Yesod’s needs and makes it a bit cumbersome to use everywhere else, I still like the templating language itself and its features a lot.</p>
+<p>That’s why I used it for the styles generation for <a href="http://www.sillybytes.net">Silly Bytes</a> together with <a href="https://jaspervdj.be/hakyll/">Hakyll</a>. In this post I will describe the process.<br />
+<br />
+<br />
+<!--more--></p>
+<h1 id="cassius-files">Cassius files</h1>
+<p>Our <code>.cassius</code> files will live inside the <code>css</code> directory, together with a <code>Gen.hs</code> Haskell module that will take the <em>Cassius</em> sources and compile them to <em>CSS</em>:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">{-# LANGUAGE TemplateHaskell #-}</span>
+
+<span class="kw">module</span> <span class="dt">Gen</span> <span class="kw">where</span>
+
+<span class="kw">import </span><span class="dt">Text.Cassius</span>
+<span class="kw">import </span><span class="dt">Data.Text.Lazy</span> (unpack)
+
+<span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span> <span class="kw">do</span>
+    writeFile <span class="st">&quot;default.css&quot;</span> <span class="fu">$</span> unpack <span class="fu">$</span> renderCss def
+    writeFile <span class="st">&quot;post.css&quot;</span> <span class="fu">$</span> unpack <span class="fu">$</span> renderCss post
+    writeFile <span class="st">&quot;post-list.css&quot;</span> <span class="fu">$</span> unpack <span class="fu">$</span> renderCss postList
+
+def <span class="fu">=</span> <span class="fu">$</span>(cassiusFile <span class="st">&quot;default.cassius&quot;</span>) ()
+post <span class="fu">=</span> <span class="fu">$</span>(cassiusFile <span class="st">&quot;post.cassius&quot;</span>) ()
+postList <span class="fu">=</span> <span class="fu">$</span>(cassiusFile <span class="st">&quot;post-list.cassius&quot;</span>) ()</code></pre></div>
+<p>This module, when executed (<code>runhaskell Gen.hs</code>), will compile the <em>Cassius</em> sources <code>default.cassius</code>, <code>post.cassius</code> and <code>post-list.cassius</code> to the corresponding <em>CSS</em> files that the -untouched- <em>CSS</em> rule in <code>site.hs</code> will take and use in the generated site.</p>
+<h1 id="compiling">Compiling</h1>
+<p>The <em>Cassius</em> compilation doesn’t happen when we <code>stack exec site build</code>, as we haven’t defined a rule, nor a compiler for them in <code>site.hs</code> and we won’t, because the Template Haskell requirements mess things up.</p>
+<p>So instead we are going to have a <code>Makefile</code> that will watch for changes in all the <code>css/*.cassius</code> files and perform the recompilation by executing <code>Gen.hs</code>:</p>
+<pre class="make"><code>.PHONY: build test css
+
+build: css
+    stack build
+	stack exec site rebuild
+
+css:
+	cd css &amp;&amp; stack runhaskell Gen.hs
+
+watch:
+	while true; do make css; inotifywait -qre close_write css/*.cassius; done</code></pre>
+<p>This way, we can execute <code>make watch</code> and it will recompile the <em>Cassius</em> files when needed. A normal <code>stack exec site watch</code> can be running along the side to take care of everything else.</p>]]></summary>
+</entry>
+<entry>
+    <title>From Blogger to Hakyll</title>
+    <link href="http://www.sillybytes.net/posts/from_blogger_to_hakyll.html" />
+    <id>http://www.sillybytes.net/posts/from_blogger_to_hakyll.html</id>
+    <published>2017-04-10T00:00:00Z</published>
+    <updated>2017-04-10T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p><img src="/img/bloggerhakyll/thumbnail.png" id="thumbnail" /><br />
+<a href="https://jaspervdj.be/hakyll/">Hakyll</a> is an amazing static site generator written in Haskell, it allows for blog posts to be written in <em>markdown</em>, that are then compiled with <em>pandoc</em>, and is very well suited to be used with <em>GitHub pages</em>; It’s everything I wanted and more.</p>
+<p><a href="http://www.sillybytes.net">Silly Bytes</a> went through its first 5 years of existence hosted on Google’s <a href="https://www.blogger.com">Blogger</a> service, and it did well. Although Blogger offers a fair amount of flexibility, you can’t have total control over it, and having to write posts with the built in <em>WYSIWYG</em> interface or pasting the HTML output is one of the bigger pain points of it. I solved most of that by writing a <a href="http://www.sillybytes.net/2016/09/how-do-i-blog-blogger-posts-from.html">CLI tool</a> that allows me to write my posts offline in <em>markdown</em>, compile them, and deploy them from my terminal leveraging the Blogger’s convenient API, but I still have the feeling that it isn’t good enough.</p>
+<p>In this post I will describe the process of porting an existing Blogger blog to <em>Hakyll</em> and <em>GitHub pages</em> using <em>Silly Bytes</em> itself as the study case.</p>
+<!--more-->
+<h1 id="expectations">Expectations</h1>
+<p>So here is what I want instead:</p>
+<ol style="list-style-type: decimal">
+<li>Completely port <em>Silly Bytes</em> to <em>Hakyll</em> and <em>GitHub pages</em></li>
+</ol>
+<p>Write every post in <em>markdown</em> only, and have them generated automatically.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Further customize the design</li>
+</ol>
+<p>While I’ve managed to get pretty far with Blogger’s custom CSS option, there are still some aspects that doesn’t quite fit what I want.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Preserve all the links to my previous posts</li>
+</ol>
+<p>There are quite a few links to my posts all over the place: Reddit, Taringa, ElHacker.net, Facebook, etc. I want them to keep working just fine.</p>
+<h1 id="the-initial-setup">The initial setup</h1>
+<p>We’ll strive to keep the old blog completely functional till the last moment when we finally change where the domain name points to.</p>
+<h2 id="github-page">GitHub page</h2>
+<p><em>GitHub pages</em> will host the blog, so we must first create a repository that will keep it.</p>
+<p>The <em>GitHub pages</em> <a href="https://help.github.com/articles/user-organization-and-project-pages/">naming convections</a> state that, in order to create a dedicated repo for a personal or organizational page, we must have a repository named <code>user.github.io</code> or <code>organization.github.io</code> respectively, this way GitHub will read and serve any <em>index</em> file in the repository root; This supposes a problem though, We want to keep our generated site inside a directory to keep them isolated from the sources files.</p>
+<p>There are a couple of solutions for this, but they all use some Git branches trickery, juggling with a CI service, or both; It feels to hacky to me, not to say that my solution is more elegant, but it just fits better to the work flow I’m looking for.</p>
+<p><em>GitHub pages</em> offers project specific pages as well, those are served from a dedicated <code>docs</code> directory on it, so this is what we’re going to use instead.</p>
+<p>I’ve created a <code>sillybytes</code> <a href="https://github.com/sillybytes/sillybytes">repository</a> in the <code>sillybytes</code> organization. Then in <code>settings -&gt; GitHub Pages -&gt; Source</code> I’ve selected <code>master branch /docs folder</code> as the page source.</p>
+<h2 id="hakyll-site">Hakyll site</h2>
+<p>For the content of that repository, this will create the initial Hakyll scaffolding:</p>
+<pre><code>$ hakyll-init sillybytes
+$ cd sillybytes
+$ stack init
+$ stack build</code></pre>
+<p>By default, Hakyll outputs the generated site in a <code>_site</code> directory, but <em>GitHub pages</em> will read the site from a <code>docs</code> directory, so let’s fix that by editing the <code>site.hs</code> file.</p>
+<p>The default <code>main</code> function in <code>site.hs</code> uses the <code>hakyll</code> function, which uses the default configuration, so we must change that to use a custom one:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> hakyllWith config <span class="fu">$</span> <span class="kw">do</span>
+    <span class="fu">...</span>
+    <span class="fu">...</span>
 
 
-<div id="about">
-    <h2 class="sidebar-h2">ABOUT</h2>
 
-    <a target="_blank" href="http://www.haskellers.com/user/4249">
-        <img id="haskellers-img" class="badge" alt="I'm a Haskeller" src="../../img/haskellers.png">
-    </a>
+<span class="ot">config ::</span> <span class="dt">Configuration</span>
+config <span class="fu">=</span> <span class="dt">Configuration</span>
+    { destinationDirectory <span class="fu">=</span> <span class="st">&quot;docs&quot;</span>
+    , storeDirectory       <span class="fu">=</span> <span class="st">&quot;_cache&quot;</span>
+    , tmpDirectory         <span class="fu">=</span> <span class="st">&quot;_cache/tmp&quot;</span>
+    , providerDirectory    <span class="fu">=</span> <span class="st">&quot;.&quot;</span>
+    , ignoreFile           <span class="fu">=</span> ignoreFile&#39;
+    , deployCommand        <span class="fu">=</span> <span class="st">&quot;echo &#39;No deploy command specified&#39; &amp;&amp; exit 1&quot;</span>
+    , deploySite           <span class="fu">=</span> system <span class="fu">.</span> deployCommand
+    , inMemoryCache        <span class="fu">=</span> <span class="dt">True</span>
+    , previewHost          <span class="fu">=</span> <span class="st">&quot;127.0.0.1&quot;</span>
+    , previewPort          <span class="fu">=</span> <span class="dv">8000</span>
+    }
+  <span class="kw">where</span>
+    ignoreFile&#39; path
+        <span class="fu">|</span> <span class="st">&quot;.&quot;</span>    <span class="ot">`isPrefixOf`</span> fileName <span class="fu">=</span> <span class="dt">True</span>
+        <span class="fu">|</span> <span class="st">&quot;#&quot;</span>    <span class="ot">`isPrefixOf`</span> fileName <span class="fu">=</span> <span class="dt">True</span>
+        <span class="fu">|</span> <span class="st">&quot;~&quot;</span>    <span class="ot">`isSuffixOf`</span> fileName <span class="fu">=</span> <span class="dt">True</span>
+        <span class="fu">|</span> <span class="st">&quot;.swp&quot;</span> <span class="ot">`isSuffixOf`</span> fileName <span class="fu">=</span> <span class="dt">True</span>
+        <span class="fu">|</span> otherwise                    <span class="fu">=</span> <span class="dt">False</span>
+      <span class="kw">where</span>
+        fileName <span class="fu">=</span> takeFileName path</code></pre></div>
+<p>Here I’ve pretty much left the default configuration intact and only changed the <code>destinationDirectory</code> field to be <code>docs</code>.</p>
+<p>Now recompile and regenerate the site:</p>
+<pre><code>$ stack build
+$ stack exec site rebuild</code></pre>
+<p>And the generated site will now be on <code>docs</code>.</p>
+<h2 id="deploying">Deploying</h2>
+<p>The deployment process boils down to regenerating the site:</p>
+<pre><code>$ stack exec site rebuild</code></pre>
+<p>Committing the changes on <code>docs</code>:</p>
+<pre><code>$ git add docs
+$ git commit -m &quot;Build&quot;</code></pre>
+<p>And pushing:</p>
+<pre><code>$ git push origin master</code></pre>
+<p>No need for esoteric spells here.</p>
+<h1 id="dont-shatter-my-links">Don’t shatter my links!</h1>
+<div class="figure">
+<img src="/img/bloggerhakyll/links.png" class="img-responsive" />
 
-    <img id="fsf-img" class="badge" alt="Free Software Fundation Member" src="../../img/fsf.png">
-
-    <a target="_blank" href="http://internetdefenseleague.org/">
-        <img id="idl-img" class="badge" alt="Internet Defesen League" src="../../img/idl.png">
-    </a>
 </div>
+<p>It is imperative to preserve the links to my previous posts that were originally published on Blogger, so they keep pointing to the right post.</p>
+<h2 id="preserve-legacy-paths">Preserve legacy paths</h2>
+<p>Blogger paths convention is as follows:</p>
+<p>Every post is on the corresponding <em>year</em> and <em>month</em> of publication name space like <code>year/month/post.html</code>. So we must preserve this structure at least for the legacy posts.</p>
+<p>In order to achieve this, keep a <code>legacy</code> directory inside the <code>posts</code> directory, that will keep a directory tree for every year and month where posts exist.</p>
+<pre><code>sillybytes/posts/legacy
+|
++---2012
+|   |
+|   +----01
+|   |    +---- post.md
+|   |
+|   +----02
+|   |
+|   +---- ...
+|
+|
++---2013
+|   |
+|   +----01
+|   |
+|   +----02
+|   |
+|   +---- ...
+|
+|
++--- ...
+    |
+    +----01
+    |
+    +----02
+    |
+    +---- ...</code></pre>
+<p>Then we need an additional rule in <code>site.hs</code></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">match <span class="st">&quot;posts/legacy/**&quot;</span> <span class="fu">$</span> <span class="kw">do</span>
+    route <span class="fu">$</span> customRoute <span class="fu">$</span> (flip replaceExtension <span class="st">&quot;html&quot;</span>) <span class="fu">.</span> joinPath
+        <span class="fu">.</span> (drop <span class="dv">2</span>) <span class="fu">.</span> splitPath <span class="fu">.</span> toFilePath
+    compile <span class="fu">$</span> pandocCompiler
+        <span class="fu">&gt;&gt;=</span> saveSnapshot <span class="st">&quot;content&quot;</span>
+        <span class="fu">&gt;&gt;=</span> loadAndApplyTemplate <span class="st">&quot;templates/post.html&quot;</span>    postCtx
+        <span class="fu">&gt;&gt;=</span> loadAndApplyTemplate <span class="st">&quot;templates/default.html&quot;</span> postCtx
+        <span class="fu">&gt;&gt;=</span> relativizeUrls</code></pre></div>
+<p>This will ensure that the <code>year/month/post.html</code> directory structure is preserved on the resulting generated site.</p>
+<h2 id="port-legacy-posts">Port legacy posts</h2>
+<p>From here, a pretty much manual porting process is required. Most of my legacy posts were originally published right in the Blogger interface, so the must first be ported to <em>markdow</em>.</p>
+<p>The porting process is as follows:</p>
+<ol style="list-style-type: decimal">
+<li>Visit the legacy post and copy the trailing name of it from the URL.</li>
+<li>Create the appropriate directory structure inside <code>posts/legacy</code> to preserve the same <code>year/month/post.html</code> path.</li>
+<li>Create a <em>markdown</em> file with the same name as it appears in the URL, but with the <code>.md</code> extension.</li>
+<li>Create a dedicated directory for the post inside the <code>images</code> directory and put all the post images on it.</li>
+<li>Paste and format the post content in the <em>markdown</em> file.</li>
+</ol>
+<p>Any newer posts that are created after the porting can live in the <code>posts</code> directory, there is no need to keep the <code>year/month/post.html</code> any more.</p>
+<h1 id="the-migration">The migration</h1>
+<div class="figure">
+<img src="/img/bloggerhakyll/migration.jpg" class="img-responsive" />
 
-<div id="dotfiles">
-    <h2 class="sidebar-h2">DOTFILES</h2>
-    <p>
-        Software configuration, scripts, tools and magic.
-        Be sure to add <b>attribution </b> when using them
-        (fully or partially).
-    </p>
-    <a target="_blank" href="https://github.com/alx741/dotfiles#readme">
-        <img id="dotfiles-img" src="../../img/dotfiles.png">
-    </a>
 </div>
+<p>The only thing that is left is the actual migration by pointing the domain name to the new location.</p>
+<p>This arises a bigger problem though, given that we are serving the blog from <code>sillybytes/docs</code> we’ll need a <em>URL Redirect</em> record pointing to <code>sillybytes.github.io/sillybytes</code> rather than a <em>CNAME</em> to just <code>sillybytes.github.io</code>. If you’re fine with that, then you’re done.</p>
+<p>I really wanted a proper <em>CNAME</em> record, so I had to change the setup a bit:</p>
+<ul>
+<li>Have two repositories: <code>sillybytes</code> for the sources, and <code>sillybytes.github.io</code> for the generated page.</li>
+<li>A <em>deployment</em> consists of copying the content of the <code>docs</code> directory to the <code>sillybytes.github.io</code> repository.</li>
+<li>Point the domain name with a <em>CNAME</em> record to <code>sillybytes.github.io</code>.</li>
+</ul>
+<h1 id="new-cli-tool">New CLI tool</h1>
+<div class="figure">
+<img src="/img/bloggerhakyll/shot.png" class="img-responsive" />
 
-
-<div id="license">
-    <h2 class="sidebar-h2">LICENSE</h2>
-
-    <a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
-        <img id="cc-img" alt="Creative Commons - SA - BY" src="../../img/cc.png">
-    </a>
-    <p id="cc-text">
-        Silly Bytes by Daniel Alejandro Campoverde Carrión
-        [alx741] is licensed under a
-        <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
-            Creative Commons Attribution-ShareAlike 3.0 Unported License.
-        </a>
-    </p>
 </div>
+<p>The <a href="https://github.com/sillybytes/sillybytes_tool">CLI tool</a> I was using before for Blogger deployment is no longer useful, but I can still adapt it to the new deployment schema:</p>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="fu">cp</span> -rfv _site/* ../sillybytes.github.io/
+<span class="bu">cd</span> ../sillybytes.github.io
+<span class="ex">display_info</span> <span class="st">&quot;Deploying...&quot;</span>
+<span class="fu">git</span> add .
+<span class="fu">git</span> commit -m <span class="st">&quot;Deploy&quot;</span>
+<span class="fu">git</span> push origin master
+<span class="ex">display_success</span> <span class="st">&quot;Deployed!&quot;</span></code></pre></div>
+<p>As well as aliasing common <em>Hakyll</em> commands:</p>
+<div class="figure">
+<img src="/img/bloggerhakyll/shot1.png" class="img-responsive" />
 
-                </div>
+</div>]]></summary>
+</entry>
+<entry>
+    <title>How do I blog? - Blogger posts from markdown and CLI</title>
+    <link href="http://www.sillybytes.net/2016/09/how-do-i-blog-blogger-posts-from.html" />
+    <id>http://www.sillybytes.net/2016/09/how-do-i-blog-blogger-posts-from.html</id>
+    <published>2016-09-23T00:00:00Z</published>
+    <updated>2016-09-23T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p><img src="/img/blogger/thumbnail.png" id="thumbnail" /><br />
+There are plans to migrate <a href="http://sillybytes.net">Silly Bytes</a> to <a href="https://jaspervdj.be/hakyll/">Hakyll</a> and GitHub pages, but till then I’m still using <a href="http://www.blogger.com">Blogger</a> and I wanted to make the posting process as painless and automatic as possible.</p>
+<p>Every post I write is currently a separate git repo hosted on the <a href="https://github.com/sillybytes">Silly Bytes GitHub organization</a>. The post is written and maintained in Markdown using Pandoc and a convenient Makefile generated by the <a href="https://github.com/alx741/made">made script</a>.</p>
+<p>Writing posts in Markdown is nice but is not very useful if you still have to mess around with Blogger’s web interface, so here is the plan:</p>
+<ul>
+<li>Write post in <em>Markdown</em></li>
+<li>Use <em>made</em> to generate a <em>Makefile</em></li>
+<li>Generate HTML with the <em>Makefile</em> <code>$ make</code></li>
+<li>Push the HTML post to Blogger using Google APIs</li>
+</ul>
+<!--more-->
+<p>The first 3 steps are already covered so lets dig into the Blogger negotiation part.</p>
+<h2 id="api-script">API script</h2>
+<p><a href="https://developers.google.com/api-client-library/python/start/installation">Google APIs</a> come in handy here, the best language option was Python (<a href="http://www.sillybytes.net/2016/03/why-do-i-hate-java.html">I refuse tu use Java</a>). So starting from an <a href="https://github.com/google/google-api-python-client/tree/master/samples/blogger">example</a> I came up with this <sub>ugly</sub> code:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co">#!/usr/bin/env python</span>
+<span class="co"># -*- coding: utf-8 -*-</span>
 
-                <div id="content" class="col-xs-12 col-md-9">
-                    <div class="row">
-    <div class="post col-xs-12">
-        <h2 class="post-title">Aprende Haskell rápido y difícil</h2>
-        <div class="post-date-author">
-            Posted on June 29, 2016
-            
-                by Daniel Campoverde
-            
-        </div>
-        <div class="post-content">
-            <p><img src="../../img/haskellhard/thumbnail.jpg" id="thumbnail" /><br />
+<span class="im">from</span> __future__ <span class="im">import</span> print_function
+<span class="im">from</span> googleapiclient <span class="im">import</span> discovery
+<span class="im">from</span> oauth2client <span class="im">import</span> client
+<span class="im">from</span> oauth2client <span class="im">import</span> <span class="bu">file</span>
+<span class="im">from</span> oauth2client <span class="im">import</span> tools
+<span class="im">import</span> sys
+<span class="im">import</span> os
+<span class="im">import</span> httplib2
+<span class="im">import</span> argparse
+
+SILLYBYTESID<span class="op">=</span><span class="st">&quot;1318550761233559867&quot;</span>
+
+<span class="kw">def</span> main(argv):
+    <span class="cf">if</span> (<span class="bu">len</span>(argv) <span class="op">&lt;</span> <span class="dv">3</span>):
+        <span class="bu">print</span>(<span class="st">&quot;Post title must be provided as the first argument and html file as the second&quot;</span>)
+        exit(<span class="dv">1</span>)
+
+    post_title <span class="op">=</span> argv[<span class="dv">1</span>]
+    input_file <span class="op">=</span> argv[<span class="dv">2</span>]
+
+    scope <span class="op">=</span> <span class="st">&#39;https://www.googleapis.com/auth/blogger&#39;</span>
+
+    parent_parsers <span class="op">=</span> [tools.argparser]
+    parent_parsers.extend([])
+    parser <span class="op">=</span> argparse.ArgumentParser(
+        description<span class="op">=</span>__doc__,
+        formatter_class<span class="op">=</span>argparse.RawDescriptionHelpFormatter,
+        parents<span class="op">=</span>parent_parsers)
+    flags <span class="op">=</span> parser.parse_args(<span class="st">&quot;&quot;</span>)
+
+    <span class="cf">try</span>:
+        client_secrets <span class="op">=</span> os.path.join(os.path.expanduser(<span class="st">&quot;~&quot;</span>) <span class="op">+</span> <span class="st">&#39;/.sillybytes/&#39;</span>,
+                                    <span class="st">&#39;secrets.json&#39;</span>)
+    <span class="cf">except</span>:
+        <span class="bu">print</span>(<span class="st">&quot;Can&#39;t find secrets.json file maybe?&quot;</span>)
+        exit(<span class="dv">1</span>)
+
+    flow <span class="op">=</span> client.flow_from_clientsecrets(client_secrets,
+                                        scope<span class="op">=</span>scope,
+                                        message<span class="op">=</span>tools.message_if_missing(client_secrets))
+
+    storage <span class="op">=</span> <span class="bu">file</span>.Storage(<span class="st">&#39;auth_data&#39;</span> <span class="op">+</span> <span class="st">&#39;.dat&#39;</span>)
+    credentials <span class="op">=</span> storage.get()
+    <span class="cf">if</span> credentials <span class="kw">is</span> <span class="va">None</span> <span class="kw">or</span> credentials.invalid:
+        credentials <span class="op">=</span> tools.run_flow(flow, storage, flags)
+
+    http <span class="op">=</span> credentials.authorize(http <span class="op">=</span> httplib2.Http())
+    service <span class="op">=</span> discovery.build(<span class="st">&#39;blogger&#39;</span>, <span class="st">&#39;v3&#39;</span>, http<span class="op">=</span>http)
+
+    <span class="cf">try</span>:
+        content <span class="op">=</span> <span class="bu">open</span>(input_file, <span class="st">&#39;r&#39;</span>).read()
+    <span class="cf">except</span> <span class="pp">FileNotFoundError</span>:
+        <span class="bu">print</span>(<span class="st">&quot;Input file not found&quot;</span>)
+        exit(<span class="dv">1</span>)
+
+    body <span class="op">=</span> {
+        <span class="st">&quot;kind&quot;</span>: <span class="st">&quot;blogger#post&quot;</span>,
+        <span class="st">&quot;title&quot;</span>: post_title,
+        <span class="st">&quot;content&quot;</span>: content
+    }
+
+    <span class="cf">try</span>:
+        posts <span class="op">=</span> service.posts()
+        request <span class="op">=</span> posts.insert(blogId<span class="op">=</span>SILLYBYTESID, body<span class="op">=</span>body, isDraft<span class="op">=</span><span class="va">False</span>)
+        result <span class="op">=</span> request.execute()
+        <span class="bu">print</span>(<span class="st">&quot;Live: &quot;</span> <span class="op">+</span> result[<span class="st">&#39;url&#39;</span>])
+    <span class="cf">except</span>:
+        <span class="bu">print</span>(<span class="st">&quot;Can&#39;t execute request&quot;</span>)
+        exit(<span class="dv">1</span>)
+
+<span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:
+main(sys.argv)</code></pre></div>
+<p>The script will initiate a OAuth negotiation when needed and store the authentication tokens in the <code>auth_data.dat</code> file.</p>
+<p>Install some python dependencies (Arch):</p>
+<pre><code>$ pacman -S python-google-api-python-client
+$ pacman -S python-oauth2client</code></pre>
+<h2 id="api-project">API project</h2>
+<p>Before we’re able to use this we need to create a new <em>API project</em>, configure it and get the <code>client_secrets.json</code> that the script will use to start the OAuth negotiation.</p>
+<p>First enable the <em>Blogger</em> API at: https://console.developers.google.com/apis/library</p>
+<p>Then create a new project, create a new credential and download the JSON file from it. Don’t worry you’ll find your way in the interface. If you read the script you’ll notice my <code>client_secrets.json</code> file will be located at <code>~/.sillybytes</code>.</p>
+<p>Now doing:</p>
+<pre><code>$ python deploy.py &quot;post title&quot; &quot;post HTML&quot;</code></pre>
+<p>Will push the post to Blogger! So we’re done (?) not yet.</p>
+<h2 id="cli-tool">CLI tool</h2>
+<p>This is good enough already, we could invoke <code>deploy.py</code> from the Makefile, but it can be better.</p>
+<p>I wrote a tool: <a href="https://github.com/sillybytes/sillybytes_tool/tree/blogger">silly</a>.</p>
+<pre><code>$ silly help</code></pre>
+<div class="figure">
+<img src="/img/blogger/shot.png" class="img-responsive" />
+
+</div>
+<p>I think the screenshot explains all by it self… Now i can create all the post boilerplate by doing <code>silly new</code> and deploying the current post with <code>silly deploy</code> how cool is that?</p>]]></summary>
+</entry>
+<entry>
+    <title>Gentle introduction to STM32 ARM Cortex microcontrollers and boards programming</title>
+    <link href="http://www.sillybytes.net/2016/09/gentle-introduction-to-stm32-arm-cortex.html" />
+    <id>http://www.sillybytes.net/2016/09/gentle-introduction-to-stm32-arm-cortex.html</id>
+    <published>2016-09-11T00:00:00Z</published>
+    <updated>2016-09-11T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p><img src="/img/stm32/thumbnail.png" id="thumbnail" /><br />
+So you have been using AVR, PIC or some other microcontroller for a while and discover that ST Microelectronics offers some pretty cheap 32 bit ARM and feature rich microcontrollers: <a href="http://www.st.com/content/st_com/en/products/microcontrollers/stm32-32-bit-arm-cortex-mcus.html?querycriteria=productId=SC1169">STM32</a>, and want to start playing with them but don’t know how or where to start; I’m here to help.</p>
+<p><a href="https://en.wikipedia.org/wiki/ARM_architecture">ARM</a> is taking over the embedding wold, they’re ubiquitous in smart phones, tablets, laptops, other computers, cars, refrigerators, microwave ovens, monitors, printers, you name it!</p>
+<p>Note: Be aware that <em>ARM</em> is an <strong>architecture</strong> that manufacturers can <em>implement</em>. Is a common mistake to think <em>ARM</em> is a microcontroller on itself, it is not.</p>
+<!--more-->
+<p>ST Microelectronics’s implementation of ARM are the STM32 microcontrollers: inexpensive, powerful and with great free software/hardware support.</p>
+<p>Various series are available: F0, F1, F2, …, F7; From less to more powerful. You can identify your chip series after the <em>STM32</em> prefix, I’m using a board with the “STM32F103C8” chip, so the series is <em>F1</em>.</p>
+<h2 id="hardware">Hardware</h2>
+<p>As I mentioned STM32 chips are very inexpensive and widely available as individual chips, mounted in convenient development boards or breakout boards.</p>
+<p>Individual chips can be bought from electronic stores like Digi-Key or Mauser, but for the current purposes making your own PCB to mount them is quite inconvenient.</p>
+<p>The other option is to get one of the nice development boards ST offers:</p>
+<ul>
+<li><a href="http://www.st.com/content/st_com/en/products/evaluation-tools/product-evaluation-tools/mcu-eval-tools/stm32-mcu-eval-tools/stm32-mcu-eval-boards.html?querycriteria=productId=LN1199">Eval</a></li>
+<li><a href="http://www.st.com/content/st_com/en/products/evaluation-tools/product-evaluation-tools/mcu-eval-tools/stm32-mcu-eval-tools/stm32-mcu-nucleo.html?querycriteria=productId=LN1847">Nucleo</a></li>
+<li><a href="http://www.st.com/content/st_com/en/products/evaluation-tools/product-evaluation-tools/mcu-eval-tools/stm32-mcu-eval-tools/stm32-mcu-discovery-kits.html?querycriteria=productId=LN1848">Discovery</a></li>
+</ul>
+<div class="figure">
+<img src="/img/stm32/shot1.png" class="img-responsive" />
+
+</div>
+<p>Although these are cheap and amazing, we can go even cheaper with the great breakout boards available on Ebay. You can get a STM32F103 chip in a nice board for less than $5 (USD).</p>
+<p><img src="/img/stm32/shot2.png" class="img-responsive" /> <img src="/img/stm32/shot3.png" class="img-responsive" /></p>
+<h3 id="programmer">Programmer</h3>
+<p>STM32 chips are programmed using a <a href="https://en.wikipedia.org/wiki/ARM_architecture">ST-LINK</a> device, which is an in-circuit debugger and programmer that interfaces with the chip using JTAG or Serial Wire Debugging (<a href="http://www.arm.com/products/system-ip/debug-trace/coresight-soc-components/serial-wire-debug.php">SWD</a>). This is similar to the USBASP for AVR or the PICkit for PIC.</p>
+<p>Development boards like the <em>Nucleo</em> include the st-link hardware directly into the board, so you can connect it to a host computer using USB and program/debug the target chip on the board without any additional external hardware.</p>
+<div class="figure">
+<img src="/img/stm32/shot4.png" class="img-responsive" />
+
+</div>
+<p>If you’re using another breakout board (like the Ebay ones) or if you mounted a chip in a custom PCB, you will need an external st-link hardware. Fortunately they are also available for cheap on Ebay or you can buy the official one for a few extra bucks if you prefer, they both will work exactly the same with the flashing software.</p>
+<p><img src="/img/stm32/shot5.png" class="img-responsive" /> <img src="/img/stm32/shot6.png" class="img-responsive" /></p>
+<h4 id="connections">Connections</h4>
+<p>If you’re using a ST development board with the st-link built in just connect it to your computer and you’re ready to go, but for breakout boards and a dongle st-link you’ll need to connect four wires to it:</p>
+<ul>
+<li>VCC (3.3V)</li>
+<li>GND</li>
+<li>SWCLK</li>
+<li>SWDIO</li>
+</ul>
+<p><strong>WARNING:</strong> STM32 chips run on 3.3V, most breakout boards will include a voltage regulator so it can be powered from USB, and st-link dongles will provide a 3.3V VCC PIN to power up the chip. <strong>DON’T</strong> Connect the board to the PC using USB while the chip is powered up using the st-link programmer! Connect one or the other but not both simultaneously. The st-link dongle provides a 5V PIN as well, <strong>DON’T</strong> use it, the STM32 chips are not 5V tolerant, use the 3.3V PIN only.</p>
+<p>ST-Link dongles have labeling on the front, just connect the right pins. On the board side, follow the labeling printed on the pins or use a JTAG/SWD pin out diagram if your board has a JTAG/SWD connector like mine. The connections for the st-link on the breakout board I’m using looks like this:</p>
+<p><img src="/img/stm32/scheme1.jpg" class="img-responsive" /> <img src="/img/stm32/shot7.jpg" class="img-responsive" /> <img src="/img/stm32/shot8.jpg" class="img-responsive" /></p>
+<h2 id="software">Software</h2>
+<h3 id="host-pc">Host PC</h3>
+<p>You’ll need a compiler, a debugger, some utilities to manage your binaries and the necessary software to flash your firmware using the ST-LINK device (dongle or built-in):</p>
+<ul>
+<li>arm-none-eabi-gcc</li>
+<li>arm-none-eabi-gdb</li>
+<li>arm-none-eabi-binutils</li>
+<li>stlink</li>
+</ul>
+<p>You should be able to install them all of from your distribution repositories. But in case you can’t find <code>stlink</code> on them, get it from the <a href="https://github.com/texane/stlink">github repo</a>.</p>
+<p>The <code>stlink</code> package provides these executables:</p>
+<ul>
+<li>st-flash (Write and Read a program from the target chip)</li>
+<li>st-util (Creates a GDB server so you can load, run and debug a program on the target chip)</li>
+<li>st-info (Search and provides information about the st-link device and the target chip)</li>
+<li>st-term (Allows to get log-like reports from the program on the target chip)</li>
+</ul>
+<h4 id="test-the-setup">Test the setup</h4>
+<p>With the hardware connected and the PC software installed we can try it out and see if everything is working OK. Not example program yet though.</p>
+<p>Connect your st-link device (connected to the breakout board) or you development board to the host PC using USB and run:</p>
+<pre><code>$ st-info --probe</code></pre>
+<p>You’ll get some neat information about the chip that is hooked up to the st-link device:</p>
+<pre><code>Found 1 stlink programmers
+serial: 543f6a06663f505130531567
+openocd: &quot;\x54\x3f\x6a\x06\x66\x3f\x50\x51\x30\x53\x15\x67&quot;
+flash: 65536 (pagesize: 1024)
+sram: 20480
+chipid: 0x0410
+descr: F1 Medium-density device</code></pre>
+<p>Fantastic! Everything is working fine, lets move on.</p>
+<h3 id="chip">Chip</h3>
+<p>ARM provides a Cortex Microcontroller Software Interface Standard (<a href="http://www.arm.com/products/processors/cortex-m/cortex-microcontroller-software-interface-standard.php">SMSIS</a>) as an abstraction layer for the ARM Cortex core to increase software portability. Think of it as an standard API that you can use to interface with ARM chips in a standard and vendor independent way.</p>
+<p>On top of that you might want to have a Hardware Abstraction Layer (HAL) to interface with the peripherals the chip provides (UART, USB, I2C, SPI, TIMERS, etc).</p>
+<p>We have two options of libraries that provide those abstraction layers:</p>
+<ul>
+<li><a href="http://libopencm3.github.io/">LibOpenCM3</a> (The one we are going to use)</li>
+<li><a href="http://www.st.com/content/st_com/en/products/embedded-software/mcus-embedded-software/stm32-embedded-software/stm32cube-embedded-software/stm32cubef1.html">STM32Cube</a></li>
+</ul>
+<p>LibOpenCM3 uses the LGPL licence (which I prefer), and STM32Cube uses the lax BSD licence. Balau covered the licensing topic in more detail in his <a href="https://balau82.wordpress.com/2015/04/12/libopencm3-for-the-license-sensitive-cortex-m-developer/">blog post</a>.</p>
+<h4 id="stm32cube">STM32Cube</h4>
+<p>ST provides the so called “STM32Cube”, which is a bundle of software and libraries for STM32 development. It contains a graphical software for basic C code generation, software layers of abstraction like HAL and middleware, software layers for built-in peripherals on ST’s development boards and examples.</p>
+<p>The <em>STM32Cube</em> is available per chip series, so for development boards with STM32F4xx chips you’ll need the <em>STM32CubeF4</em>. I have a breakout board with the STM32F103C8 chip, so I would use the <a href="http://www.st.com/content/st_com/en/products/embedded-software/mcus-embedded-software/stm32-embedded-software/stm32cube-embedded-software/stm32cubef1.html"><em>STM32CubeF1</em></a>, you get the idea.</p>
+<p>STM32Cube provides 3 layers:</p>
+<h5 id="level-0">Level 0</h5>
+<ul>
+<li>Board Support Package (BSP) for interfacing with devices on the board that are not in the STM32 chip.</li>
+<li>Hardware Abstraction Layer (HAL) for low-level hardware interfacing (UART, USB, I2C, SPI, TIMERS, etc).</li>
+</ul>
+<h5 id="level-1">Level 1</h5>
+<p>Middleware software components like USB Host and Device libraries or FAT file system for SD cards interfacing</p>
+<h5 id="level-2">Level 2</h5>
+<p>Graphical demonstration that uses the level 1 Middleware.</p>
+<p>You can read more about it on the STM32Cube user manual. Here is the STM32CubeF1 <a href="http://www.st.com/content/ccc/resource/technical/document/user_manual/a4/ae/25/45/76/ca/40/b1/DM00151047.pdf/files/DM00151047.pdf/jcr:content/translations/en.DM00151047.pdf">manual</a>.</p>
+<h4 id="libopencm3">LibOpenCM3</h4>
+<p>LibOpenCM3 aims to provide a free (as in freedom) library for various ARM Cortex-M3 microcontrollers, including the STM32 chips.</p>
+<p>Using this library is more or less straight forward, there is no layers here. You can read more about it in the <a href="http://libopencm3.org/wiki/Main_Page">wiki</a>. They have a fantastic Doxygen documentation for the API <a href="http://libopencm3.github.io/docs/latest/html/">here</a>.</p>
+<h2 id="first-program">First program</h2>
+<p>The LibOpenCM3 project provides very useful examples, lets use one of those as the first program. I’m Using the STM32F103C8T6 so I need the <em>F1</em> series examples and libraries, adjust the steps to use the appropriate one for your chip/board.</p>
+<p>Notice that the examples are organized to correspond to various development boards, but it doesn’t really matter, the reason for this is the distribution of LED’s and Push buttons in those boards, but as long as you’re using the same chip series you just need to pickup one and connect LED’s, buttons, etc in the right pins as needed. I’m going to use the examples for the <em>“stm32-h103”</em> board from Olimex, even though I’m using a breakout board from Ebay; The <strong>F1</strong> is the important thing here.</p>
+<pre><code>$ git clone --recursive &#39;https://github.com/libopencm3/libopencm3-examples&#39;
+$ cd libopencm3-examples
+$ make
+$ cd examples/stm32
+$ cd f1
+$ cd stm32-h103/miniblink</code></pre>
+<p>This example will BLINK a LED connected in the PIN 12 of the GPIO port C, but my chip doesn’t have it! No problem, I’m going to change it (you can use your favorite editor here):</p>
+<pre><code>$ vim miniblink.c</code></pre>
+<p>Now change all appearances of <code>GPIOC</code> to <code>GPIOB</code> so the program uses the GPIO port B instead. (Use an available pin in your specific chip/board).</p>
+<p>In Vim:</p>
+<pre><code>:%s/GPIOC/GPIOB</code></pre>
+<p>Save the file and compile:</p>
+<pre><code>$ make</code></pre>
+<p>Generate the binary:</p>
+<pre><code>$ arm-none-eabi-objcopy -O binary miniblink.elf miniblink.bin</code></pre>
+<p>Flash it:</p>
+<pre><code>$ st-flash write miniblink.bin 0x8000000</code></pre>
+<p>Connect a LED to the GND and PB12 pins through a 330 Ohm resistor and watch it blink with great joy.</p>
+<h2 id="using-gdb">Using GDB</h2>
+<p>You can also interface with the target device using GDB: Upload firmware, run, stop, set break points, etc. I’m going to assume you know how to use GDB and only going to explain how to upload the firmware from it.</p>
+<p>Create a GDB server to interface with the connected target:</p>
+<pre><code>$ st-util -p 4444</code></pre>
+<p>Run ARM GDB:</p>
+<pre><code>$ arm-none-eabi-gdb</code></pre>
+<p>Connect to the server</p>
+<pre><code>(gdb) target extended-remote localhost:4444</code></pre>
+<p>Flash the firmware (notice we’re using the ELF file here not the BIN one):</p>
+<pre><code>(gdb) load miniblink.elf</code></pre>
+<p>Run the firmware:</p>
+<pre><code>(gdb) continue</code></pre>
+<p>You can stop it with <code>C-c</code>.</p>
+<div class="figure">
+<img src="/img/stm32/shot9.jpg" class="img-responsive" />
+
+</div>]]></summary>
+</entry>
+<entry>
+    <title>TDD (Test-Driven Development) Physical Traffic Light</title>
+    <link href="http://www.sillybytes.net/2016/08/tdd-test-driven-development-physical.html" />
+    <id>http://www.sillybytes.net/2016/08/tdd-test-driven-development-physical.html</id>
+    <published>2016-08-28T00:00:00Z</published>
+    <updated>2016-08-28T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p><img src="/img/tddlight/thumbnail.jpg" id="thumbnail" /><br />
+Robert C. Martin <em>(Uncle Bob)</em> said in a talk:</p>
+<blockquote>
+<p>Imagine you have a button that you can push, it will test your code and if everything is working a green light will come up, but if something is break, a red light will come up […]</p>
+</blockquote>
+<p>He was of course talking about TDD, but I was bored and get inspired to build this little toy.</p>
+<p>Hardware schematics, firmware and host software is available in <a href="https://github.com/alx741/tdd_traffic-light">this Github repo</a>. Along with information on how to compile and use.</p>
+<blockquote>
+<p>This is a physical toy traffic light to be used with software development TDD (and testing in general) tools. It will not boost your productivity nor make you a better programmer or TDD practitioner, but it looks cool :)</p>
+</blockquote>
+<p>Lets explain how it works, it’s very simple: <!--more--></p>
+<h1 id="hardware">Hardware</h1>
+<p>The <strong>atmega328p</strong> AVR microcontroller is very popular and cheap, but if you buy them on Ebay for example, chances are it comes with an Arduino bootloader, which gets in the way because we can perfectly use the internal oscillator instead of an external 16Mhz crystal. So the first thing is to change de fuses to the default ones:</p>
+<pre class="shell"><code># avrdude -p m328p -c usbasp -U lfuse:w:0x62:m -U hfuse:w:0xd9:m</code></pre>
+<p>Now we are using the internal 1MHz oscillator, perfect!</p>
+<p>I don’t have a PCB yet (although it should be pretty easy as I made the circuit schematic using <em>kicad</em>) but the circuit is small and simple so it’s easy to build it with prototype PCB. Additionally I added some small neodymium magnets in the back to stick it easily close to my monitors.</p>
+<p><img src="/img/tddlight/img1.jpg" class="img-responsive" /> <img src="/img/tddlight/img2.jpg" class="img-responsive" /> <img src="/img/tddlight/img3.jpg" class="img-responsive" /> <img src="/img/tddlight/img4.jpg" class="img-responsive" /> <img src="/img/tddlight/img5.jpg" class="img-responsive" /> <img src="/img/tddlight/img6.jpg" class="img-responsive" /> <img src="/img/tddlight/img7.jpg" class="img-responsive" /> <img src="/img/tddlight/img8.jpg" class="img-responsive" /></p>
+<h1 id="software">Software</h1>
+<p>The firmware is no more than UART boilerplate with a baud rate of <code>4800</code> so it is stable with the 1MHz clock speed.</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;avr/io.h&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;util/delay.h&gt;</span>
+
+<span class="pp">#define F_CPU 1000000</span>
+<span class="pp">#define BAUD 4800</span>
+<span class="pp">#define BAUD_PRESCALE ((((F_CPU/16) + (BAUD/2)) / (BAUD)) - 1)</span>
+
+<span class="dt">char</span> getchar(<span class="dt">void</span>)
+{
+    <span class="cf">while</span> ((UCSR0A &amp; (<span class="dv">1</span> &lt;&lt; RXC0)) == <span class="dv">0</span>) {}
+    <span class="cf">return</span> UDR0;
+}</code></pre></div>
+<p>The main loop will wait for a command <code>r</code>, <code>y</code> or <code>g</code> and turn on the pin corresponding to the color LED.</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;avr/io.h&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;util/delay.h&gt;</span>
+
+<span class="pp">#define F_CPU 1000000</span>
+<span class="pp">#define BAUD 4800</span>
+<span class="pp">#define BAUD_PRESCALE ((((F_CPU/16) + (BAUD/2)) / (BAUD)) - 1)</span>
+
+<span class="dt">char</span> getchar(<span class="dt">void</span>)
+{
+    <span class="cf">while</span> ((UCSR0A &amp; (<span class="dv">1</span> &lt;&lt; RXC0)) == <span class="dv">0</span>) {}
+    <span class="cf">return</span> UDR0;
+}</code></pre></div>
+<p>Notice how if another character is received the output is cleared so all the LEDs are off.</p>
+<p>The host software configures the serial port with a <code>4800</code> baud rate:</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">void</span> serial_init(<span class="dt">char</span>* port)
+{
+    <span class="cf">if</span> (COM_FD &gt; <span class="dv">0</span>)
+    {
+        <span class="cf">return</span>;
+    }
+
+    <span class="co">// Open serial port file</span>
+    <span class="dt">int</span> fd = open(port, O_RDWR | O_NOCTTY | O_NDELAY);
+
+    <span class="co">// Configure serial port</span>
+    <span class="kw">struct</span> termios config;
+    <span class="cf">if</span> (tcgetattr(fd, &amp;config) != <span class="dv">0</span>)
+    {
+        COM_FD = -<span class="dv">1</span>;
+        printf(<span class="st">&quot;Error while configing serial port&quot;</span>);
+        exit(<span class="dv">1</span>);
+    }
+
+    cfsetispeed(&amp;config, B4800);
+    cfsetospeed(&amp;config, B4800);
+
+    config.c_cflag |= (CLOCAL | CREAD | CS8);
+    config.c_cflag &amp;= ~(PARENB | PARODD);
+    config.c_iflag = <span class="dv">0</span>;
+    config.c_oflag = <span class="dv">0</span>;
+    config.c_lflag &amp;= ~(ICANON | ECHO | ECHOE | ISIG);
+    config.c_cc[VTIME] = <span class="dv">5</span>;
+    config.c_cc[VMIN] = <span class="dv">0</span>;
+
+    <span class="cf">if</span> (tcsetattr(fd, TCSANOW, &amp;config) != <span class="dv">0</span>)
+    {
+        COM_FD = -<span class="dv">1</span>;
+        printf(<span class="st">&quot;Error while configing serial port&quot;</span>);
+        exit(<span class="dv">1</span>);
+    }
+
+    COM_FD = fd;</code></pre></div>
+<p>From then controlling the LEDs is as simple as</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c">write(COM_FD, <span class="st">&quot;r&quot;</span>, <span class="dv">1</span>);</code></pre></div>
+<p>As I said, pretty simple… Find more information about how to use it in the <a href="https://github.com/alx741/tdd_traffic-light">Github repo</a>.</p>]]></summary>
+</entry>
+<entry>
+    <title>Vim + Haskell</title>
+    <link href="http://www.sillybytes.net/2016/08/vim-haskell_11.html" />
+    <id>http://www.sillybytes.net/2016/08/vim-haskell_11.html</id>
+    <published>2016-08-11T00:00:00Z</published>
+    <updated>2016-08-11T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p><img src="/img/vimhask/thumbnail.png" id="thumbnail" /><br />
+So you’re writing in the right language using the right tool already, but lets put some extra magic under our sleeves.<br />
+<br />
+<br />
+<br />
+</p>
+<h2 id="expectations">Expectations</h2>
+<ul>
+<li>Omnicompletion</li>
+<li>Compilation and testing
+<ul>
+<li>Building</li>
+<li>Linting</li>
+<li>Testing</li>
+</ul></li>
+<li>GHCI integration</li>
+<li>Convenient mappings
+<ul>
+<li>Argument text object</li>
+<li>Jump to importations</li>
+<li>Jump between functions</li>
+</ul></li>
+<li>Ghc-mod integration
+<ul>
+<li>Type inserting</li>
+<li>Case splitting</li>
+<li>Type asserting</li>
+</ul></li>
+<li>Hlint integration
+<ul>
+<li>Linting</li>
+<li>Managing the locationlist</li>
+</ul></li>
+<li>Code formatting
+<ul>
+<li>Hindent integration</li>
+<li>Trailing white space</li>
+<li>Trailing blank lines</li>
+<li>Spaces over tabs</li>
+</ul></li>
+<li>Easy arrows generation</li>
+<li>Types abbreviations</li>
+<li>Yesod Haskell web framework</li>
+</ul>
+<!--more-->
+<p>Most of this functionality is achieved by using already available tools and already available Vim plugins for those tools. So I’ll assume you have your way to install the plugins (I’m using <a href="https://github.com/junegunn/vim-plug">vim-plug</a>).</p>
+<p>Here is my complete <a href="https://github.com/alx741/dotfiles/blob/master/nvim/.config/nvim/init.vim">.vimrc</a>.</p>
+<p><strong>Important</strong>: Every line of vimrc used should be enclosed in an <code>:h :augroup</code>:</p>
+<pre class="vim"><code>augroup ft_haskell
+    au!
+
+    ...
+
+augroup END</code></pre>
+<h3 id="omnicompletion">Omnicompletion</h3>
+<p>The <a href="https://github.com/eagletmt/neco-ghc">neco-ghc</a> plugin declares a complete omnifunction. Use it by defining the local <code>omnifunc</code>:</p>
+<pre class="vim"><code>au FileType haskell setlocal omnifunc=necoghc#omnifunc</code></pre>
+<div class="figure">
+<img src="/img/vimhask/shot1.gif" class="img-responsive" />
+
+</div>
+<h3 id="compilation-and-testing">Compilation and testing</h3>
+<p>I’ve contributed the GHC compiler plugin to upstream Vim recently, but it may take a while before you get the latest vim runtime from your distribution. So in the meantime you can install it like any other plugin from the github repository here: https://github.com/alx741/ghc.vim</p>
+<p>Then load it for the Haskell filetype in you vimrc:</p>
+<pre class="vim"><code>au FileType haskell compiler ghc</code></pre>
+<p>Taking advantage of vim 8 asynchronous job control using the <a href="https://github.com/skywind3000/asyncrun.vim">asyncrun.vim</a> plugin, we can define some convenient mappings for building and testing using Haskell <em>stack</em>:</p>
+<pre class="vim"><code>au FileType haskell setlocal makeprg=stack
+au FileType haskell nnoremap &lt;buffer&gt; gj :write&lt;CR&gt; :exec &quot;AsyncRun &quot; . &amp;makeprg . &quot; build&quot;&lt;CR&gt;
+au FileType haskell nnoremap &lt;buffer&gt; gk :write&lt;CR&gt; :exec &quot;AsyncRun &quot; . &amp;makeprg . &quot; test&quot;&lt;CR&gt;</code></pre>
+<p>After running one of those the results will be loaded into the quickfix list.</p>
+<p>You will need the Stack tool of course and <em>hlint</em> that you can install with <code>stack install hlint</code>.</p>
+<h3 id="ghci-integration">GHCI integration</h3>
+<p>There are plugins that offer much more tight integration, but for me it is enough to start GHCI from the current vim instance in a Tmux pane loaded with the current project or Haskell source, so taking advantage of the <a href="https://github.com/benmills/vimux">vimux</a> Tmux integration plugin, lets define a function:</p>
+<pre class="vim"><code>function! RunGhci(type)
+    call VimuxRunCommand(&quot; stack ghci &amp;&amp; exit&quot;)
+    if a:type
+        call VimuxSendText(&quot;:l &quot; . bufname(&quot;%&quot;))
+        call VimuxSendKeys(&quot;Enter&quot;)
+    endif
+endfunction</code></pre>
+<p>And some mappings:</p>
+<pre class="vim"><code>au FileType haskell nmap &lt;silent&gt;&lt;buffer&gt; &lt;leader&gt;gg :call RunGhci(1)&lt;CR&gt;
+au FileType haskell nmap &lt;silent&gt;&lt;buffer&gt; &lt;leader&gt;gs :call RunGhci(0)&lt;CR&gt;</code></pre>
+<p>So doing <code>\gg</code> will start a GHCI session loaded with the current file and <code>\gs</code> will load a GHCI session for the current stack project.</p>
+<h3 id="convenient-mappings">Convenient mappings</h3>
+<p>When editing a function’s arguments we would like to have a text object so doing <code>cia</code> (change inner argument) or <code>daa</code> (delete all argument) will work; These will to the trick:</p>
+<pre class="vim"><code>au FileType haskell onoremap &lt;silent&gt; ia :&lt;c-u&gt;silent execute &quot;normal! ?-&gt;\r:nohlsearch\rwvf-ge&quot;&lt;CR&gt;
+au FileType haskell onoremap &lt;silent&gt; aa :&lt;c-u&gt;silent execute &quot;normal! ?-&gt;\r:nohlsearch\rhvEf-ge&quot;&lt;CR&gt;</code></pre>
+<p>In order to easily jump between functions we could define a function:</p>
+<pre class="vim"><code>function! JumpHaskellFunction(reverse)
+    call search(&#39;\C[[:alnum:]]*\s*::&#39;, a:reverse ? &#39;bW&#39; : &#39;W&#39;)
+endfunction</code></pre>
+<p>And some mappings, so doing <code>[[</code> or <code>]]</code> will takes us to the previous or next function:</p>
+<pre class="vim"><code>au FileType haskell nnoremap &lt;buffer&gt;&lt;silent&gt; ]] :call JumpHaskellFunction(0)&lt;CR&gt;
+au FileType haskell nnoremap &lt;buffer&gt;&lt;silent&gt; [[ :call JumpHaskellFunction(1)&lt;CR&gt;</code></pre>
+<p>Lets add some extra convenience and use <code>gI</code> for jumping to the first <em>import</em> statement and <code>gC</code> to edit the <em>.cabal</em> file:</p>
+<pre class="vim"><code>au FileType haskell nnoremap &lt;buffer&gt; gI gg /\cimport&lt;CR&gt;&lt;ESC&gt;:noh&lt;CR&gt;
+au FileType haskell nnoremap &lt;buffer&gt; gC :e *.cabal&lt;CR&gt;</code></pre>
+<h3 id="ghc-mod-integration">Ghc-mod integration</h3>
+<p><a href="https://hackage.haskell.org/package/ghc-mod">ghc-mod</a> is the <em>Happy Haskell Programming package</em>! With a whole bunch of functionality, here we will be using just a few:</p>
+<ul>
+<li>Type inserting</li>
+<li>Case splitting</li>
+<li>Type asserting</li>
+</ul>
+<p>You need the <em>ghc-mod</em> package: <code>stack install ghc-mod</code> and the <a href="https://github.com/eagletmt/ghcmod-vim">ghcmod-vim plugin</a>.</p>
+<pre class="vim"><code>au FileType haskell nnoremap &lt;silent&gt;&lt;buffer&gt; git :GhcModTypeInsert&lt;CR&gt;
+au FileType haskell nnoremap &lt;silent&gt;&lt;buffer&gt; gfs :GhcModSplitFunCase&lt;CR&gt;
+au FileType haskell nnoremap &lt;silent&gt;&lt;buffer&gt; gtt :GhcModType&lt;CR&gt;</code></pre>
+<p><code>git</code> (<em>g insert type</em>) will insert the missing type declaration of an expression, take for instance this Haskell code:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Hello</span> <span class="kw">where</span>
+
+f (<span class="dt">Just</span> a) <span class="fu">=</span> <span class="dt">Left</span> a
+f <span class="dt">Nothing</span> <span class="fu">=</span> <span class="dt">Right</span> ()</code></pre></div>
+<p>With the cursor in the first <code>f</code> (the function name) using the <code>tt</code> mapping will produce:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Hello</span> <span class="kw">where</span>
+
+<span class="ot">f ::</span> <span class="dt">Maybe</span> a <span class="ot">-&gt;</span> <span class="dt">Either</span> a ()
+f (<span class="dt">Just</span> a) <span class="fu">=</span> <span class="dt">Left</span> a
+f <span class="dt">Nothing</span> <span class="fu">=</span> <span class="dt">Right</span> ()</code></pre></div>
+<div class="figure">
+<img src="/img/vimhask/shot2.gif" class="img-responsive" />
+
+</div>
+<p>Neat!, go ahead and play around with the other mappings, you’ll be not disappointed.</p>
+<h3 id="hlint-integration">Hlint integration</h3>
+<p>By default <a href="https://github.com/neomake/neomake">Neomake</a> will use <em>hlint</em> on the current file when the <code>:Neomake</code> command is invoked on a Haskell source file, so by adding a mapping:</p>
+<pre class="vim"><code>au FileType haskell nnoremap &lt;buffer&gt; gll :Neomake&lt;CR&gt;</code></pre>
+<p><code>gll</code> will open the location list with the lints, which takes us to some convenience mappings:</p>
+<pre class="vim"><code>au FileType haskell nnoremap &lt;buffer&gt;&lt;silent&gt; gl&lt;space&gt; :call ToggleLocationList()&lt;CR&gt;
+au FileType haskell nnoremap &lt;buffer&gt;&lt;silent&gt; glc :sign unplace *&lt;CR&gt;</code></pre>
+<p>So now is possible to toggle the location list with <code>gl&lt;space&gt;</code> and clear it with <code>glc</code>.</p>
+<h3 id="code-formatting-and-beautifying">Code formatting and beautifying</h3>
+<p><em>Hindent</em> allows to beautify Haskell code, you could used it by setting the <code>formatprg</code> option and then trigger it with the <code>=</code> command, but there is a problem: if your code happens to have any syntax errors, it will be replaced with a nasty error message. To handle this we’re going to use the <a href="https://github.com/alx741/vim-hindent">vim-hindent</a> plugin instead, so each time we save a Haskell source file it will be automatically beatified.</p>
+<p>Don’t forget to configure it:</p>
+<pre class="vim"><code>let g:hindent_on_save = 1
+let g:hindent_line_length = 80
+let g:hindent_indent_size = 4</code></pre>
+<p>One extra thing left is to align stuff in the code so it looks nicer</p>
+<pre class="vim"><code>au FileType haskell nmap &lt;silent&gt;&lt;buffer&gt; g&lt;space&gt; vii&lt;ESC&gt;:silent!&#39;&lt;,&#39;&gt; EasyAlign /-&gt;/&lt;CR&gt;</code></pre>
+<p>Take for instance this very dumb example for the sake of the argument:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Test</span> <span class="kw">where</span>
+
+<span class="ot">f ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+f x <span class="fu">=</span> <span class="kw">case</span> x <span class="kw">of</span>
+    <span class="dv">1</span>   <span class="ot">-&gt;</span> <span class="st">&quot;1&quot;</span>
+    <span class="dv">2</span> <span class="ot">-&gt;</span>   <span class="st">&quot;2&quot;</span>
+    <span class="dv">3</span> <span class="ot">-&gt;</span> <span class="st">&quot;3&quot;</span></code></pre></div>
+<p>Using <code>g&lt;space&gt;</code> we got:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Test</span> <span class="kw">where</span>
+
+<span class="ot">f ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+f x <span class="fu">=</span>
+  <span class="kw">case</span> x <span class="kw">of</span>
+    <span class="dv">1</span> <span class="ot">-&gt;</span> <span class="st">&quot;1&quot;</span>
+    <span class="dv">2</span> <span class="ot">-&gt;</span> <span class="st">&quot;2&quot;</span>
+    <span class="dv">3</span> <span class="ot">-&gt;</span> <span class="st">&quot;3&quot;</span></code></pre></div>
+<div class="figure">
+<img src="/img/vimhask/shot3.gif" class="img-responsive" />
+
+</div>
+<p>So much better!</p>
+<h3 id="easy-arrows-generation">Easy arrows generation</h3>
+<p>In Haskell, operators like <code>-&gt;</code> and <code>=&gt;</code> are very common and I find it cumbersome to type them manually. Lets define a function:</p>
+<pre class="vim"><code>function! Make_arrow(type)
+    if a:type
+        if (matchstr(getline(&#39;.&#39;), &#39;\%&#39; . col(&#39;.&#39;) . &#39;c.&#39;) ==? &#39; &#39;)
+            exe &quot;norm! a-&gt;  &quot;
+        else
+            exe &quot;norm! a -&gt;  &quot;
+        endif
+        exe &quot;startreplace&quot;
+    else
+        if (matchstr(getline(&#39;.&#39;), &#39;\%&#39; . col(&#39;.&#39;) . &#39;c.&#39;) ==? &#39; &#39;)
+            exe &quot;norm! a=&gt;  &quot;
+        else
+            exe &quot;norm! a =&gt;  &quot;
+        endif
+        exe &quot;startreplace&quot;
+    endif
+endfunction</code></pre>
+<p>And some insert mode mappings:</p>
+<pre class="vim"><code>au FileType haskell inoremap &lt;buffer&gt; ;; &lt;ESC&gt;:call Make_arrow(1)&lt;CR&gt;
+au FileType haskell inoremap &lt;buffer&gt; ;: &lt;ESC&gt;:call Make_arrow(0)&lt;CR&gt;</code></pre>
+<p>So while in insert mode typing <code>;;</code> or <code>;:</code> will insert <code>-&gt;</code> or <code>=&gt;</code> respectively. Additionally it will avoid duplicated spaces between the types and the arrows.</p>
+<h3 id="types-abbreviations">Types abbreviations</h3>
+<p>Maybe I’m a terrible typist, but writing the first upper case letter of the most common types hurts my pinkie. So by using some insert mode abbreviations:</p>
+<pre class="vim"><code>au FileType haskell inoreab &lt;buffer&gt; int Int
+au FileType haskell inoreab &lt;buffer&gt; integer Integer
+au FileType haskell inoreab &lt;buffer&gt; string String
+au FileType haskell inoreab &lt;buffer&gt; double Double
+au FileType haskell inoreab &lt;buffer&gt; float Float
+au FileType haskell inoreab &lt;buffer&gt; true True
+au FileType haskell inoreab &lt;buffer&gt; false False
+au FileType haskell inoreab &lt;buffer&gt; maybe Maybe
+au FileType haskell inoreab &lt;buffer&gt; just Just
+au FileType haskell inoreab &lt;buffer&gt; nothing Nothing
+au FileType haskell inoreab &lt;buffer&gt; io IO ()</code></pre>
+<p>Now I can type all lower case without having to bother with the <em>shift</em> key and the capitalized version will be inserted instead.</p>
+<h3 id="yesod-haskell-web-framework">Yesod Haskell web framework</h3>
+<p>Some neat integration with Yesod can be achieved by using the <a href="https://github.com/alx741/vim-yesod">vim-yesod</a> plugin which, by default, gives you some mappings:</p>
+<p><code>gh</code> - Jump to the handler of the route under the cursor in the <code>config/routes</code> file.</p>
+<p><code>gH</code> - Create a new handler for the route under the cursor in the <code>config/routes</code> file.</p>
+<p><code>gm</code> - Jump to or create the i18n message under the cursor in a template file.</p>
+<p><em>vim-yesod</em> gives you <code>config/routes</code>, <code>config/models</code> and i18n <code>messages/</code> syntax highlighting, but it doesn’t support shakesperean templates syntax so be sure to install the <a href="https://github.com/pbrisbin/vim-syntax-shakespeare">vim-syntax-shakespeare</a> as well.</p>]]></summary>
+</entry>
+<entry>
+    <title>PIC16F876A conversión analógica digital + UART (Ensamblador)</title>
+    <link href="http://www.sillybytes.net/2016/07/pic16f876a-conversion-analogica-digital.html" />
+    <id>http://www.sillybytes.net/2016/07/pic16f876a-conversion-analogica-digital.html</id>
+    <published>2016-07-14T00:00:00Z</published>
+    <updated>2016-07-14T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p><img src="/img/picuart/thumbnail.png" id="thumbnail" /><br />
+NOTE: This post is available in Spanish only. Please use a software translator.</p>
+<p><a href="http://silly-bytes.blogspot.com/2016/06/from-pic-to-avr.html">He dejado de usar microcontroladores PIC por los motivos explicados en este post</a>; Pero voy a dedicar este post para tratar y explicar un programa sencillo escrito en ensamblador para el <strong>PIC16F876A</strong>.</p>
+<p>El objetivo es el siguiente:</p>
+<p>Se desea usar el microcontrolador para llevar a cabo la conversión analógica-digital de una tensión variable (un LDR o un potenciómetro por ejemplo) y transmitir el resultado usando la UART. Además debe ser posible recibir por la UART un byte que debe alterar la configuración del Conversor Análogo Digital (DAC) interno del microcontrolador para, por ejemplo, cambiar el canal de entrada de la señal analógica o modificar la velocidad del reloj de conversión.</p>
+<!--more-->
+<p>El código ha sido ensamblado con el ensamblador de GNU <em>gpasm</em> del juego de herramientas <a href="http://gputils.sourceforge.net/">gputils</a>, pero debería ser perfectamente compatible con las herramientas MPLAB de Microchip que no uso porque <a href="http://silly-bytes.blogspot.com/2016/03/why-do-i-hate-ides.html">odio los IDEs</a>. En cualquier caso la explicación y el 99% del código debería ser útil sin modificación alguna.</p>
+<p>Este post se deberá leer en paralelo junto con el <em>datasheet</em> del microcontrolador en cuestión <strong>PIC16F876A</strong> que se puede encontrar aquí: http://ww1.microchip.com/downloads/en/DeviceDoc/39582C.pdf</p>
+<p>Además tener en cuenta los pines del microcontrolador:</p>
+<div class="figure">
+<img src="/img/picuart/scheme.jpg" class="img-responsive" />
+
+</div>
+<p>El código completo <a href="https://github.com/Silly-Bytes/pic_asm_uart-adc/blob/master/code.asm">se encuentra aquí</a>.</p>
+<h2 id="declaración-de-registros-y-variables">Declaración de registros y variables</h2>
+<p>Empezamos examinando y explicando el código:</p>
+<pre><code>list p=16f876A</code></pre>
+<p>La primera linea le dirá al ensamblador los mapas de memoria que el enlazador deberá usar (el microcontrolador que estamos usando).</p>
+<pre><code>; Declaración de direcciones de memoria
+; Datasheet pagina 17, figura 2-3
+PORTA      EQU 0x05
+PORTB      EQU 0x06
+TRISA      EQU H&#39;85&#39;
+TRISB      EQU H&#39;86&#39;
+TRISC      EQU H&#39;87&#39;
+RP0        EQU H&#39;05&#39;
+RP1        EQU H&#39;06&#39;
+STATUS     EQU H&#39;03&#39;
+DATO       EQU H&#39;21&#39;
+ADCON0     EQU H&#39;1F&#39;
+ADCON1     EQU H&#39;9F&#39;
+PIR1       EQU H&#39;0C&#39;
+INTCON     EQU H&#39;0B&#39;
+PIE1       EQU H&#39;8C&#39;
+ADRESH     EQU H&#39;1E&#39;
+ADRESL     EQU H&#39;9E&#39;
+SPBRG      EQU H&#39;99&#39;
+TXSTA      EQU H&#39;98&#39;
+RCSTA      EQU H&#39;18&#39;
+TXREG      EQU H&#39;19&#39;
+RCREG      EQU H&#39;1A&#39;
+OPTION_REG EQU H&#39;81&#39;
+IRP        EQU H&#39;07&#39;</code></pre>
+<p>En el Datasheet, pagina 17, figura 2-3 se puede ver el mapa completo de memoria del microcontrolador. En estas lineas declaramos los nombres y direcciones (en hexadecimal) de los mismos para usarlos en el código con más facilidad. La palabra <code>EQU</code> asigna el nombre de la izquierda al valor de la derecha. Para declarar un valor hexadecimal se usa el prefijo <code>0x</code>.</p>
+<h2 id="inicialización-y-configuración">Inicialización y configuración</h2>
+<pre><code>INIT
+    org 0
+
+    ; Selección BANCO 1
+    ; Datasheet pagina 16, sección 2.2
+    BSF STATUS,RP0
+    BCF STATUS,RP1</code></pre>
+<p>La palabra <code>INIT</code> es la declaración de una <em>etiqueta</em> y se puede cambiar por cualquier palabra que se desee, es el nombre con el cual nos vamos a referir a esta sección de código desde otras partes del programa y que podremos invocar usando dicha etiqueta.</p>
+<p>La directiva <code>org 0</code> indica al enlazador que el código a continuación deberá ser colocado desde la dirección <strong>0</strong> de la memoria de programa.</p>
+<p>Las instrucciones <code>BSF STATUS,RP0</code> y <code>BCF STATUS,RP1</code> hacen un cambio al <strong>banco de memoria 1</strong>. La memoria del microcontrolador está dividida en <strong>bancos</strong> y es necesario <em>cambiarnos</em> al banco donde reside el registro que queremos modificar en cada momento, con lo cual este par de instrucciones se encuentra con usar para cambiar los bancos de memoria.</p>
+<h3 id="configuración-de-los-puertos-de-entradasalida">Configuración de los puertos de entrada/salida</h3>
+<pre><code>;;; Configuración de puertos IO
+;;; Datasheet pagina 41
+; El puerto A es de entrada
+MOVLW   B&#39;00111111&#39;
+MOVWF   TRISA
+; El puerto B es de entrada
+MOVLW   B&#39;00000000&#39;
+MOVWF   TRISB
+; Puerto C: pin TX es salida, pin RX es entrada
+MOVLW   B&#39;10001111&#39;
+MOVWF   TRISC</code></pre>
+<p>La instrucción <code>MOVLW</code> se usa para mover un valor <strong>literal</strong> al registro de trabajo <strong>W</strong>.</p>
+<p>La instrucción <code>MOVWF</code> se usa para mover el valor que se encuentra en el registro de trabajo <strong>W</strong> a un registro.</p>
+<p>De esta forma para colocar un valor arbitrario en un registro es necesario colocarlo primero en el registro de trabajo <strong>W</strong> usando la instrucción <code>MOVLW</code> y luego moverlo al registro deseado con la instrucción <code>MOVWF</code>.</p>
+<p>Para indicar que el valor usado es <strong>binario</strong> se usa como prefijo una <strong>B</strong>.</p>
+<p>El <strong>puerto A</strong> contiene los pines del conversor ADC por lo que se configuran como entradas. El <strong>puerto B</strong> se configura como salida para, opcionalmente, colocar LEDs que sirvan como indicadores visuales. El <strong>puerto C</strong> contiene los pines <strong>TX</strong> y <strong>RX</strong> usados para la comunicación UART con lo cual se configuran para salida y entrada respectivamente.</p>
+<h3 id="configuración-del-conversor-adc">Configuración del conversor ADC</h3>
+<pre><code>;;; Configuración de puerto ADC
+; Todas las entradas son analógicas
+; Datasheet pagina 128
+MOVLW   B&#39;10000000&#39;
+MOVWF   ADCON1</code></pre>
+<p>La configuración del conversor ADC será recibida usando la comunicación UART, sin embargo es necesario configurar de antemano que pines serán analógicos y que pines serán digitales. No usaremos pines digitales en este puerto, así que se configuran todos como analógicos según la tabla de la pagina 128 del Datasheet.</p>
+<h3 id="configuración-de-la-uart">Configuración de la UART</h3>
+<p>La comunicación serial UART puede usarse para comunicar el microcontrolador con una computadora u otro dispositivo como un modulo bluetooth que a su vez se puede usar para comunicar con un teléfono inteligente. El dispositivo con el que se comunique es irrelevante para este post y el código es el mismo en cualquier caso.</p>
+<p>Nótese que los registros que se configuran se encuentran en bancos distintos con lo cual es necesario hacer el <em>cambio de banco</em> en cada paso.</p>
+<pre><code>;;; Configuración UART
+; Banco 1
+BSF STATUS,RP0
+BCF STATUS,RP1
+; 19200 Baudios
+; Datasheet pagina 114, tabla 10-4
+MOVLW   .12
+MOVWF   SPBRG</code></pre>
+<p>El registro <code>SPBRG</code> o “Generador de baudios” recibe un valor (listado en la tabla) dependiendo de la velocidad a la cual nos queremos comunicar, de la frecuencia a la que se use el microcontrolador y el porcentaje de error que estamos dispuestos a tolerar en la comunicación. Dada la frecuencia de un reloj de 4Mhz usado y la necesidad de una comunicación a 19200 Baudios, la tabla indica usar un valor <strong>decimal</strong> de <code>12</code>. Para indicar que el valor usado es <strong>decimal</strong> se usa como prefijo un punto <code>.</code>.</p>
+<pre><code>; Registro de transmisión
+MOVLW   B&#39;10100100&#39;
+MOVWF   TXSTA</code></pre>
+<p>El registro <code>TXSTA</code> de la pagina 111 se configura con los valores adecuados para configurar una comunicación de 8 bits de alta velocidad, asíncrona y para activar los mecanismos de transmisión.</p>
+<pre><code>; Banco 0
+BCF STATUS,RP0
+BCF STATUS,RP1
+; Registro de recepción
+MOVLW   B&#39;10010000&#39;
+MOVWF   RCSTA
+BSF RCSTA,4</code></pre>
+<p>El registro <code>RCSTA</code> (en el banco 0) de la pagina 112 se configura para una comunicación de 8 bits, asíncrona y se activan los mecanismos de recepción.</p>
+<h2 id="programa-principal">Programa principal</h2>
+<p>El programa principal deberá esperar a que un byte para configurar el conversor ADC llegue por la UART, tomar un valor de tensión y llevar a cabo la conversión para finalmente transmitir el resultado por la UART enviando primero el byte bajo <code>ADRESL</code> y luego el byte alto <code>ADRESH</code>.</p>
+<h3 id="configuración">Configuración</h3>
+<pre><code>;;; Esperar primer byte de configuración
+ESPERAR_CONFIG
+    BTFSS   PIR1,5
+    GOTO    ESPERAR_CONFIG</code></pre>
+<p>El pin numero <code>5</code> del registro <code>PIR1</code> indicará que un dato ha llegado por la UART.</p>
+<p>La instrucción <code>BTFSS</code> verificará el bit numero <code>5</code> del registro <code>PIR1</code> y se <strong>saltará</strong> la siguiente instrucción si el bit es igual a <code>1</code>. De esta forma mientras no llegue el dato necesario la instrucción <code>GOTO</code> se ejecuta y el microcontrolador se queda en un bucle, pero cuando un dato es recibido la instrucción <code>GOTO</code> es <strong>saltada</strong> y el programa puede continuar.</p>
+<pre><code>    ; Colocar byte recibido en la configuración ADCON0 del conversor ADC
+    BCF   STATUS,RP0
+    BCF   STATUS,RP1
+    MOVF  RCREG,W
+    MOVWF ADCON0
+    ; Vaciar el bit de recepción
+    BCF   PIR1,6</code></pre>
+<p>El registro <code>RCREG</code> contiene el dato recibido por la UART, el cual se coloca en el registro de trabajo <code>W</code> para luego colocarlo en el registro de configuración <code>ADCON0</code> del conversor ADC. Así el conversor quedará configurado con el canal y velocidad que se haya indicado en el dato que recibió y se puede proceder a la conversión. Usando la instrucción <code>BCF</code> se vacía el contenido del bit numero <code>6</code> del registro <code>PIR1</code> para indicar que hemos leído el dato recibido.</p>
+<h3 id="conversión">Conversión</h3>
+<pre><code>;;; Esperar tiempo de adquisición e iniciar conversión
+CONVERTIR
+    ; Instrucciones de espera
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP</code></pre>
+<p>Antes de realizar la conversión es necesario esperar un tiempo para que el microcontrolador pueda recoger el valor de tensión en el pin, según la pagina 129 del Datasheet. Se puede lograr esto usando la instrucción <code>NOP</code>, aunque sería más adecuado usar un bucle que espere un tiempo más prudente, pero se mantiene de esta forma por simplicidad.</p>
+<pre><code>    ; Activar conversor
+    BSF ADCON0,2</code></pre>
+<p>Activando el bit numero <code>2</code> del registro <code>ADCON0</code> usando la instrucción <code>BSF</code> inicia la conversión.</p>
+<pre><code>ESPERAR_CONVERSION
+    BTFSS   PIR1,6
+    GOTO    ESPERAR_CONVERSION
+    BCF PIR1,6</code></pre>
+<p>La conversión toma tiempo, por lo que se entra en un bucle hasta que el bit numero 6 del registro <code>PIR1</code> indique que se ha finalizado.</p>
+<h3 id="transmitir-el-resultado">Transmitir el resultado</h3>
+<pre><code>; Transmitir el resultado mediante la UART
+TRANSMITIR_RESULTADO
+    BSF STATUS,RP0
+    BCF STATUS,RP1
+    ; Transmitir byte bajo del resultado (ADRESL)
+    MOVF    ADRESL,W
+    BCF STATUS,RP0
+    BCF STATUS,RP1
+    MOVWF   TXREG
+    BSF STATUS,RP0
+    BCF STATUS,RP1</code></pre>
+<p>El resultado de la conversión se encuetra repartido en dos bytes: <code>ADRESL</code> y <code>ADRESH</code>.</p>
+<p>Colocamos el byte <code>ADRESL</code> en el registro de trabajo <code>W</code> para luego colocarlo en el registro <code>TXREG</code> lo cual causará que sea transmitido usando al UART.</p>
+<pre><code>; Esperar que el primer byte se transmita
+ESPERAR_1
+    BTFSS   TXSTA,1
+    GOTO    ESPERAR_1
+    BCF STATUS,RP0
+    BCF STATUS,RP1
+    ; Transmitir byte alto del resultado (ADRESH)
+    MOVF    ADRESH,W
+    MOVWF   TXREG
+    BSF STATUS,RP0
+    BCF STATUS,RP1
+
+; Esperar que el segundo byte se transmita
+ESPERAR_2
+    BTFSS   TXSTA,1
+    GOTO    ESPERAR_2
+    BCF TXSTA,1</code></pre>
+<p>El bit numero <code>1</code> del registro <code>TXSTA</code> indica que el dato se ha transmitido.</p>
+<p>Esperamos en un bucle hasta que el byte bajo termine de ser transmitido y podemos repetirlo para el byte alto.</p>
+<pre><code>GOTO    CONVERTIR
+
+END</code></pre>
+<p>Finalmente se salta a la etiqueta <code>CONVERTIR</code> para convertir y transmitir datos infinitamente. El programa se termina con la directiva <code>END</code>.</p>]]></summary>
+</entry>
+<entry>
+    <title>Ratpoison, Fuzzy window selection</title>
+    <link href="http://www.sillybytes.net/2016/07/ratpoison-fuzzy-window-selection.html" />
+    <id>http://www.sillybytes.net/2016/07/ratpoison-fuzzy-window-selection.html</id>
+    <published>2016-07-13T00:00:00Z</published>
+    <updated>2016-07-13T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p><img src="/img/ratfuzzy/thumbnail.png" id="thumbnail" /><br />
+A nice feature to have is the ability to jump to an arbitrary window by performing a quick fuzzy search with just a few characters. We can achieve this by using Ratpoison’s flexibility and the fantastic <a href="https://github.com/junegunn/fzf">FZF tool</a>.</p>
+<p>The <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/window_select.sh">window_select.sh</a> script will do the trick using <strong>FZF</strong> <!--more--><br />
+<br />
+<br />
+</p>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="kw">function</span><span class="fu"> fzf_select</span>
+<span class="kw">{</span>
+    <span class="va">pattern=$(</span><span class="ex">ratpoison</span> -c <span class="st">&quot;prompt &gt; &quot;</span><span class="va">)</span>
+    <span class="kw">if [[</span> <span class="st">&quot;</span><span class="va">$pattern</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;&quot;</span><span class="kw"> ]]</span>;
+    <span class="kw">then</span>
+        <span class="bu">exit</span> 0
+    <span class="kw">fi</span>
+
+    <span class="va">window_list=$(</span><span class="ex">ratpoison</span> -c <span class="st">&quot;windows %c&quot;</span><span class="va">)</span>
+    <span class="va">selected=$(</span><span class="bu">echo</span> <span class="st">&quot;</span><span class="va">$window_list</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="ex">fzf</span> -q <span class="st">&quot;</span><span class="va">$pattern</span><span class="st">&quot;</span> -1 -0<span class="va">)</span>
+
+    <span class="kw">if [[</span> <span class="st">&quot;</span><span class="va">$selected</span><span class="st">&quot;</span> <span class="ot">!=</span> <span class="st">&quot;&quot;</span><span class="kw"> ]]</span>;
+    <span class="kw">then</span>
+        <span class="ex">ratpoison</span> -c <span class="st">&quot;select </span><span class="va">$selected</span><span class="st">&quot;</span>
+    <span class="kw">else</span>
+        <span class="ex">ratpoison</span> -c <span class="st">&quot;echo [!] There is no a matching window for </span><span class="dt">\&quot;</span><span class="va">$pattern</span><span class="dt">\&quot;</span><span class="st">&quot;</span>
+    <span class="kw">fi</span>
+<span class="kw">}</span>
+
+
+<span class="kw">case</span> <span class="va">$1</span><span class="kw"> in</span>
+    <span class="st">&#39;ratmen&#39;</span><span class="kw">)</span>
+        <span class="ex">ratmen_select</span>
+        <span class="kw">;;</span>
+    <span class="st">&#39;fzf&#39;</span><span class="kw">)</span>
+        <span class="ex">fzf_select</span>
+        <span class="kw">;;</span>
+<span class="kw">esac</span></code></pre></div>
+<p>This will use Ratpoison to prompt for a fuzzy string and will take you immediately to the matched window.</p>
+<p>But in order to invoke this, a Ratpoison mapping is required:</p>
+<pre><code>bind w exec window_select.sh fzf</code></pre>]]></summary>
+</entry>
+<entry>
+    <title>Aprende Haskell rápido y difícil</title>
+    <link href="http://www.sillybytes.net/2016/06/aprende-haskell-rapido-y-dificil_29.html" />
+    <id>http://www.sillybytes.net/2016/06/aprende-haskell-rapido-y-dificil_29.html</id>
+    <published>2016-06-29T00:00:00Z</published>
+    <updated>2016-06-29T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p><img src="/img/haskellhard/thumbnail.jpg" id="thumbnail" /><br />
 Esta es la traducción al español del artículo <a href="http://yannesposito.com/Scratch/en/blog/Haskell-the-Hard-Way/">Haskell the hard way</a> por Yann Esposito.</p>
 <p>TL;DR*: Un corto y denso tutorial para aprender Haskell.</p>
 <h1 id="asómbrate-con-haskell">Asómbrate con Haskell</h1>
@@ -182,12 +1186,12 @@ Nota: El código de ejemplo se almacena en ficheros con un nombre específico qu
 </ul>
 <h1 id="introducción">Introducción</h1>
 <h2 id="instalación">Instalación</h2>
-<p><img src="../../img/haskellhard/shot1.jpg" class="img-responsive" /><br />
+<p><img src="/img/haskellhard/shot1.jpg" class="img-responsive" /><br />
 * <a href="https://www.haskell.org/platform/">La plataforma de Haskell</a> es la forma estándar de instalar Haskell.</p>
 <p>Herramientas:</p>
 <p><code>ghc</code>: Compilador similar a <em>gcc</em> para <code>C</code>. <code>ghci</code>: Haskell interactivo (REPL) <code>runhaskell</code>: Ejecutar un programa sin compilarlo. Conveniente pero muy lento comparado a programas compilados</p>
 <h2 id="no-tengas-miedo">No tengas miedo</h2>
-<p><img src="../../img/haskellhard/shot2.jpg" class="img-responsive" /><br />
+<p><img src="/img/haskellhard/shot2.jpg" class="img-responsive" /><br />
 Muchos libros/artículos sobre Haskell empiezan por introducir alguna formula esotérica (quick sort, Fibonacci, etc…). Yo lo haré justamente al revés. Al principio no mostraré ningún super poder de Haskell. Empezaré por las similaridades entre Haskell y otros lenguajes de programación. Saltemos al “Hola Mundo” obligatorio.</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStrLn <span class="st">&quot;Hola Mundo!&quot;</span></code></pre></div>
 <p>Para ejecutarlo, puedes guardar el código en un fichero <code>hola.hs</code> y:</p>
@@ -221,7 +1225,7 @@ puts <span class="st">&quot;Hello </span><span class="ot">#{</span>name<span cla
 <p>En Haskell hay una función <code>main</code> y todo elemento tiene un tipo. El tipo de <code>main</code> es <code>IO ()</code>. Esto significa que <code>main</code> causará efectos secundarios.</p>
 <p>Solamente recuerda que Haskell puede lucir mucho como los lenguajes imperativos populares.</p>
 <h2 id="haskell-básico">Haskell básico</h2>
-<p><img src="../../img/haskellhard/shot3.jpg" class="img-responsive" /><br />
+<p><img src="/img/haskellhard/shot3.jpg" class="img-responsive" /><br />
 Antes de continuar debes ser advertido sobre algunas propiedades esenciales de Haskell.</p>
 <p><strong>Funcional</strong></p>
 <p>Haskell es un lenguaje funcional. Si tienes experiencia con lenguajes imperativos, deberás aprender muchas cosas nuevas. Con suerte muchos de estos nuevos conceptos te ayudarán a programas incluso en lenguajes imperativos.</p>
@@ -276,10 +1280,10 @@ main <span class="fu">=</span> print (f <span class="fl">2.3</span> <span class=
 <p>Deberías obtener este error:</p>
 <pre><code>21_very_basic.lhs:6:23:
     No instance for (Fractional Int)
-    arising from the literal `4.2'
+    arising from the literal `4.2&#39;
     Possible fix: add an instance declaration for (Fractional Int)
-    In the second argument of `f', namely `4.2'
-    In the first argument of `print', namely `(f 2.3 4.2)'
+    In the second argument of `f&#39;, namely `4.2&#39;
+    In the first argument of `print&#39;, namely `(f 2.3 4.2)&#39;
     In the expression: print (f 2.3 4.2)</code></pre>
 <p>El problema: 4.2 no es un <code>Int</code>.</p>
 <p>La solución: No declarar un tipo para <code>f</code> por el momento y dejar a Haskell inferir el tipo más general por nosotros:</p>
@@ -381,7 +1385,7 @@ main <span class="fu">=</span> print (f x y)</code></pre></div>
 <p>El compilador se queja. Los dos parámetros deben ser del mismo tipo.</p>
 <p>Si piensas que esto es una mala idea, y que el compilador debería hacer la transformación de un tipo al otro por ti, deberías ver este fantástico (y divertido) vídeo: <a href="https://www.destroyallsoftware.com/talks/wat">WAT</a></p>
 <h1 id="haskell-esencial">Haskell esencial</h1>
-<p><img src="../../img/haskellhard/shot4.jpg" class="img-responsive" /><br />
+<p><img src="/img/haskellhard/shot4.jpg" class="img-responsive" /><br />
 Sugiero que leas con ligereza esta parte. Mírala como una referencia. Haskell tiene un montón de características. Regresa aquí cada vez que la notación te parezca extraña.</p>
 <p>Uso el símbolo <code>⇔</code> para indicar que dos expresiones son equivalentes. Es una meta notación, <code>⇔</code> no existe en Haskell. También usaré <code>⇒</code> para indicar cual es el valor de retorno de una expresión.</p>
 <h2 id="notaciones">Notaciones</h2>
@@ -418,10 +1422,10 @@ Data.Ratio&gt; (11 % 15) * (5 % 3)
 [10,9..1]               ⇔ [10,9,8,7,6,5,4,3,2,1]</code></pre>
 <p><strong>Cadenas</strong></p>
 <p>En Haskell las cadenas son listas de <code>Char</code>.</p>
-<pre><code>'a' :: Char
+<pre><code>&#39;a&#39; :: Char
 &quot;a&quot; :: [Char]
 &quot;&quot;  ⇔ []
-&quot;ab&quot; ⇔ ['a','b'] ⇔  'a':&quot;b&quot; ⇔ 'a':['b'] ⇔ 'a':'b':[]
+&quot;ab&quot; ⇔ [&#39;a&#39;,&#39;b&#39;] ⇔  &#39;a&#39;:&quot;b&quot; ⇔ &#39;a&#39;:[&#39;b&#39;] ⇔ &#39;a&#39;:&#39;b&#39;:[]
 &quot;abc&quot; ⇔ &quot;ab&quot;++&quot;c&quot;
 
 
@@ -433,7 +1437,7 @@ representar un flujo de caracteres ASCII, deberías usar
 <p>El tipo de una tupla es <code>(a,b)</code>. Los elementos dentro de una tupla pueden tener diferentes tipos.</p>
 <pre><code>-- Todas estas tuplas son validas
 (2,&quot;foo&quot;)
-(3,'a',[2,3])
+(3,&#39;a&#39;,[2,3])
 ((2,&quot;a&quot;),&quot;c&quot;,3)
 
 fst (x,y)       ⇒  x
@@ -469,18 +1473,18 @@ f :: (a -&gt; b) -&gt; c  ⇔ f es una función de (a→b) hacia c</code></pre>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">square ::</span> <span class="dt">Num</span> a <span class="ot">=&gt;</span> a <span class="ot">-&gt;</span> a
 square x <span class="fu">=</span> x<span class="fu">^</span><span class="dv">2</span></code></pre></div>
 <p>Nótese que <code>^</code> usa notación infijo. Para cada operador infijo hay una notación prefijo asociada. Solo debe ponerse entre paréntesis.</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">square' x <span class="fu">=</span> (<span class="fu">^</span>) x <span class="dv">2</span>
-square'' x <span class="fu">=</span> (<span class="fu">^</span><span class="dv">2</span>) x</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">square&#39; x <span class="fu">=</span> (<span class="fu">^</span>) x <span class="dv">2</span>
+square&#39;&#39; x <span class="fu">=</span> (<span class="fu">^</span><span class="dv">2</span>) x</code></pre></div>
 <p>Podemos remover <code>x</code> en el lado izquierdo y derecho! Eso se llama reducción η.</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">square''' <span class="fu">=</span> (<span class="fu">^</span><span class="dv">2</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">square&#39;&#39;&#39; <span class="fu">=</span> (<span class="fu">^</span><span class="dv">2</span>)</code></pre></div>
 <p>Nótese que podemos declarar funciones con un <code>'</code> en su nombre:</p>
-<pre><code>square ⇔ square' ⇔ square'' ⇔ square'''</code></pre>
+<pre><code>square ⇔ square&#39; ⇔ square&#39;&#39; ⇔ square&#39;&#39;&#39;</code></pre>
 <p><strong>Tests</strong></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">absolute ::</span> (<span class="dt">Ord</span> a, <span class="dt">Num</span> a) <span class="ot">=&gt;</span> a <span class="ot">-&gt;</span> a
 absolute x <span class="fu">=</span> <span class="kw">if</span> x <span class="fu">&gt;=</span> <span class="dv">0</span> <span class="kw">then</span> x <span class="kw">else</span> <span class="fu">-</span>x</code></pre></div>
 <p>Nota: el <code>if .. then .. else</code> en Haskell es como el <code>algo ? algo : algo</code> en C. No puedes olvidar el <code>else</code></p>
 <p>Otra versión equivalente:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">absolute' x
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">absolute&#39; x
     <span class="fu">|</span> x <span class="fu">&gt;=</span> <span class="dv">0</span> <span class="fu">=</span> x
     <span class="fu">|</span> otherwise <span class="fu">=</span> <span class="fu">-</span>x</code></pre></div>
 <pre><code>Advertencia: la indentación es importante en Haskell. Como en
@@ -488,7 +1492,7 @@ Python, una mala indentación pueden dañar el código!</code></pre>
 <h1 id="parte-difícil">Parte difícil</h1>
 <p>La parte difícil puede empezar ahora.</p>
 <h2 id="estilo-funcional">Estilo funcional</h2>
-<p><img src="../../img/haskellhard/shot5.jpg" class="img-responsive" /><br />
+<p><img src="/img/haskellhard/shot5.jpg" class="img-responsive" /><br />
 En esta sección, proporcionaré un ejemplo corto de la impresionante habilidad para refactorizar de Haskell. Seleccionaremos un problema y los resolveremos en la forma imperativa estándar. Luego desarrollaremos el código. Al final el resultado será más elegante y más sencillo de adaptar.</p>
 <p>Solucionemos el siguiente problema:</p>
 <pre><code>Dada una lista de enteros, retornar la suma de numeros pares en la lita.
@@ -642,7 +1646,7 @@ evenSum <span class="fu">=</span> accumSum <span class="dv">0</span>
                 <span class="kw">then</span> accumSum (n<span class="fu">+</span>x) xs
                 <span class="kw">else</span> accumSum n xs</code></pre></div>
 <h3 id="funciones-de-orden-superior">Funciones de orden superior</h3>
-<p><img src="../../img/haskellhard/shot6.jpg" class="img-responsive" /><br />
+<p><img src="/img/haskellhard/shot6.jpg" class="img-responsive" /><br />
 Para mejorarlo aún más podemos usar funciones de orden superior. Qué son esas bestias? Las funciones de orden superior son funciones que toman funciones como parámetros.</p>
 <p>Aquí algunos ejemplos:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">filter<span class="ot"> ::</span> (a <span class="ot">-&gt;</span> <span class="dt">Bool</span>) <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> [a]
@@ -671,54 +1675,54 @@ foldl f z (x<span class="fu">:</span>xs) <span class="fu">=</span> foldl f (f z 
 <p>Pero como Haskell es <em>perezoso</em>, no evalúa <code>(f z x)</code> y simplemente lo empuja en la pila. Por eso generalmente usamos <code>foldl'</code> en lugar de <code>foldl</code>; <code>foldl'</code> es una versión estricta de <code>foldl</code>. Si no comprendes que significa <em>perezoso</em> o <em>estricto</em>, no te preocupes, solo sigue el código como si <code>fold</code> y <code>foldl'</code> fueran idénticos.</p>
 <p>Ahora la nueva versión de <code>evenSum</code> será:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- Version 6</span>
-<span class="co">-- foldl' isn't accessible by default</span>
+<span class="co">-- foldl&#39; isn&#39;t accessible by default</span>
 <span class="co">-- we need to import it from the module Data.List</span>
 <span class="kw">import </span><span class="dt">Data.List</span>
-evenSum l <span class="fu">=</span> foldl' mysum <span class="dv">0</span> (filter even l)
+evenSum l <span class="fu">=</span> foldl&#39; mysum <span class="dv">0</span> (filter even l)
   <span class="kw">where</span> mysum acc value <span class="fu">=</span> acc <span class="fu">+</span> value</code></pre></div>
 <p>También podemos simplificar eso usando notación lambda. Así no tendremos que crear un nombre temporal <code>mysum</code>.</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- Version 7</span>
 <span class="co">-- Generally it is considered a good practice</span>
 <span class="co">-- to import only the necessary function(s)</span>
-<span class="kw">import </span><span class="dt">Data.List</span> (foldl')
-evenSum l <span class="fu">=</span> foldl' (\x y <span class="ot">-&gt;</span> x<span class="fu">+</span>y) <span class="dv">0</span> (filter even l)</code></pre></div>
+<span class="kw">import </span><span class="dt">Data.List</span> (foldl&#39;)
+evenSum l <span class="fu">=</span> foldl&#39; (\x y <span class="ot">-&gt;</span> x<span class="fu">+</span>y) <span class="dv">0</span> (filter even l)</code></pre></div>
 <p>Y por supuesto, notamos que</p>
 <p><code>(\x y -&gt; x+y) ⇔ (+)</code></p>
 <p>Finalmente</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- Version 8</span>
-<span class="kw">import </span><span class="dt">Data.List</span> (foldl')
+<span class="kw">import </span><span class="dt">Data.List</span> (foldl&#39;)
 <span class="ot">evenSum ::</span> <span class="dt">Integral</span> a <span class="ot">=&gt;</span> [a] <span class="ot">-&gt;</span> a
-evenSum l <span class="fu">=</span> foldl' (<span class="fu">+</span>) <span class="dv">0</span> (filter even l)</code></pre></div>
+evenSum l <span class="fu">=</span> foldl&#39; (<span class="fu">+</span>) <span class="dv">0</span> (filter even l)</code></pre></div>
 <p><code>foldl'</code> no es la función más sencilla de comprender. Si no estas acostumbrado, deberías estudiarlo un poco.</p>
 <p>Para ayudar a comprender que está sucediendo aquí, miremos la evaluación paso por paso:</p>
 <pre><code>evenSum [1,2,3,4]
-⇒ foldl' (+) 0 (filter even [1,2,3,4])
-⇒ foldl' (+) 0 [2,4]
-⇒ foldl' (+) (0+2) [4]
-⇒ foldl' (+) 2 [4]
-⇒ foldl' (+) (2+4) []
-⇒ foldl' (+) 6 []
+⇒ foldl&#39; (+) 0 (filter even [1,2,3,4])
+⇒ foldl&#39; (+) 0 [2,4]
+⇒ foldl&#39; (+) (0+2) [4]
+⇒ foldl&#39; (+) 2 [4]
+⇒ foldl&#39; (+) (2+4) []
+⇒ foldl&#39; (+) 6 []
 ⇒ 6</code></pre>
 <p>Otra función de orden superior útil es <code>(.)</code>. La función <code>(.)</code> corresponde a la composición matemática de funciones.</p>
 <p><code>(f . g . h) x ⇔  f ( g (h x))</code></p>
 <p>Podemos tomar ventaja de este operador para hacer una reducción η en nuestra función:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- Version 9</span>
-<span class="kw">import </span><span class="dt">Data.List</span> (foldl')
+<span class="kw">import </span><span class="dt">Data.List</span> (foldl&#39;)
 <span class="ot">evenSum ::</span> <span class="dt">Integral</span> a <span class="ot">=&gt;</span> [a] <span class="ot">-&gt;</span> a
-evenSum <span class="fu">=</span> (foldl' (<span class="fu">+</span>) <span class="dv">0</span>) <span class="fu">.</span> (filter even)</code></pre></div>
+evenSum <span class="fu">=</span> (foldl&#39; (<span class="fu">+</span>) <span class="dv">0</span>) <span class="fu">.</span> (filter even)</code></pre></div>
 <p>También, podemos renombrar algunas partes para hacerlo más claro:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- Version 10</span>
-<span class="kw">import </span><span class="dt">Data.List</span> (foldl')
-<span class="ot">sum' ::</span> (<span class="dt">Num</span> a) <span class="ot">=&gt;</span> [a] <span class="ot">-&gt;</span> a
-sum' <span class="fu">=</span> foldl' (<span class="fu">+</span>) <span class="dv">0</span>
+<span class="kw">import </span><span class="dt">Data.List</span> (foldl&#39;)
+<span class="ot">sum&#39; ::</span> (<span class="dt">Num</span> a) <span class="ot">=&gt;</span> [a] <span class="ot">-&gt;</span> a
+sum&#39; <span class="fu">=</span> foldl&#39; (<span class="fu">+</span>) <span class="dv">0</span>
 <span class="ot">evenSum ::</span> <span class="dt">Integral</span> a <span class="ot">=&gt;</span> [a] <span class="ot">-&gt;</span> a
-evenSum <span class="fu">=</span> sum' <span class="fu">.</span> (filter even)</code></pre></div>
+evenSum <span class="fu">=</span> sum&#39; <span class="fu">.</span> (filter even)</code></pre></div>
 <p>Es tiempo de hablar sobre la dirección hacia la cual se ha movido nuestro código mientras introducimos más de la forma funcional. Qué hemos ganado al usar funciones de orden superior?</p>
 <p>Al principio podrías pensar que la principal diferencia es la brevedad. Pero en realidad tiene más que ver con la forma en la que se piensa. Supongamos que se quiere modificar un poco la función, por ejemplo, para obtener la suma de los cuadrados de los elementos pares de la lista.</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>] ▷ [<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">9</span>,<span class="dv">16</span>] ▷ [<span class="dv">4</span>,<span class="dv">16</span>] ▷ <span class="dv">20</span></code></pre></div>
 <p>Actualizar la versión 10 es muy fácil:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">squareEvenSum <span class="fu">=</span> sum' <span class="fu">.</span> (filter even) <span class="fu">.</span> (map (<span class="fu">^</span><span class="dv">2</span>))
-squareEvenSum' <span class="fu">=</span> evenSum <span class="fu">.</span> (map (<span class="fu">^</span><span class="dv">2</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">squareEvenSum <span class="fu">=</span> sum&#39; <span class="fu">.</span> (filter even) <span class="fu">.</span> (map (<span class="fu">^</span><span class="dv">2</span>))
+squareEvenSum&#39; <span class="fu">=</span> evenSum <span class="fu">.</span> (map (<span class="fu">^</span><span class="dv">2</span>))</code></pre></div>
 <p>Solamente agregamos otra “función de transformación”.</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">map (<span class="fu">^</span><span class="dv">2</span>) [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>] ⇔ [<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">9</span>,<span class="dv">16</span>]</code></pre></div>
 <p>La función <code>map</code> simplemente aplica una función sobre todos los elementos de una lista.</p>
@@ -730,7 +1734,7 @@ squareEvenSum' <span class="fu">=</span> evenSum <span class="fu">.</span> (map 
 <p>De hecho, Haskell también es grandioso cuando se quiere escribir en estilo imperativo. Comprender esto fue muy difícil para mi cuando aprendía Haskell. Gran parte del esfuerzo se va intentando explicar la superioridad del enfoque funcional. Luego cuando empiezas a usar estilo imperativo con Haskell, puede ser difícil entender dónde y cómo usarlo.</p>
 <p>Pero antes de hablar sobre este super poder de Haskell, debemos hablar sobre otro aspecto esencial de Haskell: Tipos.</p>
 <h2 id="tipos">Tipos</h2>
-<p><img src="../../img/haskellhard/shot7.jpg" class="img-responsive" /><br />
+<p><img src="/img/haskellhard/shot7.jpg" class="img-responsive" /><br />
 TL;DR*:</p>
 <ul>
 <li><p><code>type Nombre = OtroTipo</code> es solamente un alias y no hay ninguna diferencia entre <code>Nombre</code> y <code>OtroTipo</code>.</p></li>
@@ -871,7 +1875,7 @@ convertList (x<span class="fu">:</span>xs) <span class="fu">=</span> x <span cla
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dv">0</span> <span class="ot">::</span><span class="fu">:</span> (<span class="dv">1</span> <span class="ot">::</span><span class="fu">:</span> <span class="dt">Nil</span>)
 <span class="dv">0</span> <span class="ot">::</span><span class="fu">:</span> (<span class="dv">1</span> <span class="ot">::</span><span class="fu">:</span> <span class="dt">Nil</span>)</code></pre></div>
 <h3 id="arboles">Arboles</h3>
-<p><img src="../../img/haskellhard/shot8.jpg" class="img-responsive" /><br />
+<p><img src="/img/haskellhard/shot8.jpg" class="img-responsive" /><br />
 Otro ejemplo estándar: arboles binarios.</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.List</span>
 
@@ -903,13 +1907,13 @@ treeFromList (x<span class="fu">:</span>xs) <span class="fu">=</span> <span clas
 <p>Aquí está mi versión de como mostrar un árbol binario. No te preocupes de la aparente complejidad. Hice un montón de mejoras para mostrar incluso objetos extraños.</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- declare BinTree a to be an instance of Show</span>
 <span class="kw">instance</span> (<span class="dt">Show</span> a) <span class="ot">=&gt;</span> <span class="dt">Show</span> (<span class="dt">BinTree</span> a) <span class="kw">where</span>
-  <span class="co">-- will start by a '&lt;' before the root</span>
+  <span class="co">-- will start by a &#39;&lt;&#39; before the root</span>
   <span class="co">-- and put a : a begining of line</span>
-  show t <span class="fu">=</span> <span class="st">&quot;&lt; &quot;</span> <span class="fu">++</span> replace <span class="ch">'\n'</span> <span class="st">&quot;\n: &quot;</span> (treeshow <span class="st">&quot;&quot;</span> t)
+  show t <span class="fu">=</span> <span class="st">&quot;&lt; &quot;</span> <span class="fu">++</span> replace <span class="ch">&#39;\n&#39;</span> <span class="st">&quot;\n: &quot;</span> (treeshow <span class="st">&quot;&quot;</span> t)
     <span class="kw">where</span>
     <span class="co">-- treeshow pref Tree</span>
     <span class="co">--   shows a tree and starts each line with pref</span>
-    <span class="co">-- We don't display the Empty tree</span>
+    <span class="co">-- We don&#39;t display the Empty tree</span>
     treeshow pref <span class="dt">Empty</span> <span class="fu">=</span> <span class="st">&quot;&quot;</span>
     <span class="co">-- Leaf</span>
     treeshow pref (<span class="dt">Node</span> x <span class="dt">Empty</span> <span class="dt">Empty</span>) <span class="fu">=</span>
@@ -936,7 +1940,7 @@ treeFromList (x<span class="fu">:</span>xs) <span class="fu">=</span> <span clas
                   pref <span class="fu">++</span> before <span class="fu">++</span> treeshow (pref <span class="fu">++</span> next) t
 
     <span class="co">-- pshow replaces &quot;\n&quot; by &quot;\n&quot;++pref</span>
-    pshow pref x <span class="fu">=</span> replace <span class="ch">'\n'</span> (<span class="st">&quot;\n&quot;</span><span class="fu">++</span>pref) (show x)
+    pshow pref x <span class="fu">=</span> replace <span class="ch">&#39;\n&#39;</span> (<span class="st">&quot;\n&quot;</span><span class="fu">++</span>pref) (show x)
 
     <span class="co">-- replaces one char by another string</span>
     replace c new string <span class="fu">=</span>
@@ -979,17 +1983,17 @@ print <span class="fu">$</span> treeFromList [<span class="st">&quot;foo&quot;</
 print ( treeFromList
         (map treeFromList [<span class="st">&quot;baz&quot;</span>,<span class="st">&quot;zara&quot;</span>,<span class="st">&quot;bar&quot;</span>]))</code></pre></div>
 <pre><code>Binary tree of Char binary trees:
-&lt; &lt; 'b'
-: : |--'a'
-: : `--'z'
-: |--&lt; 'b'
-: |  : |--'a'
-: |  : `--'r'
-: `--&lt; 'z'
-:    : `--'a'
-:    :    `--'r'</code></pre>
+&lt; &lt; &#39;b&#39;
+: : |--&#39;a&#39;
+: : `--&#39;z&#39;
+: |--&lt; &#39;b&#39;
+: |  : |--&#39;a&#39;
+: |  : `--&#39;r&#39;
+: `--&lt; &#39;z&#39;
+:    : `--&#39;a&#39;
+:    :    `--&#39;r&#39;</code></pre>
 <p>Por eso elegí poner un <code>:</code> en cada linea del árbol (excepto en la raíz).</p>
-<p><img src="../../img/haskellhard/shot9.jpg" class="img-responsive" /><br />
+<p><img src="/img/haskellhard/shot9.jpg" class="img-responsive" /><br />
 </p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">putStrLn <span class="st">&quot;\nTree of Binary trees of Char binary trees:&quot;</span>
 print <span class="fu">$</span> (treeFromList <span class="fu">.</span> map (treeFromList <span class="fu">.</span> map treeFromList))
@@ -1006,33 +2010,33 @@ print <span class="fu">$</span> (treeFromList <span class="fu">.</span> map (tre
              , map treeFromList [<span class="st">&quot;YOU&quot;</span>,<span class="st">&quot;LIKE&quot;</span>,<span class="st">&quot;TREES&quot;</span>] ]))</code></pre></div>
 <p>Y produce:</p>
 <pre><code>Binary tree of Binary trees of Char binary trees:
-&lt; &lt; &lt; 'Y'
-: : : `--'O'
-: : `--&lt; 'D'
-: :    : |--'A'
-: :    : `--'W'
-: :    :    `--'G'
-: |--&lt; &lt; 'I'
-: |  : `--&lt; 'H'
-: |  :    : |--'E'
-: |  :    : |  `--'A'
-: |  :    : |     `--'D'
-: |  :    : `--'R'
-: `--&lt; &lt; 'Y'
-:    : : `--'O'
-:    : :    `--'U'
-:    : `--&lt; 'L'
-:    :    : `--'I'
-:    :    :    |--'E'
-:    :    :    `--'K'
-:    :    `--&lt; 'T'
-:    :       : `--'R'
-:    :       :    |--'E'
-:    :       :    `--'S'</code></pre>
+&lt; &lt; &lt; &#39;Y&#39;
+: : : `--&#39;O&#39;
+: : `--&lt; &#39;D&#39;
+: :    : |--&#39;A&#39;
+: :    : `--&#39;W&#39;
+: :    :    `--&#39;G&#39;
+: |--&lt; &lt; &#39;I&#39;
+: |  : `--&lt; &#39;H&#39;
+: |  :    : |--&#39;E&#39;
+: |  :    : |  `--&#39;A&#39;
+: |  :    : |     `--&#39;D&#39;
+: |  :    : `--&#39;R&#39;
+: `--&lt; &lt; &#39;Y&#39;
+:    : : `--&#39;O&#39;
+:    : :    `--&#39;U&#39;
+:    : `--&lt; &#39;L&#39;
+:    :    : `--&#39;I&#39;
+:    :    :    |--&#39;E&#39;
+:    :    :    `--&#39;K&#39;
+:    :    `--&lt; &#39;T&#39;
+:    :       : `--&#39;R&#39;
+:    :       :    |--&#39;E&#39;
+:    :       :    `--&#39;S&#39;</code></pre>
 <p>Nota como arboles duplicados no son insertados; solo hay un árbol correspondiente a <code>&quot;I&quot;, &quot;HEARD&quot;</code>. Podemos tener esto (casi) gratuitamente, por que hemos declarado que el tipo árbol es una instancia de <code>Eq</code>.</p>
 <p>Mira cuan genial es esta estructura: Podemos hacer arboles que contienen no solo enteros, cadenas y caracteres, sino también arboles. Y podemos incluso hacer un árbol que contenga arboles de arboles!</p>
 <h2 id="estructuras-infinitas">Estructuras infinitas</h2>
-<p><img src="../../img/haskellhard/shot10.jpg" class="img-responsive" /><br />
+<p><img src="/img/haskellhard/shot10.jpg" class="img-responsive" /><br />
 Es común escuchar que Haskell es perezoso.</p>
 <p>De hecho, si se es un poco pedante, se debería decir que <a href="http://www.haskell.org/haskellwiki/Lazy_vs._non-strict">Haskell es no-estricto.</a>. Pereza es solo una implementación común de lenguajes no-estrictos.</p>
 <p>¿Pero qué significa “no-estricto”? Desde la wiki de Haskell:</p>
@@ -1044,11 +2048,11 @@ so if you have (a+(b*c)) then you first reduce + first, then you reduce the inne
 <span class="ot">numbers ::</span> [<span class="dt">Integer</span>]
 numbers <span class="fu">=</span> <span class="dv">0</span><span class="fu">:</span>map (<span class="dv">1</span><span class="fu">+</span>) numbers
 
-take' n [] <span class="fu">=</span> []
-take' <span class="dv">0</span> l <span class="fu">=</span> []
-take' n (x<span class="fu">:</span>xs) <span class="fu">=</span> x<span class="fu">:</span>take' (n<span class="fu">-</span><span class="dv">1</span>) xs
+take&#39; n [] <span class="fu">=</span> []
+take&#39; <span class="dv">0</span> l <span class="fu">=</span> []
+take&#39; n (x<span class="fu">:</span>xs) <span class="fu">=</span> x<span class="fu">:</span>take&#39; (n<span class="fu">-</span><span class="dv">1</span>) xs
 
-main <span class="fu">=</span> print <span class="fu">$</span> take' <span class="dv">10</span> numbers</code></pre></div>
+main <span class="fu">=</span> print <span class="fu">$</span> take&#39; <span class="dv">10</span> numbers</code></pre></div>
 <p>Y se detiene.</p>
 <p>¿Cómo?</p>
 <p>En lugar de intentar evaluar <code>numbers</code> por completo, evalúa los elementos solo cunado se los necesita.</p>
@@ -1129,7 +2133,7 @@ infTreeTwo <span class="fu">=</span> <span class="dt">Node</span> <span class="d
 </ul>
 <p>Prepárate, las respuestas pueden ser complejas. Pero son realmente gratificantes.</p>
 <h2 id="lidiando-con-io-entradasalida">Lidiando con IO (Entrada/Salida)</h2>
-<p><img src="../../img/haskellhard/shot11.jpg" class="img-responsive" /><br />
+<p><img src="/img/haskellhard/shot11.jpg" class="img-responsive" /><br />
 </p>
 <p><em>TL;DR</em>:</p>
 <p>Una función típica haciendo IO es muy parecida a un programa imperativo:</p>
@@ -1259,7 +2263,7 @@ main <span class="fu">=</span> <span class="kw">do</span>
     * Hacer un programa que sume todos sus argumentos.
     Pista: Usa la función `getArgs`.</code></pre>
 <h2 id="el-truco-de-la-entradasalida-io-explicado">El truco de la entrada/salida (IO) explicado</h2>
-<p><img src="../../img/haskellhard/shot12.jpg" class="img-responsive" /><br />
+<p><img src="/img/haskellhard/shot12.jpg" class="img-responsive" /><br />
 </p>
 <p>TL;DR*:</p>
 <p>Para separar las partes puras de las impuras, <code>main</code> es la función que modifica el estado del mundo exterior</p>
@@ -1349,7 +2353,7 @@ askUser <span class="fu">=</span> <span class="kw">do</span>
 <p>Esto es similar, pero incómodo. Mira todos esos nombres temporales <code>w?</code>.</p>
 <p>La lección es: poner implementación <code>IO</code> en lenguajes funcionales puros es incómodo!</p>
 <p>Afortunadamente, hay una mejor forma de manejar este problema. Observamos un patrón. Cada linea es de la forma:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> (y, w') <span class="fu">=</span> action x w <span class="kw">in</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> (y, w&#39;) <span class="fu">=</span> action x w <span class="kw">in</span></code></pre></div>
 <p>Incluso si para alguna linea el primer argumento <code>x</code> no es necesario. La salida es de tipo tupla, <code>(answer, newWorldValue)</code>. Cada función <code>f</code> debe tener un tipo similar a:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">f ::</span> <span class="dt">World</span> <span class="ot">-&gt;</span> (a,<span class="dt">World</span>)</code></pre></div>
 <p>No solo eso, también podemos notar que siempre seguimos el mismo patrón de uso:</p>
@@ -1370,7 +2374,7 @@ askUser <span class="fu">=</span> <span class="kw">do</span>
 <p>Y</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> (_,w1) <span class="fu">=</span> action1 w0 <span class="kw">in</span>
 <span class="kw">let</span> (y,w2) <span class="fu">=</span> action2 w1 <span class="kw">in</span></code></pre></div>
-<p><img src="../../img/haskellhard/shot13.jpg" class="img-responsive" /><br />
+<p><img src="/img/haskellhard/shot13.jpg" class="img-responsive" /><br />
 Ahora, haremos un truco de magia. Haremos que el símbolo del mundo temporal “desaparezca”. Haremos un <code>bind</code> a las dos lineas. Dinamos la función <code>bind</code>. Su tipo es un poco intimidarte al principio:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">bind ::</span> (<span class="dt">World</span> <span class="ot">-&gt;</span> (a,<span class="dt">World</span>))
         <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> (<span class="dt">World</span> <span class="ot">-&gt;</span> (b,<span class="dt">World</span>)))
@@ -1486,7 +2490,7 @@ askUser <span class="fu">=</span>
 <p>Puedes compilar este código y verificar que funciona.</p>
 <p>Imagina como se vería sin el <code>(&gt;&gt;)</code> y <code>(&gt;&gt;=)</code>.</p>
 <h2 id="monads">Monads</h2>
-<p><img src="../../img/haskellhard/shot14.jpg" class="img-responsive" /><br />
+<p><img src="/img/haskellhard/shot14.jpg" class="img-responsive" /><br />
 Ahora el secreto puede ser revelado: <code>IO</code> es un <em>monad</em>. Ser un monad significa que se tiene acceso a azúcar sintáctica con la notación <code>do</code>. Pero principalmente, se tiene acceso al patrón que facilitará el flujo del código.</p>
 <pre><code>Aclaraciones importantes:
 
@@ -1613,7 +2617,7 @@ lineas. Obtienes esto gratuitamente, gracias a la pereza (laziness).</code></pre
     return x <span class="fu">=</span> <span class="dt">Just</span> x</code></pre></div>
 <p>El monad <code>Maybe</code> probó ser útil en este ejemplo. Vimos la utilidad de el monad <code>IO</code>. Pero vamos por un mejor ejemplo, las listas.</p>
 <h3 id="el-monad-lista">El monad lista</h3>
-<p><img src="../../img/haskellhard/shot15.jpg" class="img-responsive" /><br />
+<p><img src="/img/haskellhard/shot15.jpg" class="img-responsive" /><br />
 El monad lista ayuda a simular cómputos no determinístico:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Control.Monad</span> (guard)
 
@@ -1731,15 +2735,15 @@ treeFromList (x<span class="fu">:</span>xs) <span class="fu">=</span> <span clas
               right <span class="fu">=</span> treeFromList <span class="fu">$</span> safefilter (<span class="fu">&gt;</span>x) xs</code></pre></div>
 <p>Esta nueva función <code>safefilter</code> es casi equivalente a <code>filter</code> pero no entra en un bucle infinito si el resultado es una lista infinita. Si no puede encontrar un elemento para el cual la prueba resulte cierta luego de 10000 pasos consecutivos, entonces considera que es el final de la búsqueda.</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">safefilter ::</span> (a <span class="ot">-&gt;</span> <span class="dt">Bool</span>) <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> [a]
-safefilter f l <span class="fu">=</span> safefilter' f l nbTry
+safefilter f l <span class="fu">=</span> safefilter&#39; f l nbTry
   <span class="kw">where</span>
       nbTry <span class="fu">=</span> <span class="dv">10000</span>
-      safefilter' _ _ <span class="dv">0</span> <span class="fu">=</span> []
-      safefilter' _ [] _ <span class="fu">=</span> []
-      safefilter' f (x<span class="fu">:</span>xs) n <span class="fu">=</span>
+      safefilter&#39; _ _ <span class="dv">0</span> <span class="fu">=</span> []
+      safefilter&#39; _ [] _ <span class="fu">=</span> []
+      safefilter&#39; f (x<span class="fu">:</span>xs) n <span class="fu">=</span>
                   <span class="kw">if</span> f x
-                     <span class="kw">then</span> x <span class="fu">:</span> safefilter' f xs nbTry
-                     <span class="kw">else</span> safefilter' f xs (n<span class="fu">-</span><span class="dv">1</span>)</code></pre></div>
+                     <span class="kw">then</span> x <span class="fu">:</span> safefilter&#39; f xs nbTry
+                     <span class="kw">else</span> safefilter&#39; f xs (n<span class="fu">-</span><span class="dv">1</span>)</code></pre></div>
 <p>Ahora el programa se ejecuta bien:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> <span class="kw">do</span>
       putStrLn <span class="st">&quot;take 10 shuffle&quot;</span>
@@ -1753,18 +2757,18 @@ safefilter f l <span class="fu">=</span> safefilter' f l nbTry
 <li><p>Incluso con un valor grande constante para <code>deep</code> y <code>nbTry</code>, parece funcionar bien. Pero en el peor caso, puede ser exponencial. Crear una lista para el peor caso y darlo como parámetro a <code>treeFromList</code>. Pista: piensa en <code>[0,-1,-1,...,-1,1,-1,...,-1,1,...]</code>.</p></li>
 <li><p>Primero intenté implementar <code>safefilter</code> como:</p></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">safefilter' f l <span class="fu">=</span> <span class="kw">if</span> filter f (take <span class="dv">10000</span> l) <span class="fu">==</span> []
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">safefilter&#39; f l <span class="fu">=</span> <span class="kw">if</span> filter f (take <span class="dv">10000</span> l) <span class="fu">==</span> []
             <span class="kw">then</span> []
             <span class="kw">else</span> filter f l</code></pre></div>
 <p>Explica por que no funciona y puede entrar en un loop infinito.</p>
 <ul>
 <li>Supón que <code>shuffle</code> es una lista aleatoria real con limites crecientes. Si estudias un poco esta estructura, descubrirás que con una probabilidad de 1, esta es una estructura infinita. Usando el siguiente código encuentra una definición de <code>f</code> tal que con probabilidad de <code>1</code>, <code>treeFromList' shuffle</code> es infinita. Y pruebalo. (esto solo es una conjetura).</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">treeFromList' []  n <span class="fu">=</span> <span class="dt">Empty</span>
-treeFromList' (x<span class="fu">:</span>xs) n <span class="fu">=</span> <span class="dt">Node</span> x left right
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">treeFromList&#39; []  n <span class="fu">=</span> <span class="dt">Empty</span>
+treeFromList&#39; (x<span class="fu">:</span>xs) n <span class="fu">=</span> <span class="dt">Node</span> x left right
     <span class="kw">where</span>
-        left <span class="fu">=</span> treeFromList' (safefilter' (<span class="fu">&lt;</span>x) xs (f n)
-        right <span class="fu">=</span> treeFromList' (safefilter' (<span class="fu">&gt;</span>x) xs (f n)
+        left <span class="fu">=</span> treeFromList&#39; (safefilter&#39; (<span class="fu">&lt;</span>x) xs (f n)
+        right <span class="fu">=</span> treeFromList&#39; (safefilter&#39; (<span class="fu">&gt;</span>x) xs (f n)
         f <span class="fu">=</span> <span class="fu">???</span></code></pre></div>
 <p>[^1]. Incluso si los lenguajes mas recientes intentan ocultarlos, están presentes.</p>
 <p>[^2]. Se que estoy haciendo trampa. Pero hablaré “no estricto” luego.</p>
@@ -1772,113 +2776,7 @@ treeFromList' (x<span class="fu">:</span>xs) n <span class="fu">=</span> <span c
 <p>[^4]. Es muy similar al <code>eval</code> de javascript en una cadena que contiene JSON.</p>
 <p>[^5]. Hay algunas excepciones <em>no seguras</em> ha esta regla. Pero no deberías ver su uso en una aplicación real excepto tal vez para propósitos de depuración.</p>
 <p>[^6]. Para los curiosos el tipo real es <code>data IO a = IO {unIO :: State# RealWorld -&gt; (#State# RealWorld, a #)}</code>. Los ‘#’ tienen que ver con la optimización.</p>
-<p>[^7]. Ciertamente necesitas practicar un poco para acostumbrarte a ellos y entender cuando los puedes usar y crearlos tu mismo. Pero ya haz hecho un gran avance.</p>
-        </div>
-    </div>
-</div>
+<p>[^7]. Ciertamente necesitas practicar un poco para acostumbrarte a ellos y entender cuando los puedes usar y crearlos tu mismo. Pero ya haz hecho un gran avance.</p>]]></summary>
+</entry>
 
-                    <a id="archive" href="../../archive.html">Read Older Posts</a>
-                </div>
-
-            </div>
-        </div>
-
-
-        <footer class="container-fluid">
-            <div class="row">
-                <div id="sidebar" class="visible-xs visible-sm col-xs-12">
-                    <div id="author">
-    <img id="author-pic" src="../../img/daniel.jpg">
-    <h3 id="author-name">Daniel Campoverde [alx741]</h3>
-    <img id="location-icon" src="../../img/location_icon.png">
-    <span id="location">Cuenca, Ecuador</span>
-</div>
-
-<div id="findme">
-    <h2 class="sidebar-h2">FIND ME</h2>
-    <a target="_blank" href="https://github.com/alx741">
-        <img class="icon" src="../../img/github.png">
-    </a>
-    <a target="_blank" href="https://twitter.com/alx741alx">
-        <img class="icon" src="../../img/twitter.png">
-    </a>
-    <a target="_blank" href="https://www.facebook.com/sillybytes/">
-        <img class="icon" src="../../img/facebook.png">
-    </a>
-    <a target="_blank" href="https://plus.google.com/116038619580828681039">
-        <img class="icon" src="../../img/google.png">
-    </a>
-    <a target="_blank" href="https://www.joindiaspora.com/u/alx741">
-        <img class="icon" src="../../img/diaspora.png">
-    </a>
-
-    <div id="findme-textual">
-        <b>Freenode:</b> #vim, #archlinux, #avr, #rust, #haskell,
-        #yesod, #zsh, #sillybytes
-        <hr>
-        <b>Mailto:</b> alx@sillybytes.net
-        <br>
-        <b>GPG Key ID:</b> 12622B78
-        <hr>
-        <b>Chat</b> with me <a target="_blank" href="http://webchat.freenode.net/?channels=sillybytes">here</a>
-        <hr>
-        <b>Subscribe:</b> <a href="http://www.sillybytes.net/atom.xml">
-            <img id="rss-img" alt="rss" src="../../img/rss.png" /> </a>
-    </div>
-
-
-    <div id="facebook-embed">
-        <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fsillybytes&amp;width&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true" scrolling="yes" style="border:none; overflow:hidden;" allowtransparency="false" frameborder="0"></iframe>
-    </div>
-</div>
-
-
-<div id="about">
-    <h2 class="sidebar-h2">ABOUT</h2>
-
-    <a target="_blank" href="http://www.haskellers.com/user/4249">
-        <img id="haskellers-img" class="badge" alt="I'm a Haskeller" src="../../img/haskellers.png">
-    </a>
-
-    <img id="fsf-img" class="badge" alt="Free Software Fundation Member" src="../../img/fsf.png">
-
-    <a target="_blank" href="http://internetdefenseleague.org/">
-        <img id="idl-img" class="badge" alt="Internet Defesen League" src="../../img/idl.png">
-    </a>
-</div>
-
-<div id="dotfiles">
-    <h2 class="sidebar-h2">DOTFILES</h2>
-    <p>
-        Software configuration, scripts, tools and magic.
-        Be sure to add <b>attribution </b> when using them
-        (fully or partially).
-    </p>
-    <a target="_blank" href="https://github.com/alx741/dotfiles#readme">
-        <img id="dotfiles-img" src="../../img/dotfiles.png">
-    </a>
-</div>
-
-
-<div id="license">
-    <h2 class="sidebar-h2">LICENSE</h2>
-
-    <a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
-        <img id="cc-img" alt="Creative Commons - SA - BY" src="../../img/cc.png">
-    </a>
-    <p id="cc-text">
-        Silly Bytes by Daniel Alejandro Campoverde Carrión
-        [alx741] is licensed under a
-        <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
-            Creative Commons Attribution-ShareAlike 3.0 Unported License.
-        </a>
-    </p>
-</div>
-
-                </div>
-            </div>
-        </footer>
-
-
-    </body>
-</html>
+</feed>
