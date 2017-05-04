@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Silly Bytes</title>
+
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="shortcut icon" type="image/png" href="../img/favicon.png" />
+
+        <link rel="stylesheet" href="../css/default.css" />
+        <link rel="stylesheet" href="../css/post-list.css" />
+        <link rel="stylesheet" href="../css/post.css" />
+
+        <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="../bower_components/highlight/src/styles/solarized-light.css" />
+
+        <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="../bower_components/highlight/src/highlight.pack.js"></script>
+
+        <script> hljs.initHighlightingOnLoad(); </script>
+
+    </head>
+    <body>
+        <header class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12">
+                    <a href="../">
+                        <img alt="Silly Bytes" id="logo" class="image-responsive" src="../img/silly-bytes_logo.png" />
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <div id="blog" class="container-fluid">
+            <div class="row">
+
+                <div id="sidebar" class="hidden-xs hidden-sm col-md-3">
+                    <div id="author">
+    <img id="author-pic" src="../img/daniel.jpg">
+    <h3 id="author-name">Daniel Campoverde [alx741]</h3>
+    <img id="location-icon" src="../img/location_icon.png">
+    <span id="location">Cuenca, Ecuador</span>
+</div>
+
+<div id="findme">
+    <h2 class="sidebar-h2">FIND ME</h2>
+    <a target="_blank" href="https://github.com/alx741">
+        <img class="icon" src="../img/github.png">
+    </a>
+    <a target="_blank" href="https://twitter.com/alx741alx">
+        <img class="icon" src="../img/twitter.png">
+    </a>
+    <a target="_blank" href="https://www.facebook.com/sillybytes/">
+        <img class="icon" src="../img/facebook.png">
+    </a>
+    <a target="_blank" href="https://plus.google.com/116038619580828681039">
+        <img class="icon" src="../img/google.png">
+    </a>
+    <a target="_blank" href="https://www.joindiaspora.com/u/alx741">
+        <img class="icon" src="../img/diaspora.png">
+    </a>
+
+    <div id="findme-textual">
+        <b>Freenode:</b> #vim, #archlinux, #avr, #rust, #haskell,
+        #yesod, #zsh, #sillybytes
+        <hr>
+        <b>Mailto:</b> alx@sillybytes.net
+        <br>
+        <b>GPG Key ID:</b> 12622B78
+        <hr>
+        <b>Chat</b> with me <a target="_blank" href="http://webchat.freenode.net/?channels=sillybytes">here</a>
+        <hr>
+        <b>Subscribe:</b> <a href="http://www.sillybytes.net/atom.xml">
+            <img id="rss-img" alt="rss" src="../img/rss.png" /> </a>
+    </div>
+
+
+    <div id="facebook-embed">
+        <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fsillybytes&amp;width&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true" scrolling="yes" style="border:none; overflow:hidden;" allowtransparency="false" frameborder="0"></iframe>
+    </div>
+</div>
+
+
+<div id="about">
+    <h2 class="sidebar-h2">ABOUT</h2>
+
+    <a target="_blank" href="http://www.haskellers.com/user/4249">
+        <img id="haskellers-img" class="badge" alt="I'm a Haskeller" src="../img/haskellers.png">
+    </a>
+
+    <img id="fsf-img" class="badge" alt="Free Software Fundation Member" src="../img/fsf.png">
+
+    <a target="_blank" href="http://internetdefenseleague.org/">
+        <img id="idl-img" class="badge" alt="Internet Defesen League" src="../img/idl.png">
+    </a>
+</div>
+
+<div id="dotfiles">
+    <h2 class="sidebar-h2">DOTFILES</h2>
+    <p>
+        Software configuration, scripts, tools and magic.
+        Be sure to add <b>attribution </b> when using them
+        (fully or partially).
+    </p>
+    <a target="_blank" href="https://github.com/alx741/dotfiles#readme">
+        <img id="dotfiles-img" src="../img/dotfiles.png">
+    </a>
+</div>
+
+
+<div id="license">
+    <h2 class="sidebar-h2">LICENSE</h2>
+
+    <a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
+        <img id="cc-img" alt="Creative Commons - SA - BY" src="../img/cc.png">
+    </a>
+    <p id="cc-text">
+        Silly Bytes by Daniel Alejandro Campoverde Carrión
+        [alx741] is licensed under a
+        <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
+            Creative Commons Attribution-ShareAlike 3.0 Unported License.
+        </a>
+    </p>
+</div>
+
+                </div>
+
+                <div id="content" class="col-xs-12 col-md-9">
+                    <div class="row">
+    <div class="post col-xs-12">
+        <h2 class="post-title">Deploying Yesod applications with Keter</h2>
+        <div class="post-date-author">
+            Posted on May  4, 2017
+            
+                by Daniel Campoverde
+            
+        </div>
+        <div class="post-content">
+            <p><img src="../img/keter/thumbnail.png" id="thumbnail" /><br />
+<a href="https://github.com/snoyberg/keter">Keter</a> is the <a href="http://www.yesodweb.com/">Yesod</a>’s deployment system, fully featured and a joy to use, but the are a couple trapdoors that the documentation doesn’t cover, and that the user has to find out for her self; So I’ll try to give them away here together with a walk-through tutorial.</p>
+<p>Although Keter is flexible and general enough to be used with various kind of applications and web frameworks, here I’m going to assume you’re using it to deploy Yesod applications. Moreover, I’ll assume you’re using Yesod’s scaffolding, as it is the preferred way to write production ready applications.</p>
+<!--more-->
+<p>I’m also taking for granted that you’ve already installed on your server system whatever DBMS that your Yesod app needs, and have also created the app’s databases.</p>
+<h1 id="installing-keter-on-the-server">Installing Keter on the server</h1>
+<h2 id="keter-binary">Keter binary</h2>
+<p>It is always advisable to compile on the development machine rather than the production server, to avoid utilising its resources for building (specially considering that GHC can make use of a fair amount of them). So, assuming the architectures match, you can just install <code>keter</code> on you local machine:</p>
+<pre><code>$ stack install keter</code></pre>
+<p>And then put the binary on the server (<em>example.com</em>):</p>
+<pre><code>$ scp ~/.local/bin/keter root@example.com:/root/</code></pre>
+<h2 id="keter-user">Keter user</h2>
+<p>It’s a good practice to have a dedicated <em>keter</em> user, so you don’t have to deploy as root each time:</p>
+<pre><code># useradd keter
+# passwd keter</code></pre>
+<h2 id="directory-tree">Directory tree</h2>
+<p>The directory tree needed on the server is as follows:</p>
+<pre><code>keter
+├── bin
+│   └── keter
+├── etc
+│   └── keter-config.yaml
+├── incoming
+    └── app.keter</code></pre>
+<p>So create it, copy the binary to <code>/opt/keter/bin</code>, and make sure <code>/opt/keter/incoming</code> it’s owned by the <em>keter</em> user (we’ll take care of the <code>keter-config.yaml</code> configuration later):</p>
+<pre><code># mkdir -p /opt/keter /opt/keter/bin /opt/keter/etc /opt/keter/incoming
+# cp /root/keter /opt/keter/bin
+# touch /opt/keter/keter-config.yaml
+# chown -R keter:keter /opt/keter/icoming</code></pre>
+<h2 id="init-system">Init System</h2>
+<p>While you could just execute <code>/opt/keter/bin/keter</code> directly, it’s better to register it as a job in your Init System.</p>
+<h4 id="sysmted-redhat-fedora-centos-arch-opensuse-etc">Sysmted (RedHat, Fedora, CentOS, Arch, openSUSE, etc)</h4>
+<p>Create a file <code>/etc/systemd/system/keter.service</code>, with the contents:</p>
+<pre><code>[Unit]
+Description=Keter
+After=network.service
+
+[Service]
+Type=simple
+ExecStart=/opt/keter/bin/keter /opt/keter/etc/keter-config.yaml
+
+[Install]
+WantedBy=multi-user.target</code></pre>
+<p>Enable the service:</p>
+<pre><code>$ sudo systemctl enable keter</code></pre>
+<p>Now you can start <em>keter</em> with (don’t do it just yet, as we still need to write the <em>keter</em> configuration file):</p>
+<pre><code>$ sudo systemctl start keter</code></pre>
+<h4 id="upstart-debian-ubuntu-etc">Upstart (Debian, Ubuntu, etc)</h4>
+<p>Create a file <code>/etc/init/keter.con</code>, with the contents:</p>
+<pre><code>start on (net-device-up and local-filesystems and runlevel [2345])
+stop on runlevel [016]
+respawn
+console output
+exec /opt/keter/bin/keter /opt/keter/etc/keter-config.yaml</code></pre>
+<p>Now you can start <em>keter</em> with (don’t do it just yet, as we still need to write the <em>keter</em> configuration file):</p>
+<pre><code>$ sudo start keter</code></pre>
+<h1 id="configuration">Configuration</h1>
+<h2 id="server-side">Server Side</h2>
+<p>The <em>Keter</em> configuration at <code>/opt/keter/etc/keter-config.yaml</code> is pretty straight forward:</p>
+<pre><code>root: ..
+
+listeners:
+    # HTTP
+    - host: &quot;*4&quot; # Listen on all IPv4 hosts
+      port: 80
+    # HTTPS
+    #- host: &quot;*4&quot;
+      #port: 443
+      #key: key.pem
+      #certificate: certificate.pem
+
+# env:
+#    key: value</code></pre>
+<p>The <code>root</code> option points, as expected, to <code>/opt/keter</code>.</p>
+<p>Make sure to change the <code>port</code> option if you’re reverse forwarding from a fronted server like <em>Nginx</em> or <em>Apache</em> (more on this later).</p>
+<p>If you’re serving your application over SSL (and you should), uncomment the <em>HTTPS</em> section, then point the <code>key</code> option to your <code>privkey.pem</code> file, and the <code>certificate</code> option to your <code>fullchain.pem</code> file.</p>
+<p>The <code>env</code> option, keeps pairs of <em>keys</em> and <em>values</em>. The main set of values you’ll need here are your Database credentials. You’ve probably already configured database credentials in the <code>database</code> section in the <code>config/settings.yaml</code> file, so you’ll notice you need some environment variables like <code>MYSQL_USER</code>, <code>MYSQL_PASSWORD</code>, etc. If you’re using MySQL/MariaDB; Or <code>PGUSER</code>, <code>PGPASS</code>, etc. If you’re using PostgreSQL. You get the idea.</p>
+<p>This is how it will look like for a PostgreSQL Database where only the user and password are different between the development and production servers (be sure to keep the quotes!).</p>
+<pre><code>env:
+    PGUSER: &quot;user&quot;
+    PGPASSWORD: &quot;password&quot;</code></pre>
+<h2 id="yesod-application-side">Yesod application side</h2>
+<p>The Keter configuration file for your Yesod application lives in <code>config/keter.yml</code>. Set <code>user-edited</code> to <code>true</code>, so you’re able to execute <code>yesod keter</code> later on.</p>
+<p>Locate the <code>copy-to</code> option and configure it to use the <code>keter</code> user and your server domain (or IP address):</p>
+<pre><code>copy-to: keter@example.com:/opt/keter/incoming/</code></pre>
+<p>This will allow you to deploy your application with:</p>
+<pre><code>$ stack -- exec yesod keter</code></pre>
+<h4 id="hosts-configuration">Hosts Configuration</h4>
+<p>The most important part of the Keter configuration is perhaps the <code>hosts</code> option of the <code>webapp</code> stanza, the hosts you declare here are the ones that your application is going to respond to. Unless you’re using a separate domain for serving static files, be sure to keep the <code>hosts</code> option of the <code>static-files</code> stanza in sync with the <code>webapp</code> one.</p>
+<p>This one here is a pretty common error message when trying to deploy a Yesod application (and failing miserably):</p>
+<div class="figure">
+<img src="../img/keter/shot1.png" class="img-responsive" />
+
+</div>
+<p>There is more than one reason for this, but the main one is that the domain name or IP address doesn’t exactly match one of the hosts provided in the <code>hosts</code> option.</p>
+<p>If you’re serving only one application and using <em>Keter</em> as the main server listening on port <code>80</code>, then having your domain name in <code>hosts</code> will pretty much suffice, BUT most of the time, even if your serving only one application, you’re probably using a frontend server like <em>Nginx</em> or <em>Apache</em>, in which case you have to consider the port the reverse proxy is pointing to.</p>
+<p>Take for instance this <em>Nginx</em> reverse proxy configuration for an app that lives on <code>blog.example.com</code></p>
+<pre><code>server {
+    listen 80;
+    server_name blog.example.com;
+    location / {
+            proxy_pass http://127.0.0.1:4321;
+    }</code></pre>
+<p>With a <em>Keter</em> configuration that has:</p>
+<pre><code>listeners:
+    - host: &quot;*4&quot; # Listen on all IPv4 hosts
+      port: 4321</code></pre>
+<p>Then you have a problem. If you try to connect to <code>http://blog.example.com</code> you’ll get the aforementioned error message, telling you that “127.0.0.1:4321, is not recognized”. It makes sense if you think about it, <em>Nginx</em> will redirect the connection to <code>127.0.0.1:4321</code> so <em>Keter</em> can handle it, but there is no application that responds to <code>127.0.0.1:4321</code>, and notice the port number here, as it is significant for <em>Keter</em> when trying to find a corresponding application!</p>
+<p>To fix this, we must allow our application to respond to <code>127.0.0.1:4321</code> as well:</p>
+<pre><code>hosts:
+    - blog.example.com
+    - blog.example.com:4321
+    - 127.0.0.1:4321</code></pre>
+<p>Restart <em>Ngnix</em> and <em>Keter</em> on the server to allow the configuration to take effect and redeploy the application:</p>
+<pre><code>$ stack -- exec yesod keter</code></pre>
+<h4 id="redirections">Redirections</h4>
+<p>If you’re going to use the <code>redirect</code> stanza to automatically redirect any connection to, lets say <code>example.com</code> to <code>wwww.example.com</code>:</p>
+<pre><code>- type: redirect
+  hosts:
+      - example.com
+  actions:
+      - host: www.example.com</code></pre>
+<p>Then be completely sure to have <code>www.example.com</code> in the <code>hosts</code> option of the <code>webapp</code> stanza as well, failing to do this will take you to the same error message.</p>
+<h1 id="other-sources-of-error">Other sources of error</h1>
+<h2 id="welcome-to-keter">“Welcome to Keter”</h2>
+<p>If you’re still reaching this error:</p>
+<div class="figure">
+<img src="../img/keter/shot1.png" class="img-responsive" />
+
+</div>
+<p>Unfortunately, the same error message appears if an application that responds to that host is actually found, but is failing to start.</p>
+<p>Check the <code>/opt/keter/log/app-yourapp/current.log</code> log file, chances are you have changes in your persistent models that can’t be reflected in your database without user intervention, so be sure to manually fix them the same way you have to do in your development database.</p>
+<h2 id="changes-in-new-deployed-version-not-taking-effect">Changes in new deployed version not taking effect</h2>
+<p>It is pretty common to forget changes in persistent models that need manual user intervention after deploying, similarly to the error above, this will prevent the app to start. If you currently have a version of your app working, <em>Keter</em> will use it instead of the new one if it fails to start, so if the latest deployed changes seem to not be taking effect, this can also be the source of the problem.</p>
+        </div>
+    </div>
+</div>
+
+                    <a id="archive" href="../archive.html">Read Older Posts</a>
+                </div>
+
+            </div>
+        </div>
+
+
+        <footer class="container-fluid">
+            <div class="row">
+                <div id="sidebar" class="visible-xs visible-sm col-xs-12">
+                    <div id="author">
+    <img id="author-pic" src="../img/daniel.jpg">
+    <h3 id="author-name">Daniel Campoverde [alx741]</h3>
+    <img id="location-icon" src="../img/location_icon.png">
+    <span id="location">Cuenca, Ecuador</span>
+</div>
+
+<div id="findme">
+    <h2 class="sidebar-h2">FIND ME</h2>
+    <a target="_blank" href="https://github.com/alx741">
+        <img class="icon" src="../img/github.png">
+    </a>
+    <a target="_blank" href="https://twitter.com/alx741alx">
+        <img class="icon" src="../img/twitter.png">
+    </a>
+    <a target="_blank" href="https://www.facebook.com/sillybytes/">
+        <img class="icon" src="../img/facebook.png">
+    </a>
+    <a target="_blank" href="https://plus.google.com/116038619580828681039">
+        <img class="icon" src="../img/google.png">
+    </a>
+    <a target="_blank" href="https://www.joindiaspora.com/u/alx741">
+        <img class="icon" src="../img/diaspora.png">
+    </a>
+
+    <div id="findme-textual">
+        <b>Freenode:</b> #vim, #archlinux, #avr, #rust, #haskell,
+        #yesod, #zsh, #sillybytes
+        <hr>
+        <b>Mailto:</b> alx@sillybytes.net
+        <br>
+        <b>GPG Key ID:</b> 12622B78
+        <hr>
+        <b>Chat</b> with me <a target="_blank" href="http://webchat.freenode.net/?channels=sillybytes">here</a>
+        <hr>
+        <b>Subscribe:</b> <a href="http://www.sillybytes.net/atom.xml">
+            <img id="rss-img" alt="rss" src="../img/rss.png" /> </a>
+    </div>
+
+
+    <div id="facebook-embed">
+        <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fsillybytes&amp;width&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true" scrolling="yes" style="border:none; overflow:hidden;" allowtransparency="false" frameborder="0"></iframe>
+    </div>
+</div>
+
+
+<div id="about">
+    <h2 class="sidebar-h2">ABOUT</h2>
+
+    <a target="_blank" href="http://www.haskellers.com/user/4249">
+        <img id="haskellers-img" class="badge" alt="I'm a Haskeller" src="../img/haskellers.png">
+    </a>
+
+    <img id="fsf-img" class="badge" alt="Free Software Fundation Member" src="../img/fsf.png">
+
+    <a target="_blank" href="http://internetdefenseleague.org/">
+        <img id="idl-img" class="badge" alt="Internet Defesen League" src="../img/idl.png">
+    </a>
+</div>
+
+<div id="dotfiles">
+    <h2 class="sidebar-h2">DOTFILES</h2>
+    <p>
+        Software configuration, scripts, tools and magic.
+        Be sure to add <b>attribution </b> when using them
+        (fully or partially).
+    </p>
+    <a target="_blank" href="https://github.com/alx741/dotfiles#readme">
+        <img id="dotfiles-img" src="../img/dotfiles.png">
+    </a>
+</div>
+
+
+<div id="license">
+    <h2 class="sidebar-h2">LICENSE</h2>
+
+    <a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
+        <img id="cc-img" alt="Creative Commons - SA - BY" src="../img/cc.png">
+    </a>
+    <p id="cc-text">
+        Silly Bytes by Daniel Alejandro Campoverde Carrión
+        [alx741] is licensed under a
+        <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
+            Creative Commons Attribution-ShareAlike 3.0 Unported License.
+        </a>
+    </p>
+</div>
+
+                </div>
+            </div>
+        </footer>
+
+
+    </body>
+</html>
