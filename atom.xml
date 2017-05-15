@@ -95,7 +95,7 @@ listeners:
 <p>This is how it will look like for a PostgreSQL Database where only the user and password are different between the development and production servers (be sure to keep the quotes!).</p>
 <pre><code>env:
     PGUSER: &quot;user&quot;
-    PGPASSWORD: &quot;password&quot;</code></pre>
+    PGPASS: &quot;password&quot;</code></pre>
 <h2 id="yesod-application-side">Yesod application side</h2>
 <p>The Keter configuration file for your Yesod application lives in <code>config/keter.yml</code>. Set <code>user-edited</code> to <code>true</code>, so you’re able to execute <code>yesod keter</code> later on.</p>
 <p>Locate the <code>copy-to</code> option and configure it to use the <code>keter</code> user and your server domain (or IP address):</p>
@@ -161,8 +161,8 @@ I’ve spitted out quite a bit of rant about Java before in <a href="http://www.
 <p>Here I’d like to talk about the problems of Java as a language. Although there are a few problems with Java, I can live with them if I have no other option but to write Java code; My <em>hate</em> to Java doesn’t really arise from Java being a bad <em>language</em> but rather from its <a href="http://www.sillybytes.net/2016/03/why-do-i-hate-java.html">surroundings</a>.</p>
 <!--more-->
 <h1 id="pointers-pointers-everywhere">Pointers, Pointers everywhere</h1>
-<p>Java claims to be a <em>pointers free language</em>. Pointers, although elegant and very powerful, are a low level construct that should not be present in a higher level language, that’s for sure. Most of the time I want to be as far as possible from pointers when programming unless I really need them, in which case I will just write in <em>C</em>.</p>
-<p>The problem is Java does have pointers; Moreover it manages to keep most of the inconveniences of having pointers while giving almost none of the benefits of not having them. If you’re not giving me the power of pointers, at least be kind enough to remove the problems they arise!</p>
+<p>Java claims to be a <em>pointers free language</em>. Pointers, although elegant and very powerful, are a low level construct that should not be present in a higher level language, that’s for sure. Most of the time I want to be as far away as possible from pointers when programming unless I really need them, in which case I will just write in <em>C</em>.</p>
+<p>The problem is Java does have pointers; Moreover, it manages to keep most of the inconveniences of having pointers while giving almost none of the benefits of not having them. If you’re not giving me the power of pointers, at least be kind enough to remove the problems they arise!</p>
 <h2 id="everything-is-a-reference-everything-is-a-pointer">Everything is a reference, everything is a pointer</h2>
 <p>Java loves to call pointers as “references”, which is only a way to pretend that there are no pointers.</p>
 <p>Java makes pretty much everything a pointer, thus the heavy usage of the <code>new</code> keyword. Making everything a pointer gives <em>JVM</em> the ability to manage memory with the Garbage Collector of course, but the consequences of this are not as shallow and beneficial as you’d like to think.</p>
@@ -208,7 +208,7 @@ I’ve spitted out quite a bit of rant about Java before in <a href="http://www.
 <img src="/img/javawrong/leak.jpg" class="img-responsive" />
 
 </div>
-<p><em>C++</em> solves all of those problems beautifully by using <a href="http://en.cppreference.com/w/cpp/language/raii">Resource Acquisition Is Initialization</a> or RAII for short. And by the way, if you hit the same kind of problems you face in <em>C</em> with <code>mallow()</code> and <code>free()</code> but with <em>C++</em>’s <code>new</code> and <code>delete</code>, then you’re doing it wrong.</p>
+<p><em>C++</em> solves all of those problems beautifully by using <a href="http://en.cppreference.com/w/cpp/language/raii">Resource Acquisition Is Initialization</a> or RAII for short. And by the way, if you hit the same kind of problems you face in <em>C</em> with <code>malloc()</code> and <code>free()</code> but with <em>C++</em>’s <code>new</code> and <code>delete</code>, then you’re doing it wrong.</p>
 <p>By using <em>C++</em>’s RAII mechanisms you’ll never have to remember to free memory, close files, sockets, database connections or anything else. Java is supposed to be a higher level language than <em>C++</em> isn’t it?</p>
 <h2 id="exceptions-driven-programming">Exceptions Driven Programming</h2>
 <p><em>C++</em> and a lot of other imperative and OOP languages suffer form the <em>Exceptions</em> problems as well, but Java manages to screw it up even further.</p>
