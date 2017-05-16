@@ -151,10 +151,10 @@ So you’re writing in the right language using the right tool already, but lets
 <li>Compilation and testing
 <ul>
 <li>Building</li>
-<li>Linting</li>
 <li>Testing</li>
 </ul></li>
 <li>GHCI integration</li>
+<li>Hoogle integration</li>
 <li>Convenient mappings
 <ul>
 <li>Argument text object</li>
@@ -201,15 +201,14 @@ augroup END</code></pre>
 
 </div>
 <h3 id="compilation-and-testing">Compilation and testing</h3>
-<p>I’ve contributed the GHC compiler plugin to upstream Vim recently, but it may take a while before you get the latest vim runtime from your distribution. So in the meantime you can install it like any other plugin from the github repository here: https://github.com/alx741/ghc.vim</p>
-<p>Then load it for the Haskell filetype in you vimrc:</p>
+<p>I’ve contributed the GHC compiler plugin to upstream Vim recently, but it may take a while before you get the latest vim runtime from your distribution. So in the meantime you can install it like any other plugin from the GitHub repository here: https://github.com/alx741/ghc.vim</p>
+<p>Then load it for the Haskell <em>filetype</em> in you <em>vimrc</em>:</p>
 <pre class="vim"><code>au FileType haskell compiler ghc</code></pre>
 <p>Taking advantage of vim 8 asynchronous job control using the <a href="https://github.com/skywind3000/asyncrun.vim">asyncrun.vim</a> plugin, we can define some convenient mappings for building and testing using Haskell <em>stack</em>:</p>
 <pre class="vim"><code>au FileType haskell setlocal makeprg=stack
 au FileType haskell nnoremap &lt;buffer&gt; gj :write&lt;CR&gt; :exec &quot;AsyncRun &quot; . &amp;makeprg . &quot; build&quot;&lt;CR&gt;
 au FileType haskell nnoremap &lt;buffer&gt; gk :write&lt;CR&gt; :exec &quot;AsyncRun &quot; . &amp;makeprg . &quot; test&quot;&lt;CR&gt;</code></pre>
-<p>After running one of those the results will be loaded into the quickfix list.</p>
-<p>You will need the Stack tool of course and <em>hlint</em> that you can install with <code>stack install hlint</code>.</p>
+<p>After running one of those the results will be loaded into the <em>quickfix</em> list.</p>
 <h3 id="ghci-integration">GHCI integration</h3>
 <p>There are plugins that offer much more tight integration, but for me it is enough to start GHCI from the current vim instance in a Tmux pane loaded with the current project or Haskell source, so taking advantage of the <a href="https://github.com/benmills/vimux">vimux</a> Tmux integration plugin, lets define a function:</p>
 <pre class="vim"><code>function! RunGhci(type)
@@ -223,6 +222,11 @@ endfunction</code></pre>
 <pre class="vim"><code>au FileType haskell nmap &lt;silent&gt;&lt;buffer&gt; &lt;leader&gt;gg :call RunGhci(1)&lt;CR&gt;
 au FileType haskell nmap &lt;silent&gt;&lt;buffer&gt; &lt;leader&gt;gs :call RunGhci(0)&lt;CR&gt;</code></pre>
 <p>So doing <code>\gg</code> will start a GHCI session loaded with the current file and <code>\gs</code> will load a GHCI session for the current stack project.</p>
+<h3 id="hoogle-integration">Hoogle integration</h3>
+<p>Vim uses <code>K</code> (upper case k) to lookup a keyword under the cursor, so we can leverage that and just define the right <code>keywordprg</code>:</p>
+<pre class="vim"><code>au FileType haskell set kp=hoogle</code></pre>
+<p>Or, if you prefer having your results within Vim, you can use the [vim-hoogle](https://github.com/Twinside/vim-hoogle] plugin, and remap <code>K</code>:</p>
+<pre class="vim"><code>au FileType haskell nnoremap K :HoogleInfo&lt;CR&gt;</code></pre>
 <h3 id="convenient-mappings">Convenient mappings</h3>
 <p>When editing a function’s arguments we would like to have a text object so doing <code>cia</code> (change inner argument) or <code>daa</code> (delete all argument) will work; These will to the trick:</p>
 <pre class="vim"><code>au FileType haskell onoremap &lt;silent&gt; ia :&lt;c-u&gt;silent execute &quot;normal! ?-&gt;\r:nohlsearch\rwvf-ge&quot;&lt;CR&gt;
@@ -271,6 +275,7 @@ f <span class="dt">Nothing</span> <span class="fu">=</span> <span class="dt">Rig
 <pre class="vim"><code>au FileType haskell nnoremap &lt;buffer&gt;&lt;silent&gt; gl&lt;space&gt; :call ToggleLocationList()&lt;CR&gt;
 au FileType haskell nnoremap &lt;buffer&gt;&lt;silent&gt; glc :sign unplace *&lt;CR&gt;</code></pre>
 <p>So now is possible to toggle the location list with <code>gl&lt;space&gt;</code> and clear it with <code>glc</code>.</p>
+<p>You will need the Stack tool of course, and <em>hlint</em> that you can install with <code>stack install hlint</code>.</p>
 <h3 id="code-formatting-and-beautifying">Code formatting and beautifying</h3>
 <p><em>Hindent</em> allows to beautify Haskell code, you could used it by setting the <code>formatprg</code> option and then trigger it with the <code>=</code> command, but there is a problem: if your code happens to have any syntax errors, it will be replaced with a nasty error message. To handle this we’re going to use the <a href="https://github.com/alx741/vim-hindent">vim-hindent</a> plugin instead, so each time we save a Haskell source file it will be automatically beatified.</p>
 <p>Don’t forget to configure it:</p>
@@ -449,18 +454,6 @@ au FileType haskell inoreab &lt;buffer&gt; io IO ()</code></pre>
                 </div>
             </div>
         </footer>
-
-    <!-- StartCounter -->
-    <script type="text/javascript">
-    var sc_project=11345524;
-    var sc_invisible=1;
-    var sc_security="80b40d4d";
-    var scJsHost = (("https:" == document.location.protocol) ?
-    "https://secure." : "http://www.");
-    document.write("<sc"+"ript type='text/javascript' src='" +
-    scJsHost+
-    "statcounter.com/counter/counter.js'></"+"script>");
-    </script>
 
     </body>
 </html>
