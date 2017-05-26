@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Silly Bytes</title>
+
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="shortcut icon" type="image/png" href="../img/favicon.png" />
+
+        <link rel="stylesheet" href="../css/default.css" />
+        <link rel="stylesheet" href="../css/post-list.css" />
+        <link rel="stylesheet" href="../css/post.css" />
+
+        <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="../bower_components/highlight/src/styles/solarized-light.css" />
+
+        <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="../bower_components/highlight/src/highlight.pack.js"></script>
+
+        <script> hljs.initHighlightingOnLoad(); </script>
+
+    </head>
+    <body>
+        <header class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12">
+                    <a href="../">
+                        <img alt="Silly Bytes" id="logo" class="image-responsive" src="../img/silly-bytes_logo.png" />
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <div id="blog" class="container-fluid">
+            <div class="row">
+
+                <div id="sidebar" class="hidden-xs hidden-sm col-md-3">
+                    <div id="author">
+    <img id="author-pic" src="../img/daniel.jpg">
+    <h3 id="author-name">Daniel Campoverde [alx741]</h3>
+    <img id="location-icon" src="../img/location_icon.png">
+    <span id="location">Cuenca, Ecuador</span>
+</div>
+
+<div id="findme">
+    <h2 class="sidebar-h2">FIND ME</h2>
+    <a target="_blank" href="https://github.com/alx741">
+        <img class="icon" src="../img/github.png">
+    </a>
+    <a target="_blank" href="https://twitter.com/alx741alx">
+        <img class="icon" src="../img/twitter.png">
+    </a>
+    <a target="_blank" href="https://www.facebook.com/sillybytes/">
+        <img class="icon" src="../img/facebook.png">
+    </a>
+    <a target="_blank" href="https://plus.google.com/116038619580828681039">
+        <img class="icon" src="../img/google.png">
+    </a>
+    <a target="_blank" href="https://www.joindiaspora.com/u/alx741">
+        <img class="icon" src="../img/diaspora.png">
+    </a>
+
+    <div id="findme-textual">
+        <b>Freenode:</b> #vim, #archlinux, #avr, #rust, #haskell,
+        #yesod, #zsh, #sillybytes
+        <hr>
+        <b>Mailto:</b> alx@sillybytes.net
+        <br>
+        <b>GPG Key ID:</b> 12622B78
+        <hr>
+        <b>Chat</b> with me <a target="_blank" href="http://webchat.freenode.net/?channels=sillybytes">here</a>
+        <hr>
+        <b>Subscribe:</b> <a href="http://www.sillybytes.net/atom.xml">
+            <img id="rss-img" alt="rss" src="../img/rss.png" /> </a>
+    </div>
+
+
+    <div id="facebook-embed">
+        <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fsillybytes&amp;width&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true" scrolling="yes" style="border:none; overflow:hidden;" allowtransparency="false" frameborder="0"></iframe>
+    </div>
+</div>
+
+<div id="random">
+    <h2 class="sidebar-h2">YOU MIGHT LIKE</h2>
+
+    <div id="random-posts">
+        <ul>
+        </ul>
+    </div>
+</div>
+
+<div id="about">
+    <h2 class="sidebar-h2">ABOUT</h2>
+
+    <a target="_blank" href="http://www.haskellers.com/user/4249">
+        <img id="haskellers-img" class="badge" alt="I'm a Haskeller" src="../img/haskellers.png">
+    </a>
+
+    <img id="fsf-img" class="badge" alt="Free Software Fundation Member" src="../img/fsf.png">
+
+    <a target="_blank" href="http://internetdefenseleague.org/">
+        <img id="idl-img" class="badge" alt="Internet Defesen League" src="../img/idl.png">
+    </a>
+</div>
+
+<div id="dotfiles">
+    <h2 class="sidebar-h2">DOTFILES</h2>
+    <p>
+        Software configuration, scripts, tools and magic.
+        Be sure to add <b>attribution </b> when using them
+        (fully or partially).
+    </p>
+    <a target="_blank" href="https://github.com/alx741/dotfiles#readme">
+        <img id="dotfiles-img" src="../img/dotfiles.png">
+    </a>
+</div>
+
+
+<div id="license">
+    <h2 class="sidebar-h2">LICENSE</h2>
+
+    <a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
+        <img id="cc-img" alt="Creative Commons - SA - BY" src="../img/cc.png">
+    </a>
+    <p id="cc-text">
+        Silly Bytes by Daniel Alejandro Campoverde Carrión
+        [alx741] is licensed under a
+        <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
+            Creative Commons Attribution-ShareAlike 3.0 Unported License.
+        </a>
+    </p>
+</div>
+
+                </div>
+
+                <div id="content" class="col-xs-12 col-md-9">
+                    
+    <div class="row">
+        <div class="post-prev post col-xs-12">
+            <a class="post-prev-title" href="../2012/10/la-mente-humana-software-dificil-de.html">La mente humana, ¿Software difícil de crear? (IA)</a>
+            <span class="post-prev-date">October 21, 2012</span>
+            <div class="post-content">
+                
+                    <p><img src="../img/ai/thumbnail.jpg" id="thumbnail" /><br />
+Hoy me gustaría escribir algo acerca de este apasionante tema multidisciplinario que involucra por supuesto a nuestra amada ciencia informática, haré un intento por plasmar una síntesis escueta y libre de aspectos técnicos. Procuraré contar de que va esto como una idea general.</p>
+<p>Estuve un tiempo reflexionando acerca de por donde empezar y en factor de lo que me gustaría abordar, he decidido comenzar hablando acerca del <em>Test de Turing</em> ¿Qué es? ¿Quién lo creó? ¿Para qué sirve? ¿Con qué se come? Ahora mismo lo explico.</p>
+
+                
+            </div>
+            <br><br>
+            <div class="continue-reading">
+                <a class="btn btn-default" href="../2012/10/la-mente-humana-software-dificil-de.html">Continue Reading</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="post-prev post col-xs-12">
+            <a class="post-prev-title" href="../2012/10/controlando-auto-rcradio-control-con-la.html">Controlando un auto Radio Control con la PC</a>
+            <span class="post-prev-date">October 14, 2012</span>
+            <div class="post-content">
+                
+                    <p><img src="../img/rccar/thumbnail.png" id="thumbnail" /><br />
+Como todo buen geek, de pequeño me fascinaban los autos RC (radio control), no tanto por el entretenimiento que supone jugar con ellos si no por la fascinación de averiguar su funcionamiento y todo lo que se puede hacer desarmando uno para convertir su mecanismo en algo completamente distinto.</p>
+<p>Así pues hoy he visto en mi repisa el ultimo que me quedaba sin desarmar y pensé que ya era hora de decidir cual sería su destino, lo que hice fue adaptarlo para poder controlarlo desde la PC usando las teclas de dirección del teclado (como si de un juego se tratase), nuevamente, con miras ha hacer con ello algo un poco más interesante.</p>
+<p>Para empezar cabe aclarar que dentro de la gran variedad de diseños, formas y sabores de los autos RC yo he hecho esto adaptado al mio, pero resulta trivial hacerlo para el auto que tengas a la mano.</p>
+
+                
+            </div>
+            <br><br>
+            <div class="continue-reading">
+                <a class="btn btn-default" href="../2012/10/controlando-auto-rcradio-control-con-la.html">Continue Reading</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="post-prev post col-xs-12">
+            <a class="post-prev-title" href="../2012/09/moviendo-un-motor-paso-paso-con-el.html">Moviendo un motor paso a paso con el puerto paralelo sin integrados (Jugando con hardware)</a>
+            <span class="post-prev-date">September 30, 2012</span>
+            <div class="post-content">
+                
+                    <p><img src="../img/stepper/thumbnail.png" id="thumbnail" /><br />
+Esta vez vamos a jugar un poco con hardware, específicamente lo que haremos será mover un motor <em>PAP</em> (paso a paso) a través de la PC haciendo uso únicamente de transistores y sin usar ningún circuito integrado.</p>
+<p>Para empezar es conveniente documentarse un poco del funcionamiento de este tipo de motores: http://es.wikipedia.org/wiki/Motor_paso_a_paso</p>
+<p>Sabemos que para hacer girar un motor PAP Bipolar tenemos que dar pulsos secuenciales en sus 4 cables (Que llamaremos A, B, C y D), pero alternando la polaridad, por lo que la circuito necesario se complica un poco, mientras que para los Unipolares este problema desaparece, así que empezaremos por jugar con los motores PAP Unipolares.</p>
+
+                
+            </div>
+            <br><br>
+            <div class="continue-reading">
+                <a class="btn btn-default" href="../2012/09/moviendo-un-motor-paso-paso-con-el.html">Continue Reading</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="post-prev post col-xs-12">
+            <a class="post-prev-title" href="../2012/09/script-web-red-social-musical-sapomusic.html">Sapo Music, script web (Red Social Musical)</a>
+            <span class="post-prev-date">September  8, 2012</span>
+            <div class="post-content">
+                
+                    <p><img src="../img/sapomusic/thumbnail.gif" id="thumbnail" /><br />
+Hace mucho tiempo escribí un <sub>ridículo</sub> script web. La idea es un portal orientado a formar una comunidad social para compartir música, y ser reconocido por tus aportes dentro de la comunidad.</p>
+<div class="figure">
+<img src="../img/sapomusic/sapo.png" class="img-responsive" />
+
+</div>
+
+                
+            </div>
+            <br><br>
+            <div class="continue-reading">
+                <a class="btn btn-default" href="../2012/09/script-web-red-social-musical-sapomusic.html">Continue Reading</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="post-prev post col-xs-12">
+            <a class="post-prev-title" href="../2012/08/pedal-para-el-teclado-orientado-vim.html">Keyboard pedal for Vim</a>
+            <span class="post-prev-date">August 20, 2012</span>
+            <div class="post-content">
+                
+                    <p><img src="../img/vimpedal/thumbnail.png" id="thumbnail" /><br />
+I’ve seen a VIM USB pedal tutorial before that triggers the <code>i</code> key, so we’re able to enter in <em>Insertion</em> mode with our foot.</p>
+<p>I want to build something similar, but want to put effort in practical utility and simplicity. So i thought that trigger the <code>Esc</code> key would be more convenient due to the small, although cumbersome arm movement that requires to reach it. And you know, the <code>i</code> key is just under your finger so there’s no much of a time saving using a pedal.</p>
+
+                
+            </div>
+            <br><br>
+            <div class="continue-reading">
+                <a class="btn btn-default" href="../2012/08/pedal-para-el-teclado-orientado-vim.html">Continue Reading</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="post-prev post col-xs-12">
+            <a class="post-prev-title" href="../2012/08/vim-cheat-ball-referencia-los-comandos.html">Vim Cheat Ball, referencia de los comandos de vim</a>
+            <span class="post-prev-date">August  8, 2012</span>
+            <div class="post-content">
+                
+                    <p><img src="../img/vimball1/thumbnail.png" id="thumbnail" /><br />
+Es bien sabido por todos los “Unixeros” en general que desde hace varios años ha tenido lugar la “guerra santa” de Unix*.</p>
+<p>Por un lado están los adeptos al VIM y por otro los fieles a EMACS, sin embargo no quiero echar más leña al fuego comentando las bondades y desventajas de cada uno, así que vamos a suponer que el usuario ha elegido VIM por la razón que sea.</p>
+
+                
+            </div>
+            <br><br>
+            <div class="continue-reading">
+                <a class="btn btn-default" href="../2012/08/vim-cheat-ball-referencia-los-comandos.html">Continue Reading</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="post-prev post col-xs-12">
+            <a class="post-prev-title" href="../2012/07/librerias-compartidas-shared-libraries.html">Librerías compartidas (shared libraries), qué son y para qué sirven?</a>
+            <span class="post-prev-date">July 17, 2012</span>
+            <div class="post-content">
+                
+                    <p><img src="../img/sharedlib/thumbnail.png" id="thumbnail" /><br />
+Una librería es un fichero que contiene código compilado generalmente de varios ficheros objeto, y que contiene un grupo de funciones para ser usadas en un programa.</p>
+<p>Una librería puede ser de dos tipos:</p>
+<ul>
+<li>Shared Lib (Librería compartida o dinámica)</li>
+<li>Static Lib (Librería estática)</li>
+</ul>
+<p>Pero esta vez hablaremos específicamente de las librerías compartidas.</p>
+
+                
+            </div>
+            <br><br>
+            <div class="continue-reading">
+                <a class="btn btn-default" href="../2012/07/librerias-compartidas-shared-libraries.html">Continue Reading</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="post-prev post col-xs-12">
+            <a class="post-prev-title" href="../2012/07/hola-gente-esta-ocasion-quiero.html">Prueba el kernel original de GNU':' HURD</a>
+            <span class="post-prev-date">July 17, 2012</span>
+            <div class="post-content">
+                
+                    <p>Esta ocasión me gustaría extender una invitación a probar (sin cambiar nada en su sistema actual)…</p>
+<p>Mi SO favorito: GNU</p>
+<div class="figure">
+<img src="../img/hurd2/gnu.png" class="img-responsive" />
+
+</div>
+
+                
+            </div>
+            <br><br>
+            <div class="continue-reading">
+                <a class="btn btn-default" href="../2012/07/hola-gente-esta-ocasion-quiero.html">Continue Reading</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="post-prev post col-xs-12">
+            <a class="post-prev-title" href="../2012/07/formato-elf-el-formato-de-ficheros.html">ELF':' el formato de ficheros ejecutables de Linux</a>
+            <span class="post-prev-date">July 17, 2012</span>
+            <div class="post-content">
+                
+                    <p><img src="../img/elf/thumbnail.png" id="thumbnail" /><br />
+<em>ELF</em> es el estándar de Linux para ficheros de código objeto ejecutables, el equivalente de un <em>EXE</em> en Windows.</p>
+<p>ELF soporta:</p>
+<ul>
+<li>Diferentes Procesadores</li>
+<li>Diferentes tipos de codificación de datos</li>
+<li>Diferentes máquinas (sobre las que se ejecuta)</li>
+</ul>
+<p>Un archivo que contiene código compilado se conoce como fichero objeto. Hasta aquí todos lo sabemos, pero quizás no todos saben o están plenamente consientes de que un fichero objeto puede ser de varios tipos:</p>
+
+                
+            </div>
+            <br><br>
+            <div class="continue-reading">
+                <a class="btn btn-default" href="../2012/07/formato-elf-el-formato-de-ficheros.html">Continue Reading</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="post-prev post col-xs-12">
+            <a class="post-prev-title" href="../2012/07/verifica-la-vida-que-le-queda-tu-disco.html">Verifica la vida que le queda a tu disco duro</a>
+            <span class="post-prev-date">July 16, 2012</span>
+            <div class="post-content">
+                
+                    <p><img src="../img/hddlive/thumbnail.png" id="thumbnail" /><br />
+Hoy me gustaría mostrar algo importante a hacer regularmente con los HDD’s: pedirles que me digan si están viejos y muriendo, o si aún están en la plenitud su mocedad.</p>
+<p>Cómo? Pues para ello existe <em>S.M.A.R.T.</em>, es el acrónimo de <em>Self Monitoring Analysis and Reporting Technology</em> (Tecnología de Análisis y Reporte Auto Monitorizado).</p>
+<p>Esta tecnología la implementan los discos duros actuales (aunque no es una tecnología tan vieja tampoco).</p>
+<p>Con este sistema es posible evitar desastres de perdidas de datos por fallos del disco duro pues nos proporciona mucha información valiosa de diagnostico, además de que nos dirá si el mismo se considera en peligro de muerte.</p>
+
+                
+            </div>
+            <br><br>
+            <div class="continue-reading">
+                <a class="btn btn-default" href="../2012/07/verifica-la-vida-que-le-queda-tu-disco.html">Continue Reading</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="post-prev post col-xs-12">
+            <a class="post-prev-title" href="../2012/07/internet-en-3d-microsoft-intenta.html">Internet en 3D, Microsoft intenta arruinarlo</a>
+            <span class="post-prev-date">July 16, 2012</span>
+            <div class="post-content">
+                
+                    <p><img src="../img/webgl/thumbnail.png" id="thumbnail" /><br />
+</p>
+<p>WebGL es una implementación web de OpenGL (librería de gráficos 3D) el cual compite con DirectX de Microsoft.</p>
+<p>Resulta que WebGL nos permite visualizar contenido 3D directamente en nuestros navegadores e incluso haciendo uso de aceleración por hardware, como juegos, animaciones, etc. Por ejemplo, Google lanzó una versión de Google Maps en 3D y Google Body para estudiar anatomía en 3D.</p>
+
+                
+            </div>
+            <br><br>
+            <div class="continue-reading">
+                <a class="btn btn-default" href="../2012/07/internet-en-3d-microsoft-intenta.html">Continue Reading</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="post-prev post col-xs-12">
+            <a class="post-prev-title" href="../2012/07/hurd-el-kernel-original-de-gnu.html">HURD, el kernel original de GNU</a>
+            <span class="post-prev-date">July 16, 2012</span>
+            <div class="post-content">
+                
+                    <p><img src="../img/hurd/thumbnail.png" id="thumbnail" /><br />
+</p>
+<p>Estuve pensando en escribir una entrada sobre como probar GNU/Hurd, pero voy a empezar por hacer una introducción a lo que es el HURD.</p>
+<h2 id="así-que-qué-es-hurd">Así que… Qué es HURD?</h2>
+<p>HURD es el Kernel original del sistema operativo GNU, del proyecto del mismo nombre fundado por Richard Stallman.</p>
+<p>El desarrollo de HURD comenzó en 1990, pero nunca se liberó su versión final, esperada para el 2002. Por eso, su lugar en el sistema operativo GNU lo ocupó el Kernel Linux.</p>
+
+                
+            </div>
+            <br><br>
+            <div class="continue-reading">
+                <a class="btn btn-default" href="../2012/07/hurd-el-kernel-original-de-gnu.html">Continue Reading</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="post-prev post col-xs-12">
+            <a class="post-prev-title" href="../2012/07/cube-craft-de-richard-stallman.html">Cube Craft de Richard Stallman</a>
+            <span class="post-prev-date">July 16, 2012</span>
+            <div class="post-content">
+                
+                    <p><img src="../img/cubecraft/thumbnail.png" id="thumbnail" /><br />
+El otro día estaba viendo unas plantillas de cube craft bastante cómicas y mi intrínseca naturaleza geek me llevo a una idea: un cubre craft de Richard Stallman!.</p>
+<p>Empecé a buscar una plantilla de cube craft de Richard Stallman sin resultado alguno, aunque en realidad suponía de antemano que sería una búsqueda infructuosa. Entonces lo que hice fue tomar una plantilla para hacer con ella una de nuestro ídolo.</p>
+
+                
+            </div>
+            <br><br>
+            <div class="continue-reading">
+                <a class="btn btn-default" href="../2012/07/cube-craft-de-richard-stallman.html">Continue Reading</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="post-prev post col-xs-12">
+            <a class="post-prev-title" href="../2012/05/reparando-arch-tras-actualizacion-error.html">Reparando Arch tras actualización (error while loading shared libraries':' libbz2.so.1.0':' Cannot open shared object file)</a>
+            <span class="post-prev-date">May  2, 2012</span>
+            <div class="post-content">
+                
+                    <p><img src="../img/repairarch/thumbnail.png" id="thumbnail" /><br />
+Hoy, igual que todos los días luego de arrancar mi sistema, lo primero que hice fue <code>pacman -Syu</code> como cualquier <em>Archer</em> haría, y mientras se actualizaba el sistema me ocupaba de mis asuntos, luego de unos minutos regrese a la terminal y me percaté de que la actualización había fallado, así que repetí <code>pacman -Syu</code> pero <em>pacman</em> no iniciaba y daba un mensaje de error:</p>
+<blockquote>
+<p>pacman: error while loading shared libraries: libbz2.so.1.0: cannot open shared object file: No such file or directory</p>
+</blockquote>
+
+                
+            </div>
+            <br><br>
+            <div class="continue-reading">
+                <a class="btn btn-default" href="../2012/05/reparando-arch-tras-actualizacion-error.html">Continue Reading</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="post-prev post col-xs-12">
+            <a class="post-prev-title" href="../2012/04/modding-pc-sumergida-pecera-2.html">Modding, PC sumergida (PCera) parte 2</a>
+            <span class="post-prev-date">April 15, 2012</span>
+            <div class="post-content">
+                
+                    <p>Hoy traigo la continuación de mi proyecto <em>pecera</em> con un par de cosas:</p>
+<p>Primeramente, he llegado a la conclusión de que este MOD es más estético que funcional, puesto que la refrigeración propiamente dicha no resulta más eficiente que la tradicional, aún con el movimiento de el aceite producido por los ventiladores.</p>
+<p>Sin embargo, si encuentro la manera de a su vez refrigerar el aceite, SI que seria mucho más eficiente que el flujo de aire tradicional, pero mientras busco la manera presento lo que tengo hasta ahora:</p>
+<div class="figure">
+<img src="../img/pcera2/pecera1.jpg" class="img-responsive" />
+
+</div>
+
+                
+            </div>
+            <br><br>
+            <div class="continue-reading">
+                <a class="btn btn-default" href="../2012/04/modding-pc-sumergida-pecera-2.html">Continue Reading</a>
+            </div>
+        </div>
+    </div>
+
+
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            
+                                <a class="archive" href="../3/index.html">◀ Newer Posts</a>
+                            
+                        </div>
+
+                        <div class="col-sm-4">
+                            <a class="archive" href="../archive.html">Archive</a>
+                        </div>
+
+                        <div class="col-sm-4">
+                            
+                                <a class="archive" href="../5/index.html">Older Posts ▶</a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <footer class="container-fluid">
+            <div class="row">
+                <div id="sidebar" class="visible-xs visible-sm col-xs-12">
+                    <div id="author">
+    <img id="author-pic" src="../img/daniel.jpg">
+    <h3 id="author-name">Daniel Campoverde [alx741]</h3>
+    <img id="location-icon" src="../img/location_icon.png">
+    <span id="location">Cuenca, Ecuador</span>
+</div>
+
+<div id="findme">
+    <h2 class="sidebar-h2">FIND ME</h2>
+    <a target="_blank" href="https://github.com/alx741">
+        <img class="icon" src="../img/github.png">
+    </a>
+    <a target="_blank" href="https://twitter.com/alx741alx">
+        <img class="icon" src="../img/twitter.png">
+    </a>
+    <a target="_blank" href="https://www.facebook.com/sillybytes/">
+        <img class="icon" src="../img/facebook.png">
+    </a>
+    <a target="_blank" href="https://plus.google.com/116038619580828681039">
+        <img class="icon" src="../img/google.png">
+    </a>
+    <a target="_blank" href="https://www.joindiaspora.com/u/alx741">
+        <img class="icon" src="../img/diaspora.png">
+    </a>
+
+    <div id="findme-textual">
+        <b>Freenode:</b> #vim, #archlinux, #avr, #rust, #haskell,
+        #yesod, #zsh, #sillybytes
+        <hr>
+        <b>Mailto:</b> alx@sillybytes.net
+        <br>
+        <b>GPG Key ID:</b> 12622B78
+        <hr>
+        <b>Chat</b> with me <a target="_blank" href="http://webchat.freenode.net/?channels=sillybytes">here</a>
+        <hr>
+        <b>Subscribe:</b> <a href="http://www.sillybytes.net/atom.xml">
+            <img id="rss-img" alt="rss" src="../img/rss.png" /> </a>
+    </div>
+
+
+    <div id="facebook-embed">
+        <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fsillybytes&amp;width&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true" scrolling="yes" style="border:none; overflow:hidden;" allowtransparency="false" frameborder="0"></iframe>
+    </div>
+</div>
+
+<div id="random">
+    <h2 class="sidebar-h2">YOU MIGHT LIKE</h2>
+
+    <div id="random-posts">
+        <ul>
+        </ul>
+    </div>
+</div>
+
+<div id="about">
+    <h2 class="sidebar-h2">ABOUT</h2>
+
+    <a target="_blank" href="http://www.haskellers.com/user/4249">
+        <img id="haskellers-img" class="badge" alt="I'm a Haskeller" src="../img/haskellers.png">
+    </a>
+
+    <img id="fsf-img" class="badge" alt="Free Software Fundation Member" src="../img/fsf.png">
+
+    <a target="_blank" href="http://internetdefenseleague.org/">
+        <img id="idl-img" class="badge" alt="Internet Defesen League" src="../img/idl.png">
+    </a>
+</div>
+
+<div id="dotfiles">
+    <h2 class="sidebar-h2">DOTFILES</h2>
+    <p>
+        Software configuration, scripts, tools and magic.
+        Be sure to add <b>attribution </b> when using them
+        (fully or partially).
+    </p>
+    <a target="_blank" href="https://github.com/alx741/dotfiles#readme">
+        <img id="dotfiles-img" src="../img/dotfiles.png">
+    </a>
+</div>
+
+
+<div id="license">
+    <h2 class="sidebar-h2">LICENSE</h2>
+
+    <a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
+        <img id="cc-img" alt="Creative Commons - SA - BY" src="../img/cc.png">
+    </a>
+    <p id="cc-text">
+        Silly Bytes by Daniel Alejandro Campoverde Carrión
+        [alx741] is licensed under a
+        <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
+            Creative Commons Attribution-ShareAlike 3.0 Unported License.
+        </a>
+    </p>
+</div>
+
+                </div>
+            </div>
+        </footer>
+
+        <script type="text/javascript" src="../js/random_posts.js"></script>
+
+    </body>
+</html>
