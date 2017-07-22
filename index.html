@@ -205,7 +205,7 @@ As a user of the <a href="http://www.yesodweb.com/">Yesod</a> framework, I’ve 
                 
                     <p><img src="./img/bloggerhakyll/thumbnail.png" id="thumbnail" /><br />
 <a href="https://jaspervdj.be/hakyll/">Hakyll</a> is an amazing static site generator written in Haskell, it allows for blog posts to be written in <em>markdown</em>, that are then compiled with <em>pandoc</em>, and is very well suited to be used with <em>GitHub pages</em>; It’s everything I wanted and more.</p>
-<p><a href="http://www.sillybytes.net">Silly Bytes</a> went through its first 5 years of existence hosted on Google’s <a href="https://www.blogger.com">Blogger</a> service, and it did well. Although Blogger offers a fair amount of flexibility, you can’t have total control over it, and having to write posts with the built in <em>WYSIWYG</em> interface or pasting the HTML output is one of the bigger pain points of it. I solved most of that by writing a <a href="http://www.sillybytes.net/2016/09/how-do-i-blog-blogger-posts-from.html">CLI tool</a> that allows me to write my posts offline in <em>markdown</em>, compile them, and deploy them from my terminal leveraging the Blogger’s convenient API, but I still have the feeling that it isn’t good enough.</p>
+<p><a href="http://www.sillybytes.net">Silly Bytes</a> went through its first 5 years of existence hosted on Google’s <a href="https://www.blogger.com">Blogger</a> service, and it did well. Although Blogger offers a fair amount of flexibility, you can’t have total control over it, and having to write posts with the built in <em>WYSIWYG</em> interface or pasting the HTML output is one of the bigger pain points of it. I solved most of that by writing a <a href="http://www.sillybytes.net/2016/09/how-do-i-blog-blogger-posts-from.html">CLI tool</a> that allows me to write my posts offline in <em>markdown</em>, compile them, and deploy them from my terminal leveraging the Blogger’s convenient API. But I still have the feeling that it isn’t good enough.</p>
 <p>In this post I will describe the process of porting an existing Blogger blog to <em>Hakyll</em> and <em>GitHub pages</em> using <em>Silly Bytes</em> itself as the study case.</p>
 
                 
@@ -272,9 +272,9 @@ So you have been using AVR, PIC or some other microcontroller for a while and di
                     <p><img src="./img/tddlight/thumbnail.jpg" id="thumbnail" /><br />
 Robert C. Martin <em>(Uncle Bob)</em> said in a talk:</p>
 <blockquote>
-<p>Imagine you have a button that you can push, it will test your code and if everything is working a green light will come up, but if something is break, a red light will come up […]</p>
+<p>Imagine you have a button that you can push, it will test your code and if everything is working a green light will come up, but if something is broken, a red light will come up […]</p>
 </blockquote>
-<p>He was of course talking about TDD, but I was bored and get inspired to build this little toy.</p>
+<p>He was of course talking about TDD. I got inspired to build this little toy.</p>
 <p>Hardware schematics, firmware and host software is available in <a href="https://github.com/alx741/tdd_traffic-light">this Github repo</a>. Along with information on how to compile and use.</p>
 <blockquote>
 <p>This is a physical toy traffic light to be used with software development TDD (and testing in general) tools. It will not boost your productivity nor make you a better programmer or TDD practitioner, but it looks cool :)</p>
@@ -357,7 +357,7 @@ So you’re writing in the right language using the right tool already, but lets
                 
                     <p><img src="./img/picuart/thumbnail.png" id="thumbnail" /><br />
 NOTE: This post is available in Spanish only. Please use a software translator.</p>
-<p><a href="http://silly-bytes.blogspot.com/2016/06/from-pic-to-avr.html">He dejado de usar microcontroladores PIC por los motivos explicados en este post</a>; Pero voy a dedicar este post para tratar y explicar un programa sencillo escrito en ensamblador para el <strong>PIC16F876A</strong>.</p>
+<p>He dejado de usar microcontroladores PIC por los motivos explicados <a href="http://www.sillybytes.net/2016/06/from-pic-to-avr.html">aquí</a>; Pero voy a dedicar este post para escribir y explicar un programa sencillo escrito en ensamblador para el <strong>PIC16F876A</strong>.</p>
 <p>El objetivo es el siguiente:</p>
 <p>Se desea usar el microcontrolador para llevar a cabo la conversión analógica-digital de una tensión variable (un LDR o un potenciómetro por ejemplo) y transmitir el resultado usando la UART. Además debe ser posible recibir por la UART un byte que debe alterar la configuración del Conversor Análogo Digital (DAC) interno del microcontrolador para, por ejemplo, cambiar el canal de entrada de la señal analógica o modificar la velocidad del reloj de conversión.</p>
 

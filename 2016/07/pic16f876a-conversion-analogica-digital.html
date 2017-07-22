@@ -149,7 +149,7 @@
         <div class="post-content">
             <p><img src="../../img/picuart/thumbnail.png" id="thumbnail" /><br />
 NOTE: This post is available in Spanish only. Please use a software translator.</p>
-<p><a href="http://silly-bytes.blogspot.com/2016/06/from-pic-to-avr.html">He dejado de usar microcontroladores PIC por los motivos explicados en este post</a>; Pero voy a dedicar este post para tratar y explicar un programa sencillo escrito en ensamblador para el <strong>PIC16F876A</strong>.</p>
+<p>He dejado de usar microcontroladores PIC por los motivos explicados <a href="http://www.sillybytes.net/2016/06/from-pic-to-avr.html">aquí</a>; Pero voy a dedicar este post para escribir y explicar un programa sencillo escrito en ensamblador para el <strong>PIC16F876A</strong>.</p>
 <p>El objetivo es el siguiente:</p>
 <p>Se desea usar el microcontrolador para llevar a cabo la conversión analógica-digital de una tensión variable (un LDR o un potenciómetro por ejemplo) y transmitir el resultado usando la UART. Además debe ser posible recibir por la UART un byte que debe alterar la configuración del Conversor Análogo Digital (DAC) interno del microcontrolador para, por ejemplo, cambiar el canal de entrada de la señal analógica o modificar la velocidad del reloj de conversión.</p>
 <!--more-->
@@ -201,14 +201,14 @@ IRP        EQU H'07'</code></pre>
     BCF STATUS,RP1</code></pre>
 <p>La palabra <code>INIT</code> es la declaración de una <em>etiqueta</em> y se puede cambiar por cualquier palabra que se desee, es el nombre con el cual nos vamos a referir a esta sección de código desde otras partes del programa y que podremos invocar usando dicha etiqueta.</p>
 <p>La directiva <code>org 0</code> indica al enlazador que el código a continuación deberá ser colocado desde la dirección <strong>0</strong> de la memoria de programa.</p>
-<p>Las instrucciones <code>BSF STATUS,RP0</code> y <code>BCF STATUS,RP1</code> hacen un cambio al <strong>banco de memoria 1</strong>. La memoria del microcontrolador está dividida en <strong>bancos</strong> y es necesario <em>cambiarnos</em> al banco donde reside el registro que queremos modificar en cada momento, con lo cual este par de instrucciones se encuentra con usar para cambiar los bancos de memoria.</p>
+<p>Las instrucciones <code>BSF STATUS,RP0</code> y <code>BCF STATUS,RP1</code> hacen un cambio al <strong>banco de memoria 1</strong>. La memoria del microcontrolador está dividida en <strong>bancos</strong> y es necesario <em>cambiarnos</em> al banco donde reside el registro que queremos modificar en cada momento.</p>
 <h3 id="configuración-de-los-puertos-de-entradasalida">Configuración de los puertos de entrada/salida</h3>
 <pre><code>;;; Configuración de puertos IO
 ;;; Datasheet pagina 41
 ; El puerto A es de entrada
 MOVLW   B'00111111'
 MOVWF   TRISA
-; El puerto B es de entrada
+; El puerto B es de salida
 MOVLW   B'00000000'
 MOVWF   TRISB
 ; Puerto C: pin TX es salida, pin RX es entrada

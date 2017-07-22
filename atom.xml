@@ -175,7 +175,7 @@ I’ve spitted out quite a bit of rant about Java before in <a href="http://www.
 <p>And I completely agree with that. The problem is having to take into account the possibility of <em>NULL</em> in a high level language that supposedly doesn’t have pointers.</p>
 <p>In <em>C</em> or <em>C++,</em> when you dereference a <em>NULL</em> pointer, you get a <em>Segmentation Fault</em> and your program crashes. In Java, when you try to use a <em>NULL</em> reference you get a <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html">NullPointerException</a> and your program crashes as well. So what gives?</p>
 <p>You may say that the sources of these crashes are different, the <em>Segmentation Fault</em> comes from the OS trying to stop you from crashing the entire system, while the <em>NullPointerException</em> comes from the JVM that… Well, has nothing left to do but crash… I don’t see how is that any better.</p>
-<p><em>NullPointerException</em> are terribly common in Java, and you have to hunt them down just as any null pointer dereference bug. And if you’re thinking the actual benefit of this is having the <em>GC</em> taking care of the memory instead of having to remember to manually free memory, then you’re wrong, there are ways to statically take care of that, without having the <em>GC</em> behemoth eating your CPU time every time, but I’ll get to that in a moment.</p>
+<p><em>NullPointerException</em> are terribly common in Java, and you have to hunt them down just as any null pointer dereference bug. And if you’re thinking the actual benefit of this is having the <em>GC</em> taking care of the memory instead of having to remember to manually free memory, then you’re wrong, there are ways to statically take care of that, without having the <em>GC</em> behemoth eating your CPU time, but I’ll get to that in a moment.</p>
 <p>By the way, Tony Hoare himself calls <em>NULL</em> the <a href="https://en.wikipedia.org/wiki/Nullable_type#Compared_with_null_pointers">“Billion-Dollar mistake”</a>.</p>
 <h2 id="useless-pointers">Useless pointers</h2>
 <p>So java is cluttered with pointers, useless pointers. In <em>C/C++</em> pointers are one of the most powerful constructs, they allow you to get closer to the machine and control its actions with scalpel precision; In Java you get your programs to crash due to <em>NULL</em> pointers while getting nothing on exchange.</p>
@@ -201,7 +201,7 @@ I’ve spitted out quite a bit of rant about Java before in <a href="http://www.
 <p>But that’s pretty much as far as it gets. <em>C++11</em> on the other hand has the <code>auto</code> keyword to let the compiler do what compilers are good at: mechanical, repetitive, deterministic tasks; Type inference is one of those tasks.</p>
 <p>Every time, everywhere a time annotation is needed, you provide one only if it’s absolutely needed to avoid ambiguity, otherwise, just use <code>auto</code> and let the compiler do it for you.</p>
 <h2 id="resources-un-safety">Resources un-safety</h2>
-<p>One the main Java selling points is <em>Memory Safety</em>, you see, in <em>C</em> you have to free your memory with <code>free()</code> in the right place, at the right time after every memory allocation with <code>malloc()</code> and friends. If you forget to free your memory you’ll have memory leaks, if you free it twice, or if you free it at the wrong time you’ll have a segmentation fault.</p>
+<p>One of the main Java selling points is <em>Memory Safety</em>, you see, in <em>C</em> you have to free your memory with <code>free()</code> in the right place, at the right time after every memory allocation with <code>malloc()</code> and friends. If you forget to free your memory you’ll have memory leaks, if you free it twice, or if you free it at the wrong time you’ll have a segmentation fault.</p>
 <p>Java on the other hand leverages the Garbage Collector to do it for you, the problem is, this works for memory only!</p>
 <p>Whenever you initialize a socket, or a database connection, or open a file, you still need to <em>close</em> it at the right time; So you still can and will have resources leakage.</p>
 <div class="figure">
@@ -321,7 +321,7 @@ watch:
     <updated>2017-04-10T00:00:00Z</updated>
     <summary type="html"><![CDATA[<p><img src="/img/bloggerhakyll/thumbnail.png" id="thumbnail" /><br />
 <a href="https://jaspervdj.be/hakyll/">Hakyll</a> is an amazing static site generator written in Haskell, it allows for blog posts to be written in <em>markdown</em>, that are then compiled with <em>pandoc</em>, and is very well suited to be used with <em>GitHub pages</em>; It’s everything I wanted and more.</p>
-<p><a href="http://www.sillybytes.net">Silly Bytes</a> went through its first 5 years of existence hosted on Google’s <a href="https://www.blogger.com">Blogger</a> service, and it did well. Although Blogger offers a fair amount of flexibility, you can’t have total control over it, and having to write posts with the built in <em>WYSIWYG</em> interface or pasting the HTML output is one of the bigger pain points of it. I solved most of that by writing a <a href="http://www.sillybytes.net/2016/09/how-do-i-blog-blogger-posts-from.html">CLI tool</a> that allows me to write my posts offline in <em>markdown</em>, compile them, and deploy them from my terminal leveraging the Blogger’s convenient API, but I still have the feeling that it isn’t good enough.</p>
+<p><a href="http://www.sillybytes.net">Silly Bytes</a> went through its first 5 years of existence hosted on Google’s <a href="https://www.blogger.com">Blogger</a> service, and it did well. Although Blogger offers a fair amount of flexibility, you can’t have total control over it, and having to write posts with the built in <em>WYSIWYG</em> interface or pasting the HTML output is one of the bigger pain points of it. I solved most of that by writing a <a href="http://www.sillybytes.net/2016/09/how-do-i-blog-blogger-posts-from.html">CLI tool</a> that allows me to write my posts offline in <em>markdown</em>, compile them, and deploy them from my terminal leveraging the Blogger’s convenient API. But I still have the feeling that it isn’t good enough.</p>
 <p>In this post I will describe the process of porting an existing Blogger blog to <em>Hakyll</em> and <em>GitHub pages</em> using <em>Silly Bytes</em> itself as the study case.</p>
 <!--more-->
 <h1 id="expectations">Expectations</h1>
@@ -755,22 +755,22 @@ $ cd stm32-h103/miniblink</code></pre>
     <summary type="html"><![CDATA[<p><img src="/img/tddlight/thumbnail.jpg" id="thumbnail" /><br />
 Robert C. Martin <em>(Uncle Bob)</em> said in a talk:</p>
 <blockquote>
-<p>Imagine you have a button that you can push, it will test your code and if everything is working a green light will come up, but if something is break, a red light will come up […]</p>
+<p>Imagine you have a button that you can push, it will test your code and if everything is working a green light will come up, but if something is broken, a red light will come up […]</p>
 </blockquote>
-<p>He was of course talking about TDD, but I was bored and get inspired to build this little toy.</p>
+<p>He was of course talking about TDD. I got inspired to build this little toy.</p>
 <p>Hardware schematics, firmware and host software is available in <a href="https://github.com/alx741/tdd_traffic-light">this Github repo</a>. Along with information on how to compile and use.</p>
 <blockquote>
 <p>This is a physical toy traffic light to be used with software development TDD (and testing in general) tools. It will not boost your productivity nor make you a better programmer or TDD practitioner, but it looks cool :)</p>
 </blockquote>
 <p>Lets explain how it works, it’s very simple: <!--more--></p>
 <h1 id="hardware">Hardware</h1>
-<p>The <strong>atmega328p</strong> AVR microcontroller is very popular and cheap, but if you buy them on Ebay for example, chances are it comes with an Arduino bootloader, which gets in the way because we can perfectly use the internal oscillator instead of an external 16Mhz crystal. So the first thing is to change de fuses to the default ones:</p>
+<p>The <strong>atmega328p</strong> AVR microcontroller is very popular and cheap, but if you buy them on Ebay for example, chances are it comes with an Arduino bootloader, which gets in the way because we can perfectly use the internal oscillator instead of an external 16Mhz crystal. So the first thing to do is change the fuses to the default ones:</p>
 <pre class="shell"><code># avrdude -p m328p -c usbasp -U lfuse:w:0x62:m -U hfuse:w:0xd9:m</code></pre>
 <p>Now we are using the internal 1MHz oscillator, perfect!</p>
 <p>I don’t have a PCB yet (although it should be pretty easy as I made the circuit schematic using <em>kicad</em>) but the circuit is small and simple so it’s easy to build it with prototype PCB. Additionally I added some small neodymium magnets in the back to stick it easily close to my monitors.</p>
 <p><img src="/img/tddlight/img1.jpg" class="img-responsive" /> <img src="/img/tddlight/img2.jpg" class="img-responsive" /> <img src="/img/tddlight/img3.jpg" class="img-responsive" /> <img src="/img/tddlight/img4.jpg" class="img-responsive" /> <img src="/img/tddlight/img5.jpg" class="img-responsive" /> <img src="/img/tddlight/img6.jpg" class="img-responsive" /> <img src="/img/tddlight/img7.jpg" class="img-responsive" /> <img src="/img/tddlight/img8.jpg" class="img-responsive" /></p>
 <h1 id="software">Software</h1>
-<p>The firmware is no more than UART boilerplate with a baud rate of <code>4800</code> so it is stable with the 1MHz clock speed.</p>
+<p>The firmware is no more than UART boilerplate with <code>4800</code> baud rate so it is stable with at 1MHz clock speed.</p>
 <div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;avr/io.h&gt;</span>
 <span class="pp">#include </span><span class="im">&lt;util/delay.h&gt;</span>
 
@@ -838,7 +838,7 @@ Robert C. Martin <em>(Uncle Bob)</em> said in a talk:</p>
     COM_FD = fd;</code></pre></div>
 <p>From then controlling the LEDs is as simple as</p>
 <div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c">write(COM_FD, <span class="st">&quot;r&quot;</span>, <span class="dv">1</span>);</code></pre></div>
-<p>As I said, pretty simple… Find more information about how to use it in the <a href="https://github.com/alx741/tdd_traffic-light">Github repo</a>.</p>]]></summary>
+<p>Find more information about how to use it in the <a href="https://github.com/alx741/tdd_traffic-light">Github repo</a>.</p>]]></summary>
 </entry>
 <entry>
     <title>Vim + Haskell</title>
@@ -1065,7 +1065,7 @@ au FileType haskell inoreab &lt;buffer&gt; io IO ()</code></pre>
     <updated>2016-07-14T00:00:00Z</updated>
     <summary type="html"><![CDATA[<p><img src="/img/picuart/thumbnail.png" id="thumbnail" /><br />
 NOTE: This post is available in Spanish only. Please use a software translator.</p>
-<p><a href="http://silly-bytes.blogspot.com/2016/06/from-pic-to-avr.html">He dejado de usar microcontroladores PIC por los motivos explicados en este post</a>; Pero voy a dedicar este post para tratar y explicar un programa sencillo escrito en ensamblador para el <strong>PIC16F876A</strong>.</p>
+<p>He dejado de usar microcontroladores PIC por los motivos explicados <a href="http://www.sillybytes.net/2016/06/from-pic-to-avr.html">aquí</a>; Pero voy a dedicar este post para escribir y explicar un programa sencillo escrito en ensamblador para el <strong>PIC16F876A</strong>.</p>
 <p>El objetivo es el siguiente:</p>
 <p>Se desea usar el microcontrolador para llevar a cabo la conversión analógica-digital de una tensión variable (un LDR o un potenciómetro por ejemplo) y transmitir el resultado usando la UART. Además debe ser posible recibir por la UART un byte que debe alterar la configuración del Conversor Análogo Digital (DAC) interno del microcontrolador para, por ejemplo, cambiar el canal de entrada de la señal analógica o modificar la velocidad del reloj de conversión.</p>
 <!--more-->
@@ -1117,14 +1117,14 @@ IRP        EQU H&#39;07&#39;</code></pre>
     BCF STATUS,RP1</code></pre>
 <p>La palabra <code>INIT</code> es la declaración de una <em>etiqueta</em> y se puede cambiar por cualquier palabra que se desee, es el nombre con el cual nos vamos a referir a esta sección de código desde otras partes del programa y que podremos invocar usando dicha etiqueta.</p>
 <p>La directiva <code>org 0</code> indica al enlazador que el código a continuación deberá ser colocado desde la dirección <strong>0</strong> de la memoria de programa.</p>
-<p>Las instrucciones <code>BSF STATUS,RP0</code> y <code>BCF STATUS,RP1</code> hacen un cambio al <strong>banco de memoria 1</strong>. La memoria del microcontrolador está dividida en <strong>bancos</strong> y es necesario <em>cambiarnos</em> al banco donde reside el registro que queremos modificar en cada momento, con lo cual este par de instrucciones se encuentra con usar para cambiar los bancos de memoria.</p>
+<p>Las instrucciones <code>BSF STATUS,RP0</code> y <code>BCF STATUS,RP1</code> hacen un cambio al <strong>banco de memoria 1</strong>. La memoria del microcontrolador está dividida en <strong>bancos</strong> y es necesario <em>cambiarnos</em> al banco donde reside el registro que queremos modificar en cada momento.</p>
 <h3 id="configuración-de-los-puertos-de-entradasalida">Configuración de los puertos de entrada/salida</h3>
 <pre><code>;;; Configuración de puertos IO
 ;;; Datasheet pagina 41
 ; El puerto A es de entrada
 MOVLW   B&#39;00111111&#39;
 MOVWF   TRISA
-; El puerto B es de entrada
+; El puerto B es de salida
 MOVLW   B&#39;00000000&#39;
 MOVWF   TRISB
 ; Puerto C: pin TX es salida, pin RX es entrada
@@ -3211,7 +3211,7 @@ Matt wrote a very interesting and totally recommended post about <a href="https:
 <img src="/img/clang/shot5.jpg" class="img-left" />
 
 </div>
-<p>A <em>linter</em> in case you don’t know, is a program that will statically check the <strong>source code</strong> (not the executable) to find any known non-portable constructs, vulnerabilities from common programming mistakes and/or bad practices and any other general coding mistakes that can make your program leak memory, step on segmentation faults and the like.</p>
+<p>A <em>linter</em>, in case you don’t know, is a program that will statically check the <strong>source code</strong> (not the executable) to find any known non-portable constructs, vulnerabilities from common programming mistakes or bad practices and any other general coding mistakes that can make your program leak memory, step on segmentation faults and the like.</p>
 <p><a href="http://www.splint.org/">Splint</a> is an awesome piece of software that will tell you a <strong>lot</strong> about what your code might be doing wrong.</p>
 <p>You can use it very easily just by specifying the source files like:</p>
 <pre><code>$ splint foo.c bar.c</code></pre>
