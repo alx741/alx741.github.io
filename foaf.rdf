@@ -1,0 +1,30 @@
+<rdf:RDF
+      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+      xmlns:foaf="http://xmlns.com/foaf/0.1/"
+      xmlns:admin="http://webns.net/mvcb/">
+<foaf:PersonalProfileDocument rdf:about="">
+  <foaf:maker rdf:resource="#me"/>
+  <foaf:primaryTopic rdf:resource="#me"/>
+  <admin:generatorAgent rdf:resource="http://www.ldodds.com/foaf/foaf-a-matic"/>
+  <admin:errorReportsTo rdf:resource="mailto:leigh@ldodds.com"/>
+</foaf:PersonalProfileDocument>
+<foaf:Person rdf:ID="me">
+<foaf:name>Daniel Campoverde</foaf:name>
+<foaf:title>Mr</foaf:title>
+<foaf:givenname>Daniel</foaf:givenname>
+<foaf:family_name>Campoverde</foaf:family_name>
+<foaf:nick>alx</foaf:nick>
+<foaf:mbox_sha1sum>29c66639954814afd53e5bd96e730fb8940fc910</foaf:mbox_sha1sum>
+<foaf:homepage rdf:resource="http://www.sillybytes.net"/>
+<foaf:phone rdf:resource="tel:0987948582"/>
+<foaf:schoolHomepage rdf:resource="http://ucuenca.edu.ec"/>
+<foaf:knows>
+<foaf:Person>
+<foaf:name>Mauricio Espinoza</foaf:name>
+<foaf:mbox_sha1sum>d841875c41ec55b427a1c19d040c2212ee731f3b</foaf:mbox_sha1sum></foaf:Person></foaf:knows>
+<foaf:knows>
+<foaf:Person>
+<foaf:name>Elvis Calle</foaf:name>
+<foaf:mbox_sha1sum>388db6b79a99e3c4d7ec87d20a7dd84a3cf9e01b</foaf:mbox_sha1sum></foaf:Person></foaf:knows></foaf:Person>
+</rdf:RDF>
