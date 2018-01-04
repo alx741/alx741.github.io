@@ -3181,8 +3181,7 @@ bind-key l if-shell &quot;$is_vim&quot; &quot;send-keys C-l&quot;  &quot;run &#3
     <published>2016-06-19T00:00:00Z</published>
     <updated>2016-06-19T00:00:00Z</updated>
     <summary type="html"><![CDATA[<p><img src="/img/clang/thumbnail.png" id="thumbnail" /><br />
-Matt wrote a very interesting and totally recommended post about <a href="https://matt.sh/howto-c">how to C (as of 2016)</a>. Keith Thompson wrote later a very detailed and rather useful <a href="https://github.com/Keith-S-Thompson/how-to-c-response/blob/master/README.md">critique</a> with some extra notes about Matt’s post.</p>
-<p>Go a head and read both articles right now!</p>
+Matt wrote a very interesting and totally recommended post about <a href="https://matt.sh/howto-c">how to C (as of 2016)</a>. Keith Thompson wrote later a very detailed and rather useful <a href="https://github.com/Keith-S-Thompson/how-to-c-response/blob/master/README.md">critique</a> with some extra notes about Matt’s post. Go ahead and read both articles now.</p>
 <p>Here I would like to point out some things about tooling.</p>
 <p><img src="/img/clang/shot1.jpg" class="img-responsive" /> <!--more--></p>
 <h1 id="use-building-tools-make-autotools-cmake">Use building tools (Make, Autotools, CMake)</h1>
