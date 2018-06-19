@@ -274,7 +274,7 @@ I’ve spitted out quite a bit of rant about Java before in <a href="http://www.
     <updated>2017-04-11T00:00:00Z</updated>
     <summary type="html"><![CDATA[<p><img src="/img/hakyllcassius/thumbnail.png" id="thumbnail" /><br />
 As a user of the <a href="http://www.yesodweb.com/">Yesod</a> framework, I’ve came to know and love the <a href="https://www.stackage.org/haddock/lts-8.4/shakespeare-2.0.12.1/Text-Cassius.html#v:cassius">Cassius</a> CSS templating language, although its reliance on Template Haskell is meant to fit better with the Yesod’s needs and makes it a bit cumbersome to use everywhere else, I still like the templating language itself and its features a lot.</p>
-<p>That’s why I used it for the styles generation for <a href="http://www.sillybytes.net">Silly Bytes</a> together with <a href="https://jaspervdj.be/hakyll/">Hakyll</a>. In this post I will describe the process.<br />
+<p>That’s why I used it for styles generation in <a href="http://www.sillybytes.net">Silly Bytes</a> together with <a href="https://jaspervdj.be/hakyll/">Hakyll</a>. In this post I will describe the process.<br />
 <br />
 <br />
 <!--more--></p>
@@ -322,7 +322,7 @@ watch:
     <summary type="html"><![CDATA[<p><img src="/img/bloggerhakyll/thumbnail.png" id="thumbnail" /><br />
 <a href="https://jaspervdj.be/hakyll/">Hakyll</a> is an amazing static site generator written in Haskell, it allows for blog posts to be written in <em>markdown</em>, that are then compiled with <em>pandoc</em>, and is very well suited to be used with <em>GitHub pages</em>; It’s everything I wanted and more.</p>
 <p><a href="http://www.sillybytes.net">Silly Bytes</a> went through its first 5 years of existence hosted on Google’s <a href="https://www.blogger.com">Blogger</a> service, and it did well. Although Blogger offers a fair amount of flexibility, you can’t have total control over it, and having to write posts with the built in <em>WYSIWYG</em> interface or pasting the HTML output is one of the bigger pain points of it. I solved most of that by writing a <a href="http://www.sillybytes.net/2016/09/how-do-i-blog-blogger-posts-from.html">CLI tool</a> that allows me to write my posts offline in <em>markdown</em>, compile them, and deploy them from my terminal leveraging the Blogger’s convenient API. But I still have the feeling that it isn’t good enough.</p>
-<p>In this post I will describe the process of porting an existing Blogger blog to <em>Hakyll</em> and <em>GitHub pages</em> using <em>Silly Bytes</em> itself as the study case.</p>
+<p>In this post I will describe the process of porting an existing Blogger blog to <em>Hakyll</em> and <em>GitHub pages</em> using <em>Silly Bytes</em> itself as a case study.</p>
 <!--more-->
 <h1 id="expectations">Expectations</h1>
 <p>So here is what I want instead:</p>
