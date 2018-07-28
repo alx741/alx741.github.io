@@ -146,7 +146,8 @@
         </div>
         <div class="post-content">
             <p><img src="../../img/robotncurses/thumbnail.jpg" id="thumbnail" /><br />
-Este es un ejemplo bastante completo de una interfaz basada en <em>Ncurses</em> que implementa un juego escrito en C.</p>
+</p>
+<p>Este es un ejemplo bastante completo de una interfaz basada en <em>Ncurses</em> que implementa un juego escrito en C.</p>
 <p>El juego consiste en desplazar un robot a través de una cuadricula evadiendo los obstáculos para llegar a una salida y lograr hacerlo antes de que el robot se quede sin energía.</p>
 <p>A esto, si se le puede llamar un juego, es bastante malo como tal, no es nada divertido ni disfrutarle, no será una aventura mágica ni te tendrá horas jugándolo, incluso sus reglas elementales hacen de él una actividad que no representa ningún reto ni entretenimiento, pero! Es un muy buen ejemplo del uso de la librería <em>Ncurses</em> con el lenguaje C y un no tan bueno, pero simple ejemplo del control de hardware.</p>
 <p>Veámoslo en acción:</p>
@@ -173,10 +174,7 @@ Este es un ejemplo bastante completo de una interfaz basada en <em>Ncurses</em> 
 <li><p>Mover en el eje Y hacia atrás (backward) durante 280 mili segundos <code>&lt;y&gt;:&lt;b&gt;:0280</code></p></li>
 </ul>
 <p>El circuito a montar es este:</p>
-<div class="figure">
-<img src="../../img/robotncurses/scheme.png" class="img-responsive" />
-
-</div>
+<p><img src="../../img/robotncurses/scheme.png" class="img-responsive" /></p>
 <p>El firmware del microcontrolador (escrito para el compilador libre SDCC y para el uC PIC18F4550) se encuentra en el directorio <em>hdwr/firmware</em> del código, se lo compila ubicándose en dicho directorio y ejecutando <code>$ make</code></p>
 <p>Lo que generará una salida <code>code.hex</code> que es el programa a grabar en el uC, para este menester se puede utilizar <a href="http://sillybytes.net/2013/08/programando-pics-en-gnulinux-hardware-y.html">esto</a>.</p>
 <p>El código tiene documentación y explica algunos detalles más.</p>

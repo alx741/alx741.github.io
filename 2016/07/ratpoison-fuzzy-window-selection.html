@@ -146,39 +146,40 @@
         </div>
         <div class="post-content">
             <p><img src="../../img/ratfuzzy/thumbnail.png" id="thumbnail" /><br />
-A nice feature to have is the ability to jump to an arbitrary window by performing a quick fuzzy search with just a few characters. We can achieve this by using Ratpoison’s flexibility and the fantastic <a href="https://github.com/junegunn/fzf">FZF tool</a>.</p>
+</p>
+<p>A nice feature to have is the ability to jump to an arbitrary window by performing a quick fuzzy search with just a few characters. We can achieve this by using Ratpoison’s flexibility and the fantastic <a href="https://github.com/junegunn/fzf">FZF tool</a>.</p>
 <p>The <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/window_select.sh">window_select.sh</a> script will do the trick using <strong>FZF</strong> <!--more--><br />
 <br />
 <br />
 </p>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="kw">function</span><span class="fu"> fzf_select</span>
-<span class="kw">{</span>
-    <span class="va">pattern=$(</span><span class="ex">ratpoison</span> -c <span class="st">&quot;prompt &gt; &quot;</span><span class="va">)</span>
-    <span class="kw">if [[</span> <span class="st">&quot;</span><span class="va">$pattern</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;&quot;</span><span class="kw"> ]]</span>;
-    <span class="kw">then</span>
-        <span class="bu">exit</span> 0
-    <span class="kw">fi</span>
-
-    <span class="va">window_list=$(</span><span class="ex">ratpoison</span> -c <span class="st">&quot;windows %c&quot;</span><span class="va">)</span>
-    <span class="va">selected=$(</span><span class="bu">echo</span> <span class="st">&quot;</span><span class="va">$window_list</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="ex">fzf</span> -q <span class="st">&quot;</span><span class="va">$pattern</span><span class="st">&quot;</span> -1 -0<span class="va">)</span>
-
-    <span class="kw">if [[</span> <span class="st">&quot;</span><span class="va">$selected</span><span class="st">&quot;</span> <span class="ot">!=</span> <span class="st">&quot;&quot;</span><span class="kw"> ]]</span>;
-    <span class="kw">then</span>
-        <span class="ex">ratpoison</span> -c <span class="st">&quot;select </span><span class="va">$selected</span><span class="st">&quot;</span>
-    <span class="kw">else</span>
-        <span class="ex">ratpoison</span> -c <span class="st">&quot;echo [!] There is no a matching window for </span><span class="dt">\&quot;</span><span class="va">$pattern</span><span class="dt">\&quot;</span><span class="st">&quot;</span>
-    <span class="kw">fi</span>
-<span class="kw">}</span>
-
-
-<span class="kw">case</span> <span class="va">$1</span><span class="kw"> in</span>
-    <span class="st">'ratmen'</span><span class="kw">)</span>
-        <span class="ex">ratmen_select</span>
-        <span class="kw">;;</span>
-    <span class="st">'fzf'</span><span class="kw">)</span>
-        <span class="ex">fzf_select</span>
-        <span class="kw">;;</span>
-<span class="kw">esac</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">function</span><span class="fu"> fzf_select</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">{</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">    <span class="va">pattern=$(</span><span class="ex">ratpoison</span> -c <span class="st">&quot;prompt &gt; &quot;</span><span class="va">)</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">    <span class="kw">if [[</span> <span class="st">&quot;</span><span class="va">$pattern</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;&quot;</span><span class="kw"> ]]</span>;</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">    <span class="kw">then</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">        <span class="bu">exit</span> 0</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">    <span class="kw">fi</span></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">    <span class="va">window_list=$(</span><span class="ex">ratpoison</span> -c <span class="st">&quot;windows %c&quot;</span><span class="va">)</span></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">    <span class="va">selected=$(</span><span class="bu">echo</span> <span class="st">&quot;</span><span class="va">$window_list</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="ex">fzf</span> -q <span class="st">&quot;</span><span class="va">$pattern</span><span class="st">&quot;</span> -1 -0<span class="va">)</span></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">    <span class="kw">if [[</span> <span class="st">&quot;</span><span class="va">$selected</span><span class="st">&quot;</span> <span class="ot">!=</span> <span class="st">&quot;&quot;</span><span class="kw"> ]]</span>;</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">    <span class="kw">then</span></a>
+<a class="sourceLine" id="cb1-14" data-line-number="14">        <span class="ex">ratpoison</span> -c <span class="st">&quot;select </span><span class="va">$selected</span><span class="st">&quot;</span></a>
+<a class="sourceLine" id="cb1-15" data-line-number="15">    <span class="kw">else</span></a>
+<a class="sourceLine" id="cb1-16" data-line-number="16">        <span class="ex">ratpoison</span> -c <span class="st">&quot;echo [!] There is no a matching window for </span><span class="dt">\&quot;</span><span class="va">$pattern</span><span class="dt">\&quot;</span><span class="st">&quot;</span></a>
+<a class="sourceLine" id="cb1-17" data-line-number="17">    <span class="kw">fi</span></a>
+<a class="sourceLine" id="cb1-18" data-line-number="18"><span class="kw">}</span></a>
+<a class="sourceLine" id="cb1-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb1-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb1-21" data-line-number="21"><span class="kw">case</span> <span class="va">$1</span><span class="kw"> in</span></a>
+<a class="sourceLine" id="cb1-22" data-line-number="22">    <span class="st">'ratmen'</span><span class="kw">)</span></a>
+<a class="sourceLine" id="cb1-23" data-line-number="23">        <span class="ex">ratmen_select</span></a>
+<a class="sourceLine" id="cb1-24" data-line-number="24">        <span class="kw">;;</span></a>
+<a class="sourceLine" id="cb1-25" data-line-number="25">    <span class="st">'fzf'</span><span class="kw">)</span></a>
+<a class="sourceLine" id="cb1-26" data-line-number="26">        <span class="ex">fzf_select</span></a>
+<a class="sourceLine" id="cb1-27" data-line-number="27">        <span class="kw">;;</span></a>
+<a class="sourceLine" id="cb1-28" data-line-number="28"><span class="kw">esac</span></a></code></pre></div>
 <p>This will use Ratpoison to prompt for a fuzzy string and will take you immediately to the matched window.</p>
 <p>But in order to invoke this, a Ratpoison mapping is required:</p>
 <pre><code>bind w exec window_select.sh fzf</code></pre>

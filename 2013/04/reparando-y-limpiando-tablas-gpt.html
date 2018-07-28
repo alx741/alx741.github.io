@@ -146,7 +146,8 @@
         </div>
         <div class="post-content">
             <p><img src="../../img/mbr/thumbnail.gif" id="thumbnail" /><br />
-Hace un par de semanas adquirí un nuevo equipo portátil en el cual he instalado GNU/Linux (Arch) como SO de cabecera, sin embargo mientras lo hacia he dejado un par de particiones lógicas no muy grandes destinadas a instalar algo como FreeBSD, OpenBSD, entre otros.</p>
+</p>
+<p>Hace un par de semanas adquirí un nuevo equipo portátil en el cual he instalado GNU/Linux (Arch) como SO de cabecera, sin embargo mientras lo hacia he dejado un par de particiones lógicas no muy grandes destinadas a instalar algo como FreeBSD, OpenBSD, entre otros.</p>
 <p>Pues bien, hoy mientras tenia algo de tiempo y luego de la larga espera para descargar el DVD de FreeBSD me he dispuesto a instalarlo sobre una de mis particiones, pero comenzado el trabajo unos cuantos golpes de la tecla Enter de sobra durante el gestor de particionado del instalador me han dado como resultado la creación de una tabla GPT indeseada y para colmo mal formada, y por supuesto con esto no podía leer mis particiones de la tabla MBR para instalar FreeBSD donde quería hacerlo.</p>
 <p>Arranqué mi Arch nuevamente para examinar el problema:</p>
 <p>Empecé por revisar como estaba el MBR de mi HDD y <em>fdisk</em> se quejaba de la presencia de una tabla GPT que no podía entender (<em>fdisk</em> no sabe leer GPT).</p>

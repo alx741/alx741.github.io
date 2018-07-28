@@ -146,13 +146,11 @@
         </div>
         <div class="post-content">
             <p><img src="../../img/f3/thumbnail.png" id="thumbnail" /><br />
-<em>F3</em> is an amazing alternative to <em>h2testw</em>, that allows you to test a USB flash drive to find out if it has less capacity than it claims.</p>
+</p>
+<p><em>F3</em> is an amazing alternative to <em>h2testw</em>, that allows you to test a USB flash drive to find out if it has less capacity than it claims.</p>
 <p>There is a LOT of fake USB flash drives on Ebay and other stores; When you use them, they appear to be storing all your data, but when you try to retrieve it, much of it is just lost.</p>
 <p><code>f3probe</code> is part of <em>F3</em>, it will test the USB flash drive for you and tell you if it is a fake and how much real memory does it have, but there is a catch: it requires you to physically disconnect and reconnect the drive manually, which slows down the whole process and becomes tedious if you need to probe more than one drive. Here is the solution: a piece of hardware that <code>f3probe</code> will use to automatically connect and reconnect you USB drive without your intervention.</p>
-<div class="figure">
-<img src="../../img/f3/shot1.jpg" class="img-responsive" />
-
-</div>
+<p><img src="../../img/f3/shot1.jpg" class="img-responsive" /></p>
 <!--more-->
 <p>Here is a video about how to use <em>F3</em>:</p>
 <div class="video embed-responsive embed-responsive-16by9">
@@ -192,15 +190,9 @@ $ make experimental
 <li>1 USB cables</li>
 </ul>
 <p>For the USB to serial/UART converter, be sure it has a <strong>DTR</strong> pin.</p>
-<div class="figure">
-<img src="../../img/f3/shot2.jpg" class="img-responsive" />
-
-</div>
+<p><img src="../../img/f3/shot2.jpg" class="img-responsive" /></p>
 <p>Build the hardware using the following schematic (here is a <a href="https://github.com/alx741/f3/blob/autoreset_hw/hw/schematic.pdf">PDF of it</a>):</p>
-<div class="figure">
-<img src="../../img/f3/scheme.png" class="img-responsive" />
-
-</div>
+<p><img src="../../img/f3/scheme.png" class="img-responsive" /></p>
 <p>Its a good idea to glue the USB connectors to the board so they don’t move when connecting the cables.</p>
 <p>Here is how it looks like when ready:</p>
 <p><img src="../../img/f3/shot3.jpg" class="img-responsive" /> <img src="../../img/f3/shot4.jpg" class="img-responsive" /> <img src="../../img/f3/shot5.jpg" class="img-responsive" /></p>
@@ -209,20 +201,14 @@ $ make experimental
 <ul>
 <li>Connect the <em>GND</em> and <em>DTR</em> pins of the board with the corresponding ones in the USB-Serial converter like this:</li>
 </ul>
-<div class="figure">
-<img src="../../img/f3/shot6.jpg" class="img-responsive" />
-
-</div>
+<p><img src="../../img/f3/shot6.jpg" class="img-responsive" /></p>
 <ul>
 <li>Connect the USB-Serial converter to the computer using an appropriate cable (USB extension in my case).</li>
 <li>Connect the board to the computer using a <em>A</em> to <em>B</em> USB cable.</li>
 <li>Connect the target USB flash drive to the board.</li>
 <li>Turn on the board (the green LED should turn on).</li>
 </ul>
-<div class="figure">
-<img src="../../img/f3/shot7.jpg" class="img-responsive" />
-
-</div>
+<p><img src="../../img/f3/shot7.jpg" class="img-responsive" /></p>
 <p>Then go to your computer and make sure you have the <code>/dev/ttyUSB0</code>, if your USB-Serial converter is on other file, make a symbolic link like this:</p>
 <pre><code># ln -s /dev/ttyYOURDEVICE /dev/ttyUSB0</code></pre>
 <p>Now you can probe your USB flash drive using the reset-type option with a value of 2:</p>

@@ -146,7 +146,8 @@
         </div>
         <div class="post-content">
             <p><img src="../../img/ssd/thumbnail.png" id="thumbnail" /><br />
-I recently bought a 120GB SSD (yes, a small one) to replace the 500GB HDD in my laptop so I can benefit from the extra speed and just keep my bulk data in the old HDD.</p>
+</p>
+<p>I recently bought a 120GB SSD (yes, a small one) to replace the 500GB HDD in my laptop so I can benefit from the extra speed and just keep my bulk data in the old HDD.</p>
 <p>Once your new SSD arrives you are probably very exited, you want that boost up for your system. BUT! You don’t want to reinstall your whole system on it, you want to preserve it right?. Ok let’s do so.</p>
 <!--more-->
 <p>Note: I use Gentoo, but this is perfectly applicable to every distribution.</p>
@@ -202,10 +203,7 @@ I recently bought a 120GB SSD (yes, a small one) to replace the 500GB HDD in my 
 # mkfs.ext4 /dev/sdb2
 # mkfs.ext4 /dev/sdb3</code></pre>
 <h1 id="migration">Migration</h1>
-<div class="figure">
-<img src="../../img/ssd/shot.png" class="img-responsive" />
-
-</div>
+<p><img src="../../img/ssd/shot.png" class="img-responsive" /></p>
 <p>Lets mount the future <code>/</code> and migrate the current system to it:</p>
 <pre><code># moutn /dev/sdb2 /mnt
 # rsync -av --progress / /mnt/ --exclude /mnt \

@@ -146,16 +146,14 @@
         </div>
         <div class="post-content">
             <p><img src="../../img/ft232/thumbnail.png" id="thumbnail" /><br />
-Ahora mismo estoy trabajando en un proyecto en el que necesito comunicación con el PC, la primera opción sería usar el puerto paralelo de mi vieja y querida Pentium IV, pero aquello de llevar conmigo esa maquina en su grande y pesado case… Es algo que ciertamente me desmotiva.</p>
+</p>
+<p>Ahora mismo estoy trabajando en un proyecto en el que necesito comunicación con el PC, la primera opción sería usar el puerto paralelo de mi vieja y querida Pentium IV, pero aquello de llevar conmigo esa maquina en su grande y pesado case… Es algo que ciertamente me desmotiva.</p>
 <p>La alternativa sería usar una laptop y comunicar por USB, pero mientras no termine de implementar el estándar USB (en progreso, espero publicarlo pronto aquí) no sería posible.</p>
 <p>La siguiente solución que se me ocurrió fue usar un FT232, un bonito chip que implementa un <em>Comunication Device Class</em> (CDC) de USB y nos entrega un serial UART a TTL, es ideal y fabuloso, pero por desgracia viene únicamente en una presentación poco cómoda SSOP de 28 pines.</p>
 <p>Esto fue lo que hice para poder usar este genial chip en una protoboard:</p>
 <!--more-->
 <p>Diseñe un PCB usando inkscape (poco idóneo y terriblemente incomodo para el cometido, pero sirvió):</p>
-<div class="figure">
-<img src="../../img/ft232/scheme.png" class="img-responsive" />
-
-</div>
+<p><img src="../../img/ft232/scheme.png" class="img-responsive" /></p>
 <p>De esta forma soldando el diminuto chip en el centro y 28 pinheaders a los costados podría usarlo como cualquier chip DIP.</p>
 <p>Aquí un <a href="https://drive.google.com/file/d/0B6PhGtPfFvqSTWJMMWNxby1nVHM/edit">PDF</a> que contiene el diseño repetido varias veces sobre un A4, así puede imprimirse directamente permitiendo que la escala sea exactamente igual pues dada la naturaleza del empaquetado del chip, es necesaria una precisión de centésima de milímetro.</p>
 <p>Debo admitir que al principio fui algo escéptico, pues usando el método de transferencia térmica con una plancha y siendo tan finas las pistas las cosas jugaban en contra, pero finalmente la transferencia, el atacado del cobre y la soldadura resultaron sorprendentemente bien he incluso mucho más sencillo de lo que esperaba.</p>

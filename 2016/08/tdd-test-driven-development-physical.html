@@ -146,7 +146,8 @@
         </div>
         <div class="post-content">
             <p><img src="../../img/tddlight/thumbnail.jpg" id="thumbnail" /><br />
-Robert C. Martin <em>(Uncle Bob)</em> said in a talk:</p>
+</p>
+<p>Robert C. Martin <em>(Uncle Bob)</em> said in a talk:</p>
 <blockquote>
 <p>Imagine you have a button that you can push, it will test your code and if everything is working a green light will come up, but if something is broken, a red light will come up […]</p>
 </blockquote>
@@ -164,73 +165,73 @@ Robert C. Martin <em>(Uncle Bob)</em> said in a talk:</p>
 <p><img src="../../img/tddlight/img1.jpg" class="img-responsive" /> <img src="../../img/tddlight/img2.jpg" class="img-responsive" /> <img src="../../img/tddlight/img3.jpg" class="img-responsive" /> <img src="../../img/tddlight/img4.jpg" class="img-responsive" /> <img src="../../img/tddlight/img5.jpg" class="img-responsive" /> <img src="../../img/tddlight/img6.jpg" class="img-responsive" /> <img src="../../img/tddlight/img7.jpg" class="img-responsive" /> <img src="../../img/tddlight/img8.jpg" class="img-responsive" /></p>
 <h1 id="software">Software</h1>
 <p>The firmware is no more than UART boilerplate with <code>4800</code> baud rate so it is stable with at 1MHz clock speed.</p>
-<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;avr/io.h&gt;</span>
-<span class="pp">#include </span><span class="im">&lt;util/delay.h&gt;</span>
-
-<span class="pp">#define F_CPU 1000000</span>
-<span class="pp">#define BAUD 4800</span>
-<span class="pp">#define BAUD_PRESCALE ((((F_CPU/16) + (BAUD/2)) / (BAUD)) - 1)</span>
-
-<span class="dt">char</span> getchar(<span class="dt">void</span>)
-{
-    <span class="cf">while</span> ((UCSR0A &amp; (<span class="dv">1</span> &lt;&lt; RXC0)) == <span class="dv">0</span>) {}
-    <span class="cf">return</span> UDR0;
-}</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="pp">#include </span><span class="im">&lt;avr/io.h&gt;</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="pp">#include </span><span class="im">&lt;util/delay.h&gt;</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="pp">#define F_CPU 1000000</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="pp">#define BAUD 4800</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="pp">#define BAUD_PRESCALE ((((F_CPU/16) + (BAUD/2)) / (BAUD)) - 1)</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="dt">char</span> getchar(<span class="dt">void</span>)</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">{</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10">    <span class="cf">while</span> ((UCSR0A &amp; (<span class="dv">1</span> &lt;&lt; RXC0)) == <span class="dv">0</span>) {}</a>
+<a class="sourceLine" id="cb2-11" data-line-number="11">    <span class="cf">return</span> UDR0;</a>
+<a class="sourceLine" id="cb2-12" data-line-number="12">}</a></code></pre></div>
 <p>The main loop will wait for a command <code>r</code>, <code>y</code> or <code>g</code> and turn on the pin corresponding to the color LED.</p>
-<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;avr/io.h&gt;</span>
-<span class="pp">#include </span><span class="im">&lt;util/delay.h&gt;</span>
-
-<span class="pp">#define F_CPU 1000000</span>
-<span class="pp">#define BAUD 4800</span>
-<span class="pp">#define BAUD_PRESCALE ((((F_CPU/16) + (BAUD/2)) / (BAUD)) - 1)</span>
-
-<span class="dt">char</span> getchar(<span class="dt">void</span>)
-{
-    <span class="cf">while</span> ((UCSR0A &amp; (<span class="dv">1</span> &lt;&lt; RXC0)) == <span class="dv">0</span>) {}
-    <span class="cf">return</span> UDR0;
-}</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="pp">#include </span><span class="im">&lt;avr/io.h&gt;</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="pp">#include </span><span class="im">&lt;util/delay.h&gt;</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="pp">#define F_CPU 1000000</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="pp">#define BAUD 4800</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="pp">#define BAUD_PRESCALE ((((F_CPU/16) + (BAUD/2)) / (BAUD)) - 1)</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="dt">char</span> getchar(<span class="dt">void</span>)</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">{</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">    <span class="cf">while</span> ((UCSR0A &amp; (<span class="dv">1</span> &lt;&lt; RXC0)) == <span class="dv">0</span>) {}</a>
+<a class="sourceLine" id="cb3-11" data-line-number="11">    <span class="cf">return</span> UDR0;</a>
+<a class="sourceLine" id="cb3-12" data-line-number="12">}</a></code></pre></div>
 <p>Notice how if another character is received the output is cleared so all the LEDs are off.</p>
 <p>The host software configures the serial port with a <code>4800</code> baud rate:</p>
-<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">void</span> serial_init(<span class="dt">char</span>* port)
-{
-    <span class="cf">if</span> (COM_FD &gt; <span class="dv">0</span>)
-    {
-        <span class="cf">return</span>;
-    }
-
-    <span class="co">// Open serial port file</span>
-    <span class="dt">int</span> fd = open(port, O_RDWR | O_NOCTTY | O_NDELAY);
-
-    <span class="co">// Configure serial port</span>
-    <span class="kw">struct</span> termios config;
-    <span class="cf">if</span> (tcgetattr(fd, &amp;config) != <span class="dv">0</span>)
-    {
-        COM_FD = -<span class="dv">1</span>;
-        printf(<span class="st">&quot;Error while configing serial port&quot;</span>);
-        exit(<span class="dv">1</span>);
-    }
-
-    cfsetispeed(&amp;config, B4800);
-    cfsetospeed(&amp;config, B4800);
-
-    config.c_cflag |= (CLOCAL | CREAD | CS8);
-    config.c_cflag &amp;= ~(PARENB | PARODD);
-    config.c_iflag = <span class="dv">0</span>;
-    config.c_oflag = <span class="dv">0</span>;
-    config.c_lflag &amp;= ~(ICANON | ECHO | ECHOE | ISIG);
-    config.c_cc[VTIME] = <span class="dv">5</span>;
-    config.c_cc[VMIN] = <span class="dv">0</span>;
-
-    <span class="cf">if</span> (tcsetattr(fd, TCSANOW, &amp;config) != <span class="dv">0</span>)
-    {
-        COM_FD = -<span class="dv">1</span>;
-        printf(<span class="st">&quot;Error while configing serial port&quot;</span>);
-        exit(<span class="dv">1</span>);
-    }
-
-    COM_FD = fd;</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="dt">void</span> serial_init(<span class="dt">char</span>* port)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">    <span class="cf">if</span> (COM_FD &gt; <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">    {</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">        <span class="cf">return</span>;</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">    }</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">    <span class="co">// Open serial port file</span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">    <span class="dt">int</span> fd = open(port, O_RDWR | O_NOCTTY | O_NDELAY);</a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">    <span class="co">// Configure serial port</span></a>
+<a class="sourceLine" id="cb4-12" data-line-number="12">    <span class="kw">struct</span> termios config;</a>
+<a class="sourceLine" id="cb4-13" data-line-number="13">    <span class="cf">if</span> (tcgetattr(fd, &amp;config) != <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb4-14" data-line-number="14">    {</a>
+<a class="sourceLine" id="cb4-15" data-line-number="15">        COM_FD = <span class="dv">-1</span>;</a>
+<a class="sourceLine" id="cb4-16" data-line-number="16">        printf(<span class="st">&quot;Error while configing serial port&quot;</span>);</a>
+<a class="sourceLine" id="cb4-17" data-line-number="17">        exit(<span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb4-18" data-line-number="18">    }</a>
+<a class="sourceLine" id="cb4-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb4-20" data-line-number="20">    cfsetispeed(&amp;config, B4800);</a>
+<a class="sourceLine" id="cb4-21" data-line-number="21">    cfsetospeed(&amp;config, B4800);</a>
+<a class="sourceLine" id="cb4-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb4-23" data-line-number="23">    config.c_cflag |= (CLOCAL | CREAD | CS8);</a>
+<a class="sourceLine" id="cb4-24" data-line-number="24">    config.c_cflag &amp;= ~(PARENB | PARODD);</a>
+<a class="sourceLine" id="cb4-25" data-line-number="25">    config.c_iflag = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb4-26" data-line-number="26">    config.c_oflag = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb4-27" data-line-number="27">    config.c_lflag &amp;= ~(ICANON | ECHO | ECHOE | ISIG);</a>
+<a class="sourceLine" id="cb4-28" data-line-number="28">    config.c_cc[VTIME] = <span class="dv">5</span>;</a>
+<a class="sourceLine" id="cb4-29" data-line-number="29">    config.c_cc[VMIN] = <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb4-30" data-line-number="30"></a>
+<a class="sourceLine" id="cb4-31" data-line-number="31">    <span class="cf">if</span> (tcsetattr(fd, TCSANOW, &amp;config) != <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb4-32" data-line-number="32">    {</a>
+<a class="sourceLine" id="cb4-33" data-line-number="33">        COM_FD = <span class="dv">-1</span>;</a>
+<a class="sourceLine" id="cb4-34" data-line-number="34">        printf(<span class="st">&quot;Error while configing serial port&quot;</span>);</a>
+<a class="sourceLine" id="cb4-35" data-line-number="35">        exit(<span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb4-36" data-line-number="36">    }</a>
+<a class="sourceLine" id="cb4-37" data-line-number="37"></a>
+<a class="sourceLine" id="cb4-38" data-line-number="38">    COM_FD = fd;</a></code></pre></div>
 <p>From then controlling the LEDs is as simple as</p>
-<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c">write(COM_FD, <span class="st">&quot;r&quot;</span>, <span class="dv">1</span>);</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb5-1" data-line-number="1">write(COM_FD, <span class="st">&quot;r&quot;</span>, <span class="dv">1</span>);</a></code></pre></div>
 <p>Find more information about how to use it in the <a href="https://github.com/alx741/tdd_traffic-light">Github repo</a>.</p>
         </div>
     </div>

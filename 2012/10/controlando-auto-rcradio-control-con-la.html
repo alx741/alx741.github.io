@@ -146,114 +146,103 @@
         </div>
         <div class="post-content">
             <p><img src="../../img/rccar/thumbnail.png" id="thumbnail" /><br />
-Como todo buen geek, de pequeño me fascinaban los autos RC (radio control), no tanto por el entretenimiento que supone jugar con ellos si no por la fascinación de averiguar su funcionamiento y todo lo que se puede hacer desarmando uno para convertir su mecanismo en algo completamente distinto.</p>
+</p>
+<p>Como todo buen geek, de pequeño me fascinaban los autos RC (radio control), no tanto por el entretenimiento que supone jugar con ellos si no por la fascinación de averiguar su funcionamiento y todo lo que se puede hacer desarmando uno para convertir su mecanismo en algo completamente distinto.</p>
 <p>Así pues hoy he visto en mi repisa el ultimo que me quedaba sin desarmar y pensé que ya era hora de decidir cual sería su destino, lo que hice fue adaptarlo para poder controlarlo desde la PC usando las teclas de dirección del teclado (como si de un juego se tratase), nuevamente, con miras ha hacer con ello algo un poco más interesante.</p>
 <p>Para empezar cabe aclarar que dentro de la gran variedad de diseños, formas y sabores de los autos RC yo he hecho esto adaptado al mio, pero resulta trivial hacerlo para el auto que tengas a la mano.</p>
 <!--more-->
 <h1 id="hardware">Hardware</h1>
 <p>En la imagen pueden ver al auto y su control, el cual tomaremos y desarmaremos para sacar por completo su placa de circuito.</p>
-<div class="figure">
-<img src="../../img/rccar/shot1.jpg" class="img-responsive" />
-
-</div>
+<p><img src="../../img/rccar/shot1.jpg" class="img-responsive" /></p>
 <p>Para retirarlo sacaremos todos los tornillos y cortaremos los cables del conector de la batería (dejando estos en el circuito), el resultado es este:</p>
-<div class="figure">
-<img src="../../img/rccar/shot2.jpg" class="img-responsive" />
-
-</div>
+<p><img src="../../img/rccar/shot2.jpg" class="img-responsive" /></p>
 <p>Ahora podemos soldar alambres más cómodos para la protoboard en los cables de alimentación eliminando aquel interruptor.</p>
 <p>Como se puede observar el funcionamiento de esta placa consiste en 4 interruptores metálicos que al empujarse cierran unos contactos, así que lo que hice fue soldar un cable en cada contacto como se aprecia en la imagen.</p>
 <p><img src="../../img/rccar/shot3.jpg" class="img-responsive" /> <img src="../../img/rccar/shot4.jpg" class="img-responsive" /> <img src="../../img/rccar/shot5.jpg" class="img-responsive" /></p>
 <p>Básicamente lo que haremos será tomar la señal emitida por el puerto paralelo de la PC para saturar un transistor, el cual “unirá” a través de estos cables los contactos del interruptor del control, que a su vez accionara el auto.</p>
 <p>El esquema de conexión es el siguiente:</p>
-<div class="figure">
-<img src="../../img/rccar/scheme1.png" class="img-responsive" />
-
-</div>
+<p><img src="../../img/rccar/scheme1.png" class="img-responsive" /></p>
 <p>El montaje en la protoboard luce así:</p>
 <p><img src="../../img/rccar/shot6.jpg" class="img-responsive" /> <img src="../../img/rccar/shot7.jpg" class="img-responsive" /></p>
 <p>La alimentación la he tomado también del puerto paralelo como se puede ver, pero lo ideal sería usar una batería de 9V separada, para potenciar mejor la placa y tener un mayor alcance, para hacer esto debemos dejar conectado el cable a masa (PIN 25 del puerto) y retirar simplemente la conexión del PIN 1 para conectar la batería (tanto positivo como negativo).</p>
 <p>Aquí se ve como conecté en el puerto paralelo (usé el cable de una vieja impresora para facilitarme el puerto hasta la mesa, pero se puede hacer directamente en el puerto del mainboard):</p>
-<div class="figure">
-<img src="../../img/rccar/shot8.jpg" class="img-responsive" />
-
-</div>
+<p><img src="../../img/rccar/shot8.jpg" class="img-responsive" /></p>
 <h1 id="software">Software</h1>
 <p>Mi auto RC funciona accionando cada par de ruedas laterales de forma independiente, es decir: para cada movimiento es necesario accionar simultáneamente 2 interruptores en la combinación adecuada. Para dar marcha hacia adelante o atrás hay que accionar simultáneamente 2 interruptores del control, para girar se accionan 2 interruptores opuestos, de forma que un par de ruedas giren en un sentido y el otro par de ruedas en el sentido opuesto haciendo así girar el auto.</p>
 <p>El software que escribí hace trabajar a mi auto como se puede observar, más si se quiere usar un auto cuya dirección es distinta se debe adaptar el código.</p>
 <p>Además el software está escrito para sistemas <em>Unix, yo específicamente he usado una distribución GNU/Linux. Recuerda asegurarte de tener instalada la librería </em>ncurses* en tu sistema.</p>
 <p><a href="https://github.com/alx741/rc_car_pc_control">Código en Github</a></p>
-<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="co">/*</span>
-<span class="co"> * ============================================================================</span>
-<span class="co"> *</span>
-<span class="co"> *       Filename:  rc.cpp</span>
-<span class="co"> *</span>
-<span class="co"> *    Description:  Código para controlar auto RC por puerto paralelo</span>
-<span class="co"> *</span>
-<span class="co"> *        Version:  1.0</span>
-<span class="co"> *        Created:  12/10/12 20:23:28</span>
-<span class="co"> *       Revision:  none</span>
-<span class="co"> *       Compiler:  g++</span>
-<span class="co"> *</span>
-<span class="co"> *         Author:  Daniel Campoverde Carrión [Alx741]</span>
-<span class="co"> *   Organization:  www.silly-bytes.blogspot.com</span>
-<span class="co"> *</span>
-<span class="co"> * ===========================================================================</span>
-<span class="co"> */</span>
-
-
-<span class="pp">#include </span><span class="im">&lt;iostream&gt;</span>
-<span class="pp">#include </span><span class="im">&lt;ncurses.h&gt;</span>
-<span class="pp">#include </span><span class="im">&lt;sys/io.h&gt;</span>
-
-<span class="pp">#define puerto (0x378) </span><span class="co">//Puede ser (0x278)</span>
-
-
-using namespace std;
-
-<span class="dt">int</span> main(<span class="dt">void</span>){
-
-<span class="co">//inicializamos ncurses</span>
-initscr();
-cbreak();
-noecho();
-nonl();
-intrflush(stdscr, FALSE);
-keypad(stdscr, TRUE);
-
-
-<span class="co">//Abrir puerto y configurar permisos</span>
-<span class="cf">if</span>(ioperm(puerto,<span class="dv">1</span>,<span class="dv">1</span>)){
-	cout &lt;&lt; <span class="st">&quot;Error de permisos&quot;</span> &lt;&lt; endl &lt;&lt; flush;
-    }
-
-
-    <span class="dt">int</span> ch;
-
-    <span class="co">//recibimos las pulsaciones</span>
-    <span class="co">//bit1,bit3 -&gt; adelante</span>
-    <span class="co">//bit2,bit4 -&gt; atras</span>
-    <span class="co">//bit3,bit2 -&gt; derecha</span>
-    <span class="co">//bit4,bit1 -&gt; izquierda</span>
-    <span class="cf">while</span>(true){
-
-		ch=getch();
-		<span class="cf">if</span>(ch==<span class="dv">32</span>) outb(<span class="dv">0</span>,puerto);
-		<span class="cf">if</span>(ch==<span class="dv">259</span>) outb(<span class="dv">5</span>,puerto); <span class="co">//ascii 259=(arriba)</span>
-		<span class="cf">if</span>(ch==<span class="dv">258</span>) outb(<span class="dv">10</span>,puerto); <span class="co">//ascii 258=(abajo)</span>
-		<span class="cf">if</span>(ch==<span class="dv">261</span>) outb(<span class="dv">6</span>,puerto); <span class="co">//ascii 261=(derecha)</span>
-		<span class="cf">if</span>(ch==<span class="dv">260</span>) outb(<span class="dv">9</span>,puerto); <span class="co">//ascii 260=(izquierda)</span>
-		<span class="cf">if</span>(ch==<span class="dv">27</span>){ outb(<span class="dv">0</span>,puerto); <span class="cf">break</span>;}
-    }
-
-
-    <span class="co">//finalizamos ncurses (regresamos la consola a la normalidad)</span>
-    echo();
-    resetty();
-    endwin();
-
-    <span class="cf">return</span> <span class="dv">0</span>;
-}</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co">/*</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co"> * ============================================================================</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co"> *</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co"> *       Filename:  rc.cpp</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co"> *</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="co"> *    Description:  Código para controlar auto RC por puerto paralelo</span></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="co"> *</span></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co"> *        Version:  1.0</span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="co"> *        Created:  12/10/12 20:23:28</span></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="co"> *       Revision:  none</span></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co"> *       Compiler:  g++</span></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="co"> *</span></a>
+<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="co"> *         Author:  Daniel Campoverde Carrión [Alx741]</span></a>
+<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="co"> *   Organization:  www.silly-bytes.blogspot.com</span></a>
+<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="co"> *</span></a>
+<a class="sourceLine" id="cb1-16" data-line-number="16"><span class="co"> * ===========================================================================</span></a>
+<a class="sourceLine" id="cb1-17" data-line-number="17"><span class="co"> */</span></a>
+<a class="sourceLine" id="cb1-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb1-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb1-20" data-line-number="20"><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></a>
+<a class="sourceLine" id="cb1-21" data-line-number="21"><span class="pp">#include </span><span class="im">&lt;ncurses.h&gt;</span></a>
+<a class="sourceLine" id="cb1-22" data-line-number="22"><span class="pp">#include </span><span class="im">&lt;sys/io.h&gt;</span></a>
+<a class="sourceLine" id="cb1-23" data-line-number="23"></a>
+<a class="sourceLine" id="cb1-24" data-line-number="24"><span class="pp">#define puerto (0x378) </span><span class="co">//Puede ser (0x278)</span></a>
+<a class="sourceLine" id="cb1-25" data-line-number="25"></a>
+<a class="sourceLine" id="cb1-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb1-27" data-line-number="27">using namespace std;</a>
+<a class="sourceLine" id="cb1-28" data-line-number="28"></a>
+<a class="sourceLine" id="cb1-29" data-line-number="29"><span class="dt">int</span> main(<span class="dt">void</span>){</a>
+<a class="sourceLine" id="cb1-30" data-line-number="30"></a>
+<a class="sourceLine" id="cb1-31" data-line-number="31"><span class="co">//inicializamos ncurses</span></a>
+<a class="sourceLine" id="cb1-32" data-line-number="32">initscr();</a>
+<a class="sourceLine" id="cb1-33" data-line-number="33">cbreak();</a>
+<a class="sourceLine" id="cb1-34" data-line-number="34">noecho();</a>
+<a class="sourceLine" id="cb1-35" data-line-number="35">nonl();</a>
+<a class="sourceLine" id="cb1-36" data-line-number="36">intrflush(stdscr, FALSE);</a>
+<a class="sourceLine" id="cb1-37" data-line-number="37">keypad(stdscr, TRUE);</a>
+<a class="sourceLine" id="cb1-38" data-line-number="38"></a>
+<a class="sourceLine" id="cb1-39" data-line-number="39"></a>
+<a class="sourceLine" id="cb1-40" data-line-number="40"><span class="co">//Abrir puerto y configurar permisos</span></a>
+<a class="sourceLine" id="cb1-41" data-line-number="41"><span class="cf">if</span>(ioperm(puerto,<span class="dv">1</span>,<span class="dv">1</span>)){</a>
+<a class="sourceLine" id="cb1-42" data-line-number="42">	cout &lt;&lt; <span class="st">&quot;Error de permisos&quot;</span> &lt;&lt; endl &lt;&lt; flush;</a>
+<a class="sourceLine" id="cb1-43" data-line-number="43">    }</a>
+<a class="sourceLine" id="cb1-44" data-line-number="44"></a>
+<a class="sourceLine" id="cb1-45" data-line-number="45"></a>
+<a class="sourceLine" id="cb1-46" data-line-number="46">    <span class="dt">int</span> ch;</a>
+<a class="sourceLine" id="cb1-47" data-line-number="47"></a>
+<a class="sourceLine" id="cb1-48" data-line-number="48">    <span class="co">//recibimos las pulsaciones</span></a>
+<a class="sourceLine" id="cb1-49" data-line-number="49">    <span class="co">//bit1,bit3 -&gt; adelante</span></a>
+<a class="sourceLine" id="cb1-50" data-line-number="50">    <span class="co">//bit2,bit4 -&gt; atras</span></a>
+<a class="sourceLine" id="cb1-51" data-line-number="51">    <span class="co">//bit3,bit2 -&gt; derecha</span></a>
+<a class="sourceLine" id="cb1-52" data-line-number="52">    <span class="co">//bit4,bit1 -&gt; izquierda</span></a>
+<a class="sourceLine" id="cb1-53" data-line-number="53">    <span class="cf">while</span>(true){</a>
+<a class="sourceLine" id="cb1-54" data-line-number="54"></a>
+<a class="sourceLine" id="cb1-55" data-line-number="55">		ch=getch();</a>
+<a class="sourceLine" id="cb1-56" data-line-number="56">		<span class="cf">if</span>(ch==<span class="dv">32</span>) outb(<span class="dv">0</span>,puerto);</a>
+<a class="sourceLine" id="cb1-57" data-line-number="57">		<span class="cf">if</span>(ch==<span class="dv">259</span>) outb(<span class="dv">5</span>,puerto); <span class="co">//ascii 259=(arriba)</span></a>
+<a class="sourceLine" id="cb1-58" data-line-number="58">		<span class="cf">if</span>(ch==<span class="dv">258</span>) outb(<span class="dv">10</span>,puerto); <span class="co">//ascii 258=(abajo)</span></a>
+<a class="sourceLine" id="cb1-59" data-line-number="59">		<span class="cf">if</span>(ch==<span class="dv">261</span>) outb(<span class="dv">6</span>,puerto); <span class="co">//ascii 261=(derecha)</span></a>
+<a class="sourceLine" id="cb1-60" data-line-number="60">		<span class="cf">if</span>(ch==<span class="dv">260</span>) outb(<span class="dv">9</span>,puerto); <span class="co">//ascii 260=(izquierda)</span></a>
+<a class="sourceLine" id="cb1-61" data-line-number="61">		<span class="cf">if</span>(ch==<span class="dv">27</span>){ outb(<span class="dv">0</span>,puerto); <span class="cf">break</span>;}</a>
+<a class="sourceLine" id="cb1-62" data-line-number="62">    }</a>
+<a class="sourceLine" id="cb1-63" data-line-number="63"></a>
+<a class="sourceLine" id="cb1-64" data-line-number="64"></a>
+<a class="sourceLine" id="cb1-65" data-line-number="65">    <span class="co">//finalizamos ncurses (regresamos la consola a la normalidad)</span></a>
+<a class="sourceLine" id="cb1-66" data-line-number="66">    echo();</a>
+<a class="sourceLine" id="cb1-67" data-line-number="67">    resetty();</a>
+<a class="sourceLine" id="cb1-68" data-line-number="68">    endwin();</a>
+<a class="sourceLine" id="cb1-69" data-line-number="69"></a>
+<a class="sourceLine" id="cb1-70" data-line-number="70">    <span class="cf">return</span> <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb1-71" data-line-number="71">}</a></code></pre></div>
 <p>He usado la librería <em>ncurses</em> para manejar las pulsaciones de teclado, sin embargo lo precario del código y la falta de investigación sobre la librería me ha obligado a usar un mecanismo de <em>parada</em>, así pues si pulsamos la tecla dirección <em>adelante</em> el auto avanzará y no se detendrá hasta que pulsemos la barra espaciadora, y lo mismo sucederá con el resto de teclas. Quizás solucione este inconveniente usando SDL pero en otro momento será…</p>
 <p>Nos ubicamos en el directorio del código y compilamos el código con (asegúrate de obtener el <em>makefile</em> del repositorio en Github):</p>
 <pre><code>$ make</code></pre>

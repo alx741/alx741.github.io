@@ -146,24 +146,25 @@
         </div>
         <div class="post-content">
             <p><img src="../img/bloggerhakyll/thumbnail.png" id="thumbnail" /><br />
-<a href="https://jaspervdj.be/hakyll/">Hakyll</a> is an amazing static site generator written in Haskell, it allows for blog posts to be written in <em>markdown</em>, that are then compiled with <em>pandoc</em>, and is very well suited to be used with <em>GitHub pages</em>; It’s everything I wanted and more.</p>
+</p>
+<p><a href="https://jaspervdj.be/hakyll/">Hakyll</a> is an amazing static site generator written in Haskell, it allows for blog posts to be written in <em>markdown</em>, that are then compiled with <em>pandoc</em>, and is very well suited to be used with <em>GitHub pages</em>; It’s everything I wanted and more.</p>
 <p><a href="http://www.sillybytes.net">Silly Bytes</a> went through its first 5 years of existence hosted on Google’s <a href="https://www.blogger.com">Blogger</a> service, and it did well. Although Blogger offers a fair amount of flexibility, you can’t have total control over it, and having to write posts with the built in <em>WYSIWYG</em> interface or pasting the HTML output is one of the bigger pain points of it. I solved most of that by writing a <a href="http://www.sillybytes.net/2016/09/how-do-i-blog-blogger-posts-from.html">CLI tool</a> that allows me to write my posts offline in <em>markdown</em>, compile them, and deploy them from my terminal leveraging the Blogger’s convenient API. But I still have the feeling that it isn’t good enough.</p>
 <p>In this post I will describe the process of porting an existing Blogger blog to <em>Hakyll</em> and <em>GitHub pages</em> using <em>Silly Bytes</em> itself as a case study.</p>
 <!--more-->
 <h1 id="expectations">Expectations</h1>
 <p>So here is what I want instead:</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li>Completely port <em>Silly Bytes</em> to <em>Hakyll</em> and <em>GitHub pages</em></li>
 </ol>
 <p>Write every post in <em>markdown</em> only, and have them generated automatically.</p>
-<ol start="2" style="list-style-type: decimal">
+<ol start="2" type="1">
 <li>Further customize the design</li>
 </ol>
 <p>While I’ve managed to get pretty far with Blogger’s custom CSS option, there are still some aspects that doesn’t quite fit what I want.</p>
-<ol start="3" style="list-style-type: decimal">
+<ol start="3" type="1">
 <li>Preserve all the links to my previous posts</li>
 </ol>
-<p>There are quite a few links to my posts all over the place: Reddit, Taringa, ElHacker.net, Facebook, etc. I want them to keep working just fine.</p>
+<p>There are quite a few links to my posts all over the place: Reddit, Taringa, ElHacker.net, Facebook, etc. I want them to keep them working just fine.</p>
 <h1 id="the-initial-setup">The initial setup</h1>
 <p>We’ll strive to keep the old blog completely functional till the last moment when we finally change where the domain name points to.</p>
 <h2 id="github-page">GitHub page</h2>
@@ -180,34 +181,34 @@ $ stack init
 $ stack build</code></pre>
 <p>By default, Hakyll outputs the generated site in a <code>_site</code> directory, but <em>GitHub pages</em> will read the site from a <code>docs</code> directory, so let’s fix that by editing the <code>site.hs</code> file.</p>
 <p>The default <code>main</code> function in <code>site.hs</code> uses the <code>hakyll</code> function, which uses the default configuration, so we must change that to use a custom one:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> hakyllWith config <span class="fu">$</span> <span class="kw">do</span>
-    <span class="fu">...</span>
-    <span class="fu">...</span>
-
-
-
-<span class="ot">config ::</span> <span class="dt">Configuration</span>
-config <span class="fu">=</span> <span class="dt">Configuration</span>
-    { destinationDirectory <span class="fu">=</span> <span class="st">&quot;docs&quot;</span>
-    , storeDirectory       <span class="fu">=</span> <span class="st">&quot;_cache&quot;</span>
-    , tmpDirectory         <span class="fu">=</span> <span class="st">&quot;_cache/tmp&quot;</span>
-    , providerDirectory    <span class="fu">=</span> <span class="st">&quot;.&quot;</span>
-    , ignoreFile           <span class="fu">=</span> ignoreFile'
-    , deployCommand        <span class="fu">=</span> <span class="st">&quot;echo 'No deploy command specified' &amp;&amp; exit 1&quot;</span>
-    , deploySite           <span class="fu">=</span> system <span class="fu">.</span> deployCommand
-    , inMemoryCache        <span class="fu">=</span> <span class="dt">True</span>
-    , previewHost          <span class="fu">=</span> <span class="st">&quot;127.0.0.1&quot;</span>
-    , previewPort          <span class="fu">=</span> <span class="dv">8000</span>
-    }
-  <span class="kw">where</span>
-    ignoreFile' path
-        <span class="fu">|</span> <span class="st">&quot;.&quot;</span>    <span class="ot">`isPrefixOf`</span> fileName <span class="fu">=</span> <span class="dt">True</span>
-        <span class="fu">|</span> <span class="st">&quot;#&quot;</span>    <span class="ot">`isPrefixOf`</span> fileName <span class="fu">=</span> <span class="dt">True</span>
-        <span class="fu">|</span> <span class="st">&quot;~&quot;</span>    <span class="ot">`isSuffixOf`</span> fileName <span class="fu">=</span> <span class="dt">True</span>
-        <span class="fu">|</span> <span class="st">&quot;.swp&quot;</span> <span class="ot">`isSuffixOf`</span> fileName <span class="fu">=</span> <span class="dt">True</span>
-        <span class="fu">|</span> otherwise                    <span class="fu">=</span> <span class="dt">False</span>
-      <span class="kw">where</span>
-        fileName <span class="fu">=</span> takeFileName path</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb2-1" data-line-number="1">main <span class="fu">=</span> hakyllWith config <span class="fu">$</span> <span class="kw">do</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">    <span class="fu">...</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">    <span class="fu">...</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="ot">config ::</span> <span class="dt">Configuration</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">config <span class="fu">=</span> <span class="dt">Configuration</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">    { destinationDirectory <span class="fu">=</span> <span class="st">&quot;docs&quot;</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10">    , storeDirectory       <span class="fu">=</span> <span class="st">&quot;_cache&quot;</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11">    , tmpDirectory         <span class="fu">=</span> <span class="st">&quot;_cache/tmp&quot;</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12">    , providerDirectory    <span class="fu">=</span> <span class="st">&quot;.&quot;</span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13">    , ignoreFile           <span class="fu">=</span> ignoreFile'</a>
+<a class="sourceLine" id="cb2-14" data-line-number="14">    , deployCommand        <span class="fu">=</span> <span class="st">&quot;echo 'No deploy command specified' &amp;&amp; exit 1&quot;</span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15">    , deploySite           <span class="fu">=</span> system <span class="fu">.</span> deployCommand</a>
+<a class="sourceLine" id="cb2-16" data-line-number="16">    , inMemoryCache        <span class="fu">=</span> <span class="dt">True</span></a>
+<a class="sourceLine" id="cb2-17" data-line-number="17">    , previewHost          <span class="fu">=</span> <span class="st">&quot;127.0.0.1&quot;</span></a>
+<a class="sourceLine" id="cb2-18" data-line-number="18">    , previewPort          <span class="fu">=</span> <span class="dv">8000</span></a>
+<a class="sourceLine" id="cb2-19" data-line-number="19">    }</a>
+<a class="sourceLine" id="cb2-20" data-line-number="20">  <span class="kw">where</span></a>
+<a class="sourceLine" id="cb2-21" data-line-number="21">    ignoreFile' path</a>
+<a class="sourceLine" id="cb2-22" data-line-number="22">        <span class="fu">|</span> <span class="st">&quot;.&quot;</span>    <span class="ot">`isPrefixOf`</span> fileName <span class="fu">=</span> <span class="dt">True</span></a>
+<a class="sourceLine" id="cb2-23" data-line-number="23">        <span class="fu">|</span> <span class="st">&quot;#&quot;</span>    <span class="ot">`isPrefixOf`</span> fileName <span class="fu">=</span> <span class="dt">True</span></a>
+<a class="sourceLine" id="cb2-24" data-line-number="24">        <span class="fu">|</span> <span class="st">&quot;~&quot;</span>    <span class="ot">`isSuffixOf`</span> fileName <span class="fu">=</span> <span class="dt">True</span></a>
+<a class="sourceLine" id="cb2-25" data-line-number="25">        <span class="fu">|</span> <span class="st">&quot;.swp&quot;</span> <span class="ot">`isSuffixOf`</span> fileName <span class="fu">=</span> <span class="dt">True</span></a>
+<a class="sourceLine" id="cb2-26" data-line-number="26">        <span class="fu">|</span> otherwise                    <span class="fu">=</span> <span class="dt">False</span></a>
+<a class="sourceLine" id="cb2-27" data-line-number="27">      <span class="kw">where</span></a>
+<a class="sourceLine" id="cb2-28" data-line-number="28">        fileName <span class="fu">=</span> takeFileName path</a></code></pre></div>
 <p>Here I’ve pretty much left the default configuration intact and only changed the <code>destinationDirectory</code> field to be <code>docs</code>.</p>
 <p>Now recompile and regenerate the site:</p>
 <pre><code>$ stack build
@@ -223,10 +224,7 @@ $ git commit -m &quot;Build&quot;</code></pre>
 <pre><code>$ git push origin master</code></pre>
 <p>No need for esoteric spells here.</p>
 <h1 id="dont-shatter-my-links">Don’t shatter my links!</h1>
-<div class="figure">
-<img src="../img/bloggerhakyll/links.png" class="img-responsive" />
-
-</div>
+<p><img src="../img/bloggerhakyll/links.png" class="img-responsive" /></p>
 <p>It is imperative to preserve the links to my previous posts that were originally published on Blogger, so they keep pointing to the right post.</p>
 <h2 id="preserve-legacy-paths">Preserve legacy paths</h2>
 <p>Blogger paths convention is as follows:</p>
@@ -261,19 +259,19 @@ $ git commit -m &quot;Build&quot;</code></pre>
     |
     +---- ...</code></pre>
 <p>Then we need an additional rule in <code>site.hs</code></p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">match <span class="st">&quot;posts/legacy/**&quot;</span> <span class="fu">$</span> <span class="kw">do</span>
-    route <span class="fu">$</span> customRoute <span class="fu">$</span> (flip replaceExtension <span class="st">&quot;html&quot;</span>) <span class="fu">.</span> joinPath
-        <span class="fu">.</span> (drop <span class="dv">2</span>) <span class="fu">.</span> splitPath <span class="fu">.</span> toFilePath
-    compile <span class="fu">$</span> pandocCompiler
-        <span class="fu">&gt;&gt;=</span> saveSnapshot <span class="st">&quot;content&quot;</span>
-        <span class="fu">&gt;&gt;=</span> loadAndApplyTemplate <span class="st">&quot;templates/post.html&quot;</span>    postCtx
-        <span class="fu">&gt;&gt;=</span> loadAndApplyTemplate <span class="st">&quot;templates/default.html&quot;</span> postCtx
-        <span class="fu">&gt;&gt;=</span> relativizeUrls</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb8-1" data-line-number="1">match <span class="st">&quot;posts/legacy/**&quot;</span> <span class="fu">$</span> <span class="kw">do</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">    route <span class="fu">$</span> customRoute <span class="fu">$</span> (flip replaceExtension <span class="st">&quot;html&quot;</span>) <span class="fu">.</span> joinPath</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">        <span class="fu">.</span> (drop <span class="dv">2</span>) <span class="fu">.</span> splitPath <span class="fu">.</span> toFilePath</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">    compile <span class="fu">$</span> pandocCompiler</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5">        <span class="fu">&gt;&gt;=</span> saveSnapshot <span class="st">&quot;content&quot;</span></a>
+<a class="sourceLine" id="cb8-6" data-line-number="6">        <span class="fu">&gt;&gt;=</span> loadAndApplyTemplate <span class="st">&quot;templates/post.html&quot;</span>    postCtx</a>
+<a class="sourceLine" id="cb8-7" data-line-number="7">        <span class="fu">&gt;&gt;=</span> loadAndApplyTemplate <span class="st">&quot;templates/default.html&quot;</span> postCtx</a>
+<a class="sourceLine" id="cb8-8" data-line-number="8">        <span class="fu">&gt;&gt;=</span> relativizeUrls</a></code></pre></div>
 <p>This will ensure that the <code>year/month/post.html</code> directory structure is preserved on the resulting generated site.</p>
 <h2 id="port-legacy-posts">Port legacy posts</h2>
 <p>From here, a pretty much manual porting process is required. Most of my legacy posts were originally published right in the Blogger interface, so the must first be ported to <em>markdow</em>.</p>
 <p>The porting process is as follows:</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li>Visit the legacy post and copy the trailing name of it from the URL.</li>
 <li>Create the appropriate directory structure inside <code>posts/legacy</code> to preserve the same <code>year/month/post.html</code> path.</li>
 <li>Create a <em>markdown</em> file with the same name as it appears in the URL, but with the <code>.md</code> extension.</li>
@@ -282,10 +280,7 @@ $ git commit -m &quot;Build&quot;</code></pre>
 </ol>
 <p>Any newer posts that are created after the porting can live in the <code>posts</code> directory, there is no need to keep the <code>year/month/post.html</code> any more.</p>
 <h1 id="the-migration">The migration</h1>
-<div class="figure">
-<img src="../img/bloggerhakyll/migration.jpg" class="img-responsive" />
-
-</div>
+<p><img src="../img/bloggerhakyll/migration.jpg" class="img-responsive" /></p>
 <p>The only thing that is left is the actual migration by pointing the domain name to the new location.</p>
 <p>This arises a bigger problem though, given that we are serving the blog from <code>sillybytes/docs</code> we’ll need a <em>URL Redirect</em> record pointing to <code>sillybytes.github.io/sillybytes</code> rather than a <em>CNAME</em> to just <code>sillybytes.github.io</code>. If you’re fine with that, then you’re done.</p>
 <p>I really wanted a proper <em>CNAME</em> record, so I had to change the setup a bit:</p>
@@ -295,23 +290,17 @@ $ git commit -m &quot;Build&quot;</code></pre>
 <li>Point the domain name with a <em>CNAME</em> record to <code>sillybytes.github.io</code>.</li>
 </ul>
 <h1 id="new-cli-tool">New CLI tool</h1>
-<div class="figure">
-<img src="../img/bloggerhakyll/shot.png" class="img-responsive" />
-
-</div>
+<p><img src="../img/bloggerhakyll/shot.png" class="img-responsive" /></p>
 <p>The <a href="https://github.com/sillybytes/sillybytes_tool">CLI tool</a> I was using before for Blogger deployment is no longer useful, but I can still adapt it to the new deployment schema:</p>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="fu">cp</span> -rfv _site/* ../sillybytes.github.io/
-<span class="bu">cd</span> ../sillybytes.github.io
-<span class="ex">display_info</span> <span class="st">&quot;Deploying...&quot;</span>
-<span class="fu">git</span> add .
-<span class="fu">git</span> commit -m <span class="st">&quot;Deploy&quot;</span>
-<span class="fu">git</span> push origin master
-<span class="ex">display_success</span> <span class="st">&quot;Deployed!&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="fu">cp</span> -rfv _site/* ../sillybytes.github.io/</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="bu">cd</span> ../sillybytes.github.io</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="ex">display_info</span> <span class="st">&quot;Deploying...&quot;</span></a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="fu">git</span> add .</a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="fu">git</span> commit -m <span class="st">&quot;Deploy&quot;</span></a>
+<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="fu">git</span> push origin master</a>
+<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="ex">display_success</span> <span class="st">&quot;Deployed!&quot;</span></a></code></pre></div>
 <p>As well as aliasing common <em>Hakyll</em> commands:</p>
-<div class="figure">
-<img src="../img/bloggerhakyll/shot1.png" class="img-responsive" />
-
-</div>
+<p><img src="../img/bloggerhakyll/shot1.png" class="img-responsive" /></p>
         </div>
     </div>
 </div>

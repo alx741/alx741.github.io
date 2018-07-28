@@ -146,7 +146,8 @@
         </div>
         <div class="post-content">
             <p><img src="../../img/stm32/thumbnail.png" id="thumbnail" /><br />
-So you have been using AVR, PIC or some other microcontroller for a while and discover that ST Microelectronics offers some pretty cheap 32 bit ARM and feature rich microcontrollers: <a href="http://www.st.com/content/st_com/en/products/microcontrollers/stm32-32-bit-arm-cortex-mcus.html?querycriteria=productId=SC1169">STM32</a>, and want to start playing with them but don’t know how or where to start; I’m here to help.</p>
+</p>
+<p>So you have been using AVR, PIC or some other microcontroller for a while and discover that ST Microelectronics offers some pretty cheap 32 bit ARM and feature rich microcontrollers: <a href="http://www.st.com/content/st_com/en/products/microcontrollers/stm32-32-bit-arm-cortex-mcus.html?querycriteria=productId=SC1169">STM32</a>, and want to start playing with them but don’t know how or where to start; I’m here to help.</p>
 <p><a href="https://en.wikipedia.org/wiki/ARM_architecture">ARM</a> is taking over the embedding wold, they’re ubiquitous in smart phones, tablets, laptops, other computers, cars, refrigerators, microwave ovens, monitors, printers, you name it!</p>
 <p>Note: Be aware that <em>ARM</em> is an <strong>architecture</strong> that manufacturers can <em>implement</em>. Is a common mistake to think <em>ARM</em> is a microcontroller on itself, it is not.</p>
 <!--more-->
@@ -161,19 +162,13 @@ So you have been using AVR, PIC or some other microcontroller for a while and di
 <li><a href="http://www.st.com/content/st_com/en/products/evaluation-tools/product-evaluation-tools/mcu-eval-tools/stm32-mcu-eval-tools/stm32-mcu-nucleo.html?querycriteria=productId=LN1847">Nucleo</a></li>
 <li><a href="http://www.st.com/content/st_com/en/products/evaluation-tools/product-evaluation-tools/mcu-eval-tools/stm32-mcu-eval-tools/stm32-mcu-discovery-kits.html?querycriteria=productId=LN1848">Discovery</a></li>
 </ul>
-<div class="figure">
-<img src="../../img/stm32/shot1.png" class="img-responsive" />
-
-</div>
+<p><img src="../../img/stm32/shot1.png" class="img-responsive" /></p>
 <p>Although these are cheap and amazing, we can go even cheaper with the great breakout boards available on Ebay. You can get a STM32F103 chip in a nice board for less than $5 (USD).</p>
 <p><img src="../../img/stm32/shot2.png" class="img-responsive" /> <img src="../../img/stm32/shot3.png" class="img-responsive" /></p>
 <h3 id="programmer">Programmer</h3>
 <p>STM32 chips are programmed using a <a href="https://en.wikipedia.org/wiki/ARM_architecture">ST-LINK</a> device, which is an in-circuit debugger and programmer that interfaces with the chip using JTAG or Serial Wire Debugging (<a href="http://www.arm.com/products/system-ip/debug-trace/coresight-soc-components/serial-wire-debug.php">SWD</a>). This is similar to the USBASP for AVR or the PICkit for PIC.</p>
 <p>Development boards like the <em>Nucleo</em> include the st-link hardware directly into the board, so you can connect it to a host computer using USB and program/debug the target chip on the board without any additional external hardware.</p>
-<div class="figure">
-<img src="../../img/stm32/shot4.png" class="img-responsive" />
-
-</div>
+<p><img src="../../img/stm32/shot4.png" class="img-responsive" /></p>
 <p>If you’re using another breakout board (like the Ebay ones) or if you mounted a chip in a custom PCB, you will need an external st-link hardware. Fortunately they are also available for cheap on Ebay or you can buy the official one for a few extra bucks if you prefer, they both will work exactly the same with the flashing software.</p>
 <p><img src="../../img/stm32/shot5.png" class="img-responsive" /> <img src="../../img/stm32/shot6.png" class="img-responsive" /></p>
 <h4 id="connections">Connections</h4>
@@ -277,10 +272,7 @@ $ cd stm32-h103/miniblink</code></pre>
 <p>Run the firmware:</p>
 <pre><code>(gdb) continue</code></pre>
 <p>You can stop it with <code>C-c</code>.</p>
-<div class="figure">
-<img src="../../img/stm32/shot9.jpg" class="img-responsive" />
-
-</div>
+<p><img src="../../img/stm32/shot9.jpg" class="img-responsive" /></p>
         </div>
     </div>
 </div>

@@ -146,17 +146,15 @@
         </div>
         <div class="post-content">
             <p><img src="../../img/ratclip/thumbnail.png" id="thumbnail" /><br />
-This is the second post about the <a href="http://www.nongnu.org/ratpoison/">Ratpoison window manager</a>.</p>
+</p>
+<p>This is the second post about the <a href="http://www.nongnu.org/ratpoison/">Ratpoison window manager</a>.</p>
 <p>How many times did you found your self keeping snippets of text in a text editor just so you can use them later because your clipboard will be overwritten with the new selection?</p>
 <p>Here is a very neat solution using Ratpoison: a clipboard stack.</p>
 <p>Using <code>xclip</code>, a simple shell script and the appropriate Ratpoison key bindings we could accomplish the following:</p>
 <!--more-->
 <p>Note that <code>C-t</code> is the default Ratpoison escape sequence.</p>
 <p>With <code>C-t =</code> the clipboard stack is displayed using <em>ratmen</em>, so we can select the snippet we want to be the current one.</p>
-<div class="figure">
-<img src="../../img/ratclip/shot1.png" class="img-responsive" />
-
-</div>
+<p><img src="../../img/ratclip/shot1.png" class="img-responsive" /></p>
 <p>With <code>C-t #</code> a <em>ratmen</em> menu is displayed so we can perform operations on the stack such as:</p>
 <ul>
 <li>Push: Push the current selection into the stack</li>
@@ -164,10 +162,7 @@ This is the second post about the <a href="http://www.nongnu.org/ratpoison/">Rat
 <li>Delete: Display the list of snippets in the stack so we can select one to delete it</li>
 <li>Purge: Completely purge the content of the clipboard stack</li>
 </ul>
-<div class="figure">
-<img src="../../img/ratclip/shot2.png" class="img-responsive" />
-
-</div>
+<p><img src="../../img/ratclip/shot2.png" class="img-responsive" /></p>
 <p>We get this functionality using the Ratpoison bindings:</p>
 <pre><code>bind numbersign  exec clipboard_stack.sh menu
 bind equal  exec clipboard_stack.sh select</code></pre>

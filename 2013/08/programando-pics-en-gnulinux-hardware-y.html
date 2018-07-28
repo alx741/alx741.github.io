@@ -146,7 +146,8 @@
         </div>
         <div class="post-content">
             <p><img src="../../img/pic/thumbnail.png" id="thumbnail" /><br />
-Mi fuerte es la informática más no la electrónica, pero como se habrá podido apreciar en muchos de mis posts el objetivo de incursionar en un campo aún algo oscuro para mi es el de lograr conectar las capacidades de la informática para reflejar con ello algo en el mundo físico.</p>
+</p>
+<p>Mi fuerte es la informática más no la electrónica, pero como se habrá podido apreciar en muchos de mis posts el objetivo de incursionar en un campo aún algo oscuro para mi es el de lograr conectar las capacidades de la informática para reflejar con ello algo en el mundo físico.</p>
 <p>Así pues mientras nos metemos de cabeza en la ciencia de la electrónica tarde o temprano usaremos un micro controlador, el cual ya es un eslabón muy intermedio entre estas dos ciencias tan intimas.</p>
 <p>La razón es que un micro controlador (uC) es un dispositivo que implementa electrónicamente una maquina de Turing completa, y nos permitirá con sus prestaciones interactuar con circuitos electrónicos mediante algoritmos y programas de software, y es justamente aquí donde viene el problema…</p>
 <!--more-->
@@ -165,10 +166,7 @@ Mi fuerte es la informática más no la electrónica, pero como se habrá podido
 </ul>
 <p>Estos pines los podemos identificar fácilmente en el uC que tengamos buscando su <em>pinout</em>, por ejemplo:</p>
 <p>En el PIC18F4550 (Podemos usar cualquier PIC), tenemos su pinout:</p>
-<div class="figure">
-<img src="../../img/pic/pinout.png" class="img-responsive" />
-
-</div>
+<p><img src="../../img/pic/pinout.png" class="img-responsive" /></p>
 <ul>
 <li>Pin #1: <code>Vpp</code></li>
 <li>Pin #40: <code>PGD</code> (Programming Data)</li>
@@ -179,55 +177,31 @@ Mi fuerte es la informática más no la electrónica, pero como se habrá podido
 <p>Ahora que sabemos cuales son los pines correspondientes a ICSP en nuestro PIC, armaremos el hardware que conectará la PC con el uC (PIC). Tendrá 5 cables correspondientes con los pines de ICSP (<em>vpp,vdd,vss,data,clock</em>) y que conectaremos con los pines correspondientes en el uC (PIC) los cuales ya conocemos.</p>
 <p>El hardware hace uso del puerto paralelo de la PC, seguramente esto será un impedimento para muchos, pero existe una gran posibilidad de que si andas en estas cosas, tendrás un PC viejito y que tenga puerto paralelo, la ventaja es que el hardware que construiremos es muy barato y simple, por que si quieres uno USB existen muchos tutoriales de como montar uno o incluso puedes comprarlo en cualquier tienda de electrónica (algo caro) y usarlo casi sin mayor problema, pero nosotros estamos aquí para hacerlo de esta manera.</p>
 <p>Este es el puerto paralelo, asegúrate de tener una PC que lo tenga antes de continuar.</p>
-<div class="figure">
-<img src="../../img/pic/shot.jpg" class="img-responsive" />
-
-</div>
+<p><img src="../../img/pic/shot.jpg" class="img-responsive" /></p>
 <p>Hasta aquí todo perfecto, ahora proporciono el circuito que he obtenido tras mucha prueba y error, así que ya puedo asegurar que este funciona de maravilla!</p>
-<div class="figure">
-<img src="../../img/pic/scheme1.png" class="img-responsive" />
-
-</div>
-<ol style="list-style-type: decimal">
+<p><img src="../../img/pic/scheme1.png" class="img-responsive" /></p>
+<ol type="1">
 <li>En el diseño los pines en forma de triangulo de color verde etiquetados como <code>PPx</code> (donde <em>x</em> es un numero) corresponden con los pines del puerto paralelo, así el pin <code>PP2</code> se conecta en el pin <em>#2</em> del puerto paralelo, y para saber que pin es ese en el puerto usamos un pinout:</li>
 </ol>
-<div class="figure">
-<img src="../../img/pic/scheme2.png" class="img-responsive" />
-
-</div>
+<p><img src="../../img/pic/scheme2.png" class="img-responsive" /></p>
 <p>No hace falta que nos preocupemos en los datos que tiene, solamente en los números para saber donde conectar.</p>
-<ol start="2" style="list-style-type: decimal">
+<ol start="2" type="1">
 <li>En el diseño los pines que terminan en un pequeño circulo y que tienen una etiqueta son los cables que irán finalmente a los pines ICSP del uC (PIC) [Vpp,Vdd,Data,Clock] y el pin <code>Vss</code> lo conectamos de cualquiera de aquellos triángulos formados de 3 lineas como aquel que está debajo del pin verde <code>PP25</code>.</li>
 </ol>
 <p>Listo! Ya lo tenemos, ahora solo resta montar este circuito en un protoboard si lo preferimos y sabemos que cables van al puerto paralelo y que cables a que pines del uC (PIC).</p>
 <p>Pero en mi caso he preferido hacer un montaje para poder usarlo siempre y con mayor comodidad (lo recomiendo muchísimo), aquí las instrucciones para hacerlo:</p>
 <p>Lo montaremos es una placa pre-perforada</p>
-<div class="figure">
-<img src="../../img/pic/shot1.jpg" class="img-responsive" />
-
-</div>
+<p><img src="../../img/pic/shot1.jpg" class="img-responsive" /></p>
 <p>Usaremos también un conector “DB25” (Macho) para facilitarnos la conexión al puerto paralelo</p>
-<div class="figure">
-<img src="../../img/pic/shot2.jpg" class="img-responsive" />
-
-</div>
+<p><img src="../../img/pic/shot2.jpg" class="img-responsive" /></p>
 <p>También algunos conectores para facilitarnos la conexión de alimentación y con los pines ICSP, en este caso tomaremos los +12V y +5V de una fuente de alimentación de PC, así que he tomado el conector de una lectora floppy , pero podemos usar el otro tipo de conector, tomándolo de un viejo HDD o unidad óptica, así podremos conectar fácilmente una fuente de alimentación y tomaremos los +12 del cable de color amarillo y los +5V del cable de color Rojo (GND de los cables negros).</p>
 <p>Además use un conector de 5 pines que saque de una vieja impresora, así tendremos cables separados para conectarlos a los pines ICSP del uC (PIC).</p>
 <p>Aquí lo apreciamos en el circuito terminado.</p>
-<div class="figure">
-<img src="../../img/pic/shot3.jpg" class="img-responsive" />
-
-</div>
+<p><img src="../../img/pic/shot3.jpg" class="img-responsive" /></p>
 <p>Con los elementos listados en el diagrama del circuito, los montamos en la placa como si de un protoboard se tratase, pero haciendo las conexiones con estaño (soldandolas)</p>
-<div class="figure">
-<img src="../../img/pic/shot4.jpg" class="img-responsive" />
-
-</div>
+<p><img src="../../img/pic/shot4.jpg" class="img-responsive" /></p>
 <p>Y obtenemos finalmente el circuito grabador conectado y listo para usarse. Claro que, en cuanto hayamos visto la parte del software (le fuente del PC debe estar encendida y el LED iluminado indicando que el hardware está encendido).</p>
-<div class="figure">
-<img src="../../img/pic/shot5.jpg" class="img-responsive" />
-
-</div>
+<p><img src="../../img/pic/shot5.jpg" class="img-responsive" /></p>
 <h1 id="software">Software</h1>
 <p>Ahora bien, tenemos el hardware construido y debidamente conectado. Necesitamos el software (para sistemas *unix, GNU/Linux en nuestro caso) para interactuar con el uC (PIC) mediante el protocolo ICSP.</p>
 <p>Para esto usaremos el software <em>Odyssey</em> que podemos descargar de aquí: <a href="https://github.com/alx741/odyssey">Odyssey</a></p>

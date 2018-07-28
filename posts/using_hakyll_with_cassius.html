@@ -146,29 +146,31 @@
         </div>
         <div class="post-content">
             <p><img src="../img/hakyllcassius/thumbnail.png" id="thumbnail" /><br />
-As a user of the <a href="http://www.yesodweb.com/">Yesod</a> framework, I’ve came to know and love the <a href="https://www.stackage.org/haddock/lts-8.4/shakespeare-2.0.12.1/Text-Cassius.html#v:cassius">Cassius</a> CSS templating language, although its reliance on Template Haskell is meant to fit better with the Yesod’s needs and makes it a bit cumbersome to use everywhere else, I still like the templating language itself and its features a lot.</p>
+</p>
+<p>As a user of the <a href="http://www.yesodweb.com/">Yesod</a> framework, I’ve came to know and love the <a href="https://www.stackage.org/haddock/lts-8.4/shakespeare-2.0.12.1/Text-Cassius.html#v:cassius">Cassius</a> CSS templating language, although its reliance on Template Haskell is meant to fit better with the Yesod’s needs and makes it a bit cumbersome to use everywhere else, I still like the templating language itself and its features a lot.</p>
 <p>That’s why I used it for styles generation in <a href="http://www.sillybytes.net">Silly Bytes</a> together with <a href="https://jaspervdj.be/hakyll/">Hakyll</a>. In this post I will describe the process.<br />
 <br />
 <br />
-<!--more--></p>
+</p>
+<!--more-->
 <h1 id="cassius-files">Cassius files</h1>
 <p>Our <code>.cassius</code> files will live inside the <code>css</code> directory, together with a <code>Gen.hs</code> Haskell module that will take the <em>Cassius</em> sources and compile them to <em>CSS</em>:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">{-# LANGUAGE TemplateHaskell #-}</span>
-
-<span class="kw">module</span> <span class="dt">Gen</span> <span class="kw">where</span>
-
-<span class="kw">import </span><span class="dt">Text.Cassius</span>
-<span class="kw">import </span><span class="dt">Data.Text.Lazy</span> (unpack)
-
-<span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span> <span class="kw">do</span>
-    writeFile <span class="st">&quot;default.css&quot;</span> <span class="fu">$</span> unpack <span class="fu">$</span> renderCss def
-    writeFile <span class="st">&quot;post.css&quot;</span> <span class="fu">$</span> unpack <span class="fu">$</span> renderCss post
-    writeFile <span class="st">&quot;post-list.css&quot;</span> <span class="fu">$</span> unpack <span class="fu">$</span> renderCss postList
-
-def <span class="fu">=</span> <span class="fu">$</span>(cassiusFile <span class="st">&quot;default.cassius&quot;</span>) ()
-post <span class="fu">=</span> <span class="fu">$</span>(cassiusFile <span class="st">&quot;post.cassius&quot;</span>) ()
-postList <span class="fu">=</span> <span class="fu">$</span>(cassiusFile <span class="st">&quot;post-list.cassius&quot;</span>) ()</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="ot">{-# LANGUAGE TemplateHaskell #-}</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">module</span> <span class="dt">Gen</span> <span class="kw">where</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">import</span> <span class="dt">Text.Cassius</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw">import</span> <span class="dt">Data.Text.Lazy</span> (unpack)</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="ot">main ::</span> <span class="dt">IO</span> ()</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">main <span class="fu">=</span> <span class="kw">do</span></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">    writeFile <span class="st">&quot;default.css&quot;</span> <span class="fu">$</span> unpack <span class="fu">$</span> renderCss def</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">    writeFile <span class="st">&quot;post.css&quot;</span> <span class="fu">$</span> unpack <span class="fu">$</span> renderCss post</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">    writeFile <span class="st">&quot;post-list.css&quot;</span> <span class="fu">$</span> unpack <span class="fu">$</span> renderCss postList</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb1-14" data-line-number="14">def <span class="fu">=</span> <span class="fu">$</span>(cassiusFile <span class="st">&quot;default.cassius&quot;</span>) ()</a>
+<a class="sourceLine" id="cb1-15" data-line-number="15">post <span class="fu">=</span> <span class="fu">$</span>(cassiusFile <span class="st">&quot;post.cassius&quot;</span>) ()</a>
+<a class="sourceLine" id="cb1-16" data-line-number="16">postList <span class="fu">=</span> <span class="fu">$</span>(cassiusFile <span class="st">&quot;post-list.cassius&quot;</span>) ()</a></code></pre></div>
 <p>This module, when executed (<code>runhaskell Gen.hs</code>), will compile the <em>Cassius</em> sources <code>default.cassius</code>, <code>post.cassius</code> and <code>post-list.cassius</code> to the corresponding <em>CSS</em> files that the -untouched- <em>CSS</em> rule in <code>site.hs</code> will take and use in the generated site.</p>
 <h1 id="compiling">Compiling</h1>
 <p>The <em>Cassius</em> compilation doesn’t happen when we <code>stack exec site build</code>, as we haven’t defined a rule, nor a compiler for them in <code>site.hs</code> and we won’t, because the Template Haskell requirements mess things up.</p>

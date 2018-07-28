@@ -146,7 +146,8 @@
         </div>
         <div class="post-content">
             <p><img src="../img/keter/thumbnail.png" id="thumbnail" /><br />
-<a href="https://github.com/snoyberg/keter">Keter</a> is the <a href="http://www.yesodweb.com/">Yesod</a>’s deployment system, fully featured and a joy to use, but the are a couple trapdoors that the documentation doesn’t cover, and that the user has to find out for her self; So I’ll try to give them away here together with a walk-through tutorial.</p>
+</p>
+<p><a href="https://github.com/snoyberg/keter">Keter</a> is the <a href="http://www.yesodweb.com/">Yesod</a>’s deployment system, fully featured and a joy to use, but the are a couple trapdoors that the documentation doesn’t cover, and that the user has to find out for her self; So I’ll try to give them away here together with a walk-through tutorial.</p>
 <p>Although Keter is flexible and general enough to be used with various kind of applications and web frameworks, here I’m going to assume you’re using it to deploy Yesod applications. Moreover, I’ll assume you’re using Yesod’s scaffolding, as it is the preferred way to write production ready applications.</p>
 <!--more-->
 <p>I’m also taking for granted that you’ve already installed on your server system whatever DBMS that your Yesod app needs, and have also created the app’s databases.</p>
@@ -235,10 +236,7 @@ listeners:
 <h4 id="hosts-configuration">Hosts Configuration</h4>
 <p>The most important part of the Keter configuration is perhaps the <code>hosts</code> option of the <code>webapp</code> stanza, the hosts you declare here are the ones that your application is going to respond to. Unless you’re using a separate domain for serving static files, be sure to keep the <code>hosts</code> option of the <code>static-files</code> stanza in sync with the <code>webapp</code> one.</p>
 <p>This one here is a pretty common error message when trying to deploy a Yesod application (and failing miserably):</p>
-<div class="figure">
-<img src="../img/keter/shot1.png" class="img-responsive" />
-
-</div>
+<p><img src="../img/keter/shot1.png" class="img-responsive" /></p>
 <p>There is more than one reason for this, but the main one is that the domain name or IP address doesn’t exactly match one of the hosts provided in the <code>hosts</code> option.</p>
 <p>If you’re serving only one application and using <em>Keter</em> as the main server listening on port <code>80</code>, then having your domain name in <code>hosts</code> will pretty much suffice, BUT most of the time, even if your serving only one application, you’re probably using a frontend server like <em>Nginx</em> or <em>Apache</em>, in which case you have to consider the port the reverse proxy is pointing to.</p>
 <p>Take for instance this <em>Nginx</em> reverse proxy configuration for an app that lives on <code>blog.example.com</code></p>
@@ -271,10 +269,7 @@ listeners:
 <h1 id="other-sources-of-error">Other sources of error</h1>
 <h2 id="welcome-to-keter">“Welcome to Keter”</h2>
 <p>If you’re still reaching this error:</p>
-<div class="figure">
-<img src="../img/keter/shot1.png" class="img-responsive" />
-
-</div>
+<p><img src="../img/keter/shot1.png" class="img-responsive" /></p>
 <p>Unfortunately, the same error message appears if an application that responds to that host is actually found, but is failing to start.</p>
 <p>Check the <code>/opt/keter/log/app-yourapp/current.log</code> log file, chances are you have changes in your persistent models that can’t be reflected in your database without user intervention, so be sure to manually fix them the same way you have to do in your development database.</p>
 <h2 id="changes-in-new-deployed-version-not-taking-effect">Changes in new deployed version not taking effect</h2>

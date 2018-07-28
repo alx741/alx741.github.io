@@ -146,7 +146,8 @@
         </div>
         <div class="post-content">
             <p><img src="../../img/picuart/thumbnail.png" id="thumbnail" /><br />
-NOTE: This post is available in Spanish only. Please use a software translator.</p>
+</p>
+<p>NOTE: This post is available in Spanish only. Please use a software translator.</p>
 <p>He dejado de usar microcontroladores PIC por los motivos explicados <a href="http://www.sillybytes.net/2016/06/from-pic-to-avr.html">aquí</a>; Pero voy a dedicar este post para escribir y explicar un programa sencillo escrito en ensamblador para el <strong>PIC16F876A</strong>.</p>
 <p>El objetivo es el siguiente:</p>
 <p>Se desea usar el microcontrolador para llevar a cabo la conversión analógica-digital de una tensión variable (un LDR o un potenciómetro por ejemplo) y transmitir el resultado usando la UART. Además debe ser posible recibir por la UART un byte que debe alterar la configuración del Conversor Análogo Digital (DAC) interno del microcontrolador para, por ejemplo, cambiar el canal de entrada de la señal analógica o modificar la velocidad del reloj de conversión.</p>
@@ -154,10 +155,7 @@ NOTE: This post is available in Spanish only. Please use a software translator.<
 <p>El código ha sido ensamblado con el ensamblador de GNU <em>gpasm</em> del juego de herramientas <a href="http://gputils.sourceforge.net/">gputils</a>, pero debería ser perfectamente compatible con las herramientas MPLAB de Microchip que no uso porque <a href="http://silly-bytes.blogspot.com/2016/03/why-do-i-hate-ides.html">odio los IDEs</a>. En cualquier caso la explicación y el 99% del código debería ser útil sin modificación alguna.</p>
 <p>Este post se deberá leer en paralelo junto con el <em>datasheet</em> del microcontrolador en cuestión <strong>PIC16F876A</strong> que se puede encontrar aquí: http://ww1.microchip.com/downloads/en/DeviceDoc/39582C.pdf</p>
 <p>Además tener en cuenta los pines del microcontrolador:</p>
-<div class="figure">
-<img src="../../img/picuart/scheme.jpg" class="img-responsive" />
-
-</div>
+<p><img src="../../img/picuart/scheme.jpg" class="img-responsive" /></p>
 <p>El código completo <a href="https://github.com/Silly-Bytes/pic_asm_uart-adc/blob/master/code.asm">se encuentra aquí</a>.</p>
 <h2 id="declaración-de-registros-y-variables">Declaración de registros y variables</h2>
 <p>Empezamos examinando y explicando el código:</p>

@@ -146,7 +146,8 @@
         </div>
         <div class="post-content">
             <p><img src="../img/javawrong/thumbnail.png" id="thumbnail" /><br />
-I’ve spitted out quite a bit of rant about Java before in <a href="http://www.sillybytes.net/2016/03/why-do-i-hate-java.html">this post</a>, in which I basically list the annoyances that the ecosystem around Java imposes and how those problems are pretty much a big intersection with the problems of IDEs.</p>
+</p>
+<p>I’ve spitted out quite a bit of rant about Java before in <a href="http://www.sillybytes.net/2016/03/why-do-i-hate-java.html">this post</a>, in which I basically list the annoyances that the ecosystem around Java imposes and how those problems are pretty much a big intersection with the problems of IDEs.</p>
 <p>Here I’d like to talk about the problems of Java as a language. Although there are a few problems with Java, I can live with them if I have no other option but to write Java code; My <em>hate</em> to Java doesn’t really arise from Java being a bad <em>language</em> but rather from its <a href="http://www.sillybytes.net/2016/03/why-do-i-hate-java.html">surroundings</a>.</p>
 <!--more-->
 <h1 id="pointers-pointers-everywhere">Pointers, Pointers everywhere</h1>
@@ -171,10 +172,7 @@ I’ve spitted out quite a bit of rant about Java before in <a href="http://www.
 <p>But pointers in Java percolates in even more creative ways, take for instance the Equality comparison problem: When you perform equality comparison <code>==</code> what you’re actually comparing is <em>pointers equality</em>, not <em>values equality</em> for which you need a special method <code>equal()</code>, this is a low level language trait as its best, not to mention terribly counterintuitive.</p>
 <h1 id="the-bad-the-worst-and-the-ugly">The bad, the worst and the ugly</h1>
 <p>Java has a lot of additional traits that make it not only a low level language in disguise, but also a bad language in general.</p>
-<div class="figure">
-<img src="../img/javawrong/good_bad_ugly.jpg" class="img-responsive" />
-
-</div>
+<p><img src="../img/javawrong/good_bad_ugly.jpg" class="img-responsive" /></p>
 <h2 id="portability">Portability</h2>
 <p>People usually get confused by the “Java is portable” thing. When we say that “Java is portable” what we actually mean is that Java <em>Bytecode</em> can be ported.</p>
 <p>Lower level languages as <em>C</em> or <em>C++</em> are portable too, the difference is that these need to be recompiled for the target system. You don’t believe me? Take a look at <a href="https://www.gimp.org/">Gimp</a>, <a href="https://gcc.gnu.org/">GCC</a> and <a href="https://inkscape.org/en/">Inkscape</a>, just to mention a few.</p>
@@ -182,45 +180,42 @@ I’ve spitted out quite a bit of rant about Java before in <a href="http://www.
 <h2 id="awful-verbosity">Awful Verbosity</h2>
 <p>Most of the Java ugly verbosity is attributed to its static, strong typing discipline that forces you to annotate the types of everything, everywhere. But this is not the type discipline fault.</p>
 <p>In Java, you declare, for instance, a vector of integers:</p>
-<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="bu">Vector</span>&lt;<span class="bu">Integer</span>&gt; vector = <span class="kw">new</span> <span class="bu">Vector</span>&lt;<span class="bu">Integer</span>&gt;();</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="bu">Vector</span>&lt;<span class="bu">Integer</span>&gt; vector = <span class="kw">new</span> <span class="bu">Vector</span>&lt;<span class="bu">Integer</span>&gt;();</a></code></pre></div>
 <p>Or a vector of vectors of integers (a Matrix of integers):</p>
-<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="bu">Vector</span>&lt;<span class="bu">Vector</span>&lt;<span class="bu">Integer</span>&gt;&gt; vector = <span class="kw">new</span> <span class="bu">Vector</span>&lt;<span class="bu">Vector</span>&lt;<span class="bu">Integer</span>&gt;&gt;();</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="bu">Vector</span>&lt;<span class="bu">Vector</span>&lt;<span class="bu">Integer</span>&gt;&gt; vector = <span class="kw">new</span> <span class="bu">Vector</span>&lt;<span class="bu">Vector</span>&lt;<span class="bu">Integer</span>&gt;&gt;();</a></code></pre></div>
 <p>Java’s way of dealing with this to some extent, is the <em>diamond</em> operator <code>&lt;&gt;</code>, so instead we could write:</p>
-<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="bu">Vector</span>&lt;<span class="bu">Vector</span>&lt;<span class="bu">Integer</span>&gt;&gt; vector = <span class="kw">new</span> <span class="bu">Vector</span>&lt;&gt;();</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="bu">Vector</span>&lt;<span class="bu">Vector</span>&lt;<span class="bu">Integer</span>&gt;&gt; vector = <span class="kw">new</span> <span class="bu">Vector</span>&lt;&gt;();</a></code></pre></div>
 <p>But that’s pretty much as far as it gets. <em>C++11</em> on the other hand has the <code>auto</code> keyword to let the compiler do what compilers are good at: mechanical, repetitive, deterministic tasks; Type inference is one of those tasks.</p>
 <p>Every time, everywhere a time annotation is needed, you provide one only if it’s absolutely needed to avoid ambiguity, otherwise, just use <code>auto</code> and let the compiler do it for you.</p>
 <h2 id="resources-un-safety">Resources un-safety</h2>
 <p>One of the main Java selling points is <em>Memory Safety</em>, you see, in <em>C</em> you have to free your memory with <code>free()</code> in the right place, at the right time after every memory allocation with <code>malloc()</code> and friends. If you forget to free your memory you’ll have memory leaks, if you free it twice, or if you free it at the wrong time you’ll have a segmentation fault.</p>
 <p>Java on the other hand leverages the Garbage Collector to do it for you, the problem is, this works for memory only!</p>
 <p>Whenever you initialize a socket, or a database connection, or open a file, you still need to <em>close</em> it at the right time; So you still can and will have resources leakage.</p>
-<div class="figure">
-<img src="../img/javawrong/leak.jpg" class="img-responsive" />
-
-</div>
+<p><img src="../img/javawrong/leak.jpg" class="img-responsive" /></p>
 <p><em>C++</em> solves all of those problems beautifully by using <a href="http://en.cppreference.com/w/cpp/language/raii">Resource Acquisition Is Initialization</a> or RAII for short. And by the way, if you hit the same kind of problems you face in <em>C</em> with <code>malloc()</code> and <code>free()</code> but with <em>C++</em>’s <code>new</code> and <code>delete</code>, then you’re doing it wrong.</p>
 <p>By using <em>C++</em>’s RAII mechanisms you’ll never have to remember to free memory, close files, sockets, database connections or anything else. Java is supposed to be a higher level language than <em>C++</em> isn’t it?</p>
 <h2 id="exceptions-driven-programming">Exceptions Driven Programming</h2>
 <p><em>C++</em> and a lot of other imperative and OOP languages suffer form the <em>Exceptions</em> problems as well, but Java manages to screw it up even further.</p>
 <p>The heavy use of exceptions forces the programmer to write tons of</p>
-<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">try</span> {
-    ...
-}
-<span class="kw">catch</span>(someExcetption e) {
-    ...
-}
-<span class="kw">catch</span>(someOtherExcetption e) {
-    ...
-}
-<span class="kw">catch</span>(yetAnotherExcetption e) {
-    ...
-}</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">try</span> {</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">    ...</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">}</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw">catch</span>(someExcetption e) {</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">    ...</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">}</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="kw">catch</span>(someOtherExcetption e) {</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">    ...</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">}</a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="kw">catch</span>(yetAnotherExcetption e) {</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">    ...</a>
+<a class="sourceLine" id="cb4-12" data-line-number="12">}</a></code></pre></div>
 <p>The usual alternative is just:</p>
-<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">try</span> {
-    ...
-}
-<span class="kw">catch</span>(Excetption e) {
-    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;An exception has occurred, sorry ¯\_(ツ)_/¯&quot;</span>);
-}</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">try</span> {</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">    ...</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">}</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw">catch</span>(Excetption e) {</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;An exception has occurred, sorry ¯\_(ツ)_/¯&quot;</span>);</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">}</a></code></pre></div>
 <p>The result of this is that the code that matters, the actual logic we’re trying to encode in the program gets deeply buried in there, making it hard to read, hard to understand, hard to maintain, hard to modify and awfully ugly. Although most languages suffer from a variant of this issue, some other languages handle it gracefully by encoding the possibility of failure in the type system.</p>
 <p>Most programming languages break equational reasoning, but that’s pretty much normal; Exceptions go further by even breaking the imperative sequentiality (<em>cough</em> GOTO <em>cough</em>).</p>
 <h1 id="everything-is-an-object">Everything is an object</h1>

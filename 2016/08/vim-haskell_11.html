@@ -146,7 +146,8 @@
         </div>
         <div class="post-content">
             <p><img src="../../img/vimhask/thumbnail.png" id="thumbnail" /><br />
-So you’re writing in the right language using the right tool already, but let’s put some extra magic under our sleeves.<br />
+</p>
+<p>So you’re writing in the right language using the right tool already, but let’s put some extra magic under our sleeves.<br />
 <br />
 <br />
 <br />
@@ -202,10 +203,7 @@ augroup END</code></pre>
 <h3 id="omnicompletion">Omnicompletion</h3>
 <p>The <a href="https://github.com/eagletmt/neco-ghc">neco-ghc</a> plugin declares a complete omnifunction. Use it by defining the local <code>omnifunc</code>:</p>
 <pre class="vim"><code>au FileType haskell setlocal omnifunc=necoghc#omnifunc</code></pre>
-<div class="figure">
-<img src="../../img/vimhask/shot1.gif" class="img-responsive" />
-
-</div>
+<p><img src="../../img/vimhask/shot1.gif" class="img-responsive" /></p>
 <h3 id="compilation-and-testing">Compilation and testing</h3>
 <p>I’ve contributed the GHC compiler plugin to upstream Vim recently, but it may take a while before you get the latest vim runtime from your distribution. So in the meantime you can install it like any other plugin from the GitHub repository here: https://github.com/alx741/ghc.vim</p>
 <p>Then load it for the Haskell <em>filetype</em> in you <em>vimrc</em>:</p>
@@ -259,20 +257,17 @@ au FileType haskell nnoremap &lt;buffer&gt; gC :e *.cabal&lt;CR&gt;</code></pre>
 au FileType haskell nnoremap &lt;silent&gt;&lt;buffer&gt; gfs :GhcModSplitFunCase&lt;CR&gt;
 au FileType haskell nnoremap &lt;silent&gt;&lt;buffer&gt; gtt :GhcModType&lt;CR&gt;</code></pre>
 <p><code>git</code> (<em>g insert type</em>) will insert the missing type declaration of an expression, take for instance this Haskell code:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Hello</span> <span class="kw">where</span>
-
-f (<span class="dt">Just</span> a) <span class="fu">=</span> <span class="dt">Left</span> a
-f <span class="dt">Nothing</span> <span class="fu">=</span> <span class="dt">Right</span> ()</code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">module</span> <span class="dt">Hello</span> <span class="kw">where</span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3">f (<span class="dt">Just</span> a) <span class="fu">=</span> <span class="dt">Left</span> a</a>
+<a class="sourceLine" id="cb14-4" data-line-number="4">f <span class="dt">Nothing</span> <span class="fu">=</span> <span class="dt">Right</span> ()</a></code></pre></div>
 <p>With the cursor in the first <code>f</code> (the function name) using the <code>tt</code> mapping will produce:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Hello</span> <span class="kw">where</span>
-
-<span class="ot">f ::</span> <span class="dt">Maybe</span> a <span class="ot">-&gt;</span> <span class="dt">Either</span> a ()
-f (<span class="dt">Just</span> a) <span class="fu">=</span> <span class="dt">Left</span> a
-f <span class="dt">Nothing</span> <span class="fu">=</span> <span class="dt">Right</span> ()</code></pre></div>
-<div class="figure">
-<img src="../../img/vimhask/shot2.gif" class="img-responsive" />
-
-</div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">module</span> <span class="dt">Hello</span> <span class="kw">where</span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="ot">f ::</span> <span class="dt">Maybe</span> a <span class="ot">-&gt;</span> <span class="dt">Either</span> a ()</a>
+<a class="sourceLine" id="cb15-4" data-line-number="4">f (<span class="dt">Just</span> a) <span class="fu">=</span> <span class="dt">Left</span> a</a>
+<a class="sourceLine" id="cb15-5" data-line-number="5">f <span class="dt">Nothing</span> <span class="fu">=</span> <span class="dt">Right</span> ()</a></code></pre></div>
+<p><img src="../../img/vimhask/shot2.gif" class="img-responsive" /></p>
 <p>Neat!, go ahead and play around with the other mappings, you’ll be not disappointed.</p>
 <h3 id="hlint-integration">Hlint integration</h3>
 <p>By default, <a href="https://github.com/neomake/neomake">Neomake</a> will use <em>hlint</em> on the current file when the <code>:Neomake</code> command is invoked on a Haskell source file, so by adding a mapping:</p>
@@ -291,26 +286,23 @@ let g:hindent_indent_size = 4</code></pre>
 <p>One extra thing left is to align stuff in the code so it looks nicer</p>
 <pre class="vim"><code>au FileType haskell nmap &lt;silent&gt;&lt;buffer&gt; g&lt;space&gt; vii&lt;ESC&gt;:silent!'&lt;,'&gt; EasyAlign /-&gt;/&lt;CR&gt;</code></pre>
 <p>Take for instance this very dumb example for the sake of the argument:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Test</span> <span class="kw">where</span>
-
-<span class="ot">f ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
-f x <span class="fu">=</span> <span class="kw">case</span> x <span class="kw">of</span>
-    <span class="dv">1</span>   <span class="ot">-&gt;</span> <span class="st">&quot;1&quot;</span>
-    <span class="dv">2</span> <span class="ot">-&gt;</span>   <span class="st">&quot;2&quot;</span>
-    <span class="dv">3</span> <span class="ot">-&gt;</span> <span class="st">&quot;3&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">module</span> <span class="dt">Test</span> <span class="kw">where</span></a>
+<a class="sourceLine" id="cb20-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb20-3" data-line-number="3"><span class="ot">f ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">String</span></a>
+<a class="sourceLine" id="cb20-4" data-line-number="4">f x <span class="fu">=</span> <span class="kw">case</span> x <span class="kw">of</span></a>
+<a class="sourceLine" id="cb20-5" data-line-number="5">    <span class="dv">1</span>   <span class="ot">-&gt;</span> <span class="st">&quot;1&quot;</span></a>
+<a class="sourceLine" id="cb20-6" data-line-number="6">    <span class="dv">2</span> <span class="ot">-&gt;</span>   <span class="st">&quot;2&quot;</span></a>
+<a class="sourceLine" id="cb20-7" data-line-number="7">    <span class="dv">3</span> <span class="ot">-&gt;</span> <span class="st">&quot;3&quot;</span></a></code></pre></div>
 <p>Using <code>g&lt;space&gt;</code> we got:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Test</span> <span class="kw">where</span>
-
-<span class="ot">f ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
-f x <span class="fu">=</span>
-  <span class="kw">case</span> x <span class="kw">of</span>
-    <span class="dv">1</span> <span class="ot">-&gt;</span> <span class="st">&quot;1&quot;</span>
-    <span class="dv">2</span> <span class="ot">-&gt;</span> <span class="st">&quot;2&quot;</span>
-    <span class="dv">3</span> <span class="ot">-&gt;</span> <span class="st">&quot;3&quot;</span></code></pre></div>
-<div class="figure">
-<img src="../../img/vimhask/shot3.gif" class="img-responsive" />
-
-</div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">module</span> <span class="dt">Test</span> <span class="kw">where</span></a>
+<a class="sourceLine" id="cb21-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb21-3" data-line-number="3"><span class="ot">f ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">String</span></a>
+<a class="sourceLine" id="cb21-4" data-line-number="4">f x <span class="fu">=</span></a>
+<a class="sourceLine" id="cb21-5" data-line-number="5">  <span class="kw">case</span> x <span class="kw">of</span></a>
+<a class="sourceLine" id="cb21-6" data-line-number="6">    <span class="dv">1</span> <span class="ot">-&gt;</span> <span class="st">&quot;1&quot;</span></a>
+<a class="sourceLine" id="cb21-7" data-line-number="7">    <span class="dv">2</span> <span class="ot">-&gt;</span> <span class="st">&quot;2&quot;</span></a>
+<a class="sourceLine" id="cb21-8" data-line-number="8">    <span class="dv">3</span> <span class="ot">-&gt;</span> <span class="st">&quot;3&quot;</span></a></code></pre></div>
+<p><img src="../../img/vimhask/shot3.gif" class="img-responsive" /></p>
 <p>So much better!</p>
 <h3 id="easy-arrows-generation">Easy arrows generation</h3>
 <p>In Haskell, operators like <code>-&gt;</code> and <code>=&gt;</code> are very common and I find it cumbersome to type them manually. Let’s define a function:</p>

@@ -146,7 +146,8 @@
         </div>
         <div class="post-content">
             <p><img src="../../img/elf/thumbnail.png" id="thumbnail" /><br />
-<em>ELF</em> es el estándar de Linux para ficheros de código objeto ejecutables, el equivalente de un <em>EXE</em> en Windows.</p>
+</p>
+<p><em>ELF</em> es el estándar de Linux para ficheros de código objeto ejecutables, el equivalente de un <em>EXE</em> en Windows.</p>
 <p>ELF soporta:</p>
 <ul>
 <li>Diferentes Procesadores</li>
@@ -155,15 +156,15 @@
 </ul>
 <p>Un archivo que contiene código compilado se conoce como fichero objeto. Hasta aquí todos lo sabemos, pero quizás no todos saben o están plenamente consientes de que un fichero objeto puede ser de varios tipos:</p>
 <!--more-->
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li>Fichero objecto reubicable (relocatable)</li>
 </ol>
 <p>Este tipo de ficheros objeto contienen código y datos que pueden ser enlazados con otros ficheros reubicables para producir un fichero ejecutable o un objeto compartido (shared object).</p>
-<ol start="2" style="list-style-type: decimal">
+<ol start="2" type="1">
 <li>Fichero objeto compartido (shared object)</li>
 </ol>
 <p>Este tipo de objetos son usados por el enlazador (dynamic linker) para combinarlo con el ejecutable que lo necesita o con otros objetos compartidos. En <em>/usr/lib</em> encontrarán varios objetos compartidos, Estas son las famosas librerías compartidas o dinámicas (shared library). Así podemos hacer uso de una función contenida por una de estas librerías, sin necesidad de incluirlo directamente en nuestro código produciendo un ejecutable de menor tamaño, además de que distintas piezas de software pueden hacer uso de las librerías compartidas [quizás dedique una entrada a esto].</p>
-<ol start="3" style="list-style-type: decimal">
+<ol start="3" type="1">
 <li>Fichero ejecutable</li>
 </ol>
 <p>Este tipo de ficheros contienen ya el código compilado que luego haciendo uso de el enlazador se ligará con los demás ficheros objetos de nuestro software (nuestras librerías, clases, etc) y con los objetos compartidos de los cuales depende nuestro software.</p>

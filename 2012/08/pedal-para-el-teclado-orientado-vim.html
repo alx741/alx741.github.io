@@ -146,7 +146,8 @@
         </div>
         <div class="post-content">
             <p><img src="../../img/vimpedal/thumbnail.png" id="thumbnail" /><br />
-I’ve seen a VIM USB pedal tutorial before that triggers the <code>i</code> key, so we’re able to enter in <em>Insertion</em> mode with our foot.</p>
+</p>
+<p>I’ve seen a VIM USB pedal tutorial before that triggers the <code>i</code> key, so we’re able to enter in <em>Insertion</em> mode with our foot.</p>
 <p>I want to build something similar, but want to put effort in practical utility and simplicity. So i thought that trigger the <code>Esc</code> key would be more convenient due to the small, although cumbersome arm movement that requires to reach it. And you know, the <code>i</code> key is just under your finger so there’s no much of a time saving using a pedal.</p>
 <!--more-->
 <p>I’ve decided that the pedal should be directly attached to the keyboard circuitry, so here is what I’ve done.</p>
@@ -154,24 +155,15 @@ I’ve seen a VIM USB pedal tutorial before that triggers the <code>i</code> key
 <ul>
 <li>Telephone cable (4 wires inside), every kind of cable can be used (we need just 2 wires)</li>
 </ul>
-<div class="figure">
-<img src="../../img/vimpedal/shot1.jpg" class="img-responsive" />
-
-</div>
+<p><img src="../../img/vimpedal/shot1.jpg" class="img-responsive" /></p>
 <ul>
 <li>NA Interrupter</li>
 </ul>
-<div class="figure">
-<img src="../../img/vimpedal/shot2.jpg" class="img-responsive" />
-
-</div>
+<p><img src="../../img/vimpedal/shot2.jpg" class="img-responsive" /></p>
 <ul>
 <li>Cassette case</li>
 </ul>
-<div class="figure">
-<img src="../../img/vimpedal/shot3.jpg" class="img-responsive" />
-
-</div>
+<p><img src="../../img/vimpedal/shot3.jpg" class="img-responsive" /></p>
 <p>Of course you can change this materials with what you have in home.</p>
 <h1 id="construction">Construction</h1>
 <h2 id="software">Software</h2>
@@ -189,32 +181,20 @@ I’ve seen a VIM USB pedal tutorial before that triggers the <code>i</code> key
 <p>For option number 2 here is the solution (as root):</p>
 <pre><code># while [ 1=1 ]; do showkey -k; sleep 1; done</code></pre>
 <p>This way <code>showkey</code> will show us every key press (press and release).</p>
-<div class="figure">
-<img src="../../img/vimpedal/shot4.jpg" class="img-responsive" />
-
-</div>
+<p><img src="../../img/vimpedal/shot4.jpg" class="img-responsive" /></p>
 <h2 id="hardware">Hardware</h2>
 <p>Now we can disassemble the keyboard (with the shell loop running), take off the circuitry and use a wire to connect every contact until the appropriate <em>keycode</em> shows up in screen, in this case we’re looking for a <em>keycode</em> <strong>1</strong>, that corresponds with <code>Esc</code> key.</p>
 <p>I’ve found it connecting pin #3 in the first row with pin #5 in the second row.</p>
 <p>Now we can scratch the pins surface a little bit to revel the copper, but just enough so we can solder the wires (a couple millimeters will be ok).</p>
 <p>(In this picture I’ve used incorrect pins. I’ve used pins 5-3 instead of 3-5, sorry..)</p>
-<div class="figure">
-<img src="../../img/vimpedal/shot5.jpg" class="img-responsive" />
-
-</div>
+<p><img src="../../img/vimpedal/shot5.jpg" class="img-responsive" /></p>
 <p>Now we can solder the wires to the pins:</p>
 <p><img src="../../img/vimpedal/shot6.jpg" class="img-responsive" /> <img src="../../img/vimpedal/shot7.jpg" class="img-responsive" /></p>
 <p>Ok!, now just put the circuitry back in place, and use some hot glue so the wires stay in place.</p>
-<div class="figure">
-<img src="../../img/vimpedal/shot8.jpg" class="img-responsive" />
-
-</div>
+<p><img src="../../img/vimpedal/shot8.jpg" class="img-responsive" /></p>
 <p>Lets take a look on the pedal side:</p>
 <p>Glue the switch in the cassette case and solder the wires in the interrupter pins.</p>
-<div class="figure">
-<img src="../../img/vimpedal/shot9.jpg" class="img-responsive" />
-
-</div>
+<p><img src="../../img/vimpedal/shot9.jpg" class="img-responsive" /></p>
 <p>Now we can have our fingers always in the home row while editing.</p>
         </div>
     </div>
