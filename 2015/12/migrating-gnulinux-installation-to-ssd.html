@@ -175,7 +175,7 @@
 </ul>
 <p>This way I can keep my system as it was before, and the new smaller <em>/home</em> will contain the data of daily use. Videos, music, books, etc; Could be used connecting the old HDD with a SATA-USB converter.</p>
 <h1 id="backup">Backup</h1>
-<p>DO NOT remove, nor modify the old HDD partition structure before the system is ported AND tested in the SSD, you don’t want to loose your system or data, do you?</p>
+<p>DO NOT remove, nor modify the old HDD partition structure before the system is ported AND tested in the SSD, you don’t want to lose your system or data, do you?</p>
 <p>While playing with your storage devices is a good idea to keep a completely separate and isolated backup so your data will survive if you mess something up.</p>
 <p>I made a backup for my <code>/home</code> and <code>/</code> partitions using a 1TB external (USB) hard drive like so:</p>
 <pre><code>/mnt/
@@ -189,7 +189,7 @@
 # rsync -av --progress /home/axl /mnt/alx/
 # rsync -av --progress / /mnt/gentoo/ --exclude /mnt --exclude /home \
     --exclude /proc --exclude /tmp --exclude /sys --exclude /dev</code></pre>
-<p>The <code>-a</code> option will preserve all the meta data your system needs, use it! Now put this hard drive safe in a drawer and don’t touch it until you are completely sure you haven’t loose any data in the process.</p>
+<p>The <code>-a</code> option will preserve all the meta data your system needs, use it! Now put this hard drive safe in a drawer and don’t touch it until you are completely sure you haven’t lose any data in the process.</p>
 <h1 id="partitioning">Partitioning</h1>
 <p>You can connect the SSD to another SATA port if you’re using a desktop, but I used a SATA-USB converter.</p>
 <p>Using <em>cfdisk</em> the resulting partitioning is:</p>
