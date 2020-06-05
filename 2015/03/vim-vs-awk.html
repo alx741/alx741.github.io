@@ -151,25 +151,25 @@
 <p><em>Vinfo</em> is a Vim plugin that allows you to read Info documentation files right in a vim session by converting the Info plain text files into Vim help-files so you get a nice syntax highlighting and very convenient tags for jumping between the file contents. Lets examine how it does its job.</p>
 <!--more-->
 <p>This is how the Info text looks like, note that the titles are underlined using <code>*</code> chars:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode markdown"><code class="sourceCode markdown"><a class="sourceLine" id="cb1-1" data-line-number="1">Some context lines here</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">maybe a nice introduction</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">or something.</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">1. <span class="fl">Title</span></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="fl">********</span></a>
-<a class="sourceLine" id="cb1-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">This section refer to bla bla</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9">and is great because of bla bla...</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>Some context lines here</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>maybe a nice introduction</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>or something.</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="ss">1. </span>Title</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>********</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>This section refer to bla bla</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>and is great because of bla bla...</span></code></pre></div>
 <p>And here is what we need, with titles underlined using <code>=</code>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode markdown"><code class="sourceCode markdown"><a class="sourceLine" id="cb2-1" data-line-number="1">Some context lines here</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">maybe a nice introduction</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">or something.</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">1. <span class="fl">Title</span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="fl">========</span></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">This section refer to bla bla</a>
-<a class="sourceLine" id="cb2-9" data-line-number="9">and is great because of bla bla...</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>Some context lines here</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>maybe a nice introduction</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>or something.</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="ss">1. </span>Title</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>========</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>This section refer to bla bla</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>and is great because of bla bla...</span></code></pre></div>
 <p>It appears to be a very easy task!, but its actually not.</p>
 <p>Now, why is this difficult using Awk? Or even other tools like grep, sed? Or a combination of all these?</p>
 <p>It’s because of the context! In the file we have other lines that starts with <code>=</code> that we don’t care about, and we are looking for the lines that starts with <code>=</code> that are under a line that starts with a number followed by a dot and followed by a word, that have a blank line separation and a paragraph above and below that are not start/end of nodes but some sort of description text. That is a difficult match!.</p>

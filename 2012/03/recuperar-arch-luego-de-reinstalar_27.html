@@ -155,19 +155,19 @@
 <li><p>Inicié una live CD (Back Track en mi caso)</p></li>
 <li><p>Creé una carpeta para montar mi partición de Arch:</p></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="fu">mkdir</span> /media/arch</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="fu">mkdir</span> /media/arch</span></code></pre></div>
 <ul>
 <li>Monte mi partición de Arch. En mi caso es <em>sda2</em>:</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="fu">mount</span> /dev/sda2 /media/arch</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="fu">mount</span> /dev/sda2 /media/arch</span></code></pre></div>
 <ul>
 <li>Este paso me dio mucho dolor de cabeza. Usaremos el <em>/dev</em> de la live CD en el <em>/dev</em> de la partición de Arch:</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="fu">mount</span> --bind /dev /media/arch/dev</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="fu">mount</span> --bind /dev /media/arch/dev</span></code></pre></div>
 <ul>
 <li>Reinstalaremos Grub usando <code>grub-install</code>:</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="ex">grub-install</span> --recheck /dev/sda</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="ex">grub-install</span> --recheck /dev/sda</span></code></pre></div>
 <p>La clave esta en usar la opción <code>--recheck</code> que se encargara de re-mapear la unidad, sin esta opción simplemente nos hubiese mandado a llorar con un bonito error.</p>
 <p><code>sda</code> es mi HDD, puedes revisarlo usando <code>fdisk -l</code>, (tenemos acceso a <code>/dev/sda</code> gracias al paso anterior, de lo contrario este no existiría)</p>
 <p>Listo!! Reiniciamos y tenemos nuestro guapo Grub tal como lo dejamos.</p>

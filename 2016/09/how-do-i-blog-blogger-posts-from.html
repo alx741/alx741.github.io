@@ -160,81 +160,81 @@
 <p>The first 3 steps are already covered so lets dig into the Blogger negotiation part.</p>
 <h2 id="api-script">API script</h2>
 <p><a href="https://developers.google.com/api-client-library/python/start/installation">Google APIs</a> come in handy here, the best language option was Python (<a href="http://www.sillybytes.net/2016/03/why-do-i-hate-java.html">I refuse tu use Java</a>). So starting from an <a href="https://github.com/google/google-api-python-client/tree/master/samples/blogger">example</a> I came up with this <sub>ugly</sub> code:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co">#!/usr/bin/env python</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co"># -*- coding: utf-8 -*-</span></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="im">from</span> __future__ <span class="im">import</span> print_function</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="im">from</span> googleapiclient <span class="im">import</span> discovery</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="im">from</span> oauth2client <span class="im">import</span> client</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="im">from</span> oauth2client <span class="im">import</span> <span class="bu">file</span></a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="im">from</span> oauth2client <span class="im">import</span> tools</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="im">import</span> sys</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="im">import</span> os</a>
-<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="im">import</span> httplib2</a>
-<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="im">import</span> argparse</a>
-<a class="sourceLine" id="cb1-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb1-14" data-line-number="14">SILLYBYTESID<span class="op">=</span><span class="st">&quot;1318550761233559867&quot;</span></a>
-<a class="sourceLine" id="cb1-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb1-16" data-line-number="16"><span class="kw">def</span> main(argv):</a>
-<a class="sourceLine" id="cb1-17" data-line-number="17">    <span class="cf">if</span> (<span class="bu">len</span>(argv) <span class="op">&lt;</span> <span class="dv">3</span>):</a>
-<a class="sourceLine" id="cb1-18" data-line-number="18">        <span class="bu">print</span>(<span class="st">&quot;Post title must be provided as the first argument and html file as the second&quot;</span>)</a>
-<a class="sourceLine" id="cb1-19" data-line-number="19">        exit(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb1-20" data-line-number="20"></a>
-<a class="sourceLine" id="cb1-21" data-line-number="21">    post_title <span class="op">=</span> argv[<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb1-22" data-line-number="22">    input_file <span class="op">=</span> argv[<span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb1-23" data-line-number="23"></a>
-<a class="sourceLine" id="cb1-24" data-line-number="24">    scope <span class="op">=</span> <span class="st">'https://www.googleapis.com/auth/blogger'</span></a>
-<a class="sourceLine" id="cb1-25" data-line-number="25"></a>
-<a class="sourceLine" id="cb1-26" data-line-number="26">    parent_parsers <span class="op">=</span> [tools.argparser]</a>
-<a class="sourceLine" id="cb1-27" data-line-number="27">    parent_parsers.extend([])</a>
-<a class="sourceLine" id="cb1-28" data-line-number="28">    parser <span class="op">=</span> argparse.ArgumentParser(</a>
-<a class="sourceLine" id="cb1-29" data-line-number="29">        description<span class="op">=</span>__doc__,</a>
-<a class="sourceLine" id="cb1-30" data-line-number="30">        formatter_class<span class="op">=</span>argparse.RawDescriptionHelpFormatter,</a>
-<a class="sourceLine" id="cb1-31" data-line-number="31">        parents<span class="op">=</span>parent_parsers)</a>
-<a class="sourceLine" id="cb1-32" data-line-number="32">    flags <span class="op">=</span> parser.parse_args(<span class="st">&quot;&quot;</span>)</a>
-<a class="sourceLine" id="cb1-33" data-line-number="33"></a>
-<a class="sourceLine" id="cb1-34" data-line-number="34">    <span class="cf">try</span>:</a>
-<a class="sourceLine" id="cb1-35" data-line-number="35">        client_secrets <span class="op">=</span> os.path.join(os.path.expanduser(<span class="st">&quot;~&quot;</span>) <span class="op">+</span> <span class="st">'/.sillybytes/'</span>,</a>
-<a class="sourceLine" id="cb1-36" data-line-number="36">                                    <span class="st">'secrets.json'</span>)</a>
-<a class="sourceLine" id="cb1-37" data-line-number="37">    <span class="cf">except</span>:</a>
-<a class="sourceLine" id="cb1-38" data-line-number="38">        <span class="bu">print</span>(<span class="st">&quot;Can't find secrets.json file maybe?&quot;</span>)</a>
-<a class="sourceLine" id="cb1-39" data-line-number="39">        exit(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb1-40" data-line-number="40"></a>
-<a class="sourceLine" id="cb1-41" data-line-number="41">    flow <span class="op">=</span> client.flow_from_clientsecrets(client_secrets,</a>
-<a class="sourceLine" id="cb1-42" data-line-number="42">                                        scope<span class="op">=</span>scope,</a>
-<a class="sourceLine" id="cb1-43" data-line-number="43">                                        message<span class="op">=</span>tools.message_if_missing(client_secrets))</a>
-<a class="sourceLine" id="cb1-44" data-line-number="44"></a>
-<a class="sourceLine" id="cb1-45" data-line-number="45">    storage <span class="op">=</span> <span class="bu">file</span>.Storage(<span class="st">'auth_data'</span> <span class="op">+</span> <span class="st">'.dat'</span>)</a>
-<a class="sourceLine" id="cb1-46" data-line-number="46">    credentials <span class="op">=</span> storage.get()</a>
-<a class="sourceLine" id="cb1-47" data-line-number="47">    <span class="cf">if</span> credentials <span class="kw">is</span> <span class="va">None</span> <span class="kw">or</span> credentials.invalid:</a>
-<a class="sourceLine" id="cb1-48" data-line-number="48">        credentials <span class="op">=</span> tools.run_flow(flow, storage, flags)</a>
-<a class="sourceLine" id="cb1-49" data-line-number="49"></a>
-<a class="sourceLine" id="cb1-50" data-line-number="50">    http <span class="op">=</span> credentials.authorize(http <span class="op">=</span> httplib2.Http())</a>
-<a class="sourceLine" id="cb1-51" data-line-number="51">    service <span class="op">=</span> discovery.build(<span class="st">'blogger'</span>, <span class="st">'v3'</span>, http<span class="op">=</span>http)</a>
-<a class="sourceLine" id="cb1-52" data-line-number="52"></a>
-<a class="sourceLine" id="cb1-53" data-line-number="53">    <span class="cf">try</span>:</a>
-<a class="sourceLine" id="cb1-54" data-line-number="54">        content <span class="op">=</span> <span class="bu">open</span>(input_file, <span class="st">'r'</span>).read()</a>
-<a class="sourceLine" id="cb1-55" data-line-number="55">    <span class="cf">except</span> <span class="pp">FileNotFoundError</span>:</a>
-<a class="sourceLine" id="cb1-56" data-line-number="56">        <span class="bu">print</span>(<span class="st">&quot;Input file not found&quot;</span>)</a>
-<a class="sourceLine" id="cb1-57" data-line-number="57">        exit(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb1-58" data-line-number="58"></a>
-<a class="sourceLine" id="cb1-59" data-line-number="59">    body <span class="op">=</span> {</a>
-<a class="sourceLine" id="cb1-60" data-line-number="60">        <span class="st">&quot;kind&quot;</span>: <span class="st">&quot;blogger#post&quot;</span>,</a>
-<a class="sourceLine" id="cb1-61" data-line-number="61">        <span class="st">&quot;title&quot;</span>: post_title,</a>
-<a class="sourceLine" id="cb1-62" data-line-number="62">        <span class="st">&quot;content&quot;</span>: content</a>
-<a class="sourceLine" id="cb1-63" data-line-number="63">    }</a>
-<a class="sourceLine" id="cb1-64" data-line-number="64"></a>
-<a class="sourceLine" id="cb1-65" data-line-number="65">    <span class="cf">try</span>:</a>
-<a class="sourceLine" id="cb1-66" data-line-number="66">        posts <span class="op">=</span> service.posts()</a>
-<a class="sourceLine" id="cb1-67" data-line-number="67">        request <span class="op">=</span> posts.insert(blogId<span class="op">=</span>SILLYBYTESID, body<span class="op">=</span>body, isDraft<span class="op">=</span><span class="va">False</span>)</a>
-<a class="sourceLine" id="cb1-68" data-line-number="68">        result <span class="op">=</span> request.execute()</a>
-<a class="sourceLine" id="cb1-69" data-line-number="69">        <span class="bu">print</span>(<span class="st">&quot;Live: &quot;</span> <span class="op">+</span> result[<span class="st">'url'</span>])</a>
-<a class="sourceLine" id="cb1-70" data-line-number="70">    <span class="cf">except</span>:</a>
-<a class="sourceLine" id="cb1-71" data-line-number="71">        <span class="bu">print</span>(<span class="st">&quot;Can't execute request&quot;</span>)</a>
-<a class="sourceLine" id="cb1-72" data-line-number="72">        exit(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb1-73" data-line-number="73"></a>
-<a class="sourceLine" id="cb1-74" data-line-number="74"><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">'__main__'</span>:</a>
-<a class="sourceLine" id="cb1-75" data-line-number="75">main(sys.argv)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co">#!/usr/bin/env python</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="co"># -*- coding: utf-8 -*-</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="im">from</span> __future__ <span class="im">import</span> print_function</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="im">from</span> googleapiclient <span class="im">import</span> discovery</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="im">from</span> oauth2client <span class="im">import</span> client</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="im">from</span> oauth2client <span class="im">import</span> <span class="bu">file</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="im">from</span> oauth2client <span class="im">import</span> tools</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="im">import</span> sys</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="im">import</span> os</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="im">import</span> httplib2</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="im">import</span> argparse</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>SILLYBYTESID<span class="op">=</span><span class="st">&quot;1318550761233559867&quot;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a><span class="kw">def</span> main(argv):</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>    <span class="cf">if</span> (<span class="bu">len</span>(argv) <span class="op">&lt;</span> <span class="dv">3</span>):</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>        <span class="bu">print</span>(<span class="st">&quot;Post title must be provided as the first argument and html file as the second&quot;</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a>        exit(<span class="dv">1</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a>    post_title <span class="op">=</span> argv[<span class="dv">1</span>]</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a>    input_file <span class="op">=</span> argv[<span class="dv">2</span>]</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a>    scope <span class="op">=</span> <span class="st">'https://www.googleapis.com/auth/blogger'</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true"></a>    parent_parsers <span class="op">=</span> [tools.argparser]</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true"></a>    parent_parsers.extend([])</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true"></a>    parser <span class="op">=</span> argparse.ArgumentParser(</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true"></a>        description<span class="op">=</span>__doc__,</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true"></a>        formatter_class<span class="op">=</span>argparse.RawDescriptionHelpFormatter,</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true"></a>        parents<span class="op">=</span>parent_parsers)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true"></a>    flags <span class="op">=</span> parser.parse_args(<span class="st">&quot;&quot;</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true"></a>    <span class="cf">try</span>:</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true"></a>        client_secrets <span class="op">=</span> os.path.join(os.path.expanduser(<span class="st">&quot;~&quot;</span>) <span class="op">+</span> <span class="st">'/.sillybytes/'</span>,</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true"></a>                                    <span class="st">'secrets.json'</span>)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true"></a>    <span class="cf">except</span>:</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true"></a>        <span class="bu">print</span>(<span class="st">&quot;Can't find secrets.json file maybe?&quot;</span>)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true"></a>        exit(<span class="dv">1</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true"></a>    flow <span class="op">=</span> client.flow_from_clientsecrets(client_secrets,</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true"></a>                                        scope<span class="op">=</span>scope,</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true"></a>                                        message<span class="op">=</span>tools.message_if_missing(client_secrets))</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true"></a>    storage <span class="op">=</span> <span class="bu">file</span>.Storage(<span class="st">'auth_data'</span> <span class="op">+</span> <span class="st">'.dat'</span>)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true"></a>    credentials <span class="op">=</span> storage.get()</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true"></a>    <span class="cf">if</span> credentials <span class="kw">is</span> <span class="va">None</span> <span class="kw">or</span> credentials.invalid:</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true"></a>        credentials <span class="op">=</span> tools.run_flow(flow, storage, flags)</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true"></a>    http <span class="op">=</span> credentials.authorize(http <span class="op">=</span> httplib2.Http())</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true"></a>    service <span class="op">=</span> discovery.build(<span class="st">'blogger'</span>, <span class="st">'v3'</span>, http<span class="op">=</span>http)</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true"></a>    <span class="cf">try</span>:</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true"></a>        content <span class="op">=</span> <span class="bu">open</span>(input_file, <span class="st">'r'</span>).read()</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true"></a>    <span class="cf">except</span> <span class="pp">FileNotFoundError</span>:</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true"></a>        <span class="bu">print</span>(<span class="st">&quot;Input file not found&quot;</span>)</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true"></a>        exit(<span class="dv">1</span>)</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true"></a></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true"></a>    body <span class="op">=</span> {</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true"></a>        <span class="st">&quot;kind&quot;</span>: <span class="st">&quot;blogger#post&quot;</span>,</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true"></a>        <span class="st">&quot;title&quot;</span>: post_title,</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true"></a>        <span class="st">&quot;content&quot;</span>: content</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true"></a>    }</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true"></a>    <span class="cf">try</span>:</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true"></a>        posts <span class="op">=</span> service.posts()</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true"></a>        request <span class="op">=</span> posts.insert(blogId<span class="op">=</span>SILLYBYTESID, body<span class="op">=</span>body, isDraft<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true"></a>        result <span class="op">=</span> request.execute()</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true"></a>        <span class="bu">print</span>(<span class="st">&quot;Live: &quot;</span> <span class="op">+</span> result[<span class="st">'url'</span>])</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true"></a>    <span class="cf">except</span>:</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true"></a>        <span class="bu">print</span>(<span class="st">&quot;Can't execute request&quot;</span>)</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true"></a>        exit(<span class="dv">1</span>)</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true"></a></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">'__main__'</span>:</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true"></a>main(sys.argv)</span></code></pre></div>
 <p>The script will initiate a OAuth negotiation when needed and store the authentication tokens in the <code>auth_data.dat</code> file.</p>
 <p>Install some python dependencies (Arch):</p>
 <pre><code>$ pacman -S python-google-api-python-client

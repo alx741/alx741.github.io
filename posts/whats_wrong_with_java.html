@@ -180,11 +180,11 @@
 <h2 id="awful-verbosity">Awful Verbosity</h2>
 <p>Most of the Java ugly verbosity is attributed to its static, strong typing discipline that forces you to annotate the types of everything, everywhere. But this is not the type discipline fault.</p>
 <p>In Java, you declare, for instance, a vector of integers:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="bu">Vector</span>&lt;<span class="bu">Integer</span>&gt; vector = <span class="kw">new</span> <span class="bu">Vector</span>&lt;<span class="bu">Integer</span>&gt;();</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="bu">Vector</span>&lt;<span class="bu">Integer</span>&gt; vector = <span class="kw">new</span> <span class="bu">Vector</span>&lt;<span class="bu">Integer</span>&gt;();</span></code></pre></div>
 <p>Or a vector of vectors of integers (a Matrix of integers):</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="bu">Vector</span>&lt;<span class="bu">Vector</span>&lt;<span class="bu">Integer</span>&gt;&gt; vector = <span class="kw">new</span> <span class="bu">Vector</span>&lt;<span class="bu">Vector</span>&lt;<span class="bu">Integer</span>&gt;&gt;();</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="bu">Vector</span>&lt;<span class="bu">Vector</span>&lt;<span class="bu">Integer</span>&gt;&gt; vector = <span class="kw">new</span> <span class="bu">Vector</span>&lt;<span class="bu">Vector</span>&lt;<span class="bu">Integer</span>&gt;&gt;();</span></code></pre></div>
 <p>Java’s way of dealing with this to some extent, is the <em>diamond</em> operator <code>&lt;&gt;</code>, so instead we could write:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="bu">Vector</span>&lt;<span class="bu">Vector</span>&lt;<span class="bu">Integer</span>&gt;&gt; vector = <span class="kw">new</span> <span class="bu">Vector</span>&lt;&gt;();</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="bu">Vector</span>&lt;<span class="bu">Vector</span>&lt;<span class="bu">Integer</span>&gt;&gt; vector = <span class="kw">new</span> <span class="bu">Vector</span>&lt;&gt;();</span></code></pre></div>
 <p>But that’s pretty much as far as it gets. <em>C++11</em> on the other hand has the <code>auto</code> keyword to let the compiler do what compilers are good at: mechanical, repetitive, deterministic tasks; Type inference is one of those tasks.</p>
 <p>Every time, everywhere a time annotation is needed, you provide one only if it’s absolutely needed to avoid ambiguity, otherwise, just use <code>auto</code> and let the compiler do it for you.</p>
 <h2 id="resources-un-safety">Resources un-safety</h2>
@@ -197,25 +197,25 @@
 <h2 id="exceptions-driven-programming">Exceptions Driven Programming</h2>
 <p><em>C++</em> and a lot of other imperative and OOP languages suffer form the <em>Exceptions</em> problems as well, but Java manages to screw it up even further.</p>
 <p>The heavy use of exceptions forces the programmer to write tons of</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">try</span> {</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">    ...</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">}</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw">catch</span>(someExcetption e) {</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">    ...</a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">}</a>
-<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="kw">catch</span>(someOtherExcetption e) {</a>
-<a class="sourceLine" id="cb4-8" data-line-number="8">    ...</a>
-<a class="sourceLine" id="cb4-9" data-line-number="9">}</a>
-<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="kw">catch</span>(yetAnotherExcetption e) {</a>
-<a class="sourceLine" id="cb4-11" data-line-number="11">    ...</a>
-<a class="sourceLine" id="cb4-12" data-line-number="12">}</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">try</span> {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>    ...</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>}</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="kw">catch</span>(someExcetption e) {</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>    ...</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>}</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="kw">catch</span>(someOtherExcetption e) {</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>    ...</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>}</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a><span class="kw">catch</span>(yetAnotherExcetption e) {</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a>    ...</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a>}</span></code></pre></div>
 <p>The usual alternative is just:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">try</span> {</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">    ...</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">}</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw">catch</span>(Excetption e) {</a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;An exception has occurred, sorry ¯\_(ツ)_/¯&quot;</span>);</a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">}</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">try</span> {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a>    ...</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a>}</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="kw">catch</span>(Excetption e) {</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a>    <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;An exception has occurred, sorry ¯\_(ツ)_/¯&quot;</span>);</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a>}</span></code></pre></div>
 <p>The result of this is that the code that matters, the actual logic we’re trying to encode in the program gets deeply buried in there, making it hard to read, hard to understand, hard to maintain, hard to modify and awfully ugly. Although most languages suffer from a variant of this issue, some other languages handle it gracefully by encoding the possibility of failure in the type system.</p>
 <p>Most programming languages break equational reasoning, but that’s pretty much normal; Exceptions go further by even breaking the imperative sequentiality (<em>cough</em> GOTO <em>cough</em>).</p>
 <h1 id="everything-is-an-object">Everything is an object</h1>

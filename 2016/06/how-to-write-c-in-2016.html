@@ -209,15 +209,15 @@
 <p>You could write testing functions for your code by hand or use one of the great testing frameworks there are for C out there.</p>
 <p>I like <a href="https://libcheck.github.io/check/">Check</a> in particular, it seems to be the more active one and uses the <code>make</code> <code>check</code> command so doing <code>$ make check</code> will test your software.</p>
 <p>Writing tests with <strong>Check</strong> is easy as pie:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="pp">#include </span><span class="im">&lt;check.h&gt;</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="pp">#include </span><span class="im">&quot;../src/foo.h&quot;</span><span class="pp">  </span><span class="co">// Contains 'multply' function</span></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">START_TEST (my_test)</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">{</a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">    <span class="dt">int</span> result = multply(<span class="dv">2</span>, <span class="dv">2</span>);</a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">    ck_assert_int_eq(result, <span class="dv">4</span>);</a>
-<a class="sourceLine" id="cb4-8" data-line-number="8">}</a>
-<a class="sourceLine" id="cb4-9" data-line-number="9">END_TEST</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;check.h&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&quot;../src/foo.h&quot;</span><span class="pp">  </span><span class="co">// Contains 'multply' function</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>START_TEST (my_test)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>{</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>    <span class="dt">int</span> result = multply(<span class="dv">2</span>, <span class="dv">2</span>);</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>    ck_assert_int_eq(result, <span class="dv">4</span>);</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>}</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>END_TEST</span></code></pre></div>
 <p>It should be pretty obvious: the testing function will use the <code>multply</code> function (our tested code) declared in <code>src/foo.h</code> and <strong>assert</strong> that the result of multiplying <code>2</code> times <code>2</code> is equals to <code>4</code>, so next time changes are made in the <code>multply</code> function that makes it misbehave, the bug will be catch pretty fast and easily when we execute our tests. The example here is a bit dumb but you get the idea, check every possible edge case. The more robust the tests are, the more robust the end code will be.</p>
 <h1 id="learn-functional-programming">Learn functional programming</h1>
 <p><img src="../../img/clang/shot13.jpg" class="img-responsive" /></p>

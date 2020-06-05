@@ -181,34 +181,34 @@ $ stack init
 $ stack build</code></pre>
 <p>By default, Hakyll outputs the generated site in a <code>_site</code> directory, but <em>GitHub pages</em> will read the site from a <code>docs</code> directory, so let’s fix that by editing the <code>site.hs</code> file.</p>
 <p>The default <code>main</code> function in <code>site.hs</code> uses the <code>hakyll</code> function, which uses the default configuration, so we must change that to use a custom one:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb2-1" data-line-number="1">main <span class="fu">=</span> hakyllWith config <span class="fu">$</span> <span class="kw">do</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">    <span class="fu">...</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">    <span class="fu">...</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="ot">config ::</span> <span class="dt">Configuration</span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">config <span class="fu">=</span> <span class="dt">Configuration</span></a>
-<a class="sourceLine" id="cb2-9" data-line-number="9">    { destinationDirectory <span class="fu">=</span> <span class="st">&quot;docs&quot;</span></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10">    , storeDirectory       <span class="fu">=</span> <span class="st">&quot;_cache&quot;</span></a>
-<a class="sourceLine" id="cb2-11" data-line-number="11">    , tmpDirectory         <span class="fu">=</span> <span class="st">&quot;_cache/tmp&quot;</span></a>
-<a class="sourceLine" id="cb2-12" data-line-number="12">    , providerDirectory    <span class="fu">=</span> <span class="st">&quot;.&quot;</span></a>
-<a class="sourceLine" id="cb2-13" data-line-number="13">    , ignoreFile           <span class="fu">=</span> ignoreFile'</a>
-<a class="sourceLine" id="cb2-14" data-line-number="14">    , deployCommand        <span class="fu">=</span> <span class="st">&quot;echo 'No deploy command specified' &amp;&amp; exit 1&quot;</span></a>
-<a class="sourceLine" id="cb2-15" data-line-number="15">    , deploySite           <span class="fu">=</span> system <span class="fu">.</span> deployCommand</a>
-<a class="sourceLine" id="cb2-16" data-line-number="16">    , inMemoryCache        <span class="fu">=</span> <span class="dt">True</span></a>
-<a class="sourceLine" id="cb2-17" data-line-number="17">    , previewHost          <span class="fu">=</span> <span class="st">&quot;127.0.0.1&quot;</span></a>
-<a class="sourceLine" id="cb2-18" data-line-number="18">    , previewPort          <span class="fu">=</span> <span class="dv">8000</span></a>
-<a class="sourceLine" id="cb2-19" data-line-number="19">    }</a>
-<a class="sourceLine" id="cb2-20" data-line-number="20">  <span class="kw">where</span></a>
-<a class="sourceLine" id="cb2-21" data-line-number="21">    ignoreFile' path</a>
-<a class="sourceLine" id="cb2-22" data-line-number="22">        <span class="fu">|</span> <span class="st">&quot;.&quot;</span>    <span class="ot">`isPrefixOf`</span> fileName <span class="fu">=</span> <span class="dt">True</span></a>
-<a class="sourceLine" id="cb2-23" data-line-number="23">        <span class="fu">|</span> <span class="st">&quot;#&quot;</span>    <span class="ot">`isPrefixOf`</span> fileName <span class="fu">=</span> <span class="dt">True</span></a>
-<a class="sourceLine" id="cb2-24" data-line-number="24">        <span class="fu">|</span> <span class="st">&quot;~&quot;</span>    <span class="ot">`isSuffixOf`</span> fileName <span class="fu">=</span> <span class="dt">True</span></a>
-<a class="sourceLine" id="cb2-25" data-line-number="25">        <span class="fu">|</span> <span class="st">&quot;.swp&quot;</span> <span class="ot">`isSuffixOf`</span> fileName <span class="fu">=</span> <span class="dt">True</span></a>
-<a class="sourceLine" id="cb2-26" data-line-number="26">        <span class="fu">|</span> otherwise                    <span class="fu">=</span> <span class="dt">False</span></a>
-<a class="sourceLine" id="cb2-27" data-line-number="27">      <span class="kw">where</span></a>
-<a class="sourceLine" id="cb2-28" data-line-number="28">        fileName <span class="fu">=</span> takeFileName path</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>main <span class="ot">=</span> hakyllWith config <span class="op">$</span> <span class="kw">do</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>    <span class="op">...</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>    <span class="op">...</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="ot">config ::</span> <span class="dt">Configuration</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>config <span class="ot">=</span> <span class="dt">Configuration</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>    { destinationDirectory <span class="ot">=</span> <span class="st">&quot;docs&quot;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>    , storeDirectory       <span class="ot">=</span> <span class="st">&quot;_cache&quot;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>    , tmpDirectory         <span class="ot">=</span> <span class="st">&quot;_cache/tmp&quot;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>    , providerDirectory    <span class="ot">=</span> <span class="st">&quot;.&quot;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>    , ignoreFile           <span class="ot">=</span> ignoreFile'</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a>    , deployCommand        <span class="ot">=</span> <span class="st">&quot;echo 'No deploy command specified' &amp;&amp; exit 1&quot;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a>    , deploySite           <span class="ot">=</span> system <span class="op">.</span> deployCommand</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>    , inMemoryCache        <span class="ot">=</span> <span class="dt">True</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a>    , previewHost          <span class="ot">=</span> <span class="st">&quot;127.0.0.1&quot;</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a>    , previewPort          <span class="ot">=</span> <span class="dv">8000</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a>    }</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a>  <span class="kw">where</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a>    ignoreFile' path</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a>        <span class="op">|</span> <span class="st">&quot;.&quot;</span>    <span class="ot">`isPrefixOf`</span> fileName <span class="ot">=</span> <span class="dt">True</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a>        <span class="op">|</span> <span class="st">&quot;#&quot;</span>    <span class="ot">`isPrefixOf`</span> fileName <span class="ot">=</span> <span class="dt">True</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a>        <span class="op">|</span> <span class="st">&quot;~&quot;</span>    <span class="ot">`isSuffixOf`</span> fileName <span class="ot">=</span> <span class="dt">True</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a>        <span class="op">|</span> <span class="st">&quot;.swp&quot;</span> <span class="ot">`isSuffixOf`</span> fileName <span class="ot">=</span> <span class="dt">True</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a>        <span class="op">|</span> <span class="fu">otherwise</span>                    <span class="ot">=</span> <span class="dt">False</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true"></a>      <span class="kw">where</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true"></a>        fileName <span class="ot">=</span> takeFileName path</span></code></pre></div>
 <p>Here I’ve pretty much left the default configuration intact and only changed the <code>destinationDirectory</code> field to be <code>docs</code>.</p>
 <p>Now recompile and regenerate the site:</p>
 <pre><code>$ stack build
@@ -259,14 +259,14 @@ $ git commit -m &quot;Build&quot;</code></pre>
     |
     +---- ...</code></pre>
 <p>Then we need an additional rule in <code>site.hs</code></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb8-1" data-line-number="1">match <span class="st">&quot;posts/legacy/**&quot;</span> <span class="fu">$</span> <span class="kw">do</span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">    route <span class="fu">$</span> customRoute <span class="fu">$</span> (flip replaceExtension <span class="st">&quot;html&quot;</span>) <span class="fu">.</span> joinPath</a>
-<a class="sourceLine" id="cb8-3" data-line-number="3">        <span class="fu">.</span> (drop <span class="dv">2</span>) <span class="fu">.</span> splitPath <span class="fu">.</span> toFilePath</a>
-<a class="sourceLine" id="cb8-4" data-line-number="4">    compile <span class="fu">$</span> pandocCompiler</a>
-<a class="sourceLine" id="cb8-5" data-line-number="5">        <span class="fu">&gt;&gt;=</span> saveSnapshot <span class="st">&quot;content&quot;</span></a>
-<a class="sourceLine" id="cb8-6" data-line-number="6">        <span class="fu">&gt;&gt;=</span> loadAndApplyTemplate <span class="st">&quot;templates/post.html&quot;</span>    postCtx</a>
-<a class="sourceLine" id="cb8-7" data-line-number="7">        <span class="fu">&gt;&gt;=</span> loadAndApplyTemplate <span class="st">&quot;templates/default.html&quot;</span> postCtx</a>
-<a class="sourceLine" id="cb8-8" data-line-number="8">        <span class="fu">&gt;&gt;=</span> relativizeUrls</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a>match <span class="st">&quot;posts/legacy/**&quot;</span> <span class="op">$</span> <span class="kw">do</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a>    route <span class="op">$</span> customRoute <span class="op">$</span> (<span class="fu">flip</span> replaceExtension <span class="st">&quot;html&quot;</span>) <span class="op">.</span> joinPath</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a>        <span class="op">.</span> (<span class="fu">drop</span> <span class="dv">2</span>) <span class="op">.</span> splitPath <span class="op">.</span> toFilePath</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a>    compile <span class="op">$</span> pandocCompiler</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a>        <span class="op">&gt;&gt;=</span> saveSnapshot <span class="st">&quot;content&quot;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a>        <span class="op">&gt;&gt;=</span> loadAndApplyTemplate <span class="st">&quot;templates/post.html&quot;</span>    postCtx</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a>        <span class="op">&gt;&gt;=</span> loadAndApplyTemplate <span class="st">&quot;templates/default.html&quot;</span> postCtx</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a>        <span class="op">&gt;&gt;=</span> relativizeUrls</span></code></pre></div>
 <p>This will ensure that the <code>year/month/post.html</code> directory structure is preserved on the resulting generated site.</p>
 <h2 id="port-legacy-posts">Port legacy posts</h2>
 <p>From here, a pretty much manual porting process is required. Most of my legacy posts were originally published right in the Blogger interface, so the must first be ported to <em>markdow</em>.</p>
@@ -292,13 +292,13 @@ $ git commit -m &quot;Build&quot;</code></pre>
 <h1 id="new-cli-tool">New CLI tool</h1>
 <p><img src="../img/bloggerhakyll/shot.png" class="img-responsive" /></p>
 <p>The <a href="https://github.com/sillybytes/sillybytes_tool">CLI tool</a> I was using before for Blogger deployment is no longer useful, but I can still adapt it to the new deployment schema:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="fu">cp</span> -rfv _site/* ../sillybytes.github.io/</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="bu">cd</span> ../sillybytes.github.io</a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="ex">display_info</span> <span class="st">&quot;Deploying...&quot;</span></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="fu">git</span> add .</a>
-<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="fu">git</span> commit -m <span class="st">&quot;Deploy&quot;</span></a>
-<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="fu">git</span> push origin master</a>
-<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="ex">display_success</span> <span class="st">&quot;Deployed!&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="fu">cp</span> -rfv _site/* ../sillybytes.github.io/</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="bu">cd</span> ../sillybytes.github.io</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a><span class="ex">display_info</span> <span class="st">&quot;Deploying...&quot;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a><span class="fu">git</span> add .</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a><span class="fu">git</span> commit -m <span class="st">&quot;Deploy&quot;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a><span class="fu">git</span> push origin master</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true"></a><span class="ex">display_success</span> <span class="st">&quot;Deployed!&quot;</span></span></code></pre></div>
 <p>As well as aliasing common <em>Hakyll</em> commands:</p>
 <p><img src="../img/bloggerhakyll/shot1.png" class="img-responsive" /></p>
         </div>
