@@ -60,8 +60,8 @@
 
     <section class="post-content">
         
-            <p>I’ve spitted out quite a bit of rant about Java before in <a href="http://www.sillybytes.net/2016/03/why-do-i-hate-java.html">this post</a>, in which I basically list the annoyances that the ecosystem around Java imposes and how those problems are pretty much a big intersection with the problems of IDEs.</p>
-<p>Here I’d like to talk about the problems of Java as a language. Although there are a few problems with Java, I can live with them if I have no other option but to write Java code; My <em>hate</em> to Java doesn’t really arise from Java being a bad <em>language</em> but rather from its <a href="http://www.sillybytes.net/2016/03/why-do-i-hate-java.html">surroundings</a>.</p>
+            <p>There’s already a rant about Java in <a href="https://sillybytes.net/2016/03/why-do-i-hate-java.html">a previous post</a>, in which I basically list the annoyances that the ecosystem around Java imposes and how those relate and intersect with the problems of IDEs.</p>
+<p>Here I’d like to talk about the issues of Java as a language. Although these are a significant part of what’s wrong with Java, keep in mind that it’s only half of the equation, the other part being its <a href="https://sillybytes.net/2016/03/why-do-i-hate-java.html">surroundings</a>.</p>
 
         
     </section>
@@ -79,11 +79,7 @@
 
     <section class="post-content">
         
-            <p>As a user of the <a href="http://www.yesodweb.com/">Yesod</a> framework, I’ve came to know and love the <a href="https://www.stackage.org/haddock/lts-8.4/shakespeare-2.0.12.1/Text-Cassius.html#v:cassius">Cassius</a> CSS templating language, although its reliance on Template Haskell is meant to fit better with the Yesod’s needs and makes it a bit cumbersome to use everywhere else, I still like the templating language itself and its features a lot.</p>
-<p>That’s why I used it for styles generation in <a href="http://www.sillybytes.net">Silly Bytes</a> together with <a href="https://jaspervdj.be/hakyll/">Hakyll</a>. In this post I will describe the process.<br />
-<br />
-<br />
-</p>
+            <p>As a user of the <a href="http://www.yesodweb.com/">Yesod</a> framework, I’ve come to know and love the <a href="https://www.stackage.org/haddock/lts-8.4/shakespeare-2.0.12.1/Text-Cassius.html#v:cassius">Cassius</a> CSS templating language, although its reliance on Template Haskell is meant to fit better with Yesod’s needs and makes it a bit cumbersome to use everywhere else, I still like the templating language itself and its features a lot. That’s why I used it for styles generation in <a href="https://sillybytes.net">Silly Bytes</a> together with <a href="https://jaspervdj.be/hakyll/">Hakyll</a>. In this post I will describe the process.</p>
 
         
     </section>
@@ -101,9 +97,9 @@
 
     <section class="post-content">
         
-            <p><a href="https://jaspervdj.be/hakyll/">Hakyll</a> is an amazing static site generator written in Haskell, it allows for blog posts to be written in <em>markdown</em>, that are then compiled with <em>pandoc</em>, and is very well suited to be used with <em>GitHub pages</em>; It’s everything I wanted and more.</p>
-<p><a href="http://www.sillybytes.net">Silly Bytes</a> went through its first 5 years of existence hosted on Google’s <a href="https://www.blogger.com">Blogger</a> service, and it did well. Although Blogger offers a fair amount of flexibility, you can’t have total control over it, and having to write posts with the built in <em>WYSIWYG</em> interface or pasting the HTML output is one of the bigger pain points of it. I solved most of that by writing a <a href="http://www.sillybytes.net/2016/09/how-do-i-blog-blogger-posts-from.html">CLI tool</a> that allows me to write my posts offline in <em>markdown</em>, compile them, and deploy them from my terminal leveraging the Blogger’s convenient API. But I still have the feeling that it isn’t good enough.</p>
-<p>In this post I will describe the process of porting an existing Blogger blog to <em>Hakyll</em> and <em>GitHub pages</em> using <em>Silly Bytes</em> itself as a case study.</p>
+            <p><a href="https://jaspervdj.be/hakyll/">Hakyll</a> is an amazing static site generator written in Haskell, it allows for blog posts to be written in <em>markdown</em> and then compiled with <em>pandoc</em>. It’s very well suited to be used with <em>GitHub pages</em>. It’s everything I wanted and more.</p>
+<p><a href="http://www.sillybytes.net">Silly Bytes</a> went through its first 5 years of existence hosted on Google’s <a href="https://www.blogger.com">Blogger</a> service, and it did well. Although Blogger offers a fair amount of flexibility, you can’t have total control over it, and having to write posts with the built-in <em>WYSIWYG</em> interface or pasting the HTML output is the biggest pain point of it. I solved most of that by writing a <a href="http://www.sillybytes.net/2016/09/how-do-i-blog-blogger-posts-from.html">CLI tool</a> that allows me to write posts offline in <em>markdown</em>, compile them, and deploy them from the terminal leveraging Blogger’s API. But that’s still too much of a flex.</p>
+<p>In this post I’ll describe the process of porting an existing Blogger blog to <em>Hakyll</em> and <em>GitHub pages</em> using <em>Silly Bytes</em> itself as a case study.</p>
 
         
     </section>
@@ -115,22 +111,20 @@
 
 <article class="post">
     <h2 class="is-size-2 has-text-weight-medium has-text-left">
-        <a href="./2016/09/how-do-i-blog-blogger-posts-from.html">How do I blog? - Blogger posts from markdown and CLI</a>
+        <a href="./2016/09/how-do-i-blog-blogger-posts-from.html">Blogger posts from markdown and CLI</a>
     </h2>
     <aside class="date has-text-left">September 23, 2016</aside>
 
     <section class="post-content">
         
-            <p><img src="./img/blogger/thumbnail.png" id="thumbnail" /><br />
-</p>
-<p>There are plans to migrate <a href="http://sillybytes.net">Silly Bytes</a> to <a href="https://jaspervdj.be/hakyll/">Hakyll</a> and GitHub pages, but till then I’m still using <a href="http://www.blogger.com">Blogger</a> and I wanted to make the posting process as painless and automatic as possible.</p>
+            <p>There are plans to migrate Silly Bytes to <a href="https://jaspervdj.be/hakyll/">Hakyll</a> and GitHub pages, but till then I’m still stuck with Blogger and wanted to make the posting process as painless and automatic as possible.</p>
 <p>Every post I write is currently a separate git repo hosted on the <a href="https://github.com/sillybytes">Silly Bytes GitHub organization</a>. The post is written and maintained in Markdown using Pandoc and a convenient Makefile generated by the <a href="https://github.com/alx741/made">made script</a>.</p>
 <p>Writing posts in Markdown is nice but is not very useful if you still have to mess around with Blogger’s web interface, so here is the plan:</p>
 <ul>
-<li>Write post in <em>Markdown</em></li>
+<li>Write posts in <em>Markdown</em></li>
 <li>Use <em>made</em> to generate a <em>Makefile</em></li>
-<li>Generate HTML with the <em>Makefile</em> <code>$ make</code></li>
-<li>Push the HTML post to Blogger using Google APIs</li>
+<li>Generate HTML with <code>$ make</code></li>
+<li>Push the HTML post to Blogger using Google’s APIs</li>
 </ul>
 
         
@@ -149,10 +143,8 @@
 
     <section class="post-content">
         
-            <p><img src="./img/stm32/thumbnail.png" id="thumbnail" /><br />
-</p>
-<p>So you have been using AVR, PIC or some other microcontroller for a while and discover that ST Microelectronics offers some pretty cheap 32 bit ARM and feature rich microcontrollers: <a href="http://www.st.com/content/st_com/en/products/microcontrollers/stm32-32-bit-arm-cortex-mcus.html?querycriteria=productId=SC1169">STM32</a>, and want to start playing with them but don’t know how or where to start; I’m here to help.</p>
-<p><a href="https://en.wikipedia.org/wiki/ARM_architecture">ARM</a> is taking over the embedding wold, they’re ubiquitous in smart phones, tablets, laptops, other computers, cars, refrigerators, microwave ovens, monitors, printers, you name it!</p>
+            <p>So you’ve been using AVR, PIC or some other microcontroller for a while and would like to try 32-bit ARM chips like the <a href="http://www.st.com/content/st_com/en/products/microcontrollers/stm32-32-bit-arm-cortex-mcus.html?querycriteria=productId=SC1169">STM32 line</a>. Want to start playing with them but don’t know how or where to start; I’m here to help.</p>
+<p><a href="https://en.wikipedia.org/wiki/ARM_architecture">ARM</a> has taken over the embedded world, they’re ubiquitous in smartphones, tablets, laptops, computers inside computers, cars, refrigerators, microwave ovens, monitors, printers, you name it.</p>
 <p>Note: Be aware that <em>ARM</em> is an <strong>architecture</strong> that manufacturers can <em>implement</em>. Is a common mistake to think <em>ARM</em> is a microcontroller on itself, it is not.</p>
 
         
@@ -171,18 +163,17 @@
 
     <section class="post-content">
         
-            <p><img src="./img/tddlight/thumbnail.jpg" id="thumbnail" /><br />
-</p>
-<p>Robert C. Martin <em>(Uncle Bob)</em> said in a talk:</p>
+            <p>Robert C. Martin <em>(Uncle Bob)</em> said in a talk:</p>
 <blockquote>
 <p>Imagine you have a button that you can push, it will test your code and if everything is working a green light will come up, but if something is broken, a red light will come up […]</p>
 </blockquote>
-<p>He was of course talking about TDD. I got inspired to build this little toy.</p>
-<p>Hardware schematics, firmware and host software is available in <a href="https://github.com/alx741/tdd_traffic-light">this Github repo</a>. Along with information on how to compile and use.</p>
+<p>He was of course talking about TDD. It got me inspired to build this little tool.</p>
+<p>Hardware schematics, firmware and host software is available in <a href="https://github.com/alx741/tdd_traffic-light">this GitHub repository</a>. Along with information on how to compile and use.</p>
 <blockquote>
 <p>This is a physical toy traffic light to be used with software development TDD (and testing in general) tools. It will not boost your productivity nor make you a better programmer or TDD practitioner, but it looks cool :)</p>
 </blockquote>
-<p>Lets explain how it works, it’s very simple: 
+<p>Let’s explain how it works, it’s very simple:</p>
+
         
     </section>
 

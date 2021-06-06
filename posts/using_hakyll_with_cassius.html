@@ -36,11 +36,7 @@
     <aside class="date has-text-left">April 11, 2017</aside>
 
     <section id="post-content">
-        <p>As a user of the <a href="http://www.yesodweb.com/">Yesod</a> framework, I’ve came to know and love the <a href="https://www.stackage.org/haddock/lts-8.4/shakespeare-2.0.12.1/Text-Cassius.html#v:cassius">Cassius</a> CSS templating language, although its reliance on Template Haskell is meant to fit better with the Yesod’s needs and makes it a bit cumbersome to use everywhere else, I still like the templating language itself and its features a lot.</p>
-<p>That’s why I used it for styles generation in <a href="http://www.sillybytes.net">Silly Bytes</a> together with <a href="https://jaspervdj.be/hakyll/">Hakyll</a>. In this post I will describe the process.<br />
-<br />
-<br />
-</p>
+        <p>As a user of the <a href="http://www.yesodweb.com/">Yesod</a> framework, I’ve come to know and love the <a href="https://www.stackage.org/haddock/lts-8.4/shakespeare-2.0.12.1/Text-Cassius.html#v:cassius">Cassius</a> CSS templating language, although its reliance on Template Haskell is meant to fit better with Yesod’s needs and makes it a bit cumbersome to use everywhere else, I still like the templating language itself and its features a lot. That’s why I used it for styles generation in <a href="https://sillybytes.net">Silly Bytes</a> together with <a href="https://jaspervdj.be/hakyll/">Hakyll</a>. In this post I will describe the process.</p>
 <!--more-->
 <h1 id="cassius-files">Cassius files</h1>
 <p>Our <code>.cassius</code> files will live inside the <code>css</code> directory, together with a <code>Gen.hs</code> Haskell module that will take the <em>Cassius</em> sources and compile them to <em>CSS</em>:</p>
@@ -75,7 +71,7 @@ css:
 
 watch:
 	while true; do make css; inotifywait -qre close_write css/*.cassius; done</code></pre>
-<p>This way, we can execute <code>make watch</code> and it will recompile the <em>Cassius</em> files when needed. A normal <code>stack exec site watch</code> can be running along the side to take care of everything else.</p>
+<p>This way, we can execute <code>make watch</code> and it will recompile the <em>Cassius</em> files when needed. A normal <code>stack exec site watch</code> can be running alongside to take care of everything else.</p>
     </section>
 </article>
 

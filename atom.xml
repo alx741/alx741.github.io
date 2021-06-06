@@ -149,56 +149,50 @@ listeners:
     <id>http://www.sillybytes.net/posts/whats_wrong_with_java.html</id>
     <published>2017-04-14</published>
     <updated>2017-04-14T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>I’ve spitted out quite a bit of rant about Java before in <a href="http://www.sillybytes.net/2016/03/why-do-i-hate-java.html">this post</a>, in which I basically list the annoyances that the ecosystem around Java imposes and how those problems are pretty much a big intersection with the problems of IDEs.</p>
-<p>Here I’d like to talk about the problems of Java as a language. Although there are a few problems with Java, I can live with them if I have no other option but to write Java code; My <em>hate</em> to Java doesn’t really arise from Java being a bad <em>language</em> but rather from its <a href="http://www.sillybytes.net/2016/03/why-do-i-hate-java.html">surroundings</a>.</p>
+    <summary type="html"><![CDATA[<p>There’s already a rant about Java in <a href="https://sillybytes.net/2016/03/why-do-i-hate-java.html">a previous post</a>, in which I basically list the annoyances that the ecosystem around Java imposes and how those relate and intersect with the problems of IDEs.</p>
+<p>Here I’d like to talk about the issues of Java as a language. Although these are a significant part of what’s wrong with Java, keep in mind that it’s only half of the equation, the other part being its <a href="https://sillybytes.net/2016/03/why-do-i-hate-java.html">surroundings</a>.</p>
 <!--more-->
 <h1 id="pointers-pointers-everywhere">Pointers, Pointers everywhere</h1>
-<p>Java claims to be a <em>pointers free language</em>. Pointers, although elegant and very powerful, are a low level construct that should not be present in a higher level language, that’s for sure. Most of the time I want to be as far away as possible from pointers when programming unless I really need them, in which case I will just write in <em>C</em>.</p>
-<p>The problem is Java does have pointers; Moreover, it manages to keep most of the inconveniences of having pointers while giving almost none of the benefits of not having them. If you’re not giving me the power of pointers, at least be kind enough to remove the problems they arise!</p>
+<p>Java is supposed to be a <em>pointers-free language</em>, unlike those <em>pesky</em> C and C++. Pointers, although very powerful, are a low level construct that should not be present in a higher level language. Most of the time We want to be as far away as possible from pointers when programming unless lower level memory access is specifically needed.</p>
+<p>The problem is Java <em>does</em> have pointers; Moreover, it manages to keep most of the inconveniences of having pointers while giving none of the benefits of not having them. If you’re not giving me the power of pointers, at least be kind enough to remove the problems they induce.</p>
 <h2 id="everything-is-a-reference-everything-is-a-pointer">Everything is a reference, everything is a pointer</h2>
-<p>Java loves to call pointers as “references”, which is only a way to pretend that there are no pointers.</p>
-<p>Java makes pretty much everything a pointer, thus the heavy usage of the <code>new</code> keyword. Making everything a pointer gives <em>JVM</em> the ability to manage memory with the Garbage Collector of course, but the consequences of this are not as shallow and beneficial as you’d like to think.</p>
-<p>Having no means to manipulate an object other than via <em>references</em> weakens data locality (a problem that other high level languages actually does manage to solve), and thus cache misses become bread and butter for a Java programmer which, most likely, isn’t aware of it or don’t even know what I’m talking about or how is it important. Which takes us to the problems of Java as a first programming language, but we’ll talk about that latter.</p>
+<p>Java loves to call pointers by the nickname of “references”, which is only a way to pretend that there are no pointers.</p>
+<p>Java makes everything a pointer, thus the heavy usage of the <code>new</code> keyword as a way to create a <em>reference</em>. Having this references gives the <em>JVM</em> the ability to manage memory with the Garbage Collector of course, but it comes with negative consequences for the programmer.</p>
 <h2 id="nullpointerexception">NullPointerException</h2>
 <p>The book <em>Elegant Objects</em> by Yegor Bugayenko says:</p>
 <blockquote>
 <p>In a nutshell, you’re making a big mistake if you use NULL anywhere in your code. Anywhere – I mean it.</p>
 </blockquote>
-<p>And I completely agree with that. The problem is having to take into account the possibility of <em>NULL</em> in a high level language that supposedly doesn’t have pointers.</p>
-<p>In <em>C</em> or <em>C++,</em> when you dereference a <em>NULL</em> pointer, you get a <em>Segmentation Fault</em> and your program crashes. In Java, when you try to use a <em>NULL</em> reference you get a <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html">NullPointerException</a> and your program crashes as well. So what gives?</p>
-<p>You may say that the sources of these crashes are different, the <em>Segmentation Fault</em> comes from the OS trying to stop you from crashing the entire system, while the <em>NullPointerException</em> comes from the JVM that… Well, has nothing left to do but crash… I don’t see how is that any better.</p>
-<p><em>NullPointerException</em>s are terribly common in Java, and you have to hunt them down just as any null pointer dereference bug. And if you’re thinking the actual benefit of this is having the <em>GC</em> taking care of the memory instead of having to remember to manually free memory, then you’re wrong, there are ways to statically take care of that, without having the <em>GC</em> behemoth eating your CPU time, but I’ll get to that in a moment.</p>
-<p>By the way, Tony Hoare himself calls <em>NULL</em> the <a href="https://en.wikipedia.org/wiki/Nullable_type#Compared_with_null_pointers">“Billion-Dollar mistake”</a>.</p>
+<p>And I completely agree with that. The problem here is having to take into account the possibility of <em>NULL</em> in a high level language that supposedly doesn’t have pointers and tries to hide those details from you in the first place.</p>
+<p>In C or C++, when you dereference a <em>NULL</em> pointer, you get a <em>Segmentation Fault</em> and your program crashes. In Java, when you try to use a <em>NULL</em> reference you get a <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html">NullPointerException</a> and your program crashes as well. So what gives?</p>
+<p>You may say that the sources of these crashes are different, the <em>Segmentation Fault</em> comes from the OS trying to stop you from crashing the entire system, while the <em>NullPointerException</em> comes from the JVM that… Well, has nothing left to do but crash. I don’t see how is that any better.</p>
+<p><em>NullPointerException</em>s are terribly common in Java, and you have to hunt them down just as any null pointer dereference bug. And if you’re thinking the actual benefit of this is having the <em>GC</em> taking care of the memory instead of having to remember to manually free memory, then think again, as there are languages that take care of that without a <em>GC</em>, including C++.</p>
+<p>Tony Hoare himself calls <em>NULL</em> the <a href="https://en.wikipedia.org/wiki/Nullable_type#Compared_with_null_pointers">“Billion-Dollar mistake”</a>.</p>
 <h2 id="useless-pointers">Useless pointers</h2>
-<p>So java is cluttered with pointers, useless pointers. In <em>C/C++</em> pointers are one of the most powerful constructs, they allow you to get closer to the machine and control its actions with scalpel precision; In Java you get your programs to crash due to <em>NULL</em> pointers while getting nothing on exchange.</p>
-<p>But pointers in Java percolates in even more creative ways, take for instance the Equality comparison problem: When you perform equality comparison <code>==</code> what you’re actually comparing is <em>pointers equality</em>, not <em>values equality</em> for which you need a special method <code>equal()</code>, this is a low level language trait as its best, not to mention terribly counterintuitive.</p>
+<p>So java is cluttered with pointers, useless pointers. In <em>C/C++</em> pointers are one of the most powerful constructs, they allow you to get closer to the machine and control its actions with scalpel precision; In Java you get your programs to crash due to <em>NULL</em> pointers while getting no benefit in exchange.</p>
+<p>But pointers in Java percolate up in even more creative ways, take for instance the Equality comparison problem: When you perform equality comparison <code>==</code> what you’re actually comparing is <em>pointer equality</em>, not <em>value equality</em> for which you need a special method <code>equal()</code>, this is a low level language trait that, unlike other low level languages, won’t put the power on the programmers hand but just the burden.</p>
 <h1 id="the-bad-the-worst-and-the-ugly">The bad, the worst and the ugly</h1>
-<p>Java has a lot of additional traits that make it not only a low level language in disguise, but also a bad language in general.</p>
+<p>Java has a lot of additional traits that make it not only a low level language in disguise, but also in my opinion a bad language in general.</p>
 <p><img src="/img/javawrong/good_bad_ugly.jpg" class="img-responsive" /></p>
-<h2 id="portability">Portability</h2>
-<p>People usually get confused by the “Java is portable” thing. When we say that “Java is portable” what we actually mean is that Java <em>Bytecode</em> can be ported.</p>
-<p>Lower level languages as <em>C</em> or <em>C++</em> are portable too, the difference is that these need to be recompiled for the target system. You don’t believe me? Take a look at <a href="https://www.gimp.org/">Gimp</a>, <a href="https://gcc.gnu.org/">GCC</a> and <a href="https://inkscape.org/en/">Inkscape</a>, just to mention a few.</p>
-<p>When you distribute <em>C/C++</em> software for multiple platforms you distribute the binaries compiled for each platform, while with Java you just distribute one <em>Bytecode</em> executable for every platform, sure, it is a benefit, but no where near enough to make up for the inconvenience of having to write Java.</p>
 <h2 id="awful-verbosity">Awful Verbosity</h2>
 <p>Most of the Java ugly verbosity is attributed to its static, strong typing discipline that forces you to annotate the types of everything, everywhere. But this is not the type discipline fault.</p>
 <p>In Java, you declare, for instance, a vector of integers:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Vector</span><span class="op">&lt;</span><span class="bu">Integer</span><span class="op">&gt;</span> vector <span class="op">=</span> <span class="kw">new</span> <span class="bu">Vector</span><span class="op">&lt;</span><span class="bu">Integer</span><span class="op">&gt;();</span></span></code></pre></div>
-<p>Or a vector of vectors of integers (a Matrix of integers):</p>
+<p>Or a vector of vectors of integers:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Vector</span><span class="op">&lt;</span><span class="bu">Vector</span><span class="op">&lt;</span><span class="bu">Integer</span><span class="op">&gt;&gt;</span> vector <span class="op">=</span> <span class="kw">new</span> <span class="bu">Vector</span><span class="op">&lt;</span><span class="bu">Vector</span><span class="op">&lt;</span><span class="bu">Integer</span><span class="op">&gt;&gt;();</span></span></code></pre></div>
-<p>Java’s way of dealing with this to some extent, is the <em>diamond</em> operator <code>&lt;&gt;</code>, so instead we could write:</p>
+<p>And it gets progressively uglier like that. Java’s way of dealing with this to some extent, is the empty <em>diamond</em> operator <code>&lt;&gt;</code>, so instead we could write:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Vector</span><span class="op">&lt;</span><span class="bu">Vector</span><span class="op">&lt;</span><span class="bu">Integer</span><span class="op">&gt;&gt;</span> vector <span class="op">=</span> <span class="kw">new</span> <span class="bu">Vector</span><span class="op">&lt;&gt;();</span></span></code></pre></div>
-<p>But that’s pretty much as far as it gets. <em>C++11</em> on the other hand has the <code>auto</code> keyword to let the compiler do what compilers are good at: mechanical, repetitive, deterministic tasks; Type inference is one of those tasks.</p>
-<p>Every time, everywhere a time annotation is needed, you provide one only if it’s absolutely needed to avoid ambiguity, otherwise, just use <code>auto</code> and let the compiler do it for you.</p>
-<h2 id="resources-un-safety">Resources un-safety</h2>
-<p>One of the main Java selling points is <em>Memory Safety</em>, you see, in <em>C</em> you have to free your memory with <code>free()</code> in the right place, at the right time after every memory allocation with <code>malloc()</code> and friends. If you forget to free your memory you’ll have memory leaks, if you free it twice, or if you free it at the wrong time you’ll have a segmentation fault.</p>
+<p>But that’s pretty much as far as it gets. <em>C++11</em> on the other hand has the <code>auto</code> keyword to let the compiler do what compilers do best: mechanical, repetitive, deterministic tasks; Type inference is one of those tasks.</p>
+<p>Every time, everywhere a time annotation is needed, you provide one only if it’s absolutely necessary to avoid ambiguity, otherwise, just use <code>auto</code> and let the compiler do it for you.</p>
+<h2 id="resource-un-safety">Resource un-safety</h2>
+<p>One of the main Java selling points is <em>Memory Safety</em>, you see, in C you have to free your memory with <code>free()</code> in the right place, at the right time after every memory allocation with <code>malloc()</code> and friends. If you forget to free your memory you’ll have memory leaks, if you free it twice, or if you free it at the wrong time you’ll have a segmentation fault.</p>
 <p>Java on the other hand leverages the Garbage Collector to do it for you, the problem is, this works for memory only!</p>
 <p>Whenever you initialize a socket, or a database connection, or open a file, you still need to <em>close</em> it at the right time; So you still can and will have resources leakage.</p>
-<p><img src="/img/javawrong/leak.jpg" class="img-responsive" /></p>
-<p><em>C++</em> solves all of those problems beautifully by using <a href="http://en.cppreference.com/w/cpp/language/raii">Resource Acquisition Is Initialization</a> or RAII for short. And by the way, if you hit the same kind of problems you face in <em>C</em> with <code>malloc()</code> and <code>free()</code> but with <em>C++</em>’s <code>new</code> and <code>delete</code>, then you’re doing it wrong.</p>
-<p>By using <em>C++</em>’s RAII mechanisms you’ll never have to remember to free memory, close files, sockets, database connections or anything else. Java is supposed to be a higher level language than <em>C++</em> isn’t it?</p>
+<p>C++ solves all of those problems beautifully by using <a href="http://en.cppreference.com/w/cpp/language/raii">Resource Acquisition Is Initialization</a> or RAII for short. And by the way, if you hit the same kind of problems you face in C with <code>malloc()</code> and <code>free()</code> but with <em>C++</em>’s <code>new</code> and <code>delete</code>, then you’re doing it wrong.</p>
+<p>By using C++’s RAII mechanisms you’ll never have to remember to free memory, close files, sockets, database connections or anything else. Java is supposed to be a higher level language than C++.</p>
 <h2 id="exceptions-driven-programming">Exceptions Driven Programming</h2>
-<p><em>C++</em> and a lot of other imperative and OOP languages suffer form the <em>Exceptions</em> problems as well, but Java manages to screw it up even further.</p>
-<p>The heavy use of exceptions forces the programmer to write tons of</p>
+<p>C++ and many other imperative and OOP languages suffer form the <em>Exceptions driven programming</em> issue as well, but Java manages to screw it up even further.</p>
+<p>The heavy use of exceptions forces the programmer to write tons of:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span> <span class="op">{</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">...</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
@@ -218,39 +212,35 @@ listeners:
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="cf">catch</span><span class="op">(</span>Excetption e<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">&quot;An exception has occurred, sorry ¯</span><span class="er">\_</span><span class="st">(ツ)_/¯&quot;</span><span class="op">);</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<p>The result of this is that the code that matters, the actual logic we’re trying to encode in the program gets deeply buried in there, making it hard to read, hard to understand, hard to maintain, hard to modify and awfully ugly. Although most languages suffer from a variant of this issue, some other languages handle it gracefully by encoding the possibility of failure in the type system.</p>
-<p>Most programming languages break equational reasoning, but that’s pretty much normal; Exceptions go further by even breaking the imperative sequentiality (<em>cough</em> GOTO <em>cough</em>).</p>
+<p>The result of this is that the code that matters, the actual logic we’re trying to encode in the program gets deeply buried, making it hard to read, hard to understand, hard to maintain, hard to modify and awfully ugly. Although most languages suffer from a variant of this issue, some other languages handle it gracefully by encoding the possibility of failure in the type system.</p>
+<p>Most programming languages break equational reasoning, but that’s pretty common; Exceptions go further by even breaking the imperative sequentiality (<em>cough</em> GOTO <em>cough</em>).</p>
 <h1 id="everything-is-an-object">Everything is an object</h1>
-<p>As I have already said in my <a href="http://www.sillybytes.net/2016/03/why-do-i-hate-java.html">previous post</a>, No, not everything is a object. OOP has a lot of problems on its own, and it deserves its own post. Here I’m talking about the way Java forces OOP.</p>
-<p>Most OOP languages have this paradigm as a <em>feature</em>, but still allow for free functions, free data and so on. The problem with Java being strictly OOP is that it forces objects even when they don’t fit, even when they adversely affect compostability, modularity or readability.</p>
+<p>As mentioned in a <a href="https://sillybytes.net/2016/03/why-do-i-hate-java.html">previous post</a>: No, not everything is an object. OOP has a lot of problems on its own, and it deserves its own post, but here I’m talking about the way Java enforces OOP.</p>
+<p>Most OOP languages have this paradigm as a <em>feature</em>, but still allow for free functions, free data and so on. The problem with Java being strictly OOP is that it forces objects even when they don’t fit, even when they adversely affect composition, modularity or readability.</p>
 <blockquote>
 <p>The problem with object-oriented languages is they’ve got all this implicit environment that they carry around with them. You wanted a banana but what you got was a gorilla holding the banana and the entire jungle. – Joe Armstrong</p>
 </blockquote>
-<p>In most languages you can perform <em>actions</em>, but in Java, having objects as the only mean of abstraction, you must have <em>“actioners”</em> to perform any <em>actions</em>, and you must force them into existent to do anything. OOP is usually bad in general, although useful in certain contexts; Java makes it soul up from everything that is wrong with OOP.</p>
-<p>Those and more are the common pains of Javaland, that Steve Yegge describes wonderfully in <a href="http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html">Execution in the Kingdom of Nouns</a>.</p>
+<p>In most languages you can perform <em>actions</em>, but in Java, having objects as the only mean of abstraction you must have <em>“actioners”</em> to perform <em>actions</em>, and must force them into existence to do anything even if it convolutes your code and logic. OOP is usually bad in general, although useful in certain contexts; Java makes it so that everything that is wrong with OOP is also the only way.</p>
+<p>Those and more are the common pains of <em>Javaland</em>, that Steve Yegge describes wonderfully in <a href="http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html">Execution in the Kingdom of Nouns</a>.</p>
 <h1 id="performance">Performance</h1>
 <p>Java is both fast and slow, depending on what language you compare it with. When you compare it with higher level languages, Java is reasonably faster, but when you compare it with C or C++, Java is miserably slow and heavy on resources.</p>
-<p>Taking into account that Java is more of a low level language rather than a high level one as we have seen, it should be compared to is closes cousins C and C++, in which case you inevitably conclude it’s just slow, very slow.</p>
+<p>Taking into account that Java is more of a low level language rather than a high level one as we have seen, it should be compared to its closes cousins C and C++, in which case you inevitably conclude that it’s just slow, very slow.</p>
 <h1 id="java-sits-in-a-dead-spot">Java sits in a dead spot</h1>
-<p>As we’ve seen, Java is mostly a low level programming language that doesn’t really provides the benefits of one, while at the same time it pretends to be a high level language and fails miserably.</p>
+<p>As we’ve seen, Java is mostly a low level programming language that doesn’t really provide the benefits of one, while at the same time it pretends to be a high level language and fails miserably.</p>
 <p>This leads to the current situation:</p>
 <pre><code>| C | C++ | Rust | Java | Ruby | Python | PHP | Perl | Earlang | OCaml | Haskell
 
 |--- Low Level --| ???  |---                  High Level                    ---|</code></pre>
 <h2 id="java-is-a-bad-low-level-language">Java is a bad low level language</h2>
-<p>From the low level languages, Java can perfectly be replaced by <em>C++</em>, <em>RUST</em> and others. Both of these languages provides low level capabilities (like writing operating systems, real time systems and such), while at the same time providing better high level traits like <em>C++</em>’s RAII or <em>RUST</em>’s statically guaranteed thread safety, both of these languages will avoid Java’s stupid <code>NullPointerException</code>.</p>
+<p>From the low level languages extreme, Java can perfectly be replaced by C++, Rust and others. Both of these languages provide low level capabilities, and are good for systems programming, while at the same time providing better high level traits like C++’s RAII or Rust’s statically guaranteed safety. Both of these languages will avoid Java’s <code>NullPointerException</code> and resource leaks.</p>
 <h2 id="java-is-a-bad-high-level-language">Java is a bad high level language</h2>
-<p>From the high level languages, Java can be replaced by virtually <strong>any</strong> other language. Almost any other language will provide a nicer syntax, better and more powerful ways of abstraction, more terseness, better tooling, better everything.</p>
+<p>From the high level languages extreme, Java can be replaced by pretty much <strong>any</strong> other language. Almost any of them will provide a nicer syntax, better and more powerful ways of abstraction, better terseness, better tooling, better everything.</p>
 <p>This makes Java completely replaceable by any other language, it serves no particular purpose and is particularly good at nothing.</p>
-<h1 id="stupid-programmers-abstractfactory">Stupid programmers abstractFactory</h1>
-<p>Professors in computer science Robert B.K. Dewar and Edmond Schonberg, published <a href="http://static1.1.sqspcdn.com/static/f/702523/9242013/1288741087497/200801-Dewar.pdf?token=%2B5Thxkc7TmMcmP0qpas4Xaozf%2Bg%3D">an article</a> in the “Journal of Defense Software Engineering” discussing how Java is a bad programming language for CS education, and how it produces programmers that are incapable of doing actual problem solving.</p>
-<p>Java produces programmers that have no idea about how the computer actually works, how to face complex problems, and the intrinsic need of an IDE only makes the problem 10 times worst. These people will be completely incompetent if their IDEs would be taken away for one second.</p>
-<p>Moreover, programmers that are only capable of writing Java are notoriously ignorant in programming languages theory or even CS in general for that matter, no computation theory knowledge, no algorithms knowledge, no nothing. The issue goes much more further into the same direction when you take into account IDE.</p>
-<p>As Joel puts it in his article <a href="https://www.joelonsoftware.com/2005/12/29/the-perils-of-javaschools-2/">“The Perils of JavaSchools”</a></p>
+<h1 id="bad-programmers-abstractfactory">Bad programmers abstractFactory</h1>
+<p>Professors in computer science Robert B.K. Dewar and Edmond Schonberg, published <a href="http://static1.1.sqspcdn.com/static/f/702523/9242013/1288741087497/200801-Dewar.pdf?token=%2B5Thxkc7TmMcmP0qpas4Xaozf%2Bg%3D">an article</a> in the “Journal of Defense Software Engineering” discussing how Java is a bad programming language for CS education, and how it produces programmers that are incapable of doing actual problem-solving. Or, as Joel puts it in his article <a href="https://www.joelonsoftware.com/2005/12/29/the-perils-of-javaschools-2/">“The Perils of JavaSchools”</a>:</p>
 <blockquote>
 <p>I’ve seen that the 100% Java schools have started churning out quite a few CS graduates who are simply not smart enough to work as programmers on anything more sophisticated than Yet Another Java Accounting Applications</p>
-</blockquote>
-<p>Ah… Java Accounting Applications… It pretty much sums up the skills of Java-only programmers.</p>]]></summary>
+</blockquote>]]></summary>
 </entry>
 <entry>
     <title>Using Cassius (Shakespearean template) with Hakyll</title>
@@ -258,11 +248,7 @@ listeners:
     <id>http://www.sillybytes.net/posts/using_hakyll_with_cassius.html</id>
     <published>2017-04-11</published>
     <updated>2017-04-11T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>As a user of the <a href="http://www.yesodweb.com/">Yesod</a> framework, I’ve came to know and love the <a href="https://www.stackage.org/haddock/lts-8.4/shakespeare-2.0.12.1/Text-Cassius.html#v:cassius">Cassius</a> CSS templating language, although its reliance on Template Haskell is meant to fit better with the Yesod’s needs and makes it a bit cumbersome to use everywhere else, I still like the templating language itself and its features a lot.</p>
-<p>That’s why I used it for styles generation in <a href="http://www.sillybytes.net">Silly Bytes</a> together with <a href="https://jaspervdj.be/hakyll/">Hakyll</a>. In this post I will describe the process.<br />
-<br />
-<br />
-</p>
+    <summary type="html"><![CDATA[<p>As a user of the <a href="http://www.yesodweb.com/">Yesod</a> framework, I’ve come to know and love the <a href="https://www.stackage.org/haddock/lts-8.4/shakespeare-2.0.12.1/Text-Cassius.html#v:cassius">Cassius</a> CSS templating language, although its reliance on Template Haskell is meant to fit better with Yesod’s needs and makes it a bit cumbersome to use everywhere else, I still like the templating language itself and its features a lot. That’s why I used it for styles generation in <a href="https://sillybytes.net">Silly Bytes</a> together with <a href="https://jaspervdj.be/hakyll/">Hakyll</a>. In this post I will describe the process.</p>
 <!--more-->
 <h1 id="cassius-files">Cassius files</h1>
 <p>Our <code>.cassius</code> files will live inside the <code>css</code> directory, together with a <code>Gen.hs</code> Haskell module that will take the <em>Cassius</em> sources and compile them to <em>CSS</em>:</p>
@@ -297,7 +283,7 @@ css:
 
 watch:
 	while true; do make css; inotifywait -qre close_write css/*.cassius; done</code></pre>
-<p>This way, we can execute <code>make watch</code> and it will recompile the <em>Cassius</em> files when needed. A normal <code>stack exec site watch</code> can be running along the side to take care of everything else.</p>]]></summary>
+<p>This way, we can execute <code>make watch</code> and it will recompile the <em>Cassius</em> files when needed. A normal <code>stack exec site watch</code> can be running alongside to take care of everything else.</p>]]></summary>
 </entry>
 <entry>
     <title>From Blogger to Hakyll</title>
@@ -305,30 +291,22 @@ watch:
     <id>http://www.sillybytes.net/posts/from_blogger_to_hakyll.html</id>
     <published>2017-04-10</published>
     <updated>2017-04-10T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p><a href="https://jaspervdj.be/hakyll/">Hakyll</a> is an amazing static site generator written in Haskell, it allows for blog posts to be written in <em>markdown</em>, that are then compiled with <em>pandoc</em>, and is very well suited to be used with <em>GitHub pages</em>; It’s everything I wanted and more.</p>
-<p><a href="http://www.sillybytes.net">Silly Bytes</a> went through its first 5 years of existence hosted on Google’s <a href="https://www.blogger.com">Blogger</a> service, and it did well. Although Blogger offers a fair amount of flexibility, you can’t have total control over it, and having to write posts with the built in <em>WYSIWYG</em> interface or pasting the HTML output is one of the bigger pain points of it. I solved most of that by writing a <a href="http://www.sillybytes.net/2016/09/how-do-i-blog-blogger-posts-from.html">CLI tool</a> that allows me to write my posts offline in <em>markdown</em>, compile them, and deploy them from my terminal leveraging the Blogger’s convenient API. But I still have the feeling that it isn’t good enough.</p>
-<p>In this post I will describe the process of porting an existing Blogger blog to <em>Hakyll</em> and <em>GitHub pages</em> using <em>Silly Bytes</em> itself as a case study.</p>
+    <summary type="html"><![CDATA[<p><a href="https://jaspervdj.be/hakyll/">Hakyll</a> is an amazing static site generator written in Haskell, it allows for blog posts to be written in <em>markdown</em> and then compiled with <em>pandoc</em>. It’s very well suited to be used with <em>GitHub pages</em>. It’s everything I wanted and more.</p>
+<p><a href="http://www.sillybytes.net">Silly Bytes</a> went through its first 5 years of existence hosted on Google’s <a href="https://www.blogger.com">Blogger</a> service, and it did well. Although Blogger offers a fair amount of flexibility, you can’t have total control over it, and having to write posts with the built-in <em>WYSIWYG</em> interface or pasting the HTML output is the biggest pain point of it. I solved most of that by writing a <a href="http://www.sillybytes.net/2016/09/how-do-i-blog-blogger-posts-from.html">CLI tool</a> that allows me to write posts offline in <em>markdown</em>, compile them, and deploy them from the terminal leveraging Blogger’s API. But that’s still too much of a flex.</p>
+<p>In this post I’ll describe the process of porting an existing Blogger blog to <em>Hakyll</em> and <em>GitHub pages</em> using <em>Silly Bytes</em> itself as a case study.</p>
 <!--more-->
 <h1 id="expectations">Expectations</h1>
 <p>So here is what I want instead:</p>
 <ol type="1">
-<li>Completely port <em>Silly Bytes</em> to <em>Hakyll</em> and <em>GitHub pages</em></li>
+<li><p>Completely port <em>Silly Bytes</em> to <em>Hakyll</em> and <em>GitHub pages</em>. Write every post in <em>markdown</em> only, and have them automatically generated.</p></li>
+<li><p>Further customize the design. While I’ve managed to get pretty far with Blogger’s custom CSS option, there are still some aspects that doesn’t quite fit what I want.</p></li>
+<li><p>Preserve all the links to previous posts</p></li>
 </ol>
-<p>Write every post in <em>markdown</em> only, and have them generated automatically.</p>
-<ol start="2" type="1">
-<li>Further customize the design</li>
-</ol>
-<p>While I’ve managed to get pretty far with Blogger’s custom CSS option, there are still some aspects that doesn’t quite fit what I want.</p>
-<ol start="3" type="1">
-<li>Preserve all the links to my previous posts</li>
-</ol>
-<p>There are quite a few links to my posts all over the place: Reddit, Taringa, ElHacker.net, Facebook, etc. I want them to keep them working just fine.</p>
 <h1 id="the-initial-setup">The initial setup</h1>
 <p>We’ll strive to keep the old blog completely functional till the last moment when we finally change where the domain name points to.</p>
 <h2 id="github-page">GitHub page</h2>
-<p><em>GitHub pages</em> will host the blog, so we must first create a repository that will keep it.</p>
-<p>The <em>GitHub pages</em> <a href="https://help.github.com/articles/user-organization-and-project-pages/">naming convections</a> state that, in order to create a dedicated repo for a personal or organizational page, we must have a repository named <code>user.github.io</code> or <code>organization.github.io</code> respectively, this way GitHub will read and serve any <em>index</em> file in the repository root; This supposes a problem though, We want to keep our generated site inside a directory to keep them isolated from the sources files.</p>
-<p>There are a couple of solutions for this, but they all use some Git branches trickery, juggling with a CI service, or both; It feels to hacky to me, not to say that my solution is more elegant, but it just fits better to the work flow I’m looking for.</p>
+<p>The <em>GitHub pages</em> <a href="https://help.github.com/articles/user-organization-and-project-pages/">naming convections</a> state that, in order to create a dedicated repo for a personal or organizational page, we must have a repository named <code>user.github.io</code> or <code>organization.github.io</code> respectively, this way GitHub will read and serve any <em>index</em> file in the repository root; This supposes a problem though, We want to keep our generated site inside a directory to keep compiled files separated from the sources.</p>
+<p>There are a couple of solutions for this, but they all use some Git branches trickery, juggling with a CI service, or both; It feels way to hacky to me, not saying that my solution is better, but it just fits better with the work flow I’m looking for.</p>
 <p><em>GitHub pages</em> offers project specific pages as well, those are served from a dedicated <code>docs</code> directory on it, so this is what we’re going to use instead.</p>
 <p>I’ve created a <code>sillybytes</code> <a href="https://github.com/sillybytes/sillybytes">repository</a> in the <code>sillybytes</code> organization. Then in <code>settings -&gt; GitHub Pages -&gt; Source</code> I’ve selected <code>master branch /docs folder</code> as the page source.</p>
 <h2 id="hakyll-site">Hakyll site</h2>
@@ -338,7 +316,7 @@ $ cd sillybytes
 $ stack init
 $ stack build</code></pre>
 <p>By default, Hakyll outputs the generated site in a <code>_site</code> directory, but <em>GitHub pages</em> will read the site from a <code>docs</code> directory, so let’s fix that by editing the <code>site.hs</code> file.</p>
-<p>The default <code>main</code> function in <code>site.hs</code> uses the <code>hakyll</code> function, which uses the default configuration, so we must change that to use a custom one:</p>
+<p>The <code>main</code> function in <code>site.hs</code> uses the <code>hakyll</code> function with the default configuration, so we need to swap that with a custom one:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>main <span class="ot">=</span> hakyllWith config <span class="op">$</span> <span class="kw">do</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
@@ -382,12 +360,11 @@ $ git commit -m &quot;Build&quot;</code></pre>
 <pre><code>$ git push origin master</code></pre>
 <p>No need for esoteric spells here.</p>
 <h1 id="dont-shatter-my-links">Don’t shatter my links!</h1>
-<p><img src="/img/bloggerhakyll/links.png" class="img-responsive" /></p>
-<p>It is imperative to preserve the links to my previous posts that were originally published on Blogger, so they keep pointing to the right post.</p>
+<p>It is imperative to preserve the links to previous posts that were originally published on Blogger, so they keep pointing to the right post.</p>
 <h2 id="preserve-legacy-paths">Preserve legacy paths</h2>
 <p>Blogger paths convention is as follows:</p>
 <p>Every post is on the corresponding <em>year</em> and <em>month</em> of publication name space like <code>year/month/post.html</code>. So we must preserve this structure at least for the legacy posts.</p>
-<p>In order to achieve this, keep a <code>legacy</code> directory inside the <code>posts</code> directory, that will keep a directory tree for every year and month where posts exist.</p>
+<p>In order to achieve this keep a <code>legacy</code> directory inside <code>posts</code>, that will in turn contain a directory tree for every year and month when posts exist.</p>
 <pre><code>sillybytes/posts/legacy
 |
 +---2012
@@ -427,21 +404,20 @@ $ git commit -m &quot;Build&quot;</code></pre>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        <span class="op">&gt;&gt;=</span> relativizeUrls</span></code></pre></div>
 <p>This will ensure that the <code>year/month/post.html</code> directory structure is preserved on the resulting generated site.</p>
 <h2 id="port-legacy-posts">Port legacy posts</h2>
-<p>From here, a pretty much manual porting process is required. Most of my legacy posts were originally published right in the Blogger interface, so the must first be ported to <em>markdow</em>.</p>
+<p>From here, a pretty much manual porting process is required. Most of the legacy posts were originally published right in the Blogger interface, so some rewrite to <em>markdow</em> is needed.</p>
 <p>The porting process is as follows:</p>
 <ol type="1">
 <li>Visit the legacy post and copy the trailing name of it from the URL.</li>
 <li>Create the appropriate directory structure inside <code>posts/legacy</code> to preserve the same <code>year/month/post.html</code> path.</li>
 <li>Create a <em>markdown</em> file with the same name as it appears in the URL, but with the <code>.md</code> extension.</li>
-<li>Create a dedicated directory for the post inside the <code>images</code> directory and put all the post images on it.</li>
+<li>Create a dedicated directory for the post inside the <code>images</code> directory and put all the post images in it.</li>
 <li>Paste and format the post content in the <em>markdown</em> file.</li>
 </ol>
-<p>Any newer posts that are created after the porting can live in the <code>posts</code> directory, there is no need to keep the <code>year/month/post.html</code> any more.</p>
+<p>Any newer posts that are created after the porting can live in the <code>posts</code> directory, there is no need to keep the <code>year/month/post.html</code> scheme any more.</p>
 <h1 id="the-migration">The migration</h1>
-<p><img src="/img/bloggerhakyll/migration.jpg" class="img-responsive" /></p>
-<p>The only thing that is left is the actual migration by pointing the domain name to the new location.</p>
-<p>This arises a bigger problem though, given that we are serving the blog from <code>sillybytes/docs</code> we’ll need a <em>URL Redirect</em> record pointing to <code>sillybytes.github.io/sillybytes</code> rather than a <em>CNAME</em> to just <code>sillybytes.github.io</code>. If you’re fine with that, then you’re done.</p>
-<p>I really wanted a proper <em>CNAME</em> record, so I had to change the setup a bit:</p>
+<p>The only thing left is the actual migration by pointing the domain name to the new site.</p>
+<p>At this point a bigger problem arises. Given that we are serving the blog from <code>sillybytes/docs</code> we’ll need a <em>URL Redirect</em> record pointing to <code>sillybytes.github.io/sillybytes</code> rather than a <em>CNAME</em> to just <code>sillybytes.github.io</code>. If you’re fine with that, then you’re done.</p>
+<p>I really wanted a proper <em>CNAME</em> record though, so I had to change the set up a bit:</p>
 <ul>
 <li>Have two repositories: <code>sillybytes</code> for the sources, and <code>sillybytes.github.io</code> for the generated page.</li>
 <li>A <em>deployment</em> consists of copying the content of the <code>docs</code> directory to the <code>sillybytes.github.io</code> repository.</li>
@@ -458,29 +434,28 @@ $ git commit -m &quot;Build&quot;</code></pre>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin master</span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="ex">display_success</span> <span class="st">&quot;Deployed!&quot;</span></span></code></pre></div>
 <p>As well as aliasing common <em>Hakyll</em> commands:</p>
-<p><img src="/img/bloggerhakyll/shot1.png" class="img-responsive" /></p>]]></summary>
+<p><img src="/img/bloggerhakyll/shot1.png" class="img-responsive" /></p>
+<p>That’s some comfy blogging right there.</p>]]></summary>
 </entry>
 <entry>
-    <title>How do I blog? - Blogger posts from markdown and CLI</title>
+    <title>Blogger posts from markdown and CLI</title>
     <link href="http://www.sillybytes.net/2016/09/how-do-i-blog-blogger-posts-from.html" />
     <id>http://www.sillybytes.net/2016/09/how-do-i-blog-blogger-posts-from.html</id>
     <published>2016-09-23</published>
     <updated>2016-09-23T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p><img src="/img/blogger/thumbnail.png" id="thumbnail" /><br />
-</p>
-<p>There are plans to migrate <a href="http://sillybytes.net">Silly Bytes</a> to <a href="https://jaspervdj.be/hakyll/">Hakyll</a> and GitHub pages, but till then I’m still using <a href="http://www.blogger.com">Blogger</a> and I wanted to make the posting process as painless and automatic as possible.</p>
+    <summary type="html"><![CDATA[<p>There are plans to migrate Silly Bytes to <a href="https://jaspervdj.be/hakyll/">Hakyll</a> and GitHub pages, but till then I’m still stuck with Blogger and wanted to make the posting process as painless and automatic as possible.</p>
 <p>Every post I write is currently a separate git repo hosted on the <a href="https://github.com/sillybytes">Silly Bytes GitHub organization</a>. The post is written and maintained in Markdown using Pandoc and a convenient Makefile generated by the <a href="https://github.com/alx741/made">made script</a>.</p>
 <p>Writing posts in Markdown is nice but is not very useful if you still have to mess around with Blogger’s web interface, so here is the plan:</p>
 <ul>
-<li>Write post in <em>Markdown</em></li>
+<li>Write posts in <em>Markdown</em></li>
 <li>Use <em>made</em> to generate a <em>Makefile</em></li>
-<li>Generate HTML with the <em>Makefile</em> <code>$ make</code></li>
-<li>Push the HTML post to Blogger using Google APIs</li>
+<li>Generate HTML with <code>$ make</code></li>
+<li>Push the HTML post to Blogger using Google’s APIs</li>
 </ul>
 <!--more-->
 <p>The first 3 steps are already covered so lets dig into the Blogger negotiation part.</p>
 <h2 id="api-script">API script</h2>
-<p><a href="https://developers.google.com/api-client-library/python/start/installation">Google APIs</a> come in handy here, the best language option was Python (<a href="http://www.sillybytes.net/2016/03/why-do-i-hate-java.html">I refuse tu use Java</a>). So starting from an <a href="https://github.com/google/google-api-python-client/tree/master/samples/blogger">example</a> I came up with this <sub>ugly</sub> code:</p>
+<p><a href="https://developers.google.com/api-client-library/python/start/installation">Google’s APIs</a> come in handy here, the best language option was Python (<a href="https://sillybytes.net/2016/03/why-do-i-hate-java.html">I refuse tu use Java</a>). So starting from an <a href="https://github.com/google/google-api-python-client/tree/master/samples/blogger">example</a> I came up with this helper script:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env python</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># -*- coding: utf-8 -*-</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -556,23 +531,20 @@ $ git commit -m &quot;Build&quot;</code></pre>
 <span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
 <span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>main(sys.argv)</span></code></pre></div>
-<p>The script will initiate a OAuth negotiation when needed and store the authentication tokens in the <code>auth_data.dat</code> file.</p>
-<p>Install some python dependencies (Arch):</p>
-<pre><code>$ pacman -S python-google-api-python-client
-$ pacman -S python-oauth2client</code></pre>
+<p>The script will initiate an OAuth negotiation when needed and store the authentication tokens in the <code>auth_data.dat</code> file.</p>
 <h2 id="api-project">API project</h2>
 <p>Before we’re able to use this we need to create a new <em>API project</em>, configure it and get the <code>client_secrets.json</code> that the script will use to start the OAuth negotiation.</p>
-<p>First enable the <em>Blogger</em> API at: https://console.developers.google.com/apis/library</p>
-<p>Then create a new project, create a new credential and download the JSON file from it. Don’t worry you’ll find your way in the interface. If you read the script you’ll notice my <code>client_secrets.json</code> file will be located at <code>~/.sillybytes</code>.</p>
-<p>Now doing:</p>
+<p>First, enable the <em>Blogger</em> API at: https://console.developers.google.com/apis/library</p>
+<p>Then create a new project, a new set of credentials and download the JSON file from it. From the script above you’ll gather my <code>client_secrets.json</code> file will be located at <code>~/.sillybytes</code>.</p>
+<p>Now, running:</p>
 <pre><code>$ python deploy.py &quot;post title&quot; &quot;post HTML&quot;</code></pre>
-<p>Will push the post to Blogger! So we’re done (?) not yet.</p>
+<p>Will push the post to Blogger!</p>
 <h2 id="cli-tool">CLI tool</h2>
-<p>This is good enough already, we could invoke <code>deploy.py</code> from the Makefile, but it can be better.</p>
-<p>I wrote a tool: <a href="https://github.com/sillybytes/sillybytes_tool/tree/blogger">silly</a>.</p>
+<p>This is good enough already, we could just invoke <code>deploy.py</code> from the Makefile. But it can be better:</p>
+<p><a href="https://github.com/sillybytes/sillybytes_tool/tree/blogger">silly</a>.</p>
 <pre><code>$ silly help</code></pre>
 <p><img src="/img/blogger/shot.png" class="img-responsive" /></p>
-<p>I think the screenshot explains all by it self… Now i can create all the post boilerplate by doing <code>silly new</code> and deploying the current post with <code>silly deploy</code> how cool is that?</p>]]></summary>
+<p>Now I can create all the post boilerplate by doing <code>silly new</code> and deploying the current post with <code>silly deploy</code>. Much better.</p>]]></summary>
 </entry>
 <entry>
     <title>Gentle introduction to STM32 ARM Cortex microcontrollers and boards programming</title>
@@ -580,43 +552,41 @@ $ pacman -S python-oauth2client</code></pre>
     <id>http://www.sillybytes.net/2016/09/gentle-introduction-to-stm32-arm-cortex.html</id>
     <published>2016-09-11</published>
     <updated>2016-09-11T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p><img src="/img/stm32/thumbnail.png" id="thumbnail" /><br />
-</p>
-<p>So you have been using AVR, PIC or some other microcontroller for a while and discover that ST Microelectronics offers some pretty cheap 32 bit ARM and feature rich microcontrollers: <a href="http://www.st.com/content/st_com/en/products/microcontrollers/stm32-32-bit-arm-cortex-mcus.html?querycriteria=productId=SC1169">STM32</a>, and want to start playing with them but don’t know how or where to start; I’m here to help.</p>
-<p><a href="https://en.wikipedia.org/wiki/ARM_architecture">ARM</a> is taking over the embedding wold, they’re ubiquitous in smart phones, tablets, laptops, other computers, cars, refrigerators, microwave ovens, monitors, printers, you name it!</p>
+    <summary type="html"><![CDATA[<p>So you’ve been using AVR, PIC or some other microcontroller for a while and would like to try 32-bit ARM chips like the <a href="http://www.st.com/content/st_com/en/products/microcontrollers/stm32-32-bit-arm-cortex-mcus.html?querycriteria=productId=SC1169">STM32 line</a>. Want to start playing with them but don’t know how or where to start; I’m here to help.</p>
+<p><a href="https://en.wikipedia.org/wiki/ARM_architecture">ARM</a> has taken over the embedded world, they’re ubiquitous in smartphones, tablets, laptops, computers inside computers, cars, refrigerators, microwave ovens, monitors, printers, you name it.</p>
 <p>Note: Be aware that <em>ARM</em> is an <strong>architecture</strong> that manufacturers can <em>implement</em>. Is a common mistake to think <em>ARM</em> is a microcontroller on itself, it is not.</p>
 <!--more-->
 <p>ST Microelectronics’s implementation of ARM are the STM32 microcontrollers: inexpensive, powerful and with great free software/hardware support.</p>
-<p>Various series are available: F0, F1, F2, …, F7; From less to more powerful. You can identify your chip series after the <em>STM32</em> prefix, I’m using a board with the “STM32F103C8” chip, so the series is <em>F1</em>.</p>
+<p>Various series are available: F0, F1, F2, …, F7. You can identify your chip series after the <em>STM32</em> prefix, I’m using a board with the “STM32F103C8” chip, so the series is <em>F1</em>.</p>
 <h2 id="hardware">Hardware</h2>
-<p>As I mentioned STM32 chips are very inexpensive and widely available as individual chips, mounted in convenient development boards or breakout boards.</p>
-<p>Individual chips can be bought from electronic stores like Digi-Key or Mauser, but for the current purposes making your own PCB to mount them is quite inconvenient.</p>
+<p>These chips are relatively inexpensive and widely available, often mounted in convenient development or breakout boards.</p>
+<p>Individual chips can be bought from electronic stores like Digi-Key or Mouser, but for the current purpose making your own PCB to mount them is quite inconvenient.</p>
 <p>The other option is to get one of the nice development boards ST offers:</p>
 <ul>
 <li><a href="http://www.st.com/content/st_com/en/products/evaluation-tools/product-evaluation-tools/mcu-eval-tools/stm32-mcu-eval-tools/stm32-mcu-eval-boards.html?querycriteria=productId=LN1199">Eval</a></li>
 <li><a href="http://www.st.com/content/st_com/en/products/evaluation-tools/product-evaluation-tools/mcu-eval-tools/stm32-mcu-eval-tools/stm32-mcu-nucleo.html?querycriteria=productId=LN1847">Nucleo</a></li>
 <li><a href="http://www.st.com/content/st_com/en/products/evaluation-tools/product-evaluation-tools/mcu-eval-tools/stm32-mcu-eval-tools/stm32-mcu-discovery-kits.html?querycriteria=productId=LN1848">Discovery</a></li>
 </ul>
-<p><img src="/img/stm32/shot1.png" class="img-responsive" /></p>
-<p>Although these are cheap and amazing, we can go even cheaper with the great breakout boards available on Ebay. You can get a STM32F103 chip in a nice board for less than $5 (USD).</p>
-<p><img src="/img/stm32/shot2.png" class="img-responsive" /> <img src="/img/stm32/shot3.png" class="img-responsive" /></p>
+<p><img src="/img/stm32/shot1.png" /></p>
+<p>Although these are cheap and amazing, we can go even cheaper with some breakout boards available on Ebay and others. You can get a STM32F103 chip in a nice board for less than $5 USD.</p>
+<p><img src="/img/stm32/shot2.png" /> <img src="/img/stm32/shot3.png" /></p>
 <h3 id="programmer">Programmer</h3>
 <p>STM32 chips are programmed using a <a href="https://en.wikipedia.org/wiki/ARM_architecture">ST-LINK</a> device, which is an in-circuit debugger and programmer that interfaces with the chip using JTAG or Serial Wire Debugging (<a href="http://www.arm.com/products/system-ip/debug-trace/coresight-soc-components/serial-wire-debug.php">SWD</a>). This is similar to the USBASP for AVR or the PICkit for PIC.</p>
-<p>Development boards like the <em>Nucleo</em> include the st-link hardware directly into the board, so you can connect it to a host computer using USB and program/debug the target chip on the board without any additional external hardware.</p>
-<p><img src="/img/stm32/shot4.png" class="img-responsive" /></p>
-<p>If you’re using another breakout board (like the Ebay ones) or if you mounted a chip in a custom PCB, you will need an external st-link hardware. Fortunately they are also available for cheap on Ebay or you can buy the official one for a few extra bucks if you prefer, they both will work exactly the same with the flashing software.</p>
-<p><img src="/img/stm32/shot5.png" class="img-responsive" /> <img src="/img/stm32/shot6.png" class="img-responsive" /></p>
+<p>Development boards like the <em>Nucleo</em> include the st-link hardware right on the board, so you can connect it to a host computer using USB and program/debug the target chip without any additional external hardware.</p>
+<p><img src="/img/stm32/shot4.png" /></p>
+<p>If you’re using breakout boards (like the Ebay ones) or if you mounted a chip in a custom PCB, you will need an external st-link hardware. Fortunately they are also available for cheap on Ebay, or you can buy the official one for a few extra bucks if you prefer, they both will work exactly the same with the flashing software.</p>
+<p><img src="/img/stm32/shot5.png" /> <img src="/img/stm32/shot6.png" /></p>
 <h4 id="connections">Connections</h4>
-<p>If you’re using a ST development board with the st-link built in just connect it to your computer and you’re ready to go, but for breakout boards and a dongle st-link you’ll need to connect four wires to it:</p>
+<p>If you’re using an ST development board with the st-link built-in just connect it to your computer and you’re ready to go, but for breakout boards and a dongle st-link you’ll need to connect four wires to it:</p>
 <ul>
 <li>VCC (3.3V)</li>
 <li>GND</li>
 <li>SWCLK</li>
 <li>SWDIO</li>
 </ul>
-<p><strong>WARNING:</strong> STM32 chips run on 3.3V, most breakout boards will include a voltage regulator so it can be powered from USB, and st-link dongles will provide a 3.3V VCC PIN to power up the chip. <strong>DON’T</strong> Connect the board to the PC using USB while the chip is powered up using the st-link programmer! Connect one or the other but not both simultaneously. The st-link dongle provides a 5V PIN as well, <strong>DON’T</strong> use it, the STM32 chips are not 5V tolerant, use the 3.3V PIN only.</p>
-<p>ST-Link dongles have labeling on the front, just connect the right pins. On the board side, follow the labeling printed on the pins or use a JTAG/SWD pin out diagram if your board has a JTAG/SWD connector like mine. The connections for the st-link on the breakout board I’m using looks like this:</p>
-<p><img src="/img/stm32/scheme1.jpg" class="img-responsive" /> <img src="/img/stm32/shot7.jpg" class="img-responsive" /> <img src="/img/stm32/shot8.jpg" class="img-responsive" /></p>
+<p><strong>WARNING:</strong> STM32 chips run on 3.3V, most breakout boards will include a voltage regulator, so it can be powered from USB, and st-link dongles will provide a 3.3V VCC PIN to power the chip. <em>DON’T</em> Connect the board to the PC using USB while the chip is powered up using the st-link programmer! Connect one or the other but not both simultaneously. The st-link dongle provides a 5V PIN as well, <em>DON’T</em> use it, the STM32 chips are not 5V tolerant, use the 3.3V PIN only.</p>
+<p>ST-Link dongles have labeling on the front, just connect the right pins. On the board side, follow the labeling printed on the pins or use a pin out diagram. The connections for the st-link on the breakout board I’m using look like this:</p>
+<p><img src="/img/stm32/scheme1.jpg" /> <img src="/img/stm32/shot7.jpg" /> <img src="/img/stm32/shot8.jpg" /></p>
 <h2 id="software">Software</h2>
 <h3 id="host-pc">Host PC</h3>
 <p>You’ll need a compiler, a debugger, some utilities to manage your binaries and the necessary software to flash your firmware using the ST-LINK device (dongle or built-in):</p>
@@ -626,17 +596,17 @@ $ pacman -S python-oauth2client</code></pre>
 <li>arm-none-eabi-binutils</li>
 <li>stlink</li>
 </ul>
-<p>You should be able to install them all of from your distribution repositories. But in case you can’t find <code>stlink</code> on them, get it from the <a href="https://github.com/texane/stlink">github repo</a>.</p>
+<p>You should be able to install them all of from your distribution repositories. But in case you can’t find <code>stlink</code> on them, get it from the <a href="https://github.com/texane/stlink">GitHub repository</a>.</p>
 <p>The <code>stlink</code> package provides these executables:</p>
 <ul>
-<li>st-flash (Write and Read a program from the target chip)</li>
-<li>st-util (Creates a GDB server so you can load, run and debug a program on the target chip)</li>
-<li>st-info (Search and provides information about the st-link device and the target chip)</li>
-<li>st-term (Allows to get log-like reports from the program on the target chip)</li>
+<li><code>st-flash</code> - Write and Read a program from the target chip</li>
+<li><code>st-util</code> - Creates a GDB server, so you can load, run and debug a program on the target chip</li>
+<li><code>st-info</code> - Search and provides information about the st-link device and the target chip</li>
+<li><code>st-term</code> - Gives you log-like reports from the program on the target chip</li>
 </ul>
 <h4 id="test-the-setup">Test the setup</h4>
-<p>With the hardware connected and the PC software installed we can try it out and see if everything is working OK. Not example program yet though.</p>
-<p>Connect your st-link device (connected to the breakout board) or you development board to the host PC using USB and run:</p>
+<p>With the hardware connected and the PC software installed we can try it out and see if everything is working. No example program yet though.</p>
+<p>Connect your st-link device (connected to the breakout board) or your development board to the host PC using USB and run:</p>
 <pre><code>$ st-info --probe</code></pre>
 <p>You’ll get some neat information about the chip that is hooked up to the st-link device:</p>
 <pre><code>Found 1 stlink programmers
@@ -648,8 +618,8 @@ chipid: 0x0410
 descr: F1 Medium-density device</code></pre>
 <p>Fantastic! Everything is working fine, lets move on.</p>
 <h3 id="chip">Chip</h3>
-<p>ARM provides a Cortex Microcontroller Software Interface Standard (<a href="http://www.arm.com/products/processors/cortex-m/cortex-microcontroller-software-interface-standard.php">SMSIS</a>) as an abstraction layer for the ARM Cortex core to increase software portability. Think of it as an standard API that you can use to interface with ARM chips in a standard and vendor independent way.</p>
-<p>On top of that you might want to have a Hardware Abstraction Layer (HAL) to interface with the peripherals the chip provides (UART, USB, I2C, SPI, TIMERS, etc).</p>
+<p>ARM provides a Cortex Microcontroller Software Interface Standard (<a href="http://www.arm.com/products/processors/cortex-m/cortex-microcontroller-software-interface-standard.php">SMSIS</a>) as an abstraction layer for the ARM Cortex core to increase software portability. Think of it as a standard API that you can use to interface with ARM chips in a vendor independent way.</p>
+<p>On top of that you might want to have a Hardware Abstraction Layer (HAL) to interface with the peripherals each particular chip provides (UART, USB, I2C, SPI, TIMERS, etc).</p>
 <p>We have two options of libraries that provide those abstraction layers:</p>
 <ul>
 <li><a href="http://libopencm3.github.io/">LibOpenCM3</a> (The one we are going to use)</li>
@@ -669,20 +639,20 @@ descr: F1 Medium-density device</code></pre>
 <p>Middleware software components like USB Host and Device libraries or FAT file system for SD cards interfacing</p>
 <h5 id="level-2">Level 2</h5>
 <p>Graphical demonstration that uses the level 1 Middleware.</p>
-<p>You can read more about it on the STM32Cube user manual. Here is the STM32CubeF1 <a href="http://www.st.com/content/ccc/resource/technical/document/user_manual/a4/ae/25/45/76/ca/40/b1/DM00151047.pdf/files/DM00151047.pdf/jcr:content/translations/en.DM00151047.pdf">manual</a>.</p>
+<p>You can read more about it on the STM32Cube user manual. Here is the STM32CubeF1 <a href="http://www.st.com/content/ccc/resource/technical/document/user_manual/a4/ae/25/45/76/ca/40/b1/DM00151047.pdf/files/DM00151047.pdf/jcr:content/translations/en.DM00151047.pdf">manual</a> to get you started.</p>
 <h4 id="libopencm3">LibOpenCM3</h4>
 <p>LibOpenCM3 aims to provide a free (as in freedom) library for various ARM Cortex-M3 microcontrollers, including the STM32 chips.</p>
-<p>Using this library is more or less straight forward, there is no layers here. You can read more about it in the <a href="http://libopencm3.org/wiki/Main_Page">wiki</a>. They have a fantastic Doxygen documentation for the API <a href="http://libopencm3.github.io/docs/latest/html/">here</a>.</p>
+<p>Using this library is more or less straight forward, there are no (explicit) layers here. You can read more about it in the <a href="http://libopencm3.org/wiki/Main_Page">wiki</a>. They have some fantastic Doxygen documentation for the <a href="http://libopencm3.github.io/docs/latest/html/">API</a> as well.</p>
 <h2 id="first-program">First program</h2>
-<p>The LibOpenCM3 project provides very useful examples, lets use one of those as the first program. I’m Using the STM32F103C8T6 so I need the <em>F1</em> series examples and libraries, adjust the steps to use the appropriate one for your chip/board.</p>
-<p>Notice that the examples are organized to correspond to various development boards, but it doesn’t really matter, the reason for this is the distribution of LED’s and Push buttons in those boards, but as long as you’re using the same chip series you just need to pickup one and connect LED’s, buttons, etc in the right pins as needed. I’m going to use the examples for the <em>“stm32-h103”</em> board from Olimex, even though I’m using a breakout board from Ebay; The <strong>F1</strong> is the important thing here.</p>
+<p>The LibOpenCM3 project provides very useful examples, lets use one of those as the first program. I’m Using the STM32F103C8T6, so I need the <em>F1</em> series examples and libraries, adjust the steps to use the appropriate one for your chip/board.</p>
+<p>Notice that the examples are organized to correspond to various development boards, but it doesn’t really matter, the reason for this is the distribution of LED’s and Push buttons in those boards, but as long as you’re using the same chip series you just need to pick up one and connect LED’s, buttons, etc in the right pins as needed. I’m going to use the examples for the <em>“stm32-h103”</em> board from Olimex, even though I’m using a breakout board from Ebay; The <strong>F1</strong> is the important thing here.</p>
 <pre><code>$ git clone --recursive &#39;https://github.com/libopencm3/libopencm3-examples&#39;
 $ cd libopencm3-examples
 $ make
 $ cd examples/stm32
 $ cd f1
 $ cd stm32-h103/miniblink</code></pre>
-<p>This example will BLINK a LED connected in the PIN 12 of the GPIO port C, but my chip doesn’t have it! No problem, I’m going to change it (you can use your favorite editor here):</p>
+<p>This example will BLINK an LED connected to PIN 12 of the GPIO port C, but my chip doesn’t have it! No problem, I’m going to change it (you can use your favorite editor here):</p>
 <pre><code>$ vim miniblink.c</code></pre>
 <p>Now change all appearances of <code>GPIOC</code> to <code>GPIOB</code> so the program uses the GPIO port B instead. (Use an available pin in your specific chip/board).</p>
 <p>In Vim:</p>
@@ -693,9 +663,9 @@ $ cd stm32-h103/miniblink</code></pre>
 <pre><code>$ arm-none-eabi-objcopy -O binary miniblink.elf miniblink.bin</code></pre>
 <p>Flash it:</p>
 <pre><code>$ st-flash write miniblink.bin 0x8000000</code></pre>
-<p>Connect a LED to the GND and PB12 pins through a 330 Ohm resistor and watch it blink with great joy.</p>
+<p>Connect an LED to the GND and PB12 pins through a 330 Ohm resistor and rejoice with it’s blinkiness.</p>
 <h2 id="using-gdb">Using GDB</h2>
-<p>You can also interface with the target device using GDB: Upload firmware, run, stop, set break points, etc. I’m going to assume you know how to use GDB and only going to explain how to upload the firmware from it.</p>
+<p>You can also interface with the target device using GDB: Debug, Upload firmware, run, stop, set break points, etc. I’m going to assume you know how to use GDB and only going to explain how to upload the firmware from it.</p>
 <p>Create a GDB server to interface with the connected target:</p>
 <pre><code>$ st-util -p 4444</code></pre>
 <p>Run ARM GDB:</p>
@@ -707,7 +677,7 @@ $ cd stm32-h103/miniblink</code></pre>
 <p>Run the firmware:</p>
 <pre><code>(gdb) continue</code></pre>
 <p>You can stop it with <code>C-c</code>.</p>
-<p><img src="/img/stm32/shot9.jpg" class="img-responsive" /></p>]]></summary>
+<p><img src="/img/stm32/shot9.jpg" /></p>]]></summary>
 </entry>
 <entry>
     <title>TDD (Test-Driven Development) Physical Traffic Light</title>
@@ -715,26 +685,25 @@ $ cd stm32-h103/miniblink</code></pre>
     <id>http://www.sillybytes.net/2016/08/tdd-test-driven-development-physical.html</id>
     <published>2016-08-28</published>
     <updated>2016-08-28T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p><img src="/img/tddlight/thumbnail.jpg" id="thumbnail" /><br />
-</p>
-<p>Robert C. Martin <em>(Uncle Bob)</em> said in a talk:</p>
+    <summary type="html"><![CDATA[<p>Robert C. Martin <em>(Uncle Bob)</em> said in a talk:</p>
 <blockquote>
 <p>Imagine you have a button that you can push, it will test your code and if everything is working a green light will come up, but if something is broken, a red light will come up […]</p>
 </blockquote>
-<p>He was of course talking about TDD. I got inspired to build this little toy.</p>
-<p>Hardware schematics, firmware and host software is available in <a href="https://github.com/alx741/tdd_traffic-light">this Github repo</a>. Along with information on how to compile and use.</p>
+<p>He was of course talking about TDD. It got me inspired to build this little tool.</p>
+<p>Hardware schematics, firmware and host software is available in <a href="https://github.com/alx741/tdd_traffic-light">this GitHub repository</a>. Along with information on how to compile and use.</p>
 <blockquote>
 <p>This is a physical toy traffic light to be used with software development TDD (and testing in general) tools. It will not boost your productivity nor make you a better programmer or TDD practitioner, but it looks cool :)</p>
 </blockquote>
-<p>Lets explain how it works, it’s very simple: <!--more--></p>
+<p>Let’s explain how it works, it’s very simple:</p>
+<!--more-->
 <h1 id="hardware">Hardware</h1>
-<p>The <strong>atmega328p</strong> AVR microcontroller is very popular and cheap, but if you buy them on Ebay for example, chances are it comes with an Arduino bootloader, which gets in the way because we can perfectly use the internal oscillator instead of an external 16Mhz crystal. So the first thing to do is change the fuses to the default ones:</p>
+<p>The <strong>atmega328p</strong> AVR microcontroller is very popular and cheap, but if you buy them on Ebay for example, chances are it comes with the Arduino bootloader, which gets in the way because we can perfectly use the internal oscillator instead of an external 16Mhz crystal. So the first thing to do is change the fuses to the default ones:</p>
 <pre class="shell"><code># avrdude -p m328p -c usbasp -U lfuse:w:0x62:m -U hfuse:w:0xd9:m</code></pre>
 <p>Now we are using the internal 1MHz oscillator, perfect!</p>
-<p>I don’t have a PCB yet (although it should be pretty easy as I made the circuit schematic using <em>kicad</em>) but the circuit is small and simple so it’s easy to build it with prototype PCB. Additionally I added some small neodymium magnets in the back to stick it easily close to my monitors.</p>
+<p>The circuit is simple enough to mount in some perfboard. Additionally, I added some small neodymium magnets in the back to stick it easily close to my monitors.</p>
 <p><img src="/img/tddlight/img1.jpg" class="img-responsive" /> <img src="/img/tddlight/img2.jpg" class="img-responsive" /> <img src="/img/tddlight/img3.jpg" class="img-responsive" /> <img src="/img/tddlight/img4.jpg" class="img-responsive" /> <img src="/img/tddlight/img5.jpg" class="img-responsive" /> <img src="/img/tddlight/img6.jpg" class="img-responsive" /> <img src="/img/tddlight/img7.jpg" class="img-responsive" /> <img src="/img/tddlight/img8.jpg" class="img-responsive" /></p>
 <h1 id="software">Software</h1>
-<p>The firmware is no more than UART boilerplate with <code>4800</code> baud rate so it is stable with at 1MHz clock speed.</p>
+<p>The firmware is no more than some UART boilerplate with <code>4800</code> baud rate, so it’s stable with at 1MHz clock speed.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;avr/io.h&gt;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;util/delay.h&gt;</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -800,9 +769,9 @@ $ cd stm32-h103/miniblink</code></pre>
 <span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    COM_FD <span class="op">=</span> fd<span class="op">;</span></span></code></pre></div>
-<p>From then controlling the LEDs is as simple as</p>
+<p>With that, controlling the LEDs is as simple as:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>write<span class="op">(</span>COM_FD<span class="op">,</span> <span class="st">&quot;r&quot;</span><span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span></code></pre></div>
-<p>Find more information about how to use it in the <a href="https://github.com/alx741/tdd_traffic-light">Github repo</a>.</p>]]></summary>
+<p>Find more information about how to use it in the <a href="https://github.com/alx741/tdd_traffic-light">GitHub repository</a>.</p>]]></summary>
 </entry>
 <entry>
     <title>Vim + Haskell</title>
