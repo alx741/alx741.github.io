@@ -10,142 +10,36 @@
         <link rel="shortcut icon" type="image/png" href="../../img/favicon.png" />
 
         <link rel="stylesheet" href="../../css/default.css" />
-        <link rel="stylesheet" href="../../css/post-list.css" />
         <link rel="stylesheet" href="../../css/post.css" />
-
-        <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="../../bower_components/highlight/src/styles/solarized-light.css" />
-
-        <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
-        <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="../../bower_components/highlight/src/highlight.pack.js"></script>
-
-        <script> hljs.initHighlightingOnLoad(); </script>
-
+        <link rel="stylesheet" href="../../css/about.css" />
     </head>
+
+
     <body>
-        <header class="container-fluid">
-            <div class="row">
-                <div class="col-xs-12">
-                    <a href="../../">
-                        <img alt="Silly Bytes" id="logo" class="image-responsive" src="../../img/silly-bytes_logo.png" />
+
+        <header>
+            <navbar class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="../../index.html">
+                        <b>Silly Bytes</b>
                     </a>
                 </div>
-            </div>
+
+                <div class="navbar-end">
+                    <a href="../../index.html" class="navbar-item">Home</a>
+                    <a href="../../about.html" class="navbar-item">About</a>
+                </div>
+            </navbar>
         </header>
 
-        <div id="blog" class="container-fluid">
-            <div class="row">
 
-                <div id="sidebar" class="hidden-xs hidden-sm col-md-3">
-                    <div id="author">
-    <img id="author-pic" src="../../img/daniel.jpg">
-    <h3 id="author-name">Daniel Campoverde [alx741]</h3>
-    <img id="location-icon" src="../../img/location_icon.png">
-    <span id="location">Cuenca, Ecuador</span>
-</div>
+        <div id="main" class="container is-max-desktop">
+            <article class="post">
+    <h1 class="is-size-2 has-text-weight-medium has-text-left">Como escribir un emulador de computadora</h2>
+    <aside class="date has-text-left">February 15, 2016</aside>
 
-<div id="findme">
-    <h2 class="sidebar-h2">FIND ME</h2>
-    <a target="_blank" href="https://gitlab.com/alx741">
-        <img class="icon" src="../../img/gitlab.png">
-    </a>
-    <a target="_blank" href="https://github.com/alx741">
-        <img class="icon" src="../../img/github.png">
-    </a>
-    <a target="_blank" href="https://twitter.com/alx741alx">
-        <img class="icon" src="../../img/twitter.png">
-    </a>
-    <a target="_blank" href="https://www.facebook.com/sillybytes/">
-        <img class="icon" src="../../img/facebook.png">
-    </a>
-    <a target="_blank" href="https://plus.google.com/116038619580828681039">
-        <img class="icon" src="../../img/google.png">
-    </a>
-
-    <div id="findme-textual">
-        <b>Freenode:</b> #vim, #archlinux, #avr, #rust, #haskell,
-        #yesod, #zsh
-        <hr>
-        <b>Mailto:</b> alx@sillybytes.net
-        <br>
-        <b>GPG Key ID:</b> <a href="http://pgp.mit.edu/pks/lookup?op=get&search=0xEB0E776276450F22">76450F22</a>
-        <hr>
-        <b>Subscribe:</b> <a href="http://www.sillybytes.net/atom.xml">
-            <img id="rss-img" alt="rss" src="../../img/rss.png" /> </a>
-    </div>
-
-
-    <div id="facebook-embed">
-        <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fsillybytes&amp;width&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true" scrolling="yes" style="border:none; overflow:hidden;" allowtransparency="false" frameborder="0"></iframe>
-    </div>
-</div>
-
-<div id="random">
-    <h2 class="sidebar-h2">YOU MIGHT LIKE</h2>
-
-    <div id="random-posts">
-        <ul>
-        </ul>
-    </div>
-</div>
-
-<div id="about">
-    <h2 class="sidebar-h2">ABOUT</h2>
-
-    <a target="_blank" href="http://www.haskellers.com/user/4344">
-        <img id="haskellers-img" class="badge" alt="I'm a Haskeller" src="../../img/haskellers.png">
-    </a>
-
-    <img id="fsf-img" class="badge" alt="Free Software Fundation Member" src="../../img/fsf.png">
-
-    <a target="_blank" href="http://internetdefenseleague.org/">
-        <img id="idl-img" class="badge" alt="Internet Defesen League" src="../../img/idl.png">
-    </a>
-</div>
-
-<div id="dotfiles">
-    <h2 class="sidebar-h2">DOTFILES</h2>
-    <p>
-        Software configuration, scripts, tools and magic.
-        Be sure to add <b>attribution </b> when using them
-        (fully or partially).
-    </p>
-    <a target="_blank" href="https://github.com/alx741/dotfiles#readme">
-        <img id="dotfiles-img" src="../../img/dotfiles.png">
-    </a>
-</div>
-
-
-<div id="license">
-    <h2 class="sidebar-h2">LICENSE</h2>
-
-    <a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
-        <img id="cc-img" alt="Creative Commons - SA - BY" src="../../img/cc.png">
-    </a>
-    <p id="cc-text">
-        Silly Bytes by Daniel Alejandro Campoverde Carrión
-        [alx741] is licensed under a
-        <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
-            Creative Commons Attribution-ShareAlike 3.0 Unported License.
-        </a>
-    </p>
-</div>
-
-                </div>
-
-                <div id="content" class="col-xs-12 col-md-9">
-                    <div class="row">
-    <div class="post col-xs-12">
-        <h2 class="post-title">Como escribir un emulador de computadora</h2>
-        <div class="post-date-author">
-            Posted on February 15, 2016
-            
-                by Daniel Campoverde
-            
-        </div>
-        <div class="post-content">
-            <p><img src="../../img/emulator/thumbnail.png" id="thumbnail" /><br />
+    <section class="post-content">
+        <p><img src="../../img/emulator/thumbnail.png" id="thumbnail" /><br />
 </p>
 <p>Traducción al español de “<a href="http://fms.komkon.org/EMUL8/HOWTO.html">Como escribir un emulador de computadora</a>” por <em>Marat Fayzullin</em></p>
 <p>Escribí este documento luego de recibir varios correos electrónicos de personas a las que les gustaría escribir un emulador de una u otra computadora, pero que no saben por donde empezar. Las opiniones y consejos contenidos en este articulo son únicamente mios y no deberían ser tomados como verdad absoluta. El documento trata principalmente sobre los llamados emuladores “interpretes”, contrario a los “compiladores”, pues no tengo mucha experiencia con técnicas de recompilación. Se proporcionan un par de enlences donde se puede encontrar información sobre estas técnicas.</p>
@@ -194,11 +88,11 @@
 <p>Existen tres esquemas básicos usados para diseñar un emulador. Pueden también ser combinados para obtener mejores resultados.</p>
 <h1 id="interpretación">Interpretación</h1>
 <p>El emulador lee el código emulado byte por byte, lo decodifica, y realiza los comandos adecuando en los registros emulados, memoria y I/O. El algoritmo general es el síguete:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="cf">while</span>(CPUIsRunning)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>{</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>	Fetch OpCode</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>	Interpret OpCode</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span><span class="op">(</span>CPUIsRunning<span class="op">)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>	Fetch OpCode</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>	Interpret OpCode</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>Las virtudes de este modelo incluyen la facilidad para depurar, portabilidad y facilidad de sincronización (se puede simplemente contar ciclos de reloj y enlazar el resto de la emulación a este conteo). La única y gran debilidad es el bajo rendimiento. La interpretación toma mucho tiempo de CPU y será necesaria una computadora veloz para ejecutar el código a una velocidad decente.</p>
 <h2 id="recompilación-estática">Recompilación estática</h2>
 <p>En esta técnica, se toma el programa emulado y se intenta traducirlo al código assembly de la computadora emuladora. El resultado generalmente será un ejecutable que se puede usar directamente en la computadora sin ninguna herramienta especial. Mientras que la recompilación estática suena muy bien, no siempre es posible. Por ejemplo: no se puede usar con código auto modificado (mutable) pues no existe forma de saber en que se convertirá al ejecutarlo. Para evitar estas situaciones, se puede intentar combinar esta técnica con un interprete o un recompilador dinámico.</p>
@@ -256,63 +150,63 @@
 </ul>
 <h1 id="cómo-emular-una-cpu">Cómo emular una CPU?</h1>
 <p>Primeramente, si solamente necesita emular una CPU estandar Z80 o 6502, puede usar uno de los <a href="http://www.komkon.org/fms/EMUL8/">emuladores que he escrito</a>. Aunque ciertas condiciones aplican. Para aquellos que desean escribir sus propios emuladores de CPU, proveo abajo el esqueleto de un emulador típico en C. En un emulador real, se debería saltar y agregar las partes que se desea.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>Counter=InterruptPeriod;</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>PC=InitialPC;</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="cf">for</span>(;;)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>{</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>	OpCode=Memory[PC++];</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>	Counter-=Cycles[OpCode];</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>	<span class="cf">switch</span>(OpCode)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>	{</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>		<span class="cf">case</span> OpCode1:</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>		<span class="cf">case</span> OpCode2:</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>			...</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a>	}</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>	<span class="cf">if</span>(Counter&lt;=<span class="dv">0</span>)</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a>	{</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a>		<span class="co">/* Check for interrupts and do other */</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a>		<span class="co">/* cyclic tasks here                 */</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a>		...</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a>			Counter+=InterruptPeriod;</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a>		<span class="cf">if</span>(ExitRequired) <span class="cf">break</span>;</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a>	}</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Counter<span class="op">=</span>InterruptPeriod<span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>PC<span class="op">=</span>InitialPC<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span><span class="op">(;;)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>	OpCode<span class="op">=</span>Memory<span class="op">[</span>PC<span class="op">++];</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>	Counter<span class="op">-=</span>Cycles<span class="op">[</span>OpCode<span class="op">];</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>	<span class="cf">switch</span><span class="op">(</span>OpCode<span class="op">)</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>	<span class="op">{</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>		<span class="cf">case</span> OpCode1<span class="op">:</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>		<span class="cf">case</span> OpCode2<span class="op">:</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>			<span class="op">...</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>	<span class="op">}</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>	<span class="cf">if</span><span class="op">(</span>Counter<span class="op">&lt;=</span><span class="dv">0</span><span class="op">)</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>	<span class="op">{</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>		<span class="co">/* Check for interrupts and do other */</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>		<span class="co">/* cyclic tasks here                 */</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>		<span class="op">...</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>			Counter<span class="op">+=</span>InterruptPeriod<span class="op">;</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>		<span class="cf">if</span><span class="op">(</span>ExitRequired<span class="op">)</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>	<span class="op">}</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>Primero asignamos los valores iniciales a contador <code>counter</code> de ciclos de la CPU, y el contador de programa PC:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>Counter=InterruptPeriod;</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>PC=InitialPC;</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Counter<span class="op">=</span>InterruptPeriod<span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>PC<span class="op">=</span>InitialPC<span class="op">;</span></span></code></pre></div>
 <p><code>Counter</code> contiene el numero de ciclos de CPU que quedan hasta la siguiente interrupción. Nótese que la interrupción no debería necesariamente ocurrir cuando el contador expira, se puede usar para varios otros propósitos, como sincronización de temporizadores, o actualizar la pantalla. Más sobre esto luego. El <code>PC</code> contiene la dirección de memoria desde la que la CPU emulada leerá el siguiente opcode. Luego de que los valores iniciales fueron asignados, se inicial el loop principal:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="cf">for</span>(;;)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>{</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span><span class="op">(;;)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span></code></pre></div>
 <p>Nótese que este loop también se puede implementar como:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="cf">while</span>(CPUIsRunning)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a>{</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span><span class="op">(</span>CPUIsRunning<span class="op">)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span></code></pre></div>
 <p>Donde <code>CPUIsRunning</code> es una variable booleana. Esto tiene ventajas, pues se puede terminar el loop en cualquier momento con <code>CPUIsRunning=0.</code> Desafortunadamente, revisar esta variable en cada pasada requiere tiempo de CPU, y debería ser evitado de ser posible. Además no implemente el loop así:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="cf">while</span>(<span class="dv">1</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a>{</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span><span class="op">(</span><span class="dv">1</span><span class="op">)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span></code></pre></div>
 <p>Porque, en este caso, algunos compiladores generarán código para revisar si <code>1</code> es true o false. Ciertamente no quiere que el compilador haga trabajo innecesario en cada pasada del loop. Ahora, cuando estamos en el loop, lo primero es leer el siguiente opcode y modificar el contador de programa:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>OpCode=Memory[PC++];</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>OpCode<span class="op">=</span>Memory<span class="op">[</span>PC<span class="op">++];</span></span></code></pre></div>
 <p>Nótese que mientras esta es la forma más simple y rápida de leer la memoria emulada, <strong>no siempre es la mejor</strong>. Una forma más universal de acceder la memoria se presenta más adelante en este documento. Luego de que se obtiene el opcode, se decrementa el contador de ciclos de la CPU. Tome en cuenta que algunos opcodes (como los saltos condicionales o llamadas a subrutinas) pueden tomar distintos números de ciclos, dependiendo de los argumentos. Esto se puede ajustar luego en el código. Ahora es momento de interpretar el opcode y ejecutarlo:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="cf">switch</span>(OpCode)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a>{</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">switch</span><span class="op">(</span>OpCode<span class="op">)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span></code></pre></div>
 <p>Es un error común pensar que <code>switch()</code> es ineficiente, pues se compila como <code>if() ... else if() ...</code>; Mientras que esto es verdad para un pequeño numero de casos, un <code>switch()</code> grande (100-200 o más casos) siempre se compila como una tabla de saltos, lo que es más eficiente. Existen dos alternativas para interpretar opcodes. La primera es hacer una tabla de funciones y llamar a la apropiada. La segunda es hacer una tabla de etiquetas, y usar <code>goto.</code> Mientra que este método es un poco más veloz que un <code>switch(),</code> solamente funcionará en compiladores que soporten “etiquetas pre computadas”. Otros compiladores no le permitirán crear un array de etiquetas. Luego de una interpretación exitosa de un opcode, es necesario revisar si son necesarias interrupciones. En este momento se puede realizar cualquier tarea que necesite ser sincronizada con el reloj del sistema.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="cf">if</span>(Counter&lt;=<span class="dv">0</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a>{</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a>	<span class="co">/* Revisar interrupciones y hacer otras emulaciones aquí */</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a>	...</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a>	Counter+=InterruptPeriod;</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a>	<span class="cf">if</span>(ExitRequired) <span class="cf">break</span>;</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span><span class="op">(</span>Counter<span class="op">&lt;=</span><span class="dv">0</span><span class="op">)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>	<span class="co">/* Revisar interrupciones y hacer otras emulaciones aquí */</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>	<span class="op">...</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>	Counter<span class="op">+=</span>InterruptPeriod<span class="op">;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>	<span class="cf">if</span><span class="op">(</span>ExitRequired<span class="op">)</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>Estas tareas cíclicas se cubren luego en el documento.</p>
 <p>Nótese que no asignamos simplemente <code>Counter=InterruptPeriod,</code> pero hacemos <code>Counter+=InterruptPeriod,</code> esto hace el conteo más preciso, pues pueden haber algunos números negativos de ciclos en <code>Counter.</code> También observe:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="cf">if</span>(ExitRequired) <span class="cf">break</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span><span class="op">(</span>ExitRequired<span class="op">)</span> <span class="cf">break</span><span class="op">;</span></span></code></pre></div>
 <p>Como es muy costoso revisar una salida en cada pasada del loop, solo lo hacemos cuando <code>Counter</code> expira, así saldremos de la emulación cuando <code>ExitRequired=1,</code> y no tomará mucho tiempo de CPU.</p>
 <h1 id="cómo-manejo-el-acceso-a-la-memoria-emulada">Cómo manejo el acceso a la memoria emulada?</h1>
 <p>La forma más simple de acceder a la memoria emulada es tratarla como un array de bytes (palabras, etc.). Acceder es entonces trivial:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a>Data=Memory[Address1]; <span class="co">/* Leer de Address1 */</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a>Memory[Address2]=Data; <span class="co">/* Escribir en Address2  */</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Data<span class="op">=</span>Memory<span class="op">[</span>Address1<span class="op">];</span> <span class="co">/* Leer de Address1 */</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>Memory<span class="op">[</span>Address2<span class="op">]=</span>Data<span class="op">;</span> <span class="co">/* Escribir en Address2  */</span></span></code></pre></div>
 <h2 id="un-acceso-tan-simple-no-siempre-es-posible-por-algunas-razones">Un acceso tan simple no siempre es posible por algunas razones:</h2>
 <ul>
 <li>Memoria paginada</li>
@@ -327,20 +221,20 @@
 <li>Pueden existir dispositivos I/O mapeados en memoria en el sistema. Acceder a esas posiciones de memoria produce efectos especiales y deben ser rastreados.</li>
 </ul>
 <p>Para solucionar estos problemas, se introducen unas funciones:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a>Data=ReadMemory(Address1);  <span class="co">/* Leer de Address1 */</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a>WriteMemory(Address2,Data); <span class="co">/* Escribir en Address2  */</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Data<span class="op">=</span>ReadMemory<span class="op">(</span>Address1<span class="op">);</span>  <span class="co">/* Leer de Address1 */</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>WriteMemory<span class="op">(</span>Address2<span class="op">,</span>Data<span class="op">);</span> <span class="co">/* Escribir en Address2  */</span></span></code></pre></div>
 <p>Todo el procesamiento especial como paginas de acceso, espejos, I/O, etc. Se realiza en estas funciones. <code>ReadMemory()</code> y <code>WriteMemory()</code> usualmente causan mucha sobrecarga en la emulación, pues se invoca con mucha frecuencia. Y por tanto, deben ser lo más eficientes posible. Aquí hay un ejemplo para acceder a memoria paginada:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="dt">static</span> <span class="kw">inline</span> byte ReadMemory(<span class="dt">register</span> word Address)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a>{</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a>	<span class="cf">return</span>(MemoryPage[Address&gt;&gt;<span class="dv">13</span>][Address&amp;<span class="bn">0x1FFF</span>]);</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true"></a>}</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true"></a></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true"></a><span class="dt">static</span> <span class="kw">inline</span> <span class="dt">void</span> WriteMemory(<span class="dt">register</span> word Address,</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true"></a></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true"></a>							<span class="dt">register</span> byte Value)</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true"></a>{</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true"></a>	MemoryPage[Address&gt;&gt;<span class="dv">13</span>][Address&amp;<span class="bn">0x1FFF</span>]=Value;</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dt">static</span> <span class="kw">inline</span> byte ReadMemory<span class="op">(</span><span class="dt">register</span> word Address<span class="op">)</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>	<span class="cf">return</span><span class="op">(</span>MemoryPage<span class="op">[</span>Address<span class="op">&gt;&gt;</span><span class="dv">13</span><span class="op">][</span>Address<span class="op">&amp;</span><span class="bn">0x1FFF</span><span class="op">]);</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="dt">static</span> <span class="kw">inline</span> <span class="dt">void</span> WriteMemory<span class="op">(</span><span class="dt">register</span> word Address<span class="op">,</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>							<span class="dt">register</span> byte Value<span class="op">)</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>	MemoryPage<span class="op">[</span>Address<span class="op">&gt;&gt;</span><span class="dv">13</span><span class="op">][</span>Address<span class="op">&amp;</span><span class="bn">0x1FFF</span><span class="op">]=</span>Value<span class="op">;</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>Nótese el <code>inline</code>. Esto causará que el compilador coloque el código directamente, en lugar de hacer llamadas a la función. Si el compilador no lo soporta, intente hacer la función <code>static</code>. Algunos compiladores (como WatcomC) optimizarán funciones estáticas pequeñas haciéndolas inline. También tenga en mente que en muchos casos <code>ReadMemory()</code> es llamada muchas veces y con más frecuencia que <code>WriteMemory().</code> Por lo tanto es importante implementar la mayor parte del código en <code>WriteMemory(),</code> dejando <code>ReadMemory()</code> pequeña.</p>
 <h3 id="una-nota-sobre-la-memoria-reflejada">Una nota sobre la memoria reflejada</h3>
 <p>Como lo dicho anteriormente, muchas computadoras tienen RAM reflejada donde un valor escrito en una posición aparecerá en otras. Mientras que esta situación puede ser manejada en <code>ReadMemory(),</code> es usualmente no deseable, pues <code>ReadMemory()</code> es llama con mucha más frecuencia que <code>WriteMemory()</code>. Una forma más eficiente es implementar memoria reflejada en <code>WriteMemory()</code>.</p>
@@ -396,159 +290,44 @@ Borland C++</code></pre>
 |12|34|56|78|
 +--+--+--+--+</code></pre>
 <p>Ejemplos típicos de CPUs high-endian son 6809, Motorola 680x0, PowerPC, Sun SPARC. CPUs low-endian como 6502 y sucesores 65816, Zilog Z80, la mayoria de los chips Intel (8080, 80x86), DEC Alpha, etc. Cuando se escribe un emulador, se debe estar consiente de el endianess de la CPU emulada así como de la emuladora. Digamos que quiere emular un Z80 (low-endian). Esto es, Z80 almacena sus palabras de 16 bites con el byte bajo primero. Si quiere usar una CPU low-endian como Intel 80x86 para esto, todo ocurre de forma natural. Pero si quiere usar una CPU high-endian como PowerPC, de repente hay un problema al colocar los datos de 16 bits en la memoria. Icluso peor si su programa debe funcionar en ambas arquitecturas, necesitará alguna forma de conocer el endiness. Una forma de manejar el problema del endiness es:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true"></a><span class="kw">typedef</span> <span class="kw">union</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true"></a>{</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true"></a></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true"></a>	<span class="dt">short</span> W;        <span class="co">/* Acceso a palabra */</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true"></a></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true"></a>	<span class="kw">struct</span>          <span class="co">/* Acceso a byte... */</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true"></a>	{</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true"></a><span class="pp">#ifdef LOW_ENDIAN</span></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true"></a>		byte l,h;     <span class="co">/* ...en arquitectura low-endian */</span></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true"></a><span class="pp">#else</span></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true"></a>		byte h,l;     <span class="co">/* ...en arquitectura high-endian */</span></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true"></a><span class="pp">#endif</span></span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true"></a>	} B;</span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true"></a></span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true"></a>} word;</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">union</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>	<span class="dt">short</span> W<span class="op">;</span>        <span class="co">/* Acceso a palabra */</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>	<span class="kw">struct</span>          <span class="co">/* Acceso a byte... */</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>	<span class="op">{</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifdef LOW_ENDIAN</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>		byte l<span class="op">,</span>h<span class="op">;</span>     <span class="co">/* ...en arquitectura low-endian */</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="pp">#else</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>		byte h<span class="op">,</span>l<span class="op">;</span>     <span class="co">/* ...en arquitectura high-endian */</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>	<span class="op">}</span> B<span class="op">;</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> word<span class="op">;</span></span></code></pre></div>
 <p>Como puede ver, una palabra puede ser accedida usando <code>W</code>. Cada vez que la emulación necesite acceder como byte separados deberá usar <code>B.l</code> y <code>B.h</code> lo que preserva el orden. Si su programa será compilado para varias plataformas, usted querrá probar que fue compilado con la opción correcta de endiness antes de ejecutar algo importante. Aquí hay una forma de probarlo:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true"></a><span class="dt">int</span> *T;</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true"></a>T=(<span class="dt">int</span> *)<span class="st">&quot;</span><span class="sc">\01\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0</span><span class="st">&quot;</span>;</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true"></a><span class="cf">if</span>(*T==<span class="dv">1</span>) printf(<span class="st">&quot;Esta maquina es high-endian.</span><span class="sc">\n</span><span class="st">&quot;</span>);</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true"></a><span class="cf">else</span>      printf(<span class="st">&quot;Esta maquina es low-endian.</span><span class="sc">\n</span><span class="st">&quot;</span>);</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> <span class="op">*</span>T<span class="op">;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>T<span class="op">=(</span><span class="dt">int</span> <span class="op">*)</span><span class="st">&quot;</span><span class="sc">\01\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0</span><span class="st">&quot;</span><span class="op">;</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span><span class="op">(*</span>T<span class="op">==</span><span class="dv">1</span><span class="op">)</span> printf<span class="op">(</span><span class="st">&quot;Esta maquina es high-endian.</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">);</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>      printf<span class="op">(</span><span class="st">&quot;Esta maquina es low-endian.</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">);</span></span></code></pre></div>
 <h1 id="cómo-hacer-un-programa-portable">Cómo hacer un programa portable?</h1>
 <blockquote>
 <p>Por ser escrito…</p>
 </blockquote>
 <h1 id="por-qué-debería-hacer-un-programa-modular">Por qué debería hacer un programa modular?</h1>
 <p>La mayoría de los sistemas de computo son echos a partir de grandes chips, los cuales realizan ciertas tareas del sistema. Así existe una CPU, un controlador de vídeo, un generador de sonido, etc. Algunos de estos chips pueden tener su propia memoria y otro hardware. Un emulador típico debería repetir el diseño del sistema original implementando cada subsistema en un modulo separado. Esto hace la depuración más sencilla, pues todos los bugs se localizan en los módulos. Además, la arquitectura modular permite reusar módulos en otros emuladores. El hardware de computadora está bastante estandarizado, puede esperar encontrar la misma CPU o chip de vídeo en muchos modelos de computadoras. Es mas fácil emular el chip una vez que implementarlo una y otra vez para cada computadora usando ese chip.</p>
+    </section>
+</article>
+
+
+            <nav class="pagination is-medium">
+                
+
+                
+            </nav>
         </div>
-    </div>
-</div>
-
-
-                    <div class="row">
-                        <div class="col-sm-4">
-                            
-                        </div>
-
-                        <div class="col-sm-4">
-                            <a class="archive" href="../../archive.html">Archive</a>
-                        </div>
-
-                        <div class="col-sm-4">
-                            
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-
-        <footer class="container-fluid">
-            <div class="row">
-                <div id="sidebar" class="visible-xs visible-sm col-xs-12">
-                    <div id="author">
-    <img id="author-pic" src="../../img/daniel.jpg">
-    <h3 id="author-name">Daniel Campoverde [alx741]</h3>
-    <img id="location-icon" src="../../img/location_icon.png">
-    <span id="location">Cuenca, Ecuador</span>
-</div>
-
-<div id="findme">
-    <h2 class="sidebar-h2">FIND ME</h2>
-    <a target="_blank" href="https://gitlab.com/alx741">
-        <img class="icon" src="../../img/gitlab.png">
-    </a>
-    <a target="_blank" href="https://github.com/alx741">
-        <img class="icon" src="../../img/github.png">
-    </a>
-    <a target="_blank" href="https://twitter.com/alx741alx">
-        <img class="icon" src="../../img/twitter.png">
-    </a>
-    <a target="_blank" href="https://www.facebook.com/sillybytes/">
-        <img class="icon" src="../../img/facebook.png">
-    </a>
-    <a target="_blank" href="https://plus.google.com/116038619580828681039">
-        <img class="icon" src="../../img/google.png">
-    </a>
-
-    <div id="findme-textual">
-        <b>Freenode:</b> #vim, #archlinux, #avr, #rust, #haskell,
-        #yesod, #zsh
-        <hr>
-        <b>Mailto:</b> alx@sillybytes.net
-        <br>
-        <b>GPG Key ID:</b> <a href="http://pgp.mit.edu/pks/lookup?op=get&search=0xEB0E776276450F22">76450F22</a>
-        <hr>
-        <b>Subscribe:</b> <a href="http://www.sillybytes.net/atom.xml">
-            <img id="rss-img" alt="rss" src="../../img/rss.png" /> </a>
-    </div>
-
-
-    <div id="facebook-embed">
-        <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fsillybytes&amp;width&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true" scrolling="yes" style="border:none; overflow:hidden;" allowtransparency="false" frameborder="0"></iframe>
-    </div>
-</div>
-
-<div id="random">
-    <h2 class="sidebar-h2">YOU MIGHT LIKE</h2>
-
-    <div id="random-posts">
-        <ul>
-        </ul>
-    </div>
-</div>
-
-<div id="about">
-    <h2 class="sidebar-h2">ABOUT</h2>
-
-    <a target="_blank" href="http://www.haskellers.com/user/4344">
-        <img id="haskellers-img" class="badge" alt="I'm a Haskeller" src="../../img/haskellers.png">
-    </a>
-
-    <img id="fsf-img" class="badge" alt="Free Software Fundation Member" src="../../img/fsf.png">
-
-    <a target="_blank" href="http://internetdefenseleague.org/">
-        <img id="idl-img" class="badge" alt="Internet Defesen League" src="../../img/idl.png">
-    </a>
-</div>
-
-<div id="dotfiles">
-    <h2 class="sidebar-h2">DOTFILES</h2>
-    <p>
-        Software configuration, scripts, tools and magic.
-        Be sure to add <b>attribution </b> when using them
-        (fully or partially).
-    </p>
-    <a target="_blank" href="https://github.com/alx741/dotfiles#readme">
-        <img id="dotfiles-img" src="../../img/dotfiles.png">
-    </a>
-</div>
-
-
-<div id="license">
-    <h2 class="sidebar-h2">LICENSE</h2>
-
-    <a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
-        <img id="cc-img" alt="Creative Commons - SA - BY" src="../../img/cc.png">
-    </a>
-    <p id="cc-text">
-        Silly Bytes by Daniel Alejandro Campoverde Carrión
-        [alx741] is licensed under a
-        <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
-            Creative Commons Attribution-ShareAlike 3.0 Unported License.
-        </a>
-    </p>
-</div>
-
-                </div>
-            </div>
-        </footer>
-
-        <script type="text/javascript" src="../../js/random_posts.js"></script>
 
     </body>
+
 </html>

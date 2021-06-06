@@ -10,144 +10,36 @@
         <link rel="shortcut icon" type="image/png" href="../img/favicon.png" />
 
         <link rel="stylesheet" href="../css/default.css" />
-        <link rel="stylesheet" href="../css/post-list.css" />
         <link rel="stylesheet" href="../css/post.css" />
-
-        <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="../bower_components/highlight/src/styles/solarized-light.css" />
-
-        <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-        <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="../bower_components/highlight/src/highlight.pack.js"></script>
-
-        <script> hljs.initHighlightingOnLoad(); </script>
-
+        <link rel="stylesheet" href="../css/about.css" />
     </head>
+
+
     <body>
-        <header class="container-fluid">
-            <div class="row">
-                <div class="col-xs-12">
-                    <a href="../">
-                        <img alt="Silly Bytes" id="logo" class="image-responsive" src="../img/silly-bytes_logo.png" />
+
+        <header>
+            <navbar class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="../index.html">
+                        <b>Silly Bytes</b>
                     </a>
                 </div>
-            </div>
+
+                <div class="navbar-end">
+                    <a href="../index.html" class="navbar-item">Home</a>
+                    <a href="../about.html" class="navbar-item">About</a>
+                </div>
+            </navbar>
         </header>
 
-        <div id="blog" class="container-fluid">
-            <div class="row">
 
-                <div id="sidebar" class="hidden-xs hidden-sm col-md-3">
-                    <div id="author">
-    <img id="author-pic" src="../img/daniel.jpg">
-    <h3 id="author-name">Daniel Campoverde [alx741]</h3>
-    <img id="location-icon" src="../img/location_icon.png">
-    <span id="location">Cuenca, Ecuador</span>
-</div>
+        <div id="main" class="container is-max-desktop">
+            <article class="post">
+    <h1 class="is-size-2 has-text-weight-medium has-text-left">Using Cassius (Shakespearean template) with Hakyll</h2>
+    <aside class="date has-text-left">April 11, 2017</aside>
 
-<div id="findme">
-    <h2 class="sidebar-h2">FIND ME</h2>
-    <a target="_blank" href="https://gitlab.com/alx741">
-        <img class="icon" src="../img/gitlab.png">
-    </a>
-    <a target="_blank" href="https://github.com/alx741">
-        <img class="icon" src="../img/github.png">
-    </a>
-    <a target="_blank" href="https://twitter.com/alx741alx">
-        <img class="icon" src="../img/twitter.png">
-    </a>
-    <a target="_blank" href="https://www.facebook.com/sillybytes/">
-        <img class="icon" src="../img/facebook.png">
-    </a>
-    <a target="_blank" href="https://plus.google.com/116038619580828681039">
-        <img class="icon" src="../img/google.png">
-    </a>
-
-    <div id="findme-textual">
-        <b>Freenode:</b> #vim, #archlinux, #avr, #rust, #haskell,
-        #yesod, #zsh
-        <hr>
-        <b>Mailto:</b> alx@sillybytes.net
-        <br>
-        <b>GPG Key ID:</b> <a href="http://pgp.mit.edu/pks/lookup?op=get&search=0xEB0E776276450F22">76450F22</a>
-        <hr>
-        <b>Subscribe:</b> <a href="http://www.sillybytes.net/atom.xml">
-            <img id="rss-img" alt="rss" src="../img/rss.png" /> </a>
-    </div>
-
-
-    <div id="facebook-embed">
-        <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fsillybytes&amp;width&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true" scrolling="yes" style="border:none; overflow:hidden;" allowtransparency="false" frameborder="0"></iframe>
-    </div>
-</div>
-
-<div id="random">
-    <h2 class="sidebar-h2">YOU MIGHT LIKE</h2>
-
-    <div id="random-posts">
-        <ul>
-        </ul>
-    </div>
-</div>
-
-<div id="about">
-    <h2 class="sidebar-h2">ABOUT</h2>
-
-    <a target="_blank" href="http://www.haskellers.com/user/4344">
-        <img id="haskellers-img" class="badge" alt="I'm a Haskeller" src="../img/haskellers.png">
-    </a>
-
-    <img id="fsf-img" class="badge" alt="Free Software Fundation Member" src="../img/fsf.png">
-
-    <a target="_blank" href="http://internetdefenseleague.org/">
-        <img id="idl-img" class="badge" alt="Internet Defesen League" src="../img/idl.png">
-    </a>
-</div>
-
-<div id="dotfiles">
-    <h2 class="sidebar-h2">DOTFILES</h2>
-    <p>
-        Software configuration, scripts, tools and magic.
-        Be sure to add <b>attribution </b> when using them
-        (fully or partially).
-    </p>
-    <a target="_blank" href="https://github.com/alx741/dotfiles#readme">
-        <img id="dotfiles-img" src="../img/dotfiles.png">
-    </a>
-</div>
-
-
-<div id="license">
-    <h2 class="sidebar-h2">LICENSE</h2>
-
-    <a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
-        <img id="cc-img" alt="Creative Commons - SA - BY" src="../img/cc.png">
-    </a>
-    <p id="cc-text">
-        Silly Bytes by Daniel Alejandro Campoverde Carrión
-        [alx741] is licensed under a
-        <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
-            Creative Commons Attribution-ShareAlike 3.0 Unported License.
-        </a>
-    </p>
-</div>
-
-                </div>
-
-                <div id="content" class="col-xs-12 col-md-9">
-                    <div class="row">
-    <div class="post col-xs-12">
-        <h2 class="post-title">Using Cassius (Shakespearean template) with Hakyll</h2>
-        <div class="post-date-author">
-            Posted on April 11, 2017
-            
-                by Daniel Campoverde
-            
-        </div>
-        <div class="post-content">
-            <p><img src="../img/hakyllcassius/thumbnail.png" id="thumbnail" /><br />
-</p>
-<p>As a user of the <a href="http://www.yesodweb.com/">Yesod</a> framework, I’ve came to know and love the <a href="https://www.stackage.org/haddock/lts-8.4/shakespeare-2.0.12.1/Text-Cassius.html#v:cassius">Cassius</a> CSS templating language, although its reliance on Template Haskell is meant to fit better with the Yesod’s needs and makes it a bit cumbersome to use everywhere else, I still like the templating language itself and its features a lot.</p>
+    <section class="post-content">
+        <p>As a user of the <a href="http://www.yesodweb.com/">Yesod</a> framework, I’ve came to know and love the <a href="https://www.stackage.org/haddock/lts-8.4/shakespeare-2.0.12.1/Text-Cassius.html#v:cassius">Cassius</a> CSS templating language, although its reliance on Template Haskell is meant to fit better with the Yesod’s needs and makes it a bit cumbersome to use everywhere else, I still like the templating language itself and its features a lot.</p>
 <p>That’s why I used it for styles generation in <a href="http://www.sillybytes.net">Silly Bytes</a> together with <a href="https://jaspervdj.be/hakyll/">Hakyll</a>. In this post I will describe the process.<br />
 <br />
 <br />
@@ -155,22 +47,22 @@
 <!--more-->
 <h1 id="cassius-files">Cassius files</h1>
 <p>Our <code>.cassius</code> files will live inside the <code>css</code> directory, together with a <code>Gen.hs</code> Haskell module that will take the <em>Cassius</em> sources and compile them to <em>CSS</em>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="ot">{-# LANGUAGE TemplateHaskell #-}</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">module</span> <span class="dt">Gen</span> <span class="kw">where</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">import</span> <span class="dt">Text.Cassius</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="kw">import</span> <span class="dt">Data.Text.Lazy</span> (unpack)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="ot">main ::</span> <span class="dt">IO</span> ()</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>main <span class="ot">=</span> <span class="kw">do</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>    <span class="fu">writeFile</span> <span class="st">&quot;default.css&quot;</span> <span class="op">$</span> unpack <span class="op">$</span> renderCss def</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>    <span class="fu">writeFile</span> <span class="st">&quot;post.css&quot;</span> <span class="op">$</span> unpack <span class="op">$</span> renderCss post</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>    <span class="fu">writeFile</span> <span class="st">&quot;post-list.css&quot;</span> <span class="op">$</span> unpack <span class="op">$</span> renderCss postList</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>def <span class="ot">=</span> <span class="op">$</span>(cassiusFile <span class="st">&quot;default.cassius&quot;</span>) ()</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>post <span class="ot">=</span> <span class="op">$</span>(cassiusFile <span class="st">&quot;post.cassius&quot;</span>) ()</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>postList <span class="ot">=</span> <span class="op">$</span>(cassiusFile <span class="st">&quot;post-list.cassius&quot;</span>) ()</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ot">{-# LANGUAGE TemplateHaskell #-}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">module</span> <span class="dt">Gen</span> <span class="kw">where</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="dt">Text.Cassius</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="dt">Data.Text.Lazy</span> (unpack)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ot">main ::</span> <span class="dt">IO</span> ()</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>main <span class="ot">=</span> <span class="kw">do</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">writeFile</span> <span class="st">&quot;default.css&quot;</span> <span class="op">$</span> unpack <span class="op">$</span> renderCss def</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">writeFile</span> <span class="st">&quot;post.css&quot;</span> <span class="op">$</span> unpack <span class="op">$</span> renderCss post</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">writeFile</span> <span class="st">&quot;post-list.css&quot;</span> <span class="op">$</span> unpack <span class="op">$</span> renderCss postList</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>def <span class="ot">=</span> <span class="op">$</span>(cassiusFile <span class="st">&quot;default.cassius&quot;</span>) ()</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>post <span class="ot">=</span> <span class="op">$</span>(cassiusFile <span class="st">&quot;post.cassius&quot;</span>) ()</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>postList <span class="ot">=</span> <span class="op">$</span>(cassiusFile <span class="st">&quot;post-list.cassius&quot;</span>) ()</span></code></pre></div>
 <p>This module, when executed (<code>runhaskell Gen.hs</code>), will compile the <em>Cassius</em> sources <code>default.cassius</code>, <code>post.cassius</code> and <code>post-list.cassius</code> to the corresponding <em>CSS</em> files that the -untouched- <em>CSS</em> rule in <code>site.hs</code> will take and use in the generated site.</p>
 <h1 id="compiling">Compiling</h1>
 <p>The <em>Cassius</em> compilation doesn’t happen when we <code>stack exec site build</code>, as we haven’t defined a rule, nor a compiler for them in <code>site.hs</code> and we won’t, because the Template Haskell requirements mess things up.</p>
@@ -187,132 +79,17 @@ css:
 watch:
 	while true; do make css; inotifywait -qre close_write css/*.cassius; done</code></pre>
 <p>This way, we can execute <code>make watch</code> and it will recompile the <em>Cassius</em> files when needed. A normal <code>stack exec site watch</code> can be running along the side to take care of everything else.</p>
+    </section>
+</article>
+
+
+            <nav class="pagination is-medium">
+                
+
+                
+            </nav>
         </div>
-    </div>
-</div>
-
-
-                    <div class="row">
-                        <div class="col-sm-4">
-                            
-                        </div>
-
-                        <div class="col-sm-4">
-                            <a class="archive" href="../archive.html">Archive</a>
-                        </div>
-
-                        <div class="col-sm-4">
-                            
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-
-        <footer class="container-fluid">
-            <div class="row">
-                <div id="sidebar" class="visible-xs visible-sm col-xs-12">
-                    <div id="author">
-    <img id="author-pic" src="../img/daniel.jpg">
-    <h3 id="author-name">Daniel Campoverde [alx741]</h3>
-    <img id="location-icon" src="../img/location_icon.png">
-    <span id="location">Cuenca, Ecuador</span>
-</div>
-
-<div id="findme">
-    <h2 class="sidebar-h2">FIND ME</h2>
-    <a target="_blank" href="https://gitlab.com/alx741">
-        <img class="icon" src="../img/gitlab.png">
-    </a>
-    <a target="_blank" href="https://github.com/alx741">
-        <img class="icon" src="../img/github.png">
-    </a>
-    <a target="_blank" href="https://twitter.com/alx741alx">
-        <img class="icon" src="../img/twitter.png">
-    </a>
-    <a target="_blank" href="https://www.facebook.com/sillybytes/">
-        <img class="icon" src="../img/facebook.png">
-    </a>
-    <a target="_blank" href="https://plus.google.com/116038619580828681039">
-        <img class="icon" src="../img/google.png">
-    </a>
-
-    <div id="findme-textual">
-        <b>Freenode:</b> #vim, #archlinux, #avr, #rust, #haskell,
-        #yesod, #zsh
-        <hr>
-        <b>Mailto:</b> alx@sillybytes.net
-        <br>
-        <b>GPG Key ID:</b> <a href="http://pgp.mit.edu/pks/lookup?op=get&search=0xEB0E776276450F22">76450F22</a>
-        <hr>
-        <b>Subscribe:</b> <a href="http://www.sillybytes.net/atom.xml">
-            <img id="rss-img" alt="rss" src="../img/rss.png" /> </a>
-    </div>
-
-
-    <div id="facebook-embed">
-        <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fsillybytes&amp;width&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true" scrolling="yes" style="border:none; overflow:hidden;" allowtransparency="false" frameborder="0"></iframe>
-    </div>
-</div>
-
-<div id="random">
-    <h2 class="sidebar-h2">YOU MIGHT LIKE</h2>
-
-    <div id="random-posts">
-        <ul>
-        </ul>
-    </div>
-</div>
-
-<div id="about">
-    <h2 class="sidebar-h2">ABOUT</h2>
-
-    <a target="_blank" href="http://www.haskellers.com/user/4344">
-        <img id="haskellers-img" class="badge" alt="I'm a Haskeller" src="../img/haskellers.png">
-    </a>
-
-    <img id="fsf-img" class="badge" alt="Free Software Fundation Member" src="../img/fsf.png">
-
-    <a target="_blank" href="http://internetdefenseleague.org/">
-        <img id="idl-img" class="badge" alt="Internet Defesen League" src="../img/idl.png">
-    </a>
-</div>
-
-<div id="dotfiles">
-    <h2 class="sidebar-h2">DOTFILES</h2>
-    <p>
-        Software configuration, scripts, tools and magic.
-        Be sure to add <b>attribution </b> when using them
-        (fully or partially).
-    </p>
-    <a target="_blank" href="https://github.com/alx741/dotfiles#readme">
-        <img id="dotfiles-img" src="../img/dotfiles.png">
-    </a>
-</div>
-
-
-<div id="license">
-    <h2 class="sidebar-h2">LICENSE</h2>
-
-    <a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
-        <img id="cc-img" alt="Creative Commons - SA - BY" src="../img/cc.png">
-    </a>
-    <p id="cc-text">
-        Silly Bytes by Daniel Alejandro Campoverde Carrión
-        [alx741] is licensed under a
-        <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
-            Creative Commons Attribution-ShareAlike 3.0 Unported License.
-        </a>
-    </p>
-</div>
-
-                </div>
-            </div>
-        </footer>
-
-        <script type="text/javascript" src="../js/random_posts.js"></script>
 
     </body>
+
 </html>

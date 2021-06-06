@@ -10,142 +10,36 @@
         <link rel="shortcut icon" type="image/png" href="../../img/favicon.png" />
 
         <link rel="stylesheet" href="../../css/default.css" />
-        <link rel="stylesheet" href="../../css/post-list.css" />
         <link rel="stylesheet" href="../../css/post.css" />
-
-        <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="../../bower_components/highlight/src/styles/solarized-light.css" />
-
-        <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
-        <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="../../bower_components/highlight/src/highlight.pack.js"></script>
-
-        <script> hljs.initHighlightingOnLoad(); </script>
-
+        <link rel="stylesheet" href="../../css/about.css" />
     </head>
+
+
     <body>
-        <header class="container-fluid">
-            <div class="row">
-                <div class="col-xs-12">
-                    <a href="../../">
-                        <img alt="Silly Bytes" id="logo" class="image-responsive" src="../../img/silly-bytes_logo.png" />
+
+        <header>
+            <navbar class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="../../index.html">
+                        <b>Silly Bytes</b>
                     </a>
                 </div>
-            </div>
+
+                <div class="navbar-end">
+                    <a href="../../index.html" class="navbar-item">Home</a>
+                    <a href="../../about.html" class="navbar-item">About</a>
+                </div>
+            </navbar>
         </header>
 
-        <div id="blog" class="container-fluid">
-            <div class="row">
 
-                <div id="sidebar" class="hidden-xs hidden-sm col-md-3">
-                    <div id="author">
-    <img id="author-pic" src="../../img/daniel.jpg">
-    <h3 id="author-name">Daniel Campoverde [alx741]</h3>
-    <img id="location-icon" src="../../img/location_icon.png">
-    <span id="location">Cuenca, Ecuador</span>
-</div>
+        <div id="main" class="container is-max-desktop">
+            <article class="post">
+    <h1 class="is-size-2 has-text-weight-medium has-text-left">Seamlessly Vim-Tmux-WindowManager-Monitor navigation</h2>
+    <aside class="date has-text-left">June 24, 2016</aside>
 
-<div id="findme">
-    <h2 class="sidebar-h2">FIND ME</h2>
-    <a target="_blank" href="https://gitlab.com/alx741">
-        <img class="icon" src="../../img/gitlab.png">
-    </a>
-    <a target="_blank" href="https://github.com/alx741">
-        <img class="icon" src="../../img/github.png">
-    </a>
-    <a target="_blank" href="https://twitter.com/alx741alx">
-        <img class="icon" src="../../img/twitter.png">
-    </a>
-    <a target="_blank" href="https://www.facebook.com/sillybytes/">
-        <img class="icon" src="../../img/facebook.png">
-    </a>
-    <a target="_blank" href="https://plus.google.com/116038619580828681039">
-        <img class="icon" src="../../img/google.png">
-    </a>
-
-    <div id="findme-textual">
-        <b>Freenode:</b> #vim, #archlinux, #avr, #rust, #haskell,
-        #yesod, #zsh
-        <hr>
-        <b>Mailto:</b> alx@sillybytes.net
-        <br>
-        <b>GPG Key ID:</b> <a href="http://pgp.mit.edu/pks/lookup?op=get&search=0xEB0E776276450F22">76450F22</a>
-        <hr>
-        <b>Subscribe:</b> <a href="http://www.sillybytes.net/atom.xml">
-            <img id="rss-img" alt="rss" src="../../img/rss.png" /> </a>
-    </div>
-
-
-    <div id="facebook-embed">
-        <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fsillybytes&amp;width&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true" scrolling="yes" style="border:none; overflow:hidden;" allowtransparency="false" frameborder="0"></iframe>
-    </div>
-</div>
-
-<div id="random">
-    <h2 class="sidebar-h2">YOU MIGHT LIKE</h2>
-
-    <div id="random-posts">
-        <ul>
-        </ul>
-    </div>
-</div>
-
-<div id="about">
-    <h2 class="sidebar-h2">ABOUT</h2>
-
-    <a target="_blank" href="http://www.haskellers.com/user/4344">
-        <img id="haskellers-img" class="badge" alt="I'm a Haskeller" src="../../img/haskellers.png">
-    </a>
-
-    <img id="fsf-img" class="badge" alt="Free Software Fundation Member" src="../../img/fsf.png">
-
-    <a target="_blank" href="http://internetdefenseleague.org/">
-        <img id="idl-img" class="badge" alt="Internet Defesen League" src="../../img/idl.png">
-    </a>
-</div>
-
-<div id="dotfiles">
-    <h2 class="sidebar-h2">DOTFILES</h2>
-    <p>
-        Software configuration, scripts, tools and magic.
-        Be sure to add <b>attribution </b> when using them
-        (fully or partially).
-    </p>
-    <a target="_blank" href="https://github.com/alx741/dotfiles#readme">
-        <img id="dotfiles-img" src="../../img/dotfiles.png">
-    </a>
-</div>
-
-
-<div id="license">
-    <h2 class="sidebar-h2">LICENSE</h2>
-
-    <a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
-        <img id="cc-img" alt="Creative Commons - SA - BY" src="../../img/cc.png">
-    </a>
-    <p id="cc-text">
-        Silly Bytes by Daniel Alejandro Campoverde Carrión
-        [alx741] is licensed under a
-        <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
-            Creative Commons Attribution-ShareAlike 3.0 Unported License.
-        </a>
-    </p>
-</div>
-
-                </div>
-
-                <div id="content" class="col-xs-12 col-md-9">
-                    <div class="row">
-    <div class="post col-xs-12">
-        <h2 class="post-title">Seamlessly Vim-Tmux-WindowManager-Monitor navigation</h2>
-        <div class="post-date-author">
-            Posted on June 24, 2016
-            
-                by Daniel Campoverde
-            
-        </div>
-        <div class="post-content">
-            <p><img src="../../img/navigator/thumbnail.jpg" class="img-responsive" /></p>
+    <section class="post-content">
+        <p><img src="../../img/navigator/thumbnail.jpg" class="img-responsive" /></p>
 <p><a href="https://robots.thoughtbot.com/seamlessly-navigate-vim-and-tmux-splits">This Thoughtbot post</a> describes how to make Vim and Tmux <em>work together in Harmony</em> based on <a href="https://github.com/christoomey/vim-tmux-navigator">this crhistoomey’s plugin</a>, allowing you to traverse both your Vim and Tmux windows and panes respectively.</p>
 <!--more-->
 <p>Having the ability to traverse Vim and Tmux splits without having to think about it using <code>ctrl-h</code>, <code>ctrl-j</code>, <code>ctrl-k</code>, <code>ctrl-l</code> is fantastic! But I still had an annoyance source from the window manager (Ratpoison) and the multi monitor setup.</p>
@@ -155,202 +49,202 @@
 <p><img src="../../img/navigator/shot1.jpg" class="img-left" /></p>
 <p>When traversing frames (Ratpoison splits) it stops at the end of the current monitor, so first I needed to change to the left or right monitor when a movement command is triggered at the edge of the current one.</p>
 <p>The script <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/frame-mon_navigator.sh">frame-mon_navigator.sh</a> calculates if the current frame is the rightmost or the leftmost in the current monitor, if it is, it goes to the next of previous monitor depending on the movement command.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co">#!/bin/sh</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="ex">ratpoison</span> -c <span class="st">'fdump'</span><span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/,/\n/g'</span> <span class="kw">|</span> <span class="fu">awk</span> <span class="st">'{print $5&quot; &quot;$19}'</span> <span class="op">&gt;</span> /tmp/ratpoison_frame_monitor_navigator</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="co"># Calculate X coordinate for rightmost frame</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="va">greater_x_coordinate=</span>0</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="kw">while</span> <span class="bu">read</span> <span class="va">frame</span>; <span class="kw">do</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>    <span class="va">coordinate=$(</span><span class="bu">echo</span> <span class="st">&quot;</span><span class="va">$frame</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="fu">cut</span> -d<span class="st">' '</span> -f1<span class="va">)</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>    <span class="kw">if [[</span> <span class="va">$coordinate</span> <span class="ot">-gt</span> <span class="va">$greater_x_coordinate</span><span class="kw"> ]]</span>;</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>    <span class="kw">then</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>        <span class="va">greater_x_coordinate=$coordinate</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>    <span class="kw">fi</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="kw">done</span> <span class="op">&lt;</span> <span class="ex">/tmp/ratpoison_frame_monitor_navigator</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a><span class="co"># Calculate current frame X coordinate</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a><span class="va">x_coordinate=$(</span><span class="fu">head</span> -n1 /tmp/ratpoison_frame_monitor_navigator <span class="kw">|</span> <span class="fu">cut</span> -d<span class="st">' '</span> -f1<span class="va">)</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a><span class="va">last_access=$(</span><span class="fu">head</span> -n1 /tmp/ratpoison_frame_monitor_navigator <span class="kw">|</span> <span class="fu">cut</span> -d<span class="st">' '</span> -f2<span class="va">)</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a><span class="kw">while</span> <span class="bu">read</span> <span class="va">frame</span>; <span class="kw">do</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a>    <span class="va">access=$(</span><span class="bu">echo</span> <span class="st">&quot;</span><span class="va">$frame</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="fu">cut</span> -d<span class="st">' '</span> -f2<span class="va">)</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a>    <span class="kw">if [[</span> <span class="va">$access</span> <span class="ot">-gt</span> <span class="va">$last_access</span><span class="kw"> ]]</span>;</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a>    <span class="kw">then</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a>        <span class="va">last_access=$access</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a>        <span class="va">x_coordinate=$(</span><span class="bu">echo</span> <span class="st">&quot;</span><span class="va">$frame</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="fu">cut</span> -d<span class="st">' '</span> -f1<span class="va">)</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a>    <span class="kw">fi</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true"></a><span class="kw">done</span> <span class="op">&lt;</span> <span class="ex">/tmp/ratpoison_frame_monitor_navigator</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true"></a><span class="kw">function</span><span class="fu"> is_leftmost</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true"></a><span class="kw">{</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true"></a>    <span class="kw">if [[</span> <span class="va">$x_coordinate</span> <span class="ot">-eq</span> 0<span class="kw"> ]]</span>; <span class="kw">then</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true"></a>        <span class="bu">return</span> 0</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true"></a>    <span class="kw">else</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true"></a>        <span class="bu">return</span> 1</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true"></a>    <span class="kw">fi</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true"></a><span class="kw">}</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true"></a><span class="kw">function</span><span class="fu"> is_rightmost</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true"></a><span class="kw">{</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true"></a>    <span class="kw">if [[</span> <span class="va">$x_coordinate</span> <span class="ot">-eq</span> <span class="va">$greater_x_coordinate</span><span class="kw"> ]]</span>; <span class="kw">then</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true"></a>        <span class="bu">return</span> 0</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true"></a>    <span class="kw">else</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true"></a>        <span class="bu">return</span> 1</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true"></a>    <span class="kw">fi</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true"></a><span class="kw">}</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true"></a></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true"></a><span class="co"># Go to previous screen if currently if leftmost frame</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true"></a><span class="co"># Go to next screen if currently if rightmost frame</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true"></a><span class="co"># Execute frame focus otherwise</span></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true"></a><span class="kw">if [[</span> <span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;left&quot;</span><span class="kw"> ]]</span>; <span class="kw">then</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true"></a>    <span class="kw">if</span> <span class="ex">is_leftmost</span><span class="kw">;</span> <span class="kw">then</span></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true"></a>        <span class="ex">ratpoison</span> -c <span class="st">'prevscreen'</span></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true"></a>    <span class="kw">else</span></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true"></a>        <span class="ex">ratpoison</span> -c <span class="st">'focusleft'</span></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true"></a>    <span class="kw">fi</span></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true"></a><span class="kw">elif [[</span> <span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;right&quot;</span><span class="kw"> ]]</span>; <span class="kw">then</span></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true"></a>    <span class="kw">if</span> <span class="ex">is_rightmost</span><span class="kw">;</span> <span class="kw">then</span></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true"></a>        <span class="ex">ratpoison</span> -c <span class="st">'nextscreen'</span></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true"></a>    <span class="kw">else</span></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true"></a>        <span class="ex">ratpoison</span> -c <span class="st">'focusright'</span></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true"></a>    <span class="kw">fi</span></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true"></a><span class="kw">fi</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/sh</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">ratpoison</span> <span class="at">-c</span> <span class="st">'fdump'</span><span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/,/\n/g'</span> <span class="kw">|</span> <span class="fu">awk</span> <span class="st">'{print $5&quot; &quot;$19}'</span> <span class="op">&gt;</span> /tmp/ratpoison_frame_monitor_navigator</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate X coordinate for rightmost frame</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="va">greater_x_coordinate</span><span class="op">=</span>0</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="bu">read</span> <span class="va">frame</span><span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">coordinate</span><span class="op">=</span><span class="va">$(</span><span class="bu">echo</span> <span class="st">&quot;</span><span class="va">$frame</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span><span class="st">' '</span> <span class="at">-f1</span><span class="va">)</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">[[</span> <span class="va">$coordinate</span> <span class="ot">-gt</span> <span class="va">$greater_x_coordinate</span> <span class="kw">]];</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">then</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">greater_x_coordinate</span><span class="op">=</span><span class="va">$coordinate</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span> <span class="op">&lt;</span> /tmp/ratpoison_frame_monitor_navigator</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate current frame X coordinate</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="va">x_coordinate</span><span class="op">=</span><span class="va">$(</span><span class="fu">head</span> <span class="at">-n1</span> /tmp/ratpoison_frame_monitor_navigator <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span><span class="st">' '</span> <span class="at">-f1</span><span class="va">)</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="va">last_access</span><span class="op">=</span><span class="va">$(</span><span class="fu">head</span> <span class="at">-n1</span> /tmp/ratpoison_frame_monitor_navigator <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span><span class="st">' '</span> <span class="at">-f2</span><span class="va">)</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="bu">read</span> <span class="va">frame</span><span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="va">access</span><span class="op">=</span><span class="va">$(</span><span class="bu">echo</span> <span class="st">&quot;</span><span class="va">$frame</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span><span class="st">' '</span> <span class="at">-f2</span><span class="va">)</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">[[</span> <span class="va">$access</span> <span class="ot">-gt</span> <span class="va">$last_access</span> <span class="kw">]];</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">then</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        <span class="va">last_access</span><span class="op">=</span><span class="va">$access</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">x_coordinate</span><span class="op">=</span><span class="va">$(</span><span class="bu">echo</span> <span class="st">&quot;</span><span class="va">$frame</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span><span class="st">' '</span> <span class="at">-f1</span><span class="va">)</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span> <span class="op">&lt;</span> /tmp/ratpoison_frame_monitor_navigator</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> is_leftmost</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">[[</span> <span class="va">$x_coordinate</span> <span class="ot">-eq</span> 0 <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> is_rightmost</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">[[</span> <span class="va">$x_coordinate</span> <span class="ot">-eq</span> <span class="va">$greater_x_coordinate</span> <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Go to previous screen if currently if leftmost frame</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Go to next screen if currently if rightmost frame</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Execute frame focus otherwise</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;left&quot;</span> <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="ex">is_leftmost</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>        <span class="ex">ratpoison</span> <span class="at">-c</span> <span class="st">'prevscreen'</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>        <span class="ex">ratpoison</span> <span class="at">-c</span> <span class="st">'focusleft'</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> <span class="kw">[[</span> <span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;right&quot;</span> <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="ex">is_rightmost</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>        <span class="ex">ratpoison</span> <span class="at">-c</span> <span class="st">'nextscreen'</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>        <span class="ex">ratpoison</span> <span class="at">-c</span> <span class="st">'focusright'</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span></code></pre></div>
 <h1 id="ratpoison-tmux-navigator">Ratpoison-Tmux Navigator</h1>
 <p><img src="../../img/navigator/shot2.jpg" class="img-left" /></p>
 <p>We need a way to pass movement commands to Tmux so Vim-Tmux navigation works as always, but we also need to pass movement commands from Tmux to Ratpoison when a movement command is triggered from Tmux edge pane.</p>
 <p>The script <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/rat_tmux-navigator.sh">rat_tmux-navigator.sh</a> is able to tell if the terminal emulator (Urxvt) is currently focused and, if so, send the movement commands to Tmux so it can handle panes traversing as usual. It also define functions that Tmux can use to know if a edge pane is reached and send the movement commands to Ratpoison through the <strong>frame-mon_navigator.sh</strong> script so Frame-Monitor navigation is included in the process.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">if [[</span> <span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;rat&quot;</span><span class="kw"> ]]</span>; <span class="kw">then</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="va">current_window=$(</span><span class="ex">ratpoison</span> -c <span class="st">'info'</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/(.*).*(\(.*\))/\1/'</span>\</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>                <span class="kw">|</span> <span class="fu">tr</span> <span class="st">'[:upper:]'</span> <span class="st">'[:lower:]'</span><span class="va">)</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="kw">elif [[</span> <span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;tmux&quot;</span><span class="kw"> ]]</span>;<span class="kw">then</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>    <span class="va">window_bottom=$(</span><span class="ex">tmux</span> list-panes -F <span class="st">&quot;#{window_height}&quot;</span> <span class="kw">|</span> <span class="fu">head</span> -n1<span class="va">)</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>    <span class="va">window_right=$(</span><span class="ex">tmux</span> list-panes -F <span class="st">&quot;#{window_width}&quot;</span> <span class="kw">|</span> <span class="fu">head</span> -n1<span class="va">)</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>    <span class="va">window_bottom=$(($window_bottom</span> - 1<span class="va">))</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>    <span class="va">window_right=$(($window_right</span> - 1<span class="va">))</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>    <span class="va">pane=$(</span><span class="ex">tmux</span> list-panes -F <span class="st">&quot;#{pane_left} #{pane_right} #{pane_top} #{pane_bottom} #{pane_active}&quot;</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="st">'.* 1$'</span><span class="va">)</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>    <span class="va">pane_left=$(</span><span class="bu">echo</span> <span class="st">&quot;</span><span class="va">$pane</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="fu">cut</span> -d<span class="st">' '</span> -f 1<span class="va">)</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a>    <span class="va">pane_right=$(</span><span class="bu">echo</span> <span class="st">&quot;</span><span class="va">$pane</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="fu">cut</span> -d<span class="st">' '</span> -f 2<span class="va">)</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a>    <span class="va">pane_top=$(</span><span class="bu">echo</span> <span class="st">&quot;</span><span class="va">$pane</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="fu">cut</span> -d<span class="st">' '</span> -f 3<span class="va">)</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>    <span class="va">pane_bottom=$(</span><span class="bu">echo</span> <span class="st">&quot;</span><span class="va">$pane</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="fu">cut</span> -d<span class="st">' '</span> -f 4<span class="va">)</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a><span class="kw">fi</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a><span class="kw">function</span><span class="fu"> rat_up</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a><span class="kw">{</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a>    <span class="kw">if [[</span> <span class="st">&quot;</span><span class="va">$current_window</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;urxvt&quot;</span><span class="kw"> ]]</span>;</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a>    <span class="kw">then</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a>        <span class="ex">ratpoison</span> -c <span class="st">'meta C-k'</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a>    <span class="kw">else</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a>        <span class="ex">ratpoison</span> -c <span class="st">'focusup'</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a>    <span class="kw">fi</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true"></a><span class="kw">}</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true"></a></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true"></a><span class="kw">function</span><span class="fu"> rat_down</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true"></a><span class="kw">{</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true"></a>    <span class="kw">if [[</span> <span class="st">&quot;</span><span class="va">$current_window</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;urxvt&quot;</span><span class="kw"> ]]</span>;</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true"></a>    <span class="kw">then</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true"></a>        <span class="ex">ratpoison</span> -c <span class="st">'meta C-j'</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true"></a>    <span class="kw">else</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true"></a>        <span class="ex">ratpoison</span> -c <span class="st">'focusdown'</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true"></a>    <span class="kw">fi</span></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true"></a><span class="kw">}</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true"></a></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true"></a><span class="kw">function</span><span class="fu"> rat_right</span></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true"></a><span class="kw">{</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true"></a>    <span class="kw">if [[</span> <span class="st">&quot;</span><span class="va">$current_window</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;urxvt&quot;</span><span class="kw"> ]]</span>;</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true"></a>    <span class="kw">then</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true"></a>        <span class="ex">ratpoison</span> -c <span class="st">'meta C-l'</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true"></a>    <span class="kw">else</span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true"></a>        <span class="ex">~/.scripts/ratpoison/frame-mon_navigator.sh</span> right</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true"></a>    <span class="kw">fi</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true"></a><span class="kw">}</span></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true"></a></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true"></a><span class="kw">function</span><span class="fu"> rat_left</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true"></a><span class="kw">{</span></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true"></a>    <span class="kw">if [[</span> <span class="st">&quot;</span><span class="va">$current_window</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;urxvt&quot;</span><span class="kw"> ]]</span>;</span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true"></a>    <span class="kw">then</span></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true"></a>        <span class="ex">ratpoison</span> -c <span class="st">'meta C-h'</span></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true"></a>    <span class="kw">else</span></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true"></a>        <span class="ex">~/.scripts/ratpoison/frame-mon_navigator.sh</span> left</span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true"></a>    <span class="kw">fi</span></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true"></a><span class="kw">}</span></span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true"></a></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true"></a><span class="kw">function</span><span class="fu"> tmux_up</span></span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true"></a><span class="kw">{</span></span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true"></a>    <span class="kw">if [[</span> <span class="va">$pane_top</span>  <span class="ot">-eq</span> 0<span class="kw"> ]]</span>;</span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true"></a>    <span class="kw">then</span></span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true"></a>        <span class="ex">ratpoison</span> -c <span class="st">'focusup'</span></span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true"></a>    <span class="kw">else</span></span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true"></a>        <span class="ex">tmux</span> select-pane -U</span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true"></a>    <span class="kw">fi</span></span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true"></a><span class="kw">}</span></span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true"></a></span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true"></a><span class="kw">function</span><span class="fu"> tmux_down</span></span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true"></a><span class="kw">{</span></span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true"></a>    <span class="kw">if [[</span> <span class="va">$pane_bottom</span>  <span class="ot">-eq</span> <span class="va">$window_bottom</span><span class="kw"> ]]</span>;</span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true"></a>    <span class="kw">then</span></span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true"></a>        <span class="ex">ratpoison</span> -c <span class="st">'focusdown'</span></span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true"></a>    <span class="kw">else</span></span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true"></a>        <span class="ex">tmux</span> select-pane -D</span>
-<span id="cb2-76"><a href="#cb2-76" aria-hidden="true"></a>    <span class="kw">fi</span></span>
-<span id="cb2-77"><a href="#cb2-77" aria-hidden="true"></a><span class="kw">}</span></span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true"></a></span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true"></a><span class="kw">function</span><span class="fu"> tmux_right</span></span>
-<span id="cb2-80"><a href="#cb2-80" aria-hidden="true"></a><span class="kw">{</span></span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true"></a>    <span class="kw">if [[</span> <span class="va">$pane_right</span>  <span class="ot">-eq</span> <span class="va">$window_right</span><span class="kw"> ]]</span>;</span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true"></a>    <span class="kw">then</span></span>
-<span id="cb2-83"><a href="#cb2-83" aria-hidden="true"></a>        <span class="ex">~/.scripts/ratpoison/frame-mon_navigator.sh</span> right</span>
-<span id="cb2-84"><a href="#cb2-84" aria-hidden="true"></a>    <span class="kw">else</span></span>
-<span id="cb2-85"><a href="#cb2-85" aria-hidden="true"></a>        <span class="ex">tmux</span> select-pane -R</span>
-<span id="cb2-86"><a href="#cb2-86" aria-hidden="true"></a>    <span class="kw">fi</span></span>
-<span id="cb2-87"><a href="#cb2-87" aria-hidden="true"></a><span class="kw">}</span></span>
-<span id="cb2-88"><a href="#cb2-88" aria-hidden="true"></a></span>
-<span id="cb2-89"><a href="#cb2-89" aria-hidden="true"></a><span class="kw">function</span><span class="fu"> tmux_left</span></span>
-<span id="cb2-90"><a href="#cb2-90" aria-hidden="true"></a><span class="kw">{</span></span>
-<span id="cb2-91"><a href="#cb2-91" aria-hidden="true"></a>    <span class="kw">if [[</span> <span class="va">$pane_left</span>  <span class="ot">-eq</span> 0<span class="kw"> ]]</span>;</span>
-<span id="cb2-92"><a href="#cb2-92" aria-hidden="true"></a>    <span class="kw">then</span></span>
-<span id="cb2-93"><a href="#cb2-93" aria-hidden="true"></a>        <span class="ex">~/.scripts/ratpoison/frame-mon_navigator.sh</span> left</span>
-<span id="cb2-94"><a href="#cb2-94" aria-hidden="true"></a>    <span class="kw">else</span></span>
-<span id="cb2-95"><a href="#cb2-95" aria-hidden="true"></a>        <span class="ex">tmux</span> select-pane -L</span>
-<span id="cb2-96"><a href="#cb2-96" aria-hidden="true"></a>    <span class="kw">fi</span></span>
-<span id="cb2-97"><a href="#cb2-97" aria-hidden="true"></a><span class="kw">}</span></span>
-<span id="cb2-98"><a href="#cb2-98" aria-hidden="true"></a></span>
-<span id="cb2-99"><a href="#cb2-99" aria-hidden="true"></a></span>
-<span id="cb2-100"><a href="#cb2-100" aria-hidden="true"></a><span class="kw">if [[</span> <span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;rat&quot;</span><span class="kw"> ]]</span>;<span class="kw">then</span></span>
-<span id="cb2-101"><a href="#cb2-101" aria-hidden="true"></a>    <span class="kw">case</span> <span class="st">&quot;</span><span class="va">$2</span><span class="st">&quot;</span><span class="kw"> in</span></span>
-<span id="cb2-102"><a href="#cb2-102" aria-hidden="true"></a>        <span class="st">'up'</span><span class="kw">)</span></span>
-<span id="cb2-103"><a href="#cb2-103" aria-hidden="true"></a>            <span class="ex">rat_up</span></span>
-<span id="cb2-104"><a href="#cb2-104" aria-hidden="true"></a>            <span class="kw">;;</span></span>
-<span id="cb2-105"><a href="#cb2-105" aria-hidden="true"></a>        <span class="st">'down'</span><span class="kw">)</span></span>
-<span id="cb2-106"><a href="#cb2-106" aria-hidden="true"></a>            <span class="ex">rat_down</span></span>
-<span id="cb2-107"><a href="#cb2-107" aria-hidden="true"></a>            <span class="kw">;;</span></span>
-<span id="cb2-108"><a href="#cb2-108" aria-hidden="true"></a>        <span class="st">'right'</span><span class="kw">)</span></span>
-<span id="cb2-109"><a href="#cb2-109" aria-hidden="true"></a>            <span class="ex">rat_right</span></span>
-<span id="cb2-110"><a href="#cb2-110" aria-hidden="true"></a>            <span class="kw">;;</span></span>
-<span id="cb2-111"><a href="#cb2-111" aria-hidden="true"></a>        <span class="st">'left'</span><span class="kw">)</span></span>
-<span id="cb2-112"><a href="#cb2-112" aria-hidden="true"></a>            <span class="ex">rat_left</span></span>
-<span id="cb2-113"><a href="#cb2-113" aria-hidden="true"></a>            <span class="kw">;;</span></span>
-<span id="cb2-114"><a href="#cb2-114" aria-hidden="true"></a>    <span class="kw">esac</span></span>
-<span id="cb2-115"><a href="#cb2-115" aria-hidden="true"></a></span>
-<span id="cb2-116"><a href="#cb2-116" aria-hidden="true"></a><span class="kw">elif [[</span> <span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;tmux&quot;</span><span class="kw"> ]]</span>;<span class="kw">then</span></span>
-<span id="cb2-117"><a href="#cb2-117" aria-hidden="true"></a>    <span class="kw">case</span> <span class="st">&quot;</span><span class="va">$2</span><span class="st">&quot;</span><span class="kw"> in</span></span>
-<span id="cb2-118"><a href="#cb2-118" aria-hidden="true"></a>        <span class="st">'up'</span><span class="kw">)</span></span>
-<span id="cb2-119"><a href="#cb2-119" aria-hidden="true"></a>            <span class="ex">tmux_up</span></span>
-<span id="cb2-120"><a href="#cb2-120" aria-hidden="true"></a>            <span class="kw">;;</span></span>
-<span id="cb2-121"><a href="#cb2-121" aria-hidden="true"></a>        <span class="st">'down'</span><span class="kw">)</span></span>
-<span id="cb2-122"><a href="#cb2-122" aria-hidden="true"></a>            <span class="ex">tmux_down</span></span>
-<span id="cb2-123"><a href="#cb2-123" aria-hidden="true"></a>            <span class="kw">;;</span></span>
-<span id="cb2-124"><a href="#cb2-124" aria-hidden="true"></a>        <span class="st">'right'</span><span class="kw">)</span></span>
-<span id="cb2-125"><a href="#cb2-125" aria-hidden="true"></a>            <span class="ex">tmux_right</span></span>
-<span id="cb2-126"><a href="#cb2-126" aria-hidden="true"></a>            <span class="kw">;;</span></span>
-<span id="cb2-127"><a href="#cb2-127" aria-hidden="true"></a>        <span class="st">'left'</span><span class="kw">)</span></span>
-<span id="cb2-128"><a href="#cb2-128" aria-hidden="true"></a>            <span class="ex">tmux_left</span></span>
-<span id="cb2-129"><a href="#cb2-129" aria-hidden="true"></a>            <span class="kw">;;</span></span>
-<span id="cb2-130"><a href="#cb2-130" aria-hidden="true"></a>    <span class="kw">esac</span></span>
-<span id="cb2-131"><a href="#cb2-131" aria-hidden="true"></a><span class="kw">fi</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;rat&quot;</span> <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="va">current_window</span><span class="op">=</span><span class="va">$(</span><span class="ex">ratpoison</span> <span class="at">-c</span> <span class="st">'info'</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/(.*).*(\(.*\))/\1/'</span><span class="dt">\</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                <span class="kw">|</span> <span class="fu">tr</span> <span class="st">'[:upper:]'</span> <span class="st">'[:lower:]'</span><span class="va">)</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> <span class="kw">[[</span> <span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;tmux&quot;</span> <span class="kw">]];</span><span class="cf">then</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">window_bottom</span><span class="op">=</span><span class="va">$(</span><span class="ex">tmux</span> list-panes <span class="at">-F</span> <span class="st">&quot;#{window_height}&quot;</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n1</span><span class="va">)</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="va">window_right</span><span class="op">=</span><span class="va">$(</span><span class="ex">tmux</span> list-panes <span class="at">-F</span> <span class="st">&quot;#{window_width}&quot;</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n1</span><span class="va">)</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="va">window_bottom</span><span class="op">=</span><span class="va">$(($window_bottom</span> <span class="op">-</span> <span class="dv">1</span><span class="va">))</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="va">window_right</span><span class="op">=</span><span class="va">$(($window_right</span> <span class="op">-</span> <span class="dv">1</span><span class="va">))</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="va">pane</span><span class="op">=</span><span class="va">$(</span><span class="ex">tmux</span> list-panes <span class="at">-F</span> <span class="st">&quot;#{pane_left} #{pane_right} #{pane_top} #{pane_bottom} #{pane_active}&quot;</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="st">'.* 1$'</span><span class="va">)</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="va">pane_left</span><span class="op">=</span><span class="va">$(</span><span class="bu">echo</span> <span class="st">&quot;</span><span class="va">$pane</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span><span class="st">' '</span> <span class="at">-f</span> 1<span class="va">)</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="va">pane_right</span><span class="op">=</span><span class="va">$(</span><span class="bu">echo</span> <span class="st">&quot;</span><span class="va">$pane</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span><span class="st">' '</span> <span class="at">-f</span> 2<span class="va">)</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="va">pane_top</span><span class="op">=</span><span class="va">$(</span><span class="bu">echo</span> <span class="st">&quot;</span><span class="va">$pane</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span><span class="st">' '</span> <span class="at">-f</span> 3<span class="va">)</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="va">pane_bottom</span><span class="op">=</span><span class="va">$(</span><span class="bu">echo</span> <span class="st">&quot;</span><span class="va">$pane</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span><span class="st">' '</span> <span class="at">-f</span> 4<span class="va">)</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> rat_up</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">[[</span> <span class="st">&quot;</span><span class="va">$current_window</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;urxvt&quot;</span> <span class="kw">]];</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">then</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        <span class="ex">ratpoison</span> <span class="at">-c</span> <span class="st">'meta C-k'</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        <span class="ex">ratpoison</span> <span class="at">-c</span> <span class="st">'focusup'</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> rat_down</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">[[</span> <span class="st">&quot;</span><span class="va">$current_window</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;urxvt&quot;</span> <span class="kw">]];</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">then</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>        <span class="ex">ratpoison</span> <span class="at">-c</span> <span class="st">'meta C-j'</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>        <span class="ex">ratpoison</span> <span class="at">-c</span> <span class="st">'focusdown'</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> rat_right</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">[[</span> <span class="st">&quot;</span><span class="va">$current_window</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;urxvt&quot;</span> <span class="kw">]];</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">then</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>        <span class="ex">ratpoison</span> <span class="at">-c</span> <span class="st">'meta C-l'</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>        <span class="ex">~/.scripts/ratpoison/frame-mon_navigator.sh</span> right</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> rat_left</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">[[</span> <span class="st">&quot;</span><span class="va">$current_window</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;urxvt&quot;</span> <span class="kw">]];</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">then</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>        <span class="ex">ratpoison</span> <span class="at">-c</span> <span class="st">'meta C-h'</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>        <span class="ex">~/.scripts/ratpoison/frame-mon_navigator.sh</span> left</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> tmux_up</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">[[</span> <span class="va">$pane_top</span>  <span class="ot">-eq</span> 0 <span class="kw">]];</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>    <span class="cf">then</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>        <span class="ex">ratpoison</span> <span class="at">-c</span> <span class="st">'focusup'</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>        <span class="ex">tmux</span> select-pane <span class="at">-U</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> tmux_down</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">[[</span> <span class="va">$pane_bottom</span>  <span class="ot">-eq</span> <span class="va">$window_bottom</span> <span class="kw">]];</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>    <span class="cf">then</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>        <span class="ex">ratpoison</span> <span class="at">-c</span> <span class="st">'focusdown'</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>        <span class="ex">tmux</span> select-pane <span class="at">-D</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> tmux_right</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">[[</span> <span class="va">$pane_right</span>  <span class="ot">-eq</span> <span class="va">$window_right</span> <span class="kw">]];</span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>    <span class="cf">then</span></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>        <span class="ex">~/.scripts/ratpoison/frame-mon_navigator.sh</span> right</span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>        <span class="ex">tmux</span> select-pane <span class="at">-R</span></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> tmux_left</span></span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">[[</span> <span class="va">$pane_left</span>  <span class="ot">-eq</span> 0 <span class="kw">]];</span></span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>    <span class="cf">then</span></span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>        <span class="ex">~/.scripts/ratpoison/frame-mon_navigator.sh</span> left</span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>        <span class="ex">tmux</span> select-pane <span class="at">-L</span></span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;rat&quot;</span> <span class="kw">]];</span><span class="cf">then</span></span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="st">&quot;</span><span class="va">$2</span><span class="st">&quot;</span> <span class="kw">in</span></span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>        <span class="st">'up'</span><span class="kw">)</span></span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>            <span class="ex">rat_up</span></span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>            <span class="cf">;;</span></span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a>        <span class="st">'down'</span><span class="kw">)</span></span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a>            <span class="ex">rat_down</span></span>
+<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a>            <span class="cf">;;</span></span>
+<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a>        <span class="st">'right'</span><span class="kw">)</span></span>
+<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a>            <span class="ex">rat_right</span></span>
+<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a>            <span class="cf">;;</span></span>
+<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a>        <span class="st">'left'</span><span class="kw">)</span></span>
+<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a>            <span class="ex">rat_left</span></span>
+<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a>            <span class="cf">;;</span></span>
+<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a>    <span class="cf">esac</span></span>
+<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> <span class="kw">[[</span> <span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;tmux&quot;</span> <span class="kw">]];</span><span class="cf">then</span></span>
+<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="st">&quot;</span><span class="va">$2</span><span class="st">&quot;</span> <span class="kw">in</span></span>
+<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a>        <span class="st">'up'</span><span class="kw">)</span></span>
+<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a>            <span class="ex">tmux_up</span></span>
+<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a>            <span class="cf">;;</span></span>
+<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a>        <span class="st">'down'</span><span class="kw">)</span></span>
+<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a>            <span class="ex">tmux_down</span></span>
+<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a>            <span class="cf">;;</span></span>
+<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a>        <span class="st">'right'</span><span class="kw">)</span></span>
+<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a>            <span class="ex">tmux_right</span></span>
+<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a>            <span class="cf">;;</span></span>
+<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a>        <span class="st">'left'</span><span class="kw">)</span></span>
+<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a>            <span class="ex">tmux_left</span></span>
+<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a>            <span class="cf">;;</span></span>
+<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a>    <span class="cf">esac</span></span>
+<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span></code></pre></div>
 <h1 id="vim-tmux-navigator">Vim-Tmux Navigator</h1>
 <p>Modifying Tmux mappings to use above scripts will make it work for Tmux-Ratpoison traversing but when a Vim instance is on an Tmux edge pane it will not jump to the appropriate Ratpoison split. To solve it I forked the <code>vim-tmux-navigator</code> project and made the right changes to it in the <a href="https://github.com/alx741/vim-tmux-navigator/tree/vim-tmux-wm-monitor">vim-tmux-wm-monitor branch</a></p>
 <p>Then using <a href="https://github.com/junegunn/vim-plug">vim-plug</a> I install it in my <code>.vimrc</code> with:</p>
@@ -379,132 +273,17 @@ bind-key h if-shell &quot;$is_vim&quot; &quot;send-keys C-h&quot;  &quot;run '~/
 bind-key j if-shell &quot;$is_vim&quot; &quot;send-keys C-j&quot;  &quot;run '~/.scripts/ratpoison/rat_tmux-navigator.sh tmux down'&quot;
 bind-key k if-shell &quot;$is_vim&quot; &quot;send-keys C-k&quot;  &quot;run '~/.scripts/ratpoison/rat_tmux-navigator.sh tmux up'&quot;
 bind-key l if-shell &quot;$is_vim&quot; &quot;send-keys C-l&quot;  &quot;run '~/.scripts/ratpoison/rat_tmux-navigator.sh tmux right'&quot;</code></pre>
+    </section>
+</article>
+
+
+            <nav class="pagination is-medium">
+                
+
+                
+            </nav>
         </div>
-    </div>
-</div>
-
-
-                    <div class="row">
-                        <div class="col-sm-4">
-                            
-                        </div>
-
-                        <div class="col-sm-4">
-                            <a class="archive" href="../../archive.html">Archive</a>
-                        </div>
-
-                        <div class="col-sm-4">
-                            
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-
-        <footer class="container-fluid">
-            <div class="row">
-                <div id="sidebar" class="visible-xs visible-sm col-xs-12">
-                    <div id="author">
-    <img id="author-pic" src="../../img/daniel.jpg">
-    <h3 id="author-name">Daniel Campoverde [alx741]</h3>
-    <img id="location-icon" src="../../img/location_icon.png">
-    <span id="location">Cuenca, Ecuador</span>
-</div>
-
-<div id="findme">
-    <h2 class="sidebar-h2">FIND ME</h2>
-    <a target="_blank" href="https://gitlab.com/alx741">
-        <img class="icon" src="../../img/gitlab.png">
-    </a>
-    <a target="_blank" href="https://github.com/alx741">
-        <img class="icon" src="../../img/github.png">
-    </a>
-    <a target="_blank" href="https://twitter.com/alx741alx">
-        <img class="icon" src="../../img/twitter.png">
-    </a>
-    <a target="_blank" href="https://www.facebook.com/sillybytes/">
-        <img class="icon" src="../../img/facebook.png">
-    </a>
-    <a target="_blank" href="https://plus.google.com/116038619580828681039">
-        <img class="icon" src="../../img/google.png">
-    </a>
-
-    <div id="findme-textual">
-        <b>Freenode:</b> #vim, #archlinux, #avr, #rust, #haskell,
-        #yesod, #zsh
-        <hr>
-        <b>Mailto:</b> alx@sillybytes.net
-        <br>
-        <b>GPG Key ID:</b> <a href="http://pgp.mit.edu/pks/lookup?op=get&search=0xEB0E776276450F22">76450F22</a>
-        <hr>
-        <b>Subscribe:</b> <a href="http://www.sillybytes.net/atom.xml">
-            <img id="rss-img" alt="rss" src="../../img/rss.png" /> </a>
-    </div>
-
-
-    <div id="facebook-embed">
-        <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fsillybytes&amp;width&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true" scrolling="yes" style="border:none; overflow:hidden;" allowtransparency="false" frameborder="0"></iframe>
-    </div>
-</div>
-
-<div id="random">
-    <h2 class="sidebar-h2">YOU MIGHT LIKE</h2>
-
-    <div id="random-posts">
-        <ul>
-        </ul>
-    </div>
-</div>
-
-<div id="about">
-    <h2 class="sidebar-h2">ABOUT</h2>
-
-    <a target="_blank" href="http://www.haskellers.com/user/4344">
-        <img id="haskellers-img" class="badge" alt="I'm a Haskeller" src="../../img/haskellers.png">
-    </a>
-
-    <img id="fsf-img" class="badge" alt="Free Software Fundation Member" src="../../img/fsf.png">
-
-    <a target="_blank" href="http://internetdefenseleague.org/">
-        <img id="idl-img" class="badge" alt="Internet Defesen League" src="../../img/idl.png">
-    </a>
-</div>
-
-<div id="dotfiles">
-    <h2 class="sidebar-h2">DOTFILES</h2>
-    <p>
-        Software configuration, scripts, tools and magic.
-        Be sure to add <b>attribution </b> when using them
-        (fully or partially).
-    </p>
-    <a target="_blank" href="https://github.com/alx741/dotfiles#readme">
-        <img id="dotfiles-img" src="../../img/dotfiles.png">
-    </a>
-</div>
-
-
-<div id="license">
-    <h2 class="sidebar-h2">LICENSE</h2>
-
-    <a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
-        <img id="cc-img" alt="Creative Commons - SA - BY" src="../../img/cc.png">
-    </a>
-    <p id="cc-text">
-        Silly Bytes by Daniel Alejandro Campoverde Carrión
-        [alx741] is licensed under a
-        <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
-            Creative Commons Attribution-ShareAlike 3.0 Unported License.
-        </a>
-    </p>
-</div>
-
-                </div>
-            </div>
-        </footer>
-
-        <script type="text/javascript" src="../../js/random_posts.js"></script>
 
     </body>
+
 </html>

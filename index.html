@@ -10,223 +10,121 @@
         <link rel="shortcut icon" type="image/png" href="./img/favicon.png" />
 
         <link rel="stylesheet" href="./css/default.css" />
-        <link rel="stylesheet" href="./css/post-list.css" />
         <link rel="stylesheet" href="./css/post.css" />
-
-        <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="./bower_components/highlight/src/styles/solarized-light.css" />
-
-        <script src="./bower_components/jquery/dist/jquery.min.js"></script>
-        <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="./bower_components/highlight/src/highlight.pack.js"></script>
-
-        <script> hljs.initHighlightingOnLoad(); </script>
-
+        <link rel="stylesheet" href="./css/about.css" />
     </head>
+
+
     <body>
-        <header class="container-fluid">
-            <div class="row">
-                <div class="col-xs-12">
-                    <a href="./">
-                        <img alt="Silly Bytes" id="logo" class="image-responsive" src="./img/silly-bytes_logo.png" />
+
+        <header>
+            <navbar class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="./index.html">
+                        <b>Silly Bytes</b>
                     </a>
                 </div>
-            </div>
+
+                <div class="navbar-end">
+                    <a href="./index.html" class="navbar-item">Home</a>
+                    <a href="./about.html" class="navbar-item">About</a>
+                </div>
+            </navbar>
         </header>
 
-        <div id="blog" class="container-fluid">
-            <div class="row">
 
-                <div id="sidebar" class="hidden-xs hidden-sm col-md-3">
-                    <div id="author">
-    <img id="author-pic" src="./img/daniel.jpg">
-    <h3 id="author-name">Daniel Campoverde [alx741]</h3>
-    <img id="location-icon" src="./img/location_icon.png">
-    <span id="location">Cuenca, Ecuador</span>
-</div>
+        <div id="main" class="container is-max-desktop">
+            
 
-<div id="findme">
-    <h2 class="sidebar-h2">FIND ME</h2>
-    <a target="_blank" href="https://gitlab.com/alx741">
-        <img class="icon" src="./img/gitlab.png">
-    </a>
-    <a target="_blank" href="https://github.com/alx741">
-        <img class="icon" src="./img/github.png">
-    </a>
-    <a target="_blank" href="https://twitter.com/alx741alx">
-        <img class="icon" src="./img/twitter.png">
-    </a>
-    <a target="_blank" href="https://www.facebook.com/sillybytes/">
-        <img class="icon" src="./img/facebook.png">
-    </a>
-    <a target="_blank" href="https://plus.google.com/116038619580828681039">
-        <img class="icon" src="./img/google.png">
-    </a>
+<article class="post-teaser">
+    <h2 class="is-size-2 has-text-weight-medium has-text-left">
+        <a href="./posts/keter_tutorial.html">Deploying Yesod applications with Keter</a>
+    </h2>
+    <aside class="date has-text-left">May  4, 2017</aside>
 
-    <div id="findme-textual">
-        <b>Freenode:</b> #vim, #archlinux, #avr, #rust, #haskell,
-        #yesod, #zsh
-        <hr>
-        <b>Mailto:</b> alx@sillybytes.net
-        <br>
-        <b>GPG Key ID:</b> <a href="http://pgp.mit.edu/pks/lookup?op=get&search=0xEB0E776276450F22">76450F22</a>
-        <hr>
-        <b>Subscribe:</b> <a href="http://www.sillybytes.net/atom.xml">
-            <img id="rss-img" alt="rss" src="./img/rss.png" /> </a>
-    </div>
-
-
-    <div id="facebook-embed">
-        <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fsillybytes&amp;width&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true" scrolling="yes" style="border:none; overflow:hidden;" allowtransparency="false" frameborder="0"></iframe>
-    </div>
-</div>
-
-<div id="random">
-    <h2 class="sidebar-h2">YOU MIGHT LIKE</h2>
-
-    <div id="random-posts">
-        <ul>
-        </ul>
-    </div>
-</div>
-
-<div id="about">
-    <h2 class="sidebar-h2">ABOUT</h2>
-
-    <a target="_blank" href="http://www.haskellers.com/user/4344">
-        <img id="haskellers-img" class="badge" alt="I'm a Haskeller" src="./img/haskellers.png">
-    </a>
-
-    <img id="fsf-img" class="badge" alt="Free Software Fundation Member" src="./img/fsf.png">
-
-    <a target="_blank" href="http://internetdefenseleague.org/">
-        <img id="idl-img" class="badge" alt="Internet Defesen League" src="./img/idl.png">
-    </a>
-</div>
-
-<div id="dotfiles">
-    <h2 class="sidebar-h2">DOTFILES</h2>
-    <p>
-        Software configuration, scripts, tools and magic.
-        Be sure to add <b>attribution </b> when using them
-        (fully or partially).
-    </p>
-    <a target="_blank" href="https://github.com/alx741/dotfiles#readme">
-        <img id="dotfiles-img" src="./img/dotfiles.png">
-    </a>
-</div>
-
-
-<div id="license">
-    <h2 class="sidebar-h2">LICENSE</h2>
-
-    <a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
-        <img id="cc-img" alt="Creative Commons - SA - BY" src="./img/cc.png">
-    </a>
-    <p id="cc-text">
-        Silly Bytes by Daniel Alejandro Campoverde Carrión
-        [alx741] is licensed under a
-        <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
-            Creative Commons Attribution-ShareAlike 3.0 Unported License.
-        </a>
-    </p>
-</div>
-
-                </div>
-
-                <div id="content" class="col-xs-12 col-md-9">
-                    
-    <div class="row">
-        <div class="post-prev post col-xs-12">
-            <a class="post-prev-title" href="./posts/keter_tutorial.html">Deploying Yesod applications with Keter</a>
-            <span class="post-prev-date">May  4, 2017</span>
-            <div class="post-content">
-                
-                    <p><img src="./img/keter/thumbnail.png" id="thumbnail" /><br />
-</p>
-<p><a href="https://github.com/snoyberg/keter">Keter</a> is the <a href="http://www.yesodweb.com/">Yesod</a>’s deployment system, fully featured and a joy to use, but there are some pitfalls that the documentation doesn’t cover, and that the user has to find out for her self; So I’ll try to give them away here together with a walk-through tutorial.</p>
+    <section class="post-content">
+        
+            <p><a href="https://github.com/snoyberg/keter">Keter</a> is the <a href="http://www.yesodweb.com/">Yesod</a>’s deployment system, fully featured and a joy to use, but there are some pitfalls that the documentation doesn’t cover, and that the user has to find out for her self; So I’ll try to give them away here together with a walk-through tutorial.</p>
 <p>Although Keter is flexible and general enough to be used with various kind of applications and web frameworks, here I’m going to assume you’re using it to deploy Yesod applications. Moreover, I’ll assume you’re using Yesod’s scaffolding, as it is the preferred way to write production ready applications.</p>
 
-                
-            </div>
-            <br><br>
-            <div class="continue-reading">
-                <a class="btn btn-default" href="./posts/keter_tutorial.html">Continue Reading</a>
-            </div>
-        </div>
-    </div>
+        
+    </section>
 
-    <div class="row">
-        <div class="post-prev post col-xs-12">
-            <a class="post-prev-title" href="./posts/whats_wrong_with_java.html">What's wrong with Java?</a>
-            <span class="post-prev-date">April 14, 2017</span>
-            <div class="post-content">
-                
-                    <p><img src="./img/javawrong/thumbnail.png" id="thumbnail" /><br />
-</p>
-<p>I’ve spitted out quite a bit of rant about Java before in <a href="http://www.sillybytes.net/2016/03/why-do-i-hate-java.html">this post</a>, in which I basically list the annoyances that the ecosystem around Java imposes and how those problems are pretty much a big intersection with the problems of IDEs.</p>
+    <a class="continue-reading-link" href="./posts/keter_tutorial.html">Continue Reading →</a>
+</article>
+
+
+
+<article class="post-teaser">
+    <h2 class="is-size-2 has-text-weight-medium has-text-left">
+        <a href="./posts/whats_wrong_with_java.html">What's wrong with Java?</a>
+    </h2>
+    <aside class="date has-text-left">April 14, 2017</aside>
+
+    <section class="post-content">
+        
+            <p>I’ve spitted out quite a bit of rant about Java before in <a href="http://www.sillybytes.net/2016/03/why-do-i-hate-java.html">this post</a>, in which I basically list the annoyances that the ecosystem around Java imposes and how those problems are pretty much a big intersection with the problems of IDEs.</p>
 <p>Here I’d like to talk about the problems of Java as a language. Although there are a few problems with Java, I can live with them if I have no other option but to write Java code; My <em>hate</em> to Java doesn’t really arise from Java being a bad <em>language</em> but rather from its <a href="http://www.sillybytes.net/2016/03/why-do-i-hate-java.html">surroundings</a>.</p>
 
-                
-            </div>
-            <br><br>
-            <div class="continue-reading">
-                <a class="btn btn-default" href="./posts/whats_wrong_with_java.html">Continue Reading</a>
-            </div>
-        </div>
-    </div>
+        
+    </section>
 
-    <div class="row">
-        <div class="post-prev post col-xs-12">
-            <a class="post-prev-title" href="./posts/using_hakyll_with_cassius.html">Using Cassius (Shakespearean template) with Hakyll</a>
-            <span class="post-prev-date">April 11, 2017</span>
-            <div class="post-content">
-                
-                    <p><img src="./img/hakyllcassius/thumbnail.png" id="thumbnail" /><br />
-</p>
-<p>As a user of the <a href="http://www.yesodweb.com/">Yesod</a> framework, I’ve came to know and love the <a href="https://www.stackage.org/haddock/lts-8.4/shakespeare-2.0.12.1/Text-Cassius.html#v:cassius">Cassius</a> CSS templating language, although its reliance on Template Haskell is meant to fit better with the Yesod’s needs and makes it a bit cumbersome to use everywhere else, I still like the templating language itself and its features a lot.</p>
+    <a class="continue-reading-link" href="./posts/whats_wrong_with_java.html">Continue Reading →</a>
+</article>
+
+
+
+<article class="post-teaser">
+    <h2 class="is-size-2 has-text-weight-medium has-text-left">
+        <a href="./posts/using_hakyll_with_cassius.html">Using Cassius (Shakespearean template) with Hakyll</a>
+    </h2>
+    <aside class="date has-text-left">April 11, 2017</aside>
+
+    <section class="post-content">
+        
+            <p>As a user of the <a href="http://www.yesodweb.com/">Yesod</a> framework, I’ve came to know and love the <a href="https://www.stackage.org/haddock/lts-8.4/shakespeare-2.0.12.1/Text-Cassius.html#v:cassius">Cassius</a> CSS templating language, although its reliance on Template Haskell is meant to fit better with the Yesod’s needs and makes it a bit cumbersome to use everywhere else, I still like the templating language itself and its features a lot.</p>
 <p>That’s why I used it for styles generation in <a href="http://www.sillybytes.net">Silly Bytes</a> together with <a href="https://jaspervdj.be/hakyll/">Hakyll</a>. In this post I will describe the process.<br />
 <br />
 <br />
 </p>
 
-                
-            </div>
-            <br><br>
-            <div class="continue-reading">
-                <a class="btn btn-default" href="./posts/using_hakyll_with_cassius.html">Continue Reading</a>
-            </div>
-        </div>
-    </div>
+        
+    </section>
 
-    <div class="row">
-        <div class="post-prev post col-xs-12">
-            <a class="post-prev-title" href="./posts/from_blogger_to_hakyll.html">From Blogger to Hakyll</a>
-            <span class="post-prev-date">April 10, 2017</span>
-            <div class="post-content">
-                
-                    <p><img src="./img/bloggerhakyll/thumbnail.png" id="thumbnail" /><br />
-</p>
-<p><a href="https://jaspervdj.be/hakyll/">Hakyll</a> is an amazing static site generator written in Haskell, it allows for blog posts to be written in <em>markdown</em>, that are then compiled with <em>pandoc</em>, and is very well suited to be used with <em>GitHub pages</em>; It’s everything I wanted and more.</p>
+    <a class="continue-reading-link" href="./posts/using_hakyll_with_cassius.html">Continue Reading →</a>
+</article>
+
+
+
+<article class="post-teaser">
+    <h2 class="is-size-2 has-text-weight-medium has-text-left">
+        <a href="./posts/from_blogger_to_hakyll.html">From Blogger to Hakyll</a>
+    </h2>
+    <aside class="date has-text-left">April 10, 2017</aside>
+
+    <section class="post-content">
+        
+            <p><a href="https://jaspervdj.be/hakyll/">Hakyll</a> is an amazing static site generator written in Haskell, it allows for blog posts to be written in <em>markdown</em>, that are then compiled with <em>pandoc</em>, and is very well suited to be used with <em>GitHub pages</em>; It’s everything I wanted and more.</p>
 <p><a href="http://www.sillybytes.net">Silly Bytes</a> went through its first 5 years of existence hosted on Google’s <a href="https://www.blogger.com">Blogger</a> service, and it did well. Although Blogger offers a fair amount of flexibility, you can’t have total control over it, and having to write posts with the built in <em>WYSIWYG</em> interface or pasting the HTML output is one of the bigger pain points of it. I solved most of that by writing a <a href="http://www.sillybytes.net/2016/09/how-do-i-blog-blogger-posts-from.html">CLI tool</a> that allows me to write my posts offline in <em>markdown</em>, compile them, and deploy them from my terminal leveraging the Blogger’s convenient API. But I still have the feeling that it isn’t good enough.</p>
 <p>In this post I will describe the process of porting an existing Blogger blog to <em>Hakyll</em> and <em>GitHub pages</em> using <em>Silly Bytes</em> itself as a case study.</p>
 
-                
-            </div>
-            <br><br>
-            <div class="continue-reading">
-                <a class="btn btn-default" href="./posts/from_blogger_to_hakyll.html">Continue Reading</a>
-            </div>
-        </div>
-    </div>
+        
+    </section>
 
-    <div class="row">
-        <div class="post-prev post col-xs-12">
-            <a class="post-prev-title" href="./2016/09/how-do-i-blog-blogger-posts-from.html">How do I blog? - Blogger posts from markdown and CLI</a>
-            <span class="post-prev-date">September 23, 2016</span>
-            <div class="post-content">
-                
-                    <p><img src="./img/blogger/thumbnail.png" id="thumbnail" /><br />
+    <a class="continue-reading-link" href="./posts/from_blogger_to_hakyll.html">Continue Reading →</a>
+</article>
+
+
+
+<article class="post-teaser">
+    <h2 class="is-size-2 has-text-weight-medium has-text-left">
+        <a href="./2016/09/how-do-i-blog-blogger-posts-from.html">How do I blog? - Blogger posts from markdown and CLI</a>
+    </h2>
+    <aside class="date has-text-left">September 23, 2016</aside>
+
+    <section class="post-content">
+        
+            <p><img src="./img/blogger/thumbnail.png" id="thumbnail" /><br />
 </p>
 <p>There are plans to migrate <a href="http://sillybytes.net">Silly Bytes</a> to <a href="https://jaspervdj.be/hakyll/">Hakyll</a> and GitHub pages, but till then I’m still using <a href="http://www.blogger.com">Blogger</a> and I wanted to make the posting process as painless and automatic as possible.</p>
 <p>Every post I write is currently a separate git repo hosted on the <a href="https://github.com/sillybytes">Silly Bytes GitHub organization</a>. The post is written and maintained in Markdown using Pandoc and a convenient Makefile generated by the <a href="https://github.com/alx741/made">made script</a>.</p>
@@ -238,43 +136,45 @@
 <li>Push the HTML post to Blogger using Google APIs</li>
 </ul>
 
-                
-            </div>
-            <br><br>
-            <div class="continue-reading">
-                <a class="btn btn-default" href="./2016/09/how-do-i-blog-blogger-posts-from.html">Continue Reading</a>
-            </div>
-        </div>
-    </div>
+        
+    </section>
 
-    <div class="row">
-        <div class="post-prev post col-xs-12">
-            <a class="post-prev-title" href="./2016/09/gentle-introduction-to-stm32-arm-cortex.html">Gentle introduction to STM32 ARM Cortex microcontrollers and boards programming</a>
-            <span class="post-prev-date">September 11, 2016</span>
-            <div class="post-content">
-                
-                    <p><img src="./img/stm32/thumbnail.png" id="thumbnail" /><br />
+    <a class="continue-reading-link" href="./2016/09/how-do-i-blog-blogger-posts-from.html">Continue Reading →</a>
+</article>
+
+
+
+<article class="post-teaser">
+    <h2 class="is-size-2 has-text-weight-medium has-text-left">
+        <a href="./2016/09/gentle-introduction-to-stm32-arm-cortex.html">Gentle introduction to STM32 ARM Cortex microcontrollers and boards programming</a>
+    </h2>
+    <aside class="date has-text-left">September 11, 2016</aside>
+
+    <section class="post-content">
+        
+            <p><img src="./img/stm32/thumbnail.png" id="thumbnail" /><br />
 </p>
 <p>So you have been using AVR, PIC or some other microcontroller for a while and discover that ST Microelectronics offers some pretty cheap 32 bit ARM and feature rich microcontrollers: <a href="http://www.st.com/content/st_com/en/products/microcontrollers/stm32-32-bit-arm-cortex-mcus.html?querycriteria=productId=SC1169">STM32</a>, and want to start playing with them but don’t know how or where to start; I’m here to help.</p>
 <p><a href="https://en.wikipedia.org/wiki/ARM_architecture">ARM</a> is taking over the embedding wold, they’re ubiquitous in smart phones, tablets, laptops, other computers, cars, refrigerators, microwave ovens, monitors, printers, you name it!</p>
 <p>Note: Be aware that <em>ARM</em> is an <strong>architecture</strong> that manufacturers can <em>implement</em>. Is a common mistake to think <em>ARM</em> is a microcontroller on itself, it is not.</p>
 
-                
-            </div>
-            <br><br>
-            <div class="continue-reading">
-                <a class="btn btn-default" href="./2016/09/gentle-introduction-to-stm32-arm-cortex.html">Continue Reading</a>
-            </div>
-        </div>
-    </div>
+        
+    </section>
 
-    <div class="row">
-        <div class="post-prev post col-xs-12">
-            <a class="post-prev-title" href="./2016/08/tdd-test-driven-development-physical.html">TDD (Test-Driven Development) Physical Traffic Light</a>
-            <span class="post-prev-date">August 28, 2016</span>
-            <div class="post-content">
-                
-                    <p><img src="./img/tddlight/thumbnail.jpg" id="thumbnail" /><br />
+    <a class="continue-reading-link" href="./2016/09/gentle-introduction-to-stm32-arm-cortex.html">Continue Reading →</a>
+</article>
+
+
+
+<article class="post-teaser">
+    <h2 class="is-size-2 has-text-weight-medium has-text-left">
+        <a href="./2016/08/tdd-test-driven-development-physical.html">TDD (Test-Driven Development) Physical Traffic Light</a>
+    </h2>
+    <aside class="date has-text-left">August 28, 2016</aside>
+
+    <section class="post-content">
+        
+            <p><img src="./img/tddlight/thumbnail.jpg" id="thumbnail" /><br />
 </p>
 <p>Robert C. Martin <em>(Uncle Bob)</em> said in a talk:</p>
 <blockquote>
@@ -286,22 +186,23 @@
 <p>This is a physical toy traffic light to be used with software development TDD (and testing in general) tools. It will not boost your productivity nor make you a better programmer or TDD practitioner, but it looks cool :)</p>
 </blockquote>
 <p>Lets explain how it works, it’s very simple: 
-                
-            </div>
-            <br><br>
-            <div class="continue-reading">
-                <a class="btn btn-default" href="./2016/08/tdd-test-driven-development-physical.html">Continue Reading</a>
-            </div>
-        </div>
-    </div>
+        
+    </section>
 
-    <div class="row">
-        <div class="post-prev post col-xs-12">
-            <a class="post-prev-title" href="./2016/08/vim-haskell_11.html">Vim + Haskell</a>
-            <span class="post-prev-date">August 11, 2016</span>
-            <div class="post-content">
-                
-                    <p><img src="./img/vimhask/thumbnail.png" id="thumbnail" /><br />
+    <a class="continue-reading-link" href="./2016/08/tdd-test-driven-development-physical.html">Continue Reading →</a>
+</article>
+
+
+
+<article class="post-teaser">
+    <h2 class="is-size-2 has-text-weight-medium has-text-left">
+        <a href="./2016/08/vim-haskell_11.html">Vim + Haskell</a>
+    </h2>
+    <aside class="date has-text-left">August 11, 2016</aside>
+
+    <section class="post-content">
+        
+            <p><img src="./img/vimhask/thumbnail.png" id="thumbnail" /><br />
 </p>
 <p>So you’re writing in the right language using the right tool already, but let’s put some extra magic under our sleeves.<br />
 <br />
@@ -347,283 +248,174 @@
 <li>Yesod Haskell web framework</li>
 </ul>
 
-                
-            </div>
-            <br><br>
-            <div class="continue-reading">
-                <a class="btn btn-default" href="./2016/08/vim-haskell_11.html">Continue Reading</a>
-            </div>
-        </div>
-    </div>
+        
+    </section>
 
-    <div class="row">
-        <div class="post-prev post col-xs-12">
-            <a class="post-prev-title" href="./2016/07/pic16f876a-conversion-analogica-digital.html">PIC16F876A conversión analógica digital + UART (Ensamblador)</a>
-            <span class="post-prev-date">July 14, 2016</span>
-            <div class="post-content">
-                
-                    <p><img src="./img/picuart/thumbnail.png" id="thumbnail" /><br />
+    <a class="continue-reading-link" href="./2016/08/vim-haskell_11.html">Continue Reading →</a>
+</article>
+
+
+
+<article class="post-teaser">
+    <h2 class="is-size-2 has-text-weight-medium has-text-left">
+        <a href="./2016/07/pic16f876a-conversion-analogica-digital.html">PIC16F876A conversión analógica digital + UART (Ensamblador)</a>
+    </h2>
+    <aside class="date has-text-left">July 14, 2016</aside>
+
+    <section class="post-content">
+        
+            <p><img src="./img/picuart/thumbnail.png" id="thumbnail" /><br />
 </p>
 <p>NOTE: This post is available in Spanish only. Please use a software translator.</p>
 <p>He dejado de usar microcontroladores PIC por los motivos explicados <a href="http://www.sillybytes.net/2016/06/from-pic-to-avr.html">aquí</a>; Pero voy a dedicar este post para escribir y explicar un programa sencillo escrito en ensamblador para el <strong>PIC16F876A</strong>.</p>
 <p>El objetivo es el siguiente:</p>
 <p>Se desea usar el microcontrolador para llevar a cabo la conversión analógica-digital de una tensión variable (un LDR o un potenciómetro por ejemplo) y transmitir el resultado usando la UART. Además debe ser posible recibir por la UART un byte que debe alterar la configuración del Conversor Análogo Digital (DAC) interno del microcontrolador para, por ejemplo, cambiar el canal de entrada de la señal analógica o modificar la velocidad del reloj de conversión.</p>
 
-                
-            </div>
-            <br><br>
-            <div class="continue-reading">
-                <a class="btn btn-default" href="./2016/07/pic16f876a-conversion-analogica-digital.html">Continue Reading</a>
-            </div>
-        </div>
-    </div>
+        
+    </section>
 
-    <div class="row">
-        <div class="post-prev post col-xs-12">
-            <a class="post-prev-title" href="./2016/07/ratpoison-fuzzy-window-selection.html">Ratpoison, Fuzzy window selection</a>
-            <span class="post-prev-date">July 13, 2016</span>
-            <div class="post-content">
-                
-                    <p><img src="./img/ratfuzzy/thumbnail.png" id="thumbnail" /><br />
+    <a class="continue-reading-link" href="./2016/07/pic16f876a-conversion-analogica-digital.html">Continue Reading →</a>
+</article>
+
+
+
+<article class="post-teaser">
+    <h2 class="is-size-2 has-text-weight-medium has-text-left">
+        <a href="./2016/07/ratpoison-fuzzy-window-selection.html">Ratpoison, Fuzzy window selection</a>
+    </h2>
+    <aside class="date has-text-left">July 13, 2016</aside>
+
+    <section class="post-content">
+        
+            <p><img src="./img/ratfuzzy/thumbnail.png" id="thumbnail" /><br />
 </p>
 <p>A nice feature to have is the ability to jump to an arbitrary window by performing a quick fuzzy search with just a few characters. We can achieve this by using Ratpoison’s flexibility and the fantastic <a href="https://github.com/junegunn/fzf">FZF tool</a>.</p>
 <p>The <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/window_select.sh">window_select.sh</a> script will do the trick using <strong>FZF</strong> 
-                
-            </div>
-            <br><br>
-            <div class="continue-reading">
-                <a class="btn btn-default" href="./2016/07/ratpoison-fuzzy-window-selection.html">Continue Reading</a>
-            </div>
-        </div>
-    </div>
+        
+    </section>
 
-    <div class="row">
-        <div class="post-prev post col-xs-12">
-            <a class="post-prev-title" href="./2016/06/aprende-haskell-rapido-y-dificil_29.html">Aprende Haskell rápido y difícil</a>
-            <span class="post-prev-date">June 29, 2016</span>
-            <div class="post-content">
-                
-                    <p><img src="./img/haskellhard/thumbnail.jpg" id="thumbnail" /><br />
+    <a class="continue-reading-link" href="./2016/07/ratpoison-fuzzy-window-selection.html">Continue Reading →</a>
+</article>
+
+
+
+<article class="post-teaser">
+    <h2 class="is-size-2 has-text-weight-medium has-text-left">
+        <a href="./2016/06/aprende-haskell-rapido-y-dificil_29.html">Aprende Haskell rápido y difícil</a>
+    </h2>
+    <aside class="date has-text-left">June 29, 2016</aside>
+
+    <section class="post-content">
+        
+            <p><img src="./img/haskellhard/thumbnail.jpg" id="thumbnail" /><br />
 </p>
 <p>Esta es la traducción al español del artículo <a href="http://yannesposito.com/Scratch/en/blog/Haskell-the-Hard-Way/">Haskell the hard way</a> por Yann Esposito.</p>
 <p>TL;DR*: Un corto y denso tutorial para aprender Haskell.</p>
 <h1 id="asómbrate-con-haskell">Asómbrate con Haskell</h1>
 <p>De verdad pienso que todos los desarrolladores deberían aprender Haskell. No creo que todos necesitan convertirse en ninjas de Haskell, pero deberían al menos descubrir que es lo que Haskell tiene para ofrecer. Aprender Haskell abre tu mente. 
-                
-            </div>
-            <br><br>
-            <div class="continue-reading">
-                <a class="btn btn-default" href="./2016/06/aprende-haskell-rapido-y-dificil_29.html">Continue Reading</a>
-            </div>
-        </div>
-    </div>
+        
+    </section>
 
-    <div class="row">
-        <div class="post-prev post col-xs-12">
-            <a class="post-prev-title" href="./2016/06/seamlessly-vim-tmux-windowmanager_24.html">Seamlessly Vim-Tmux-WindowManager-Monitor navigation</a>
-            <span class="post-prev-date">June 24, 2016</span>
-            <div class="post-content">
-                
-                    <p><img src="./img/navigator/thumbnail.jpg" class="img-responsive" /></p>
+    <a class="continue-reading-link" href="./2016/06/aprende-haskell-rapido-y-dificil_29.html">Continue Reading →</a>
+</article>
+
+
+
+<article class="post-teaser">
+    <h2 class="is-size-2 has-text-weight-medium has-text-left">
+        <a href="./2016/06/seamlessly-vim-tmux-windowmanager_24.html">Seamlessly Vim-Tmux-WindowManager-Monitor navigation</a>
+    </h2>
+    <aside class="date has-text-left">June 24, 2016</aside>
+
+    <section class="post-content">
+        
+            <p><img src="./img/navigator/thumbnail.jpg" class="img-responsive" /></p>
 <p><a href="https://robots.thoughtbot.com/seamlessly-navigate-vim-and-tmux-splits">This Thoughtbot post</a> describes how to make Vim and Tmux <em>work together in Harmony</em> based on <a href="https://github.com/christoomey/vim-tmux-navigator">this crhistoomey’s plugin</a>, allowing you to traverse both your Vim and Tmux windows and panes respectively.</p>
 
-                
-            </div>
-            <br><br>
-            <div class="continue-reading">
-                <a class="btn btn-default" href="./2016/06/seamlessly-vim-tmux-windowmanager_24.html">Continue Reading</a>
-            </div>
-        </div>
-    </div>
+        
+    </section>
 
-    <div class="row">
-        <div class="post-prev post col-xs-12">
-            <a class="post-prev-title" href="./2016/06/how-to-write-c-in-2016.html">How to write C in 2016</a>
-            <span class="post-prev-date">June 19, 2016</span>
-            <div class="post-content">
-                
-                    <p><img src="./img/clang/thumbnail.png" id="thumbnail" /><br />
+    <a class="continue-reading-link" href="./2016/06/seamlessly-vim-tmux-windowmanager_24.html">Continue Reading →</a>
+</article>
+
+
+
+<article class="post-teaser">
+    <h2 class="is-size-2 has-text-weight-medium has-text-left">
+        <a href="./2016/06/how-to-write-c-in-2016.html">How to write C in 2016</a>
+    </h2>
+    <aside class="date has-text-left">June 19, 2016</aside>
+
+    <section class="post-content">
+        
+            <p><img src="./img/clang/thumbnail.png" id="thumbnail" /><br />
 </p>
 <p>Matt wrote a very interesting and totally recommended post about <a href="https://matt.sh/howto-c">how to C (as of 2016)</a>. Keith Thompson wrote later a very detailed and rather useful <a href="https://github.com/Keith-S-Thompson/how-to-c-response/blob/master/README.md">critique</a> with some extra notes about Matt’s post. Go ahead and read both articles now.</p>
 <p>Here I would like to point out some things about tooling.</p>
 <p><img src="./img/clang/shot1.jpg" class="img-responsive" /> 
-                
-            </div>
-            <br><br>
-            <div class="continue-reading">
-                <a class="btn btn-default" href="./2016/06/how-to-write-c-in-2016.html">Continue Reading</a>
-            </div>
-        </div>
-    </div>
+        
+    </section>
 
-    <div class="row">
-        <div class="post-prev post col-xs-12">
-            <a class="post-prev-title" href="./2016/06/from-pic-to-avr.html">From PIC to AVR</a>
-            <span class="post-prev-date">June 17, 2016</span>
-            <div class="post-content">
-                
-                    <p><img src="./img/picavr/thumbnail.png" id="thumbnail" /><br />
+    <a class="continue-reading-link" href="./2016/06/how-to-write-c-in-2016.html">Continue Reading →</a>
+</article>
+
+
+
+<article class="post-teaser">
+    <h2 class="is-size-2 has-text-weight-medium has-text-left">
+        <a href="./2016/06/from-pic-to-avr.html">From PIC to AVR</a>
+    </h2>
+    <aside class="date has-text-left">June 17, 2016</aside>
+
+    <section class="post-content">
+        
+            <p><img src="./img/picavr/thumbnail.png" id="thumbnail" /><br />
 </p>
 <p>This is my humble contribution to the <em>PIC vs AVR holy war</em>.</p>
 <p>TL;DR: I was a PIC user but decided I hate it, switched to AVR and love it!</p>
 <p><a href="https://en.wikipedia.org/wiki/PIC_microcontroller">PIC</a> from Microchip and <a href="https://en.wikipedia.org/wiki/Atmel_AVR">AVR</a> from Atmel are both wonderful microcontrollers for hobbyist and professional as well (I am a hobbyist only if you’re wondering).</p>
 <p>I used to love PIC microcontrollers and originally choose them because they are the most widely available in my location. But there are just so many annoyances that AVR solves so wonderfully! 
-                
-            </div>
-            <br><br>
-            <div class="continue-reading">
-                <a class="btn btn-default" href="./2016/06/from-pic-to-avr.html">Continue Reading</a>
-            </div>
-        </div>
-    </div>
+        
+    </section>
 
-    <div class="row">
-        <div class="post-prev post col-xs-12">
-            <a class="post-prev-title" href="./2016/05/firefox-control-on-steroids-firefox.html">Firefox control on steroids [Firefox + Ratpoison + Mozrepl]</a>
-            <span class="post-prev-date">May 27, 2016</span>
-            <div class="post-content">
-                
-                    <p><img src="./img/mozrepl/thumbnail.png" id="thumbnail" /><br />
+    <a class="continue-reading-link" href="./2016/06/from-pic-to-avr.html">Continue Reading →</a>
+</article>
+
+
+
+<article class="post-teaser">
+    <h2 class="is-size-2 has-text-weight-medium has-text-left">
+        <a href="./2016/05/firefox-control-on-steroids-firefox.html">Firefox control on steroids [Firefox + Ratpoison + Mozrepl]</a>
+    </h2>
+    <aside class="date has-text-left">May 27, 2016</aside>
+
+    <section class="post-content">
+        
+            <p><img src="./img/mozrepl/thumbnail.png" id="thumbnail" /><br />
 </p>
 <p>I’m not going to lie to you, what you’re about to read is really cool.</p>
 <p>Controlling all sort of stuff with Ratpoison, as you can see in my previous posts, is pretty neat and you can extend it to control your browser as well.</p>
 <p>These are the current capabilities:</p>
 <p>Every command start with the Ratpoison prefix + ‘f’ like in <code>C-t f</code>:</p>
 
+        
+    </section>
+
+    <a class="continue-reading-link" href="./2016/05/firefox-control-on-steroids-firefox.html">Continue Reading →</a>
+</article>
+
+
+
+
+            <nav class="pagination is-medium">
                 
-            </div>
-            <br><br>
-            <div class="continue-reading">
-                <a class="btn btn-default" href="./2016/05/firefox-control-on-steroids-firefox.html">Continue Reading</a>
-            </div>
+
+                
+                    <a href="./2/index.html" class="pagination-next">Next page</a>
+                
+            </nav>
         </div>
-    </div>
-
-
-
-                    <div class="row">
-                        <div class="col-sm-4">
-                            
-                        </div>
-
-                        <div class="col-sm-4">
-                            <a class="archive" href="./archive.html">Archive</a>
-                        </div>
-
-                        <div class="col-sm-4">
-                            
-                                <a class="archive" href="./2/index.html">Older Posts ▶</a>
-                            
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-
-        <footer class="container-fluid">
-            <div class="row">
-                <div id="sidebar" class="visible-xs visible-sm col-xs-12">
-                    <div id="author">
-    <img id="author-pic" src="./img/daniel.jpg">
-    <h3 id="author-name">Daniel Campoverde [alx741]</h3>
-    <img id="location-icon" src="./img/location_icon.png">
-    <span id="location">Cuenca, Ecuador</span>
-</div>
-
-<div id="findme">
-    <h2 class="sidebar-h2">FIND ME</h2>
-    <a target="_blank" href="https://gitlab.com/alx741">
-        <img class="icon" src="./img/gitlab.png">
-    </a>
-    <a target="_blank" href="https://github.com/alx741">
-        <img class="icon" src="./img/github.png">
-    </a>
-    <a target="_blank" href="https://twitter.com/alx741alx">
-        <img class="icon" src="./img/twitter.png">
-    </a>
-    <a target="_blank" href="https://www.facebook.com/sillybytes/">
-        <img class="icon" src="./img/facebook.png">
-    </a>
-    <a target="_blank" href="https://plus.google.com/116038619580828681039">
-        <img class="icon" src="./img/google.png">
-    </a>
-
-    <div id="findme-textual">
-        <b>Freenode:</b> #vim, #archlinux, #avr, #rust, #haskell,
-        #yesod, #zsh
-        <hr>
-        <b>Mailto:</b> alx@sillybytes.net
-        <br>
-        <b>GPG Key ID:</b> <a href="http://pgp.mit.edu/pks/lookup?op=get&search=0xEB0E776276450F22">76450F22</a>
-        <hr>
-        <b>Subscribe:</b> <a href="http://www.sillybytes.net/atom.xml">
-            <img id="rss-img" alt="rss" src="./img/rss.png" /> </a>
-    </div>
-
-
-    <div id="facebook-embed">
-        <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fsillybytes&amp;width&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true" scrolling="yes" style="border:none; overflow:hidden;" allowtransparency="false" frameborder="0"></iframe>
-    </div>
-</div>
-
-<div id="random">
-    <h2 class="sidebar-h2">YOU MIGHT LIKE</h2>
-
-    <div id="random-posts">
-        <ul>
-        </ul>
-    </div>
-</div>
-
-<div id="about">
-    <h2 class="sidebar-h2">ABOUT</h2>
-
-    <a target="_blank" href="http://www.haskellers.com/user/4344">
-        <img id="haskellers-img" class="badge" alt="I'm a Haskeller" src="./img/haskellers.png">
-    </a>
-
-    <img id="fsf-img" class="badge" alt="Free Software Fundation Member" src="./img/fsf.png">
-
-    <a target="_blank" href="http://internetdefenseleague.org/">
-        <img id="idl-img" class="badge" alt="Internet Defesen League" src="./img/idl.png">
-    </a>
-</div>
-
-<div id="dotfiles">
-    <h2 class="sidebar-h2">DOTFILES</h2>
-    <p>
-        Software configuration, scripts, tools and magic.
-        Be sure to add <b>attribution </b> when using them
-        (fully or partially).
-    </p>
-    <a target="_blank" href="https://github.com/alx741/dotfiles#readme">
-        <img id="dotfiles-img" src="./img/dotfiles.png">
-    </a>
-</div>
-
-
-<div id="license">
-    <h2 class="sidebar-h2">LICENSE</h2>
-
-    <a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
-        <img id="cc-img" alt="Creative Commons - SA - BY" src="./img/cc.png">
-    </a>
-    <p id="cc-text">
-        Silly Bytes by Daniel Alejandro Campoverde Carrión
-        [alx741] is licensed under a
-        <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
-            Creative Commons Attribution-ShareAlike 3.0 Unported License.
-        </a>
-    </p>
-</div>
-
-                </div>
-            </div>
-        </footer>
-
-        <script type="text/javascript" src="./js/random_posts.js"></script>
 
     </body>
+
 </html>

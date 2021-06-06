@@ -10,142 +10,36 @@
         <link rel="shortcut icon" type="image/png" href="../../img/favicon.png" />
 
         <link rel="stylesheet" href="../../css/default.css" />
-        <link rel="stylesheet" href="../../css/post-list.css" />
         <link rel="stylesheet" href="../../css/post.css" />
-
-        <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="../../bower_components/highlight/src/styles/solarized-light.css" />
-
-        <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
-        <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="../../bower_components/highlight/src/highlight.pack.js"></script>
-
-        <script> hljs.initHighlightingOnLoad(); </script>
-
+        <link rel="stylesheet" href="../../css/about.css" />
     </head>
+
+
     <body>
-        <header class="container-fluid">
-            <div class="row">
-                <div class="col-xs-12">
-                    <a href="../../">
-                        <img alt="Silly Bytes" id="logo" class="image-responsive" src="../../img/silly-bytes_logo.png" />
+
+        <header>
+            <navbar class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="../../index.html">
+                        <b>Silly Bytes</b>
                     </a>
                 </div>
-            </div>
+
+                <div class="navbar-end">
+                    <a href="../../index.html" class="navbar-item">Home</a>
+                    <a href="../../about.html" class="navbar-item">About</a>
+                </div>
+            </navbar>
         </header>
 
-        <div id="blog" class="container-fluid">
-            <div class="row">
 
-                <div id="sidebar" class="hidden-xs hidden-sm col-md-3">
-                    <div id="author">
-    <img id="author-pic" src="../../img/daniel.jpg">
-    <h3 id="author-name">Daniel Campoverde [alx741]</h3>
-    <img id="location-icon" src="../../img/location_icon.png">
-    <span id="location">Cuenca, Ecuador</span>
-</div>
+        <div id="main" class="container is-max-desktop">
+            <article class="post">
+    <h1 class="is-size-2 has-text-weight-medium has-text-left">How to write C in 2016</h2>
+    <aside class="date has-text-left">June 19, 2016</aside>
 
-<div id="findme">
-    <h2 class="sidebar-h2">FIND ME</h2>
-    <a target="_blank" href="https://gitlab.com/alx741">
-        <img class="icon" src="../../img/gitlab.png">
-    </a>
-    <a target="_blank" href="https://github.com/alx741">
-        <img class="icon" src="../../img/github.png">
-    </a>
-    <a target="_blank" href="https://twitter.com/alx741alx">
-        <img class="icon" src="../../img/twitter.png">
-    </a>
-    <a target="_blank" href="https://www.facebook.com/sillybytes/">
-        <img class="icon" src="../../img/facebook.png">
-    </a>
-    <a target="_blank" href="https://plus.google.com/116038619580828681039">
-        <img class="icon" src="../../img/google.png">
-    </a>
-
-    <div id="findme-textual">
-        <b>Freenode:</b> #vim, #archlinux, #avr, #rust, #haskell,
-        #yesod, #zsh
-        <hr>
-        <b>Mailto:</b> alx@sillybytes.net
-        <br>
-        <b>GPG Key ID:</b> <a href="http://pgp.mit.edu/pks/lookup?op=get&search=0xEB0E776276450F22">76450F22</a>
-        <hr>
-        <b>Subscribe:</b> <a href="http://www.sillybytes.net/atom.xml">
-            <img id="rss-img" alt="rss" src="../../img/rss.png" /> </a>
-    </div>
-
-
-    <div id="facebook-embed">
-        <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fsillybytes&amp;width&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true" scrolling="yes" style="border:none; overflow:hidden;" allowtransparency="false" frameborder="0"></iframe>
-    </div>
-</div>
-
-<div id="random">
-    <h2 class="sidebar-h2">YOU MIGHT LIKE</h2>
-
-    <div id="random-posts">
-        <ul>
-        </ul>
-    </div>
-</div>
-
-<div id="about">
-    <h2 class="sidebar-h2">ABOUT</h2>
-
-    <a target="_blank" href="http://www.haskellers.com/user/4344">
-        <img id="haskellers-img" class="badge" alt="I'm a Haskeller" src="../../img/haskellers.png">
-    </a>
-
-    <img id="fsf-img" class="badge" alt="Free Software Fundation Member" src="../../img/fsf.png">
-
-    <a target="_blank" href="http://internetdefenseleague.org/">
-        <img id="idl-img" class="badge" alt="Internet Defesen League" src="../../img/idl.png">
-    </a>
-</div>
-
-<div id="dotfiles">
-    <h2 class="sidebar-h2">DOTFILES</h2>
-    <p>
-        Software configuration, scripts, tools and magic.
-        Be sure to add <b>attribution </b> when using them
-        (fully or partially).
-    </p>
-    <a target="_blank" href="https://github.com/alx741/dotfiles#readme">
-        <img id="dotfiles-img" src="../../img/dotfiles.png">
-    </a>
-</div>
-
-
-<div id="license">
-    <h2 class="sidebar-h2">LICENSE</h2>
-
-    <a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
-        <img id="cc-img" alt="Creative Commons - SA - BY" src="../../img/cc.png">
-    </a>
-    <p id="cc-text">
-        Silly Bytes by Daniel Alejandro Campoverde Carrión
-        [alx741] is licensed under a
-        <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
-            Creative Commons Attribution-ShareAlike 3.0 Unported License.
-        </a>
-    </p>
-</div>
-
-                </div>
-
-                <div id="content" class="col-xs-12 col-md-9">
-                    <div class="row">
-    <div class="post col-xs-12">
-        <h2 class="post-title">How to write C in 2016</h2>
-        <div class="post-date-author">
-            Posted on June 19, 2016
-            
-                by Daniel Campoverde
-            
-        </div>
-        <div class="post-content">
-            <p><img src="../../img/clang/thumbnail.png" id="thumbnail" /><br />
+    <section class="post-content">
+        <p><img src="../../img/clang/thumbnail.png" id="thumbnail" /><br />
 </p>
 <p>Matt wrote a very interesting and totally recommended post about <a href="https://matt.sh/howto-c">how to C (as of 2016)</a>. Keith Thompson wrote later a very detailed and rather useful <a href="https://github.com/Keith-S-Thompson/how-to-c-response/blob/master/README.md">critique</a> with some extra notes about Matt’s post. Go ahead and read both articles now.</p>
 <p>Here I would like to point out some things about tooling.</p>
@@ -209,15 +103,15 @@
 <p>You could write testing functions for your code by hand or use one of the great testing frameworks there are for C out there.</p>
 <p>I like <a href="https://libcheck.github.io/check/">Check</a> in particular, it seems to be the more active one and uses the <code>make</code> <code>check</code> command so doing <code>$ make check</code> will test your software.</p>
 <p>Writing tests with <strong>Check</strong> is easy as pie:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;check.h&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&quot;../src/foo.h&quot;</span><span class="pp">  </span><span class="co">// Contains 'multply' function</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>START_TEST (my_test)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>{</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>    <span class="dt">int</span> result = multply(<span class="dv">2</span>, <span class="dv">2</span>);</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>    ck_assert_int_eq(result, <span class="dv">4</span>);</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>}</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>END_TEST</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;check.h&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&quot;../src/foo.h&quot;</span><span class="pp">  </span><span class="co">// Contains 'multply' function</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>START_TEST <span class="op">(</span>my_test<span class="op">)</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> result <span class="op">=</span> multply<span class="op">(</span><span class="dv">2</span><span class="op">,</span> <span class="dv">2</span><span class="op">);</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    ck_assert_int_eq<span class="op">(</span>result<span class="op">,</span> <span class="dv">4</span><span class="op">);</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>END_TEST</span></code></pre></div>
 <p>It should be pretty obvious: the testing function will use the <code>multply</code> function (our tested code) declared in <code>src/foo.h</code> and <strong>assert</strong> that the result of multiplying <code>2</code> times <code>2</code> is equals to <code>4</code>, so next time changes are made in the <code>multply</code> function that makes it misbehave, the bug will be catch pretty fast and easily when we execute our tests. The example here is a bit dumb but you get the idea, check every possible edge case. The more robust the tests are, the more robust the end code will be.</p>
 <h1 id="learn-functional-programming">Learn functional programming</h1>
 <p><img src="../../img/clang/shot13.jpg" class="img-responsive" /></p>
@@ -236,132 +130,17 @@
 <p><img src="../../img/clang/shot15.png" class="img-left" /></p>
 <p>Depending on what you’re doing, some other languages would probably fit better and give you extra abstraction in exchange of some perforce decrement. In most cases when you think you need C you probably can also do it well with <a href="https://www.rust-lang.org/">Rust</a> or <a href="https://golang.org/">Go</a> (I recommend the former) and get the work done with great performance and low level management when needed.</p>
 <p>C is not a monster you have to hide from, it’s just a (wonderful) tool. You have to pick the appropriate tool depending on what you’re doing.</p>
+    </section>
+</article>
+
+
+            <nav class="pagination is-medium">
+                
+
+                
+            </nav>
         </div>
-    </div>
-</div>
-
-
-                    <div class="row">
-                        <div class="col-sm-4">
-                            
-                        </div>
-
-                        <div class="col-sm-4">
-                            <a class="archive" href="../../archive.html">Archive</a>
-                        </div>
-
-                        <div class="col-sm-4">
-                            
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-
-        <footer class="container-fluid">
-            <div class="row">
-                <div id="sidebar" class="visible-xs visible-sm col-xs-12">
-                    <div id="author">
-    <img id="author-pic" src="../../img/daniel.jpg">
-    <h3 id="author-name">Daniel Campoverde [alx741]</h3>
-    <img id="location-icon" src="../../img/location_icon.png">
-    <span id="location">Cuenca, Ecuador</span>
-</div>
-
-<div id="findme">
-    <h2 class="sidebar-h2">FIND ME</h2>
-    <a target="_blank" href="https://gitlab.com/alx741">
-        <img class="icon" src="../../img/gitlab.png">
-    </a>
-    <a target="_blank" href="https://github.com/alx741">
-        <img class="icon" src="../../img/github.png">
-    </a>
-    <a target="_blank" href="https://twitter.com/alx741alx">
-        <img class="icon" src="../../img/twitter.png">
-    </a>
-    <a target="_blank" href="https://www.facebook.com/sillybytes/">
-        <img class="icon" src="../../img/facebook.png">
-    </a>
-    <a target="_blank" href="https://plus.google.com/116038619580828681039">
-        <img class="icon" src="../../img/google.png">
-    </a>
-
-    <div id="findme-textual">
-        <b>Freenode:</b> #vim, #archlinux, #avr, #rust, #haskell,
-        #yesod, #zsh
-        <hr>
-        <b>Mailto:</b> alx@sillybytes.net
-        <br>
-        <b>GPG Key ID:</b> <a href="http://pgp.mit.edu/pks/lookup?op=get&search=0xEB0E776276450F22">76450F22</a>
-        <hr>
-        <b>Subscribe:</b> <a href="http://www.sillybytes.net/atom.xml">
-            <img id="rss-img" alt="rss" src="../../img/rss.png" /> </a>
-    </div>
-
-
-    <div id="facebook-embed">
-        <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fsillybytes&amp;width&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true" scrolling="yes" style="border:none; overflow:hidden;" allowtransparency="false" frameborder="0"></iframe>
-    </div>
-</div>
-
-<div id="random">
-    <h2 class="sidebar-h2">YOU MIGHT LIKE</h2>
-
-    <div id="random-posts">
-        <ul>
-        </ul>
-    </div>
-</div>
-
-<div id="about">
-    <h2 class="sidebar-h2">ABOUT</h2>
-
-    <a target="_blank" href="http://www.haskellers.com/user/4344">
-        <img id="haskellers-img" class="badge" alt="I'm a Haskeller" src="../../img/haskellers.png">
-    </a>
-
-    <img id="fsf-img" class="badge" alt="Free Software Fundation Member" src="../../img/fsf.png">
-
-    <a target="_blank" href="http://internetdefenseleague.org/">
-        <img id="idl-img" class="badge" alt="Internet Defesen League" src="../../img/idl.png">
-    </a>
-</div>
-
-<div id="dotfiles">
-    <h2 class="sidebar-h2">DOTFILES</h2>
-    <p>
-        Software configuration, scripts, tools and magic.
-        Be sure to add <b>attribution </b> when using them
-        (fully or partially).
-    </p>
-    <a target="_blank" href="https://github.com/alx741/dotfiles#readme">
-        <img id="dotfiles-img" src="../../img/dotfiles.png">
-    </a>
-</div>
-
-
-<div id="license">
-    <h2 class="sidebar-h2">LICENSE</h2>
-
-    <a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
-        <img id="cc-img" alt="Creative Commons - SA - BY" src="../../img/cc.png">
-    </a>
-    <p id="cc-text">
-        Silly Bytes by Daniel Alejandro Campoverde Carrión
-        [alx741] is licensed under a
-        <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
-            Creative Commons Attribution-ShareAlike 3.0 Unported License.
-        </a>
-    </p>
-</div>
-
-                </div>
-            </div>
-        </footer>
-
-        <script type="text/javascript" src="../../js/random_posts.js"></script>
 
     </body>
+
 </html>

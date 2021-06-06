@@ -10,142 +10,36 @@
         <link rel="shortcut icon" type="image/png" href="../../img/favicon.png" />
 
         <link rel="stylesheet" href="../../css/default.css" />
-        <link rel="stylesheet" href="../../css/post-list.css" />
         <link rel="stylesheet" href="../../css/post.css" />
-
-        <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="../../bower_components/highlight/src/styles/solarized-light.css" />
-
-        <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
-        <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="../../bower_components/highlight/src/highlight.pack.js"></script>
-
-        <script> hljs.initHighlightingOnLoad(); </script>
-
+        <link rel="stylesheet" href="../../css/about.css" />
     </head>
+
+
     <body>
-        <header class="container-fluid">
-            <div class="row">
-                <div class="col-xs-12">
-                    <a href="../../">
-                        <img alt="Silly Bytes" id="logo" class="image-responsive" src="../../img/silly-bytes_logo.png" />
+
+        <header>
+            <navbar class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="../../index.html">
+                        <b>Silly Bytes</b>
                     </a>
                 </div>
-            </div>
+
+                <div class="navbar-end">
+                    <a href="../../index.html" class="navbar-item">Home</a>
+                    <a href="../../about.html" class="navbar-item">About</a>
+                </div>
+            </navbar>
         </header>
 
-        <div id="blog" class="container-fluid">
-            <div class="row">
 
-                <div id="sidebar" class="hidden-xs hidden-sm col-md-3">
-                    <div id="author">
-    <img id="author-pic" src="../../img/daniel.jpg">
-    <h3 id="author-name">Daniel Campoverde [alx741]</h3>
-    <img id="location-icon" src="../../img/location_icon.png">
-    <span id="location">Cuenca, Ecuador</span>
-</div>
+        <div id="main" class="container is-max-desktop">
+            <article class="post">
+    <h1 class="is-size-2 has-text-weight-medium has-text-left">Firefox control on steroids [Firefox + Ratpoison + Mozrepl]</h2>
+    <aside class="date has-text-left">May 27, 2016</aside>
 
-<div id="findme">
-    <h2 class="sidebar-h2">FIND ME</h2>
-    <a target="_blank" href="https://gitlab.com/alx741">
-        <img class="icon" src="../../img/gitlab.png">
-    </a>
-    <a target="_blank" href="https://github.com/alx741">
-        <img class="icon" src="../../img/github.png">
-    </a>
-    <a target="_blank" href="https://twitter.com/alx741alx">
-        <img class="icon" src="../../img/twitter.png">
-    </a>
-    <a target="_blank" href="https://www.facebook.com/sillybytes/">
-        <img class="icon" src="../../img/facebook.png">
-    </a>
-    <a target="_blank" href="https://plus.google.com/116038619580828681039">
-        <img class="icon" src="../../img/google.png">
-    </a>
-
-    <div id="findme-textual">
-        <b>Freenode:</b> #vim, #archlinux, #avr, #rust, #haskell,
-        #yesod, #zsh
-        <hr>
-        <b>Mailto:</b> alx@sillybytes.net
-        <br>
-        <b>GPG Key ID:</b> <a href="http://pgp.mit.edu/pks/lookup?op=get&search=0xEB0E776276450F22">76450F22</a>
-        <hr>
-        <b>Subscribe:</b> <a href="http://www.sillybytes.net/atom.xml">
-            <img id="rss-img" alt="rss" src="../../img/rss.png" /> </a>
-    </div>
-
-
-    <div id="facebook-embed">
-        <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fsillybytes&amp;width&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true" scrolling="yes" style="border:none; overflow:hidden;" allowtransparency="false" frameborder="0"></iframe>
-    </div>
-</div>
-
-<div id="random">
-    <h2 class="sidebar-h2">YOU MIGHT LIKE</h2>
-
-    <div id="random-posts">
-        <ul>
-        </ul>
-    </div>
-</div>
-
-<div id="about">
-    <h2 class="sidebar-h2">ABOUT</h2>
-
-    <a target="_blank" href="http://www.haskellers.com/user/4344">
-        <img id="haskellers-img" class="badge" alt="I'm a Haskeller" src="../../img/haskellers.png">
-    </a>
-
-    <img id="fsf-img" class="badge" alt="Free Software Fundation Member" src="../../img/fsf.png">
-
-    <a target="_blank" href="http://internetdefenseleague.org/">
-        <img id="idl-img" class="badge" alt="Internet Defesen League" src="../../img/idl.png">
-    </a>
-</div>
-
-<div id="dotfiles">
-    <h2 class="sidebar-h2">DOTFILES</h2>
-    <p>
-        Software configuration, scripts, tools and magic.
-        Be sure to add <b>attribution </b> when using them
-        (fully or partially).
-    </p>
-    <a target="_blank" href="https://github.com/alx741/dotfiles#readme">
-        <img id="dotfiles-img" src="../../img/dotfiles.png">
-    </a>
-</div>
-
-
-<div id="license">
-    <h2 class="sidebar-h2">LICENSE</h2>
-
-    <a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
-        <img id="cc-img" alt="Creative Commons - SA - BY" src="../../img/cc.png">
-    </a>
-    <p id="cc-text">
-        Silly Bytes by Daniel Alejandro Campoverde Carrión
-        [alx741] is licensed under a
-        <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
-            Creative Commons Attribution-ShareAlike 3.0 Unported License.
-        </a>
-    </p>
-</div>
-
-                </div>
-
-                <div id="content" class="col-xs-12 col-md-9">
-                    <div class="row">
-    <div class="post col-xs-12">
-        <h2 class="post-title">Firefox control on steroids [Firefox + Ratpoison + Mozrepl]</h2>
-        <div class="post-date-author">
-            Posted on May 27, 2016
-            
-                by Daniel Campoverde
-            
-        </div>
-        <div class="post-content">
-            <p><img src="../../img/mozrepl/thumbnail.png" id="thumbnail" /><br />
+    <section class="post-content">
+        <p><img src="../../img/mozrepl/thumbnail.png" id="thumbnail" /><br />
 </p>
 <p>I’m not going to lie to you, what you’re about to read is really cool.</p>
 <p>Controlling all sort of stuff with Ratpoison, as you can see in my previous posts, is pretty neat and you can extend it to control your browser as well.</p>
@@ -199,259 +93,144 @@ definekey firefox slash exec ~/.scripts/ratpoison/firefox.sh search_tab
 bind f readkey firefox</code></pre>
 <p>Most of the magic is performed thanks to the amazing <em>Mozrepl</em>. Unfortunately I couldn’t get it to load an external script, but <em>Expect</em> is needed for the communication with it anyways, so lets give it the script line by line.</p>
 <p>The <code>select_tab.js</code> <a href="https://github.com/alx741/dotfiles/blob/master/mozrepl/.mozrepl/select_tab.js">script</a> is on charge of parsing the tabs to find one that matches the query and jump to it.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">function</span> <span class="fu">selectTab</span>(page) {</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>    <span class="kw">var</span> numTabs<span class="op">=</span>gBrowser<span class="op">.</span><span class="at">browsers</span><span class="op">.</span><span class="at">length</span><span class="op">;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>    <span class="kw">var</span> url<span class="op">=</span><span class="st">&quot;&quot;</span><span class="op">;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>    <span class="cf">for</span>(i<span class="op">=</span>numTabs<span class="dv">-1</span><span class="op">;</span> i<span class="op">&gt;</span><span class="dv">0</span><span class="op">;</span> i<span class="op">--</span>) {</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>        url<span class="op">=</span>gBrowser<span class="op">.</span><span class="at">browsers</span>[i]<span class="op">.</span><span class="at">contentDocument</span><span class="op">.</span><span class="at">location</span><span class="op">.</span><span class="at">href</span><span class="op">;</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>        <span class="cf">if</span>(url<span class="op">.</span><span class="fu">search</span>(page) <span class="op">!=</span> <span class="dv">-1</span>) {</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>            gBrowser<span class="op">.</span><span class="at">tabContainer</span><span class="op">.</span><span class="at">selectedIndex</span><span class="op">=</span>i<span class="op">;</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>            <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>        }</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>    }</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a>    <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">selectTab</span>(page) {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> numTabs<span class="op">=</span>gBrowser<span class="op">.</span><span class="at">browsers</span><span class="op">.</span><span class="at">length</span><span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> url<span class="op">=</span><span class="st">&quot;&quot;</span><span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(i<span class="op">=</span>numTabs<span class="dv">-1</span><span class="op">;</span> i<span class="op">&gt;</span><span class="dv">0</span><span class="op">;</span> i<span class="op">--</span>) {</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        url<span class="op">=</span>gBrowser<span class="op">.</span><span class="at">browsers</span>[i]<span class="op">.</span><span class="at">contentDocument</span><span class="op">.</span><span class="at">location</span><span class="op">.</span><span class="at">href</span><span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span>(url<span class="op">.</span><span class="fu">search</span>(page) <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span>) {</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>            gBrowser<span class="op">.</span><span class="at">tabContainer</span><span class="op">.</span><span class="at">selectedIndex</span><span class="op">=</span>i<span class="op">;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Use <em>Expect</em> and the <code>select_tab.expect</code> <a href="https://github.com/alx741/dotfiles/blob/master/mozrepl/.mozrepl/select_tab.expect">script</a> to perform the telnet communication with <em>Mozrepl</em> and send the script and commands as well.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="co">#!/usr/bin/expect</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="kw">set</span> <span class="ex">page</span> [lindex <span class="va">$argv</span> 0]</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="kw">set</span> <span class="ex">port</span> 4242</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="kw">set</span> <span class="fu">file</span> [open <span class="st">&quot;select_tab.js&quot;</span>]</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="kw">set</span> <span class="ex">content</span> [split [read <span class="va">$file</span>] <span class="st">&quot;\n&quot;</span>]</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="ex">close</span> <span class="va">$file</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a><span class="ex">spawn</span> telnet localhost <span class="va">$port</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a><span class="ex">foreach</span> line <span class="va">$content</span> {</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a>    <span class="ex">send</span> <span class="st">&quot;</span><span class="va">$line</span><span class="st">\r&quot;</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a>}</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a><span class="ex">send</span> <span class="st">&quot;selectTab(</span><span class="dt">\&quot;</span><span class="va">$page</span><span class="dt">\&quot;</span><span class="st">);\r&quot;</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a><span class="ex">expect</span> <span class="st">&quot;repl2&gt; &quot;</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a><span class="ex">expect</span> {</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a>    <span class="st">&quot;true&quot;</span> <span class="kw">{</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a>        <span class="bu">exit</span> 0</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a>    <span class="kw">}</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a>    <span class="st">&quot;false&quot;</span> <span class="kw">{</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true"></a>        <span class="bu">exit</span> 1</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true"></a>    <span class="kw">}</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/expect</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> page [lindex <span class="va">$argv</span> 0]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> port 4242</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> file [open <span class="st">&quot;select_tab.js&quot;</span>]</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> content [split [read <span class="va">$file</span>] <span class="st">&quot;\n&quot;</span>]</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">close</span> <span class="va">$file</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ex">spawn</span> telnet localhost <span class="va">$port</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="ex">foreach</span> line <span class="va">$content</span> {</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="ex">send</span> <span class="st">&quot;</span><span class="va">$line</span><span class="st">\r&quot;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="ex">send</span> <span class="st">&quot;selectTab(</span><span class="dt">\&quot;</span><span class="va">$page</span><span class="dt">\&quot;</span><span class="st">);\r&quot;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="ex">expect</span> <span class="st">&quot;repl2&gt; &quot;</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="ex">expect</span> {</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;true&quot;</span> {</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        <span class="bu">exit</span> 0</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="er">}</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;false&quot;</span> {</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        <span class="bu">exit</span> 1</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="er">}</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span></code></pre></div>
 <p>Now the <code>firefox.sh</code> <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/firefox.sh">script</a>, invoked from the Ratpoison configuration, will glue it all together.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="va">URL=</span><span class="st">&quot;&quot;</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="kw">function</span><span class="fu"> set_url</span> <span class="kw">{</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a>    <span class="kw">case</span> <span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span><span class="kw"> in</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a>        <span class="st">'facebook'</span><span class="kw">)</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a>            <span class="va">URL=</span><span class="st">&quot;www.facebook.com&quot;</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a>            <span class="kw">;;</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a>        <span class="st">'youtube'</span><span class="kw">)</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a>            <span class="va">URL=</span><span class="st">&quot;www.youtube.com&quot;</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a>            <span class="kw">;;</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a>        <span class="st">'reddit'</span><span class="kw">)</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a>            <span class="va">URL=</span><span class="st">&quot;www.reddit.com&quot;</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a>            <span class="kw">;;</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a>        <span class="st">'github'</span><span class="kw">)</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true"></a>            <span class="va">URL=</span><span class="st">&quot;www.github.com&quot;</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true"></a>            <span class="kw">;;</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true"></a>        <span class="st">'evirtual'</span><span class="kw">)</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true"></a>            <span class="va">URL=</span><span class="st">&quot;evirtual.ucuenca.edu.ec&quot;</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true"></a>            <span class="kw">;;</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true"></a>    <span class="kw">esac</span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true"></a><span class="kw">}</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true"></a></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true"></a><span class="kw">function</span><span class="fu"> select_tab</span> <span class="kw">{</span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true"></a>    <span class="bu">cd</span> ~/.mozrepl/</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true"></a>    <span class="ex">expect</span> select_tab.expect <span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span> <span class="op">&gt;</span> /dev/null</span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true"></a>    <span class="kw">if [[</span> <span class="va">$?</span> <span class="ot">!=</span> 0<span class="kw"> ]]</span>; <span class="kw">then</span></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true"></a>        <span class="ex">set_url</span> <span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true"></a>        <span class="kw">if [[</span> <span class="st">&quot;</span><span class="va">$URL</span><span class="st">&quot;</span> <span class="ot">!=</span> <span class="st">&quot;&quot;</span><span class="kw"> ]]</span>; <span class="kw">then</span></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true"></a>            <span class="ex">firefox</span> --new-tab <span class="st">&quot;</span><span class="va">$URL</span><span class="st">&quot;</span></span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true"></a>        <span class="kw">fi</span></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true"></a>    <span class="kw">fi</span></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true"></a><span class="kw">}</span></span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true"></a></span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true"></a><span class="kw">function</span><span class="fu"> search_tab</span> <span class="kw">{</span></span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true"></a>    <span class="va">query=</span><span class="kw">`</span><span class="ex">ratpoison</span> -c <span class="st">&quot;prompt [Tab] &gt;  &quot;</span><span class="kw">`</span></span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true"></a>    <span class="kw">if [[</span> <span class="st">&quot;</span><span class="va">$query</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;&quot;</span><span class="kw"> ]]</span>; <span class="kw">then</span> <span class="bu">exit</span> 0<span class="kw">;</span> <span class="kw">fi</span></span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true"></a>    <span class="ex">select_tab</span> <span class="st">&quot;</span><span class="va">$query</span><span class="st">&quot;</span></span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true"></a><span class="kw">}</span></span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true"></a></span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true"></a><span class="kw">function</span><span class="fu"> clipboard_search</span> <span class="kw">{</span></span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true"></a>    <span class="va">search=$(</span><span class="ex">xclip</span> -selection clipboard -o<span class="va">)</span></span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true"></a>    <span class="kw">if [[</span> <span class="st">&quot;</span><span class="va">$search</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;&quot;</span><span class="kw"> ]]</span>; <span class="kw">then</span></span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true"></a>        <span class="bu">exit</span> 0</span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true"></a>    <span class="kw">fi</span></span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true"></a>    <span class="va">search=$(</span><span class="bu">echo</span> <span class="st">&quot;</span><span class="va">$search</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/ /+/g'</span><span class="va">)</span></span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true"></a>    <span class="va">google_url=</span><span class="st">&quot;https://www.google.com/search?q=</span><span class="va">$search</span><span class="st">&quot;</span></span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true"></a>    <span class="ex">firefox</span> --new-tab <span class="st">&quot;</span><span class="va">$google_url</span><span class="st">&quot;</span></span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true"></a><span class="kw">}</span></span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true"></a></span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true"></a><span class="kw">function</span><span class="fu"> search_lyrics</span> <span class="kw">{</span></span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true"></a>    <span class="va">search=$(</span><span class="ex">mpc</span> <span class="kw">|</span> <span class="fu">head</span> -n 1<span class="va">)</span></span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true"></a>    <span class="kw">if [[</span> <span class="st">&quot;</span><span class="va">$search</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;&quot;</span><span class="kw"> ]]</span>; <span class="kw">then</span></span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true"></a>        <span class="bu">exit</span> 0</span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true"></a>    <span class="kw">fi</span></span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true"></a>    <span class="va">search+=</span><span class="st">&quot; lyrics&quot;</span></span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true"></a>    <span class="va">search=$(</span><span class="bu">echo</span> <span class="st">&quot;</span><span class="va">$search</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/ /+/g'</span><span class="va">)</span></span>
-<span id="cb5-58"><a href="#cb5-58" aria-hidden="true"></a>    <span class="ex">curl</span> -A <span class="st">'Mozilla/5.0 (X11; Linux i586; rv:31.0) Gecko/20100101 Firefox/31.0'</span>\</span>
-<span id="cb5-59"><a href="#cb5-59" aria-hidden="true"></a>        <span class="st">&quot;https://www.google.com/search?q=</span><span class="va">$search</span><span class="st">&quot;</span>\</span>
-<span id="cb5-60"><a href="#cb5-60" aria-hidden="true"></a>            <span class="op">&gt;</span> /tmp/google_search_result.html</span>
-<span id="cb5-61"><a href="#cb5-61" aria-hidden="true"></a>    <span class="va">url=$(</span><span class="fu">sed</span> <span class="st">'s/&gt;/&gt;\r\n/g'</span> /tmp/google_search_result.html\</span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true"></a>        <span class="kw">|</span> <span class="fu">grep</span> -m 1 <span class="st">'&lt;a href=&quot;http:.*&quot;.*&gt;'</span>\</span>
-<span id="cb5-63"><a href="#cb5-63" aria-hidden="true"></a>        <span class="kw">|</span> <span class="fu">sed</span> -e <span class="st">'s/.*href=&quot;\([^&quot;]*\)&quot;.*/\1/'</span><span class="va">)</span></span>
-<span id="cb5-64"><a href="#cb5-64" aria-hidden="true"></a>    <span class="ex">firefox</span> --new-tab <span class="st">&quot;</span><span class="va">$url</span><span class="st">&quot;</span></span>
-<span id="cb5-65"><a href="#cb5-65" aria-hidden="true"></a><span class="kw">}</span></span>
-<span id="cb5-66"><a href="#cb5-66" aria-hidden="true"></a></span>
-<span id="cb5-67"><a href="#cb5-67" aria-hidden="true"></a><span class="kw">case</span> <span class="va">$1</span><span class="kw"> in</span></span>
-<span id="cb5-68"><a href="#cb5-68" aria-hidden="true"></a>    <span class="st">'select_tab'</span><span class="kw">)</span></span>
-<span id="cb5-69"><a href="#cb5-69" aria-hidden="true"></a>        <span class="ex">~/.scripts/ratpoison/app_select.sh</span> firefox</span>
-<span id="cb5-70"><a href="#cb5-70" aria-hidden="true"></a>        <span class="ex">select_tab</span> <span class="va">$2</span></span>
-<span id="cb5-71"><a href="#cb5-71" aria-hidden="true"></a>        <span class="kw">;;</span></span>
-<span id="cb5-72"><a href="#cb5-72" aria-hidden="true"></a>    <span class="st">'search_tab'</span><span class="kw">)</span></span>
-<span id="cb5-73"><a href="#cb5-73" aria-hidden="true"></a>        <span class="ex">search_tab</span></span>
-<span id="cb5-74"><a href="#cb5-74" aria-hidden="true"></a>        <span class="kw">;;</span></span>
-<span id="cb5-75"><a href="#cb5-75" aria-hidden="true"></a>    <span class="st">'new_tab'</span><span class="kw">)</span></span>
-<span id="cb5-76"><a href="#cb5-76" aria-hidden="true"></a>        <span class="ex">~/.scripts/ratpoison/app_select.sh</span> firefox</span>
-<span id="cb5-77"><a href="#cb5-77" aria-hidden="true"></a>        <span class="ex">firefox</span> --new-tab <span class="st">&quot;http://www.google.com&quot;</span></span>
-<span id="cb5-78"><a href="#cb5-78" aria-hidden="true"></a>        <span class="kw">;;</span></span>
-<span id="cb5-79"><a href="#cb5-79" aria-hidden="true"></a>    <span class="st">'new_window'</span><span class="kw">)</span></span>
-<span id="cb5-80"><a href="#cb5-80" aria-hidden="true"></a>        <span class="ex">ratpoison</span> -c <span class="st">&quot;nextscreen&quot;</span></span>
-<span id="cb5-81"><a href="#cb5-81" aria-hidden="true"></a>        <span class="ex">firefox</span> --new-window <span class="st">&quot;http://www.google.com&quot;</span></span>
-<span id="cb5-82"><a href="#cb5-82" aria-hidden="true"></a>        <span class="kw">;;</span></span>
-<span id="cb5-83"><a href="#cb5-83" aria-hidden="true"></a>    <span class="st">'clipboard_search'</span><span class="kw">)</span></span>
-<span id="cb5-84"><a href="#cb5-84" aria-hidden="true"></a>        <span class="ex">~/.scripts/ratpoison/app_select.sh</span> firefox</span>
-<span id="cb5-85"><a href="#cb5-85" aria-hidden="true"></a>        <span class="ex">clipboard_search</span></span>
-<span id="cb5-86"><a href="#cb5-86" aria-hidden="true"></a>        <span class="kw">;;</span></span>
-<span id="cb5-87"><a href="#cb5-87" aria-hidden="true"></a>    <span class="st">'search_lyrics'</span><span class="kw">)</span></span>
-<span id="cb5-88"><a href="#cb5-88" aria-hidden="true"></a>        <span class="ex">~/.scripts/ratpoison/app_select.sh</span> firefox</span>
-<span id="cb5-89"><a href="#cb5-89" aria-hidden="true"></a>        <span class="ex">search_lyrics</span></span>
-<span id="cb5-90"><a href="#cb5-90" aria-hidden="true"></a>        <span class="kw">;;</span></span>
-<span id="cb5-91"><a href="#cb5-91" aria-hidden="true"></a><span class="kw">esac</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="va">URL</span><span class="op">=</span><span class="st">&quot;&quot;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> set_url</span> <span class="kw">{</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span> <span class="kw">in</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">'facebook'</span><span class="kw">)</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>            <span class="va">URL</span><span class="op">=</span><span class="st">&quot;www.facebook.com&quot;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">;;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">'youtube'</span><span class="kw">)</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>            <span class="va">URL</span><span class="op">=</span><span class="st">&quot;www.youtube.com&quot;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>            <span class="cf">;;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">'reddit'</span><span class="kw">)</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>            <span class="va">URL</span><span class="op">=</span><span class="st">&quot;www.reddit.com&quot;</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>            <span class="cf">;;</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">'github'</span><span class="kw">)</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>            <span class="va">URL</span><span class="op">=</span><span class="st">&quot;www.github.com&quot;</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">;;</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">'evirtual'</span><span class="kw">)</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>            <span class="va">URL</span><span class="op">=</span><span class="st">&quot;evirtual.ucuenca.edu.ec&quot;</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>            <span class="cf">;;</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">esac</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> select_tab</span> <span class="kw">{</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="bu">cd</span> ~/.mozrepl/</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="ex">expect</span> select_tab.expect <span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span> <span class="op">&gt;</span> /dev/null</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">[[</span> <span class="va">$?</span> <span class="ot">!=</span> 0 <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>        <span class="ex">set_url</span> <span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">[[</span> <span class="st">&quot;</span><span class="va">$URL</span><span class="st">&quot;</span> <span class="ot">!=</span> <span class="st">&quot;&quot;</span> <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>            <span class="ex">firefox</span> <span class="at">--new-tab</span> <span class="st">&quot;</span><span class="va">$URL</span><span class="st">&quot;</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">fi</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> search_tab</span> <span class="kw">{</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    <span class="va">query</span><span class="op">=</span><span class="kw">`</span><span class="ex">ratpoison</span> <span class="at">-c</span> <span class="st">&quot;prompt [Tab] &gt;  &quot;</span><span class="kw">`</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">[[</span> <span class="st">&quot;</span><span class="va">$query</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;&quot;</span> <span class="kw">]];</span> <span class="cf">then</span> <span class="bu">exit</span> 0<span class="kw">;</span> <span class="cf">fi</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    <span class="ex">select_tab</span> <span class="st">&quot;</span><span class="va">$query</span><span class="st">&quot;</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> clipboard_search</span> <span class="kw">{</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>    <span class="va">search</span><span class="op">=</span><span class="va">$(</span><span class="ex">xclip</span> <span class="at">-selection</span> clipboard <span class="at">-o</span><span class="va">)</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">[[</span> <span class="st">&quot;</span><span class="va">$search</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;&quot;</span> <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>        <span class="bu">exit</span> 0</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>    <span class="va">search</span><span class="op">=</span><span class="va">$(</span><span class="bu">echo</span> <span class="st">&quot;</span><span class="va">$search</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/ /+/g'</span><span class="va">)</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>    <span class="va">google_url</span><span class="op">=</span><span class="st">&quot;https://www.google.com/search?q=</span><span class="va">$search</span><span class="st">&quot;</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>    <span class="ex">firefox</span> <span class="at">--new-tab</span> <span class="st">&quot;</span><span class="va">$google_url</span><span class="st">&quot;</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> search_lyrics</span> <span class="kw">{</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>    <span class="va">search</span><span class="op">=</span><span class="va">$(</span><span class="ex">mpc</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 1<span class="va">)</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">[[</span> <span class="st">&quot;</span><span class="va">$search</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;&quot;</span> <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>        <span class="bu">exit</span> 0</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>    <span class="va">search</span><span class="op">+=</span><span class="st">&quot; lyrics&quot;</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>    <span class="va">search</span><span class="op">=</span><span class="va">$(</span><span class="bu">echo</span> <span class="st">&quot;</span><span class="va">$search</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/ /+/g'</span><span class="va">)</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>    <span class="ex">curl</span> <span class="at">-A</span> <span class="st">'Mozilla/5.0 (X11; Linux i586; rv:31.0) Gecko/20100101 Firefox/31.0'</span><span class="dt">\</span></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;https://www.google.com/search?q=</span><span class="va">$search</span><span class="st">&quot;</span><span class="dt">\</span></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>            <span class="op">&gt;</span> /tmp/google_search_result.html</span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>    <span class="va">url</span><span class="op">=</span><span class="va">$(</span><span class="fu">sed</span> <span class="st">'s/&gt;/&gt;\r\n/g'</span> /tmp/google_search_result.html<span class="dt">\</span></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>        <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-m</span> 1 <span class="st">'&lt;a href=&quot;http:.*&quot;.*&gt;'</span><span class="dt">\</span></span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>        <span class="kw">|</span> <span class="fu">sed</span> <span class="at">-e</span> <span class="st">'s/.*href=&quot;\([^&quot;]*\)&quot;.*/\1/'</span><span class="va">)</span></span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>    <span class="ex">firefox</span> <span class="at">--new-tab</span> <span class="st">&quot;</span><span class="va">$url</span><span class="st">&quot;</span></span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="va">$1</span> <span class="kw">in</span></span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>    <span class="st">'select_tab'</span><span class="kw">)</span></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>        <span class="ex">~/.scripts/ratpoison/app_select.sh</span> firefox</span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>        <span class="ex">select_tab</span> <span class="va">$2</span></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>        <span class="cf">;;</span></span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>    <span class="st">'search_tab'</span><span class="kw">)</span></span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>        <span class="ex">search_tab</span></span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>        <span class="cf">;;</span></span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>    <span class="st">'new_tab'</span><span class="kw">)</span></span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>        <span class="ex">~/.scripts/ratpoison/app_select.sh</span> firefox</span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>        <span class="ex">firefox</span> <span class="at">--new-tab</span> <span class="st">&quot;http://www.google.com&quot;</span></span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>        <span class="cf">;;</span></span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>    <span class="st">'new_window'</span><span class="kw">)</span></span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a>        <span class="ex">ratpoison</span> <span class="at">-c</span> <span class="st">&quot;nextscreen&quot;</span></span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a>        <span class="ex">firefox</span> <span class="at">--new-window</span> <span class="st">&quot;http://www.google.com&quot;</span></span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>        <span class="cf">;;</span></span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a>    <span class="st">'clipboard_search'</span><span class="kw">)</span></span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>        <span class="ex">~/.scripts/ratpoison/app_select.sh</span> firefox</span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a>        <span class="ex">clipboard_search</span></span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a>        <span class="cf">;;</span></span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a>    <span class="st">'search_lyrics'</span><span class="kw">)</span></span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a>        <span class="ex">~/.scripts/ratpoison/app_select.sh</span> firefox</span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>        <span class="ex">search_lyrics</span></span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a>        <span class="cf">;;</span></span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a><span class="cf">esac</span></span></code></pre></div>
 <p>You can find all those scripts and configuration bits in my <a href="https://github.com/alx741/dotfiles">Dotfiles</a>.</p>
+    </section>
+</article>
+
+
+            <nav class="pagination is-medium">
+                
+
+                
+            </nav>
         </div>
-    </div>
-</div>
-
-
-                    <div class="row">
-                        <div class="col-sm-4">
-                            
-                        </div>
-
-                        <div class="col-sm-4">
-                            <a class="archive" href="../../archive.html">Archive</a>
-                        </div>
-
-                        <div class="col-sm-4">
-                            
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-
-        <footer class="container-fluid">
-            <div class="row">
-                <div id="sidebar" class="visible-xs visible-sm col-xs-12">
-                    <div id="author">
-    <img id="author-pic" src="../../img/daniel.jpg">
-    <h3 id="author-name">Daniel Campoverde [alx741]</h3>
-    <img id="location-icon" src="../../img/location_icon.png">
-    <span id="location">Cuenca, Ecuador</span>
-</div>
-
-<div id="findme">
-    <h2 class="sidebar-h2">FIND ME</h2>
-    <a target="_blank" href="https://gitlab.com/alx741">
-        <img class="icon" src="../../img/gitlab.png">
-    </a>
-    <a target="_blank" href="https://github.com/alx741">
-        <img class="icon" src="../../img/github.png">
-    </a>
-    <a target="_blank" href="https://twitter.com/alx741alx">
-        <img class="icon" src="../../img/twitter.png">
-    </a>
-    <a target="_blank" href="https://www.facebook.com/sillybytes/">
-        <img class="icon" src="../../img/facebook.png">
-    </a>
-    <a target="_blank" href="https://plus.google.com/116038619580828681039">
-        <img class="icon" src="../../img/google.png">
-    </a>
-
-    <div id="findme-textual">
-        <b>Freenode:</b> #vim, #archlinux, #avr, #rust, #haskell,
-        #yesod, #zsh
-        <hr>
-        <b>Mailto:</b> alx@sillybytes.net
-        <br>
-        <b>GPG Key ID:</b> <a href="http://pgp.mit.edu/pks/lookup?op=get&search=0xEB0E776276450F22">76450F22</a>
-        <hr>
-        <b>Subscribe:</b> <a href="http://www.sillybytes.net/atom.xml">
-            <img id="rss-img" alt="rss" src="../../img/rss.png" /> </a>
-    </div>
-
-
-    <div id="facebook-embed">
-        <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fsillybytes&amp;width&amp;height=290&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=false&amp;show_border=true" scrolling="yes" style="border:none; overflow:hidden;" allowtransparency="false" frameborder="0"></iframe>
-    </div>
-</div>
-
-<div id="random">
-    <h2 class="sidebar-h2">YOU MIGHT LIKE</h2>
-
-    <div id="random-posts">
-        <ul>
-        </ul>
-    </div>
-</div>
-
-<div id="about">
-    <h2 class="sidebar-h2">ABOUT</h2>
-
-    <a target="_blank" href="http://www.haskellers.com/user/4344">
-        <img id="haskellers-img" class="badge" alt="I'm a Haskeller" src="../../img/haskellers.png">
-    </a>
-
-    <img id="fsf-img" class="badge" alt="Free Software Fundation Member" src="../../img/fsf.png">
-
-    <a target="_blank" href="http://internetdefenseleague.org/">
-        <img id="idl-img" class="badge" alt="Internet Defesen League" src="../../img/idl.png">
-    </a>
-</div>
-
-<div id="dotfiles">
-    <h2 class="sidebar-h2">DOTFILES</h2>
-    <p>
-        Software configuration, scripts, tools and magic.
-        Be sure to add <b>attribution </b> when using them
-        (fully or partially).
-    </p>
-    <a target="_blank" href="https://github.com/alx741/dotfiles#readme">
-        <img id="dotfiles-img" src="../../img/dotfiles.png">
-    </a>
-</div>
-
-
-<div id="license">
-    <h2 class="sidebar-h2">LICENSE</h2>
-
-    <a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
-        <img id="cc-img" alt="Creative Commons - SA - BY" src="../../img/cc.png">
-    </a>
-    <p id="cc-text">
-        Silly Bytes by Daniel Alejandro Campoverde Carrión
-        [alx741] is licensed under a
-        <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
-            Creative Commons Attribution-ShareAlike 3.0 Unported License.
-        </a>
-    </p>
-</div>
-
-                </div>
-            </div>
-        </footer>
-
-        <script type="text/javascript" src="../../js/random_posts.js"></script>
 
     </body>
+
 </html>
