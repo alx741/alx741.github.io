@@ -8,10 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" type="image/png" href="../img/favicon.png" />
-
-        <link rel="stylesheet" href="../css/default.css" />
-        <link rel="stylesheet" href="../css/post.css" />
-        <link rel="stylesheet" href="../css/about.css" />
+        <link rel="stylesheet" href="../css/main.css" />
     </head>
 
 
@@ -21,7 +18,7 @@
             <navbar class="navbar" role="navigation" aria-label="main navigation">
                 <div class="navbar-brand">
                     <a class="navbar-item" href="../index.html">
-                        <b>Silly Bytes</b>
+                        <b id="logo">Silly Bytes</b>
                     </a>
                 </div>
 
@@ -38,7 +35,7 @@
     <h1 class="is-size-2 has-text-weight-medium has-text-left">Using Cassius (Shakespearean template) with Hakyll</h2>
     <aside class="date has-text-left">April 11, 2017</aside>
 
-    <section class="post-content">
+    <section id="post-content">
         <p>As a user of the <a href="http://www.yesodweb.com/">Yesod</a> framework, I’ve came to know and love the <a href="https://www.stackage.org/haddock/lts-8.4/shakespeare-2.0.12.1/Text-Cassius.html#v:cassius">Cassius</a> CSS templating language, although its reliance on Template Haskell is meant to fit better with the Yesod’s needs and makes it a bit cumbersome to use everywhere else, I still like the templating language itself and its features a lot.</p>
 <p>That’s why I used it for styles generation in <a href="http://www.sillybytes.net">Silly Bytes</a> together with <a href="https://jaspervdj.be/hakyll/">Hakyll</a>. In this post I will describe the process.<br />
 <br />

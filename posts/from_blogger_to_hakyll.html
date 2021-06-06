@@ -8,10 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" type="image/png" href="../img/favicon.png" />
-
-        <link rel="stylesheet" href="../css/default.css" />
-        <link rel="stylesheet" href="../css/post.css" />
-        <link rel="stylesheet" href="../css/about.css" />
+        <link rel="stylesheet" href="../css/main.css" />
     </head>
 
 
@@ -21,7 +18,7 @@
             <navbar class="navbar" role="navigation" aria-label="main navigation">
                 <div class="navbar-brand">
                     <a class="navbar-item" href="../index.html">
-                        <b>Silly Bytes</b>
+                        <b id="logo">Silly Bytes</b>
                     </a>
                 </div>
 
@@ -38,7 +35,7 @@
     <h1 class="is-size-2 has-text-weight-medium has-text-left">From Blogger to Hakyll</h2>
     <aside class="date has-text-left">April 10, 2017</aside>
 
-    <section class="post-content">
+    <section id="post-content">
         <p><a href="https://jaspervdj.be/hakyll/">Hakyll</a> is an amazing static site generator written in Haskell, it allows for blog posts to be written in <em>markdown</em>, that are then compiled with <em>pandoc</em>, and is very well suited to be used with <em>GitHub pages</em>; It’s everything I wanted and more.</p>
 <p><a href="http://www.sillybytes.net">Silly Bytes</a> went through its first 5 years of existence hosted on Google’s <a href="https://www.blogger.com">Blogger</a> service, and it did well. Although Blogger offers a fair amount of flexibility, you can’t have total control over it, and having to write posts with the built in <em>WYSIWYG</em> interface or pasting the HTML output is one of the bigger pain points of it. I solved most of that by writing a <a href="http://www.sillybytes.net/2016/09/how-do-i-blog-blogger-posts-from.html">CLI tool</a> that allows me to write my posts offline in <em>markdown</em>, compile them, and deploy them from my terminal leveraging the Blogger’s convenient API. But I still have the feeling that it isn’t good enough.</p>
 <p>In this post I will describe the process of porting an existing Blogger blog to <em>Hakyll</em> and <em>GitHub pages</em> using <em>Silly Bytes</em> itself as a case study.</p>

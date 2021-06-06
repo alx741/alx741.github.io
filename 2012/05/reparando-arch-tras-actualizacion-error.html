@@ -8,10 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" type="image/png" href="../../img/favicon.png" />
-
-        <link rel="stylesheet" href="../../css/default.css" />
-        <link rel="stylesheet" href="../../css/post.css" />
-        <link rel="stylesheet" href="../../css/about.css" />
+        <link rel="stylesheet" href="../../css/main.css" />
     </head>
 
 
@@ -21,7 +18,7 @@
             <navbar class="navbar" role="navigation" aria-label="main navigation">
                 <div class="navbar-brand">
                     <a class="navbar-item" href="../../index.html">
-                        <b>Silly Bytes</b>
+                        <b id="logo">Silly Bytes</b>
                     </a>
                 </div>
 
@@ -38,7 +35,7 @@
     <h1 class="is-size-2 has-text-weight-medium has-text-left">Reparando Arch tras actualización (error while loading shared libraries':' libbz2.so.1.0':' Cannot open shared object file)</h2>
     <aside class="date has-text-left">May  2, 2012</aside>
 
-    <section class="post-content">
+    <section id="post-content">
         <p><img src="../../img/repairarch/thumbnail.png" id="thumbnail" /><br />
 </p>
 <p>Hoy, igual que todos los días luego de arrancar mi sistema, lo primero que hice fue <code>pacman -Syu</code> como cualquier <em>Archer</em> haría, y mientras se actualizaba el sistema me ocupaba de mis asuntos, luego de unos minutos regrese a la terminal y me percaté de que la actualización había fallado, así que repetí <code>pacman -Syu</code> pero <em>pacman</em> no iniciaba y daba un mensaje de error:</p>
