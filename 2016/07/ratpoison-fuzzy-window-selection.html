@@ -36,13 +36,9 @@
     <aside class="date has-text-left">July 13, 2016</aside>
 
     <section id="post-content">
-        <p><img src="../../img/ratfuzzy/thumbnail.png" id="thumbnail" /><br />
-</p>
-<p>A nice feature to have is the ability to jump to an arbitrary window by performing a quick fuzzy search with just a few characters. We can achieve this by using Ratpoison’s flexibility and the fantastic <a href="https://github.com/junegunn/fzf">FZF tool</a>.</p>
-<p>The <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/window_select.sh">window_select.sh</a> script will do the trick using <strong>FZF</strong> <!--more--><br />
-<br />
-<br />
-</p>
+        <p>A nice feature to have is the ability to jump to an arbitrary window by performing a quick fuzzy search with just a few characters. We can achieve this by using Ratpoison’s flexibility and the fantastic <a href="https://github.com/junegunn/fzf">FZF tool</a>.</p>
+<p>The <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/window_select.sh">window_select.sh</a> script will do the trick using <strong>FZF</strong></p>
+<!--more-->
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> fzf_select</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">pattern</span><span class="op">=</span><span class="va">$(</span><span class="ex">ratpoison</span> <span class="at">-c</span> <span class="st">&quot;prompt &gt; &quot;</span><span class="va">)</span></span>

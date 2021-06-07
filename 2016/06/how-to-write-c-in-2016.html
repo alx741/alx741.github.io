@@ -36,21 +36,20 @@
     <aside class="date has-text-left">June 19, 2016</aside>
 
     <section id="post-content">
-        <p><img src="../../img/clang/thumbnail.png" id="thumbnail" /><br />
-</p>
-<p>Matt wrote a very interesting and totally recommended post about <a href="https://matt.sh/howto-c">how to C (as of 2016)</a>. Keith Thompson wrote later a very detailed and rather useful <a href="https://github.com/Keith-S-Thompson/how-to-c-response/blob/master/README.md">critique</a> with some extra notes about Matt’s post. Go ahead and read both articles now.</p>
-<p>Here I would like to point out some things about tooling.</p>
-<p><img src="../../img/clang/shot1.jpg" class="img-responsive" /> <!--more--></p>
+        <p>Matt wrote a very interesting and totally recommended post about <a href="https://matt.sh/howto-c">how to C (as of 2016)</a>. Keith Thompson wrote later a very detailed and rather useful <a href="https://github.com/Keith-S-Thompson/how-to-c-response/blob/master/README.md">critique</a> with some extra notes about Matt’s post. I urge you to go ahead and read both articles.</p>
+<p>Here I’d like to point out some things about tooling.</p>
+<!--more-->
+<p><img src="../../img/clang/shot1.jpg" /></p>
 <h1 id="use-building-tools-make-autotools-cmake">Use building tools (Make, Autotools, CMake)</h1>
-<p><img src="../../img/clang/shot2.png" class="img-responsive" /></p>
+<p><img src="../../img/clang/shot2.png" /></p>
 <p>This might be obvious for most C programmers, but I’ve seen quite a lot of people, novices specially, copying and pasting the compilation command on each iteration.</p>
 <p>Using a build tool will allow you to automate the building process, but also testing, distribution package generation, etc.</p>
 <p>In order to sanely write C code the bear minimum you need is to know and feel comfortable <a href="http://mrbook.org/blog/tutorials/make/">writing</a> and <a href="http://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/">using</a> <em>makefiles</em>, so the compilation process can be described like in a recipe and triggered by issuing the <code>$ make</code> command.</p>
-<p><img src="../../img/clang/shot3.png" class="img-responsive" /></p>
+<p><img src="../../img/clang/shot3.png" /></p>
 <p>Using <a href="https://www.gnu.org/software/make/">make</a> alone by writing <em>makefiles</em> will take you pretty far, but for larger software you might want to automate even further all the software ecosystem, so your code can examine the target system for both static and dynamic libraries, binaries available and configure it self to adapt to the system and be as portable as possible. <a href="https://www.gnu.org/software/automake/manual/html_node/Autotools-Introduction.html">Autotools</a> to the rescue.</p>
 <p><a href="https://autotools.io/index.html">Learning</a> and <a href="https://www.sourceware.org/autobook/autobook/autobook.html#Top">using</a> <em>Autotools</em> is not much of a trivial task, but when the complexity in your code starts to get out of hand, taking the effort to use them is worth it!</p>
 <p>If your code is needs not only to be Posix systems portable, but also get compiled on Windows machines, <a href="https://cmake.org/">CMake</a> rocks!</p>
-<p><img src="../../img/clang/shot4.jpg" class="img-responsive" /></p>
+<p><img src="../../img/clang/shot4.jpg" /></p>
 <h1 id="the-standard-c-library-is-your-friend">The standard C library is your friend</h1>
 <p>You can’t get any better at writing C code if you’re not familiar enough with the <a href="https://www.gnu.org/software/libc/manual/html_node/index.html">Standard C library (libc)</a>, in particular I know a lot of people that don’t even know the libc mechanism for error reporting, so be sure you <a href="https://www.gnu.org/software/libc/manual/html_node/index.html#toc-Error-Reporting-1">know it</a>.</p>
 <h1 id="use-a-linter">Use a linter</h1>
@@ -62,25 +61,25 @@
 <p>Most of the <em>splint</em> output will be more than suggestions than critical warnings, but following the <em>splint</em> recommendations with poise will make your code more robust.</p>
 <p>You can tune the level of paranoia with the <em>splint</em> argument options: <code>-weak</code>, <code>-standard</code>, <code>-cheks</code> and <code>-strict</code></p>
 <h1 id="valgrind">Valgrind</h1>
-<p><img src="../../img/clang/shot6.png" class="img-responsive" /></p>
+<p><img src="../../img/clang/shot6.png" /></p>
 <p><a href="http://valgrind.org/">Valgrind</a> is a profiling software with a few neat tricks up the sleeve. In contrast to <em>splint</em>, it will use your <strong>executable program</strong> and will help you finding memory leaks, make your programs faster and more correct.</p>
 <p>When compiling your program use the <code>-g</code> compiler flag so extra debugging information is include in the executable.</p>
 <p>Then you can execute you program with Valgrind like this:</p>
 <pre><code>$ valgrind foobar arg1 arg2</code></pre>
 <p>That will use the <code>Memcheck</code> tool, one of multiple <a href="http://valgrind.org/docs/manual/manual.html">Valgrind tools</a>.</p>
 <h1 id="use-a-debugger">Use a debugger</h1>
-<p><img src="../../img/clang/shot7.png" class="img-responsive" /></p>
+<p><img src="../../img/clang/shot7.png" /></p>
 <p>Yeah sure, you can fill up you code with <code>printf</code> calls for debugging and pretty much get away with it, but knowing how to use a debugger is always a valuable skill.</p>
 <p>Some debugging sessions will be far more easy with <a href="https://www.gnu.org/software/gdb/">GDB</a> than a bunch of <code>printf</code> lines all around, and some times it will not be the case. But for those cases it is, you’ll be a happy programmer.</p>
 <h1 id="use-a-control-version-system">Use a control version system</h1>
-<p><img src="../../img/clang/shot8.jpg" class="img-responsive" /></p>
+<p><img src="../../img/clang/shot8.jpg" /></p>
 <p>You might think you can get away keeping a ton of directories for each version of your program if it is small, but that will, eventually, byte you!</p>
 <p>A control version system will give you a few super powers for collaboration, version restoring, multi branching, proper history tracking, back up and so much more.</p>
 <p>You could use <a href="http://www.nongnu.org/cvs/">CVS</a> or <a href="https://subversion.apache.org/">SVN (Subversion)</a>, but why to do so if you can use a much more powerful control version system like <a href="https://www.mercurial-scm.org/wiki/">Mercurial</a> or even better <a href="https://git-scm.com/">Git</a>.</p>
-<p><img src="../../img/clang/shot9.png" class="img-responsive" /> <img src="../../img/clang/shot10.png" class="img-responsive" /></p>
+<p><img src="../../img/clang/shot9.png" /> <img src="../../img/clang/shot10.png" /></p>
 <p>On top of that, even if you’re working alone in a project and won’t collaborate with more people, using a repository hosting service like <a href="https://bitbucket.org/">Bitbucket</a> or <a href="https://github.com/">Github</a> is a great way to always have a backup of your code. In the future if more people join to your project, collaboration will be frictionless.</p>
 <h1 id="automated-documentation">Automated documentation</h1>
-<p><img src="../../img/clang/shot11.png" class="img-responsive" /></p>
+<p><img src="../../img/clang/shot11.png" /></p>
 <blockquote>
 <p>Documentation is like sex: when it is good, it is very good; and when it is bad, it is better than nothing –Dick Brandon</p>
 </blockquote>
@@ -93,7 +92,7 @@
     libreoffice --convert-to pdf $&lt;</code></pre>
 <p>You can even automatize some graphs generation using <a href="http://www.graphviz.org/doc/info/lang.html">DOT</a>.</p>
 <h1 id="unit-testing">Unit testing</h1>
-<p><img src="../../img/clang/shot12.jpg" class="img-responsive" /></p>
+<p><img src="../../img/clang/shot12.jpg" /></p>
 <p>In a <a href="https://en.wikipedia.org/wiki/Unit_testing">nutshell</a> <em>unit testing</em> is writing pieces of code that will use the functions of your software and compare the results to what it is expected to produce. Think of it as writing a program tu use your program and automatically check if it does what it’s supposed to do.</p>
 <p>You can take this approach further by doing <a href="https://en.wikipedia.org/wiki/Test-driven_development">Test Driven Development (TDD)</a>.</p>
 <p>Automated tests is fundamental, if you want to write C code in 2016+, start writing proper test right know! The world will end if you don’t.</p>
@@ -111,7 +110,7 @@
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>END_TEST</span></code></pre></div>
 <p>It should be pretty obvious: the testing function will use the <code>multply</code> function (our tested code) declared in <code>src/foo.h</code> and <strong>assert</strong> that the result of multiplying <code>2</code> times <code>2</code> is equals to <code>4</code>, so next time changes are made in the <code>multply</code> function that makes it misbehave, the bug will be catch pretty fast and easily when we execute our tests. The example here is a bit dumb but you get the idea, check every possible edge case. The more robust the tests are, the more robust the end code will be.</p>
 <h1 id="learn-functional-programming">Learn functional programming</h1>
-<p><img src="../../img/clang/shot13.jpg" class="img-responsive" /></p>
+<p><img src="../../img/clang/shot13.jpg" /></p>
 <p>Learning to think functionally will improve your C code despite C being an imperative language, you’ll stop using mutable global state, and all the kind of stuff that prevent your software from being multi thread safe.</p>
 <p>If you work on embedded software, you’re probably writing in C. Considering that even relatively cheap embedded hardware today have more than one core, parallelism is pretty important and functional programming mind set will help a lot to do it well.</p>
 <p><img src="../../img/clang/shot14.png" class="img-left" /><br />

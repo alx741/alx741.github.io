@@ -36,12 +36,11 @@
     <aside class="date has-text-left">June 29, 2016</aside>
 
     <section id="post-content">
-        <p><img src="../../img/haskellhard/thumbnail.jpg" id="thumbnail" /><br />
-</p>
-<p>Esta es la traducción al español del artículo <a href="http://yannesposito.com/Scratch/en/blog/Haskell-the-Hard-Way/">Haskell the hard way</a> por Yann Esposito.</p>
+        <p>Esta es la traducción al español del artículo <a href="http://yannesposito.com/Scratch/en/blog/Haskell-the-Hard-Way/">Haskell the hard way</a> por Yann Esposito.</p>
 <p>TL;DR*: Un corto y denso tutorial para aprender Haskell.</p>
-<h1 id="asómbrate-con-haskell">Asómbrate con Haskell</h1>
-<p>De verdad pienso que todos los desarrolladores deberían aprender Haskell. No creo que todos necesitan convertirse en ninjas de Haskell, pero deberían al menos descubrir que es lo que Haskell tiene para ofrecer. Aprender Haskell abre tu mente. <!--more--></p>
+<p>Asómbrate con Haskell. De verdad pienso que todos los desarrolladores deberían aprender Haskell. No creo que todos necesitan convertirse en ninjas de Haskell, pero deberían al menos descubrir que es lo que Haskell tiene para ofrecer. Aprender Haskell abre tu mente.</p>
+<!--more-->
+<p><img src="../../img/haskellhard/thumbnail.jpg" /></p>
 <p>Los lenguajes comunes comparten los mismos fundamentos:</p>
 <ul>
 <li>variables</li>
@@ -76,20 +75,18 @@
 <li>Más sobre arboles infinitos; una discusión más matemática sobre arboles</li>
 <li>infinitos</li>
 </ul>
-Nota: El código de ejemplo se almacena en ficheros con un nombre específico que termina en la extensión <code>.hs</code> (Haskell), y por eso en los ejemplos se escribre la ejecución de los mismos como <code>$ runhaskell   algo.hs</code> pero el nombre puede ser cualquiera.</li>
+Nota: El código de ejemplo se almacena en ficheros con un nombre específico que termina en la extensión <code>.hs</code> (Haskell), y por eso en los ejemplos se escribe la ejecución de los mismos como <code>$ runhaskell   algo.hs</code> pero el nombre puede ser cualquiera.</li>
 </ul>
 <h1 id="introducción">Introducción</h1>
 <h2 id="instalación">Instalación</h2>
-<p><img src="../../img/haskellhard/shot1.jpg" class="img-responsive" /><br />
-</p>
+<p><img src="../../img/haskellhard/shot1.jpg" /></p>
 <ul>
 <li><a href="https://www.haskell.org/platform/">La plataforma de Haskell</a> es la forma estándar de instalar Haskell.</li>
 </ul>
 <p>Herramientas:</p>
 <p><code>ghc</code>: Compilador similar a <em>gcc</em> para <code>C</code>. <code>ghci</code>: Haskell interactivo (REPL) <code>runhaskell</code>: Ejecutar un programa sin compilarlo. Conveniente pero muy lento comparado a programas compilados</p>
 <h2 id="no-tengas-miedo">No tengas miedo</h2>
-<p><img src="../../img/haskellhard/shot2.jpg" class="img-responsive" /><br />
-</p>
+<p><img src="../../img/haskellhard/shot2.jpg" /></p>
 <p>Muchos libros/artículos sobre Haskell empiezan por introducir alguna formula esotérica (quick sort, Fibonacci, etc…). Yo lo haré justamente al revés. Al principio no mostraré ningún super poder de Haskell. Empezaré por las similaridades entre Haskell y otros lenguajes de programación. Saltemos al “Hola Mundo” obligatorio.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>main <span class="ot">=</span> <span class="fu">putStrLn</span> <span class="st">&quot;Hola Mundo!&quot;</span></span></code></pre></div>
 <p>Para ejecutarlo, puedes guardar el código en un fichero <code>hola.hs</code> y:</p>
@@ -123,8 +120,7 @@ Hola Mundo!</code></pre>
 <p>En Haskell hay una función <code>main</code> y todo elemento tiene un tipo. El tipo de <code>main</code> es <code>IO ()</code>. Esto significa que <code>main</code> causará efectos secundarios.</p>
 <p>Solamente recuerda que Haskell puede lucir mucho como los lenguajes imperativos populares.</p>
 <h2 id="haskell-básico">Haskell básico</h2>
-<p><img src="../../img/haskellhard/shot3.jpg" class="img-responsive" /><br />
-</p>
+<p><img src="../../img/haskellhard/shot3.jpg" /></p>
 <p>Antes de continuar debes ser advertido sobre algunas propiedades esenciales de Haskell.</p>
 <p><strong>Funcional</strong></p>
 <p>Haskell es un lenguaje funcional. Si tienes experiencia con lenguajes imperativos, deberás aprender muchas cosas nuevas. Con suerte muchos de estos nuevos conceptos te ayudarán a programas incluso en lenguajes imperativos.</p>
@@ -284,8 +280,7 @@ f :: Num a =&gt; a -&gt; a -&gt; a</code></pre>
 <p>El compilador se queja. Los dos parámetros deben ser del mismo tipo.</p>
 <p>Si piensas que esto es una mala idea, y que el compilador debería hacer la transformación de un tipo al otro por ti, deberías ver este fantástico (y divertido) vídeo: <a href="https://www.destroyallsoftware.com/talks/wat">WAT</a></p>
 <h1 id="haskell-esencial">Haskell esencial</h1>
-<p><img src="../../img/haskellhard/shot4.jpg" class="img-responsive" /><br />
-</p>
+<p><img src="../../img/haskellhard/shot4.jpg" /></p>
 <p>Sugiero que leas con ligereza esta parte. Mírala como una referencia. Haskell tiene un montón de características. Regresa aquí cada vez que la notación te parezca extraña.</p>
 <p>Uso el símbolo <code>⇔</code> para indicar que dos expresiones son equivalentes. Es una meta notación, <code>⇔</code> no existe en Haskell. También usaré <code>⇒</code> para indicar cual es el valor de retorno de una expresión.</p>
 <h2 id="notaciones">Notaciones</h2>
@@ -392,8 +387,7 @@ Python, una mala indentación pueden dañar el código!</code></pre>
 <h1 id="parte-difícil">Parte difícil</h1>
 <p>La parte difícil puede empezar ahora.</p>
 <h2 id="estilo-funcional">Estilo funcional</h2>
-<p><img src="../../img/haskellhard/shot5.jpg" class="img-responsive" /><br />
-</p>
+<p><img src="../../img/haskellhard/shot5.jpg" /></p>
 <p>En esta sección, proporcionaré un ejemplo corto de la impresionante habilidad para refactorizar de Haskell. Seleccionaremos un problema y los resolveremos en la forma imperativa estándar. Luego desarrollaremos el código. Al final el resultado será más elegante y más sencillo de adaptar.</p>
 <p>Solucionemos el siguiente problema:</p>
 <pre><code>Dada una lista de enteros, retornar la suma de numeros pares en la lita.
@@ -547,8 +541,7 @@ l == []
 <span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a>                <span class="kw">then</span> accumSum (n<span class="op">+</span>x) xs</span>
 <span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a>                <span class="kw">else</span> accumSum n xs</span></code></pre></div>
 <h3 id="funciones-de-orden-superior">Funciones de orden superior</h3>
-<p><img src="../../img/haskellhard/shot6.jpg" class="img-responsive" /><br />
-</p>
+<p><img src="../../img/haskellhard/shot6.jpg" /></p>
 <p>Para mejorarlo aún más podemos usar funciones de orden superior. Qué son esas bestias? Las funciones de orden superior son funciones que toman funciones como parámetros.</p>
 <p>Aquí algunos ejemplos:</p>
 <div class="sourceCode" id="cb63"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span><span class="ot"> ::</span> (a <span class="ot">-&gt;</span> <span class="dt">Bool</span>) <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> [a]</span>
@@ -636,8 +629,7 @@ l == []
 <p>De hecho, Haskell también es grandioso cuando se quiere escribir en estilo imperativo. Comprender esto fue muy difícil para mi cuando aprendía Haskell. Gran parte del esfuerzo se va intentando explicar la superioridad del enfoque funcional. Luego cuando empiezas a usar estilo imperativo con Haskell, puede ser difícil entender dónde y cómo usarlo.</p>
 <p>Pero antes de hablar sobre este super poder de Haskell, debemos hablar sobre otro aspecto esencial de Haskell: Tipos.</p>
 <h2 id="tipos">Tipos</h2>
-<p><img src="../../img/haskellhard/shot7.jpg" class="img-responsive" /><br />
-</p>
+<p><img src="../../img/haskellhard/shot7.jpg" /></p>
 <p>TL;DR*:</p>
 <ul>
 <li><p><code>type Nombre = OtroTipo</code> es solamente un alias y no hay ninguna diferencia entre <code>Nombre</code> y <code>OtroTipo</code>.</p></li>
@@ -778,8 +770,7 @@ Prelude Data.Complex&gt; square (2 :+ 1)
 <div class="sourceCode" id="cb96"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span> <span class="op">:::</span> (<span class="dv">1</span> <span class="op">:::</span> <span class="dt">Nil</span>)</span>
 <span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span> <span class="op">:::</span> (<span class="dv">1</span> <span class="op">:::</span> <span class="dt">Nil</span>)</span></code></pre></div>
 <h3 id="arboles">Arboles</h3>
-<p><img src="../../img/haskellhard/shot8.jpg" class="img-responsive" /><br />
-</p>
+<p><img src="../../img/haskellhard/shot8.jpg" /></p>
 <p>Otro ejemplo estándar: arboles binarios.</p>
 <div class="sourceCode" id="cb97"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="dt">Data.List</span></span>
 <span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -897,8 +888,7 @@ Prelude Data.Complex&gt; square (2 :+ 1)
 :    : `--'a'
 :    :    `--'r'</code></pre>
 <p>Por eso elegí poner un <code>:</code> en cada linea del árbol (excepto en la raíz).</p>
-<p><img src="../../img/haskellhard/shot9.jpg" class="img-responsive" /><br />
-</p>
+<p><img src="../../img/haskellhard/shot9.jpg" /></p>
 <div class="sourceCode" id="cb111"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">putStrLn</span> <span class="st">&quot;\nTree of Binary trees of Char binary trees:&quot;</span></span>
 <span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span> <span class="op">$</span> (treeFromList <span class="op">.</span> <span class="fu">map</span> (treeFromList <span class="op">.</span> <span class="fu">map</span> treeFromList))</span>
 <span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a>            [ [<span class="st">&quot;YO&quot;</span>,<span class="st">&quot;DAWG&quot;</span>]</span>
@@ -940,8 +930,7 @@ Prelude Data.Complex&gt; square (2 :+ 1)
 <p>Nota como arboles duplicados no son insertados; solo hay un árbol correspondiente a <code>"I", "HEARD"</code>. Podemos tener esto (casi) gratuitamente, por que hemos declarado que el tipo árbol es una instancia de <code>Eq</code>.</p>
 <p>Mira cuan genial es esta estructura: Podemos hacer arboles que contienen no solo enteros, cadenas y caracteres, sino también arboles. Y podemos incluso hacer un árbol que contenga arboles de arboles!</p>
 <h2 id="estructuras-infinitas">Estructuras infinitas</h2>
-<p><img src="../../img/haskellhard/shot10.jpg" class="img-responsive" /><br />
-</p>
+<p><img src="../../img/haskellhard/shot10.jpg" /></p>
 <p>Es común escuchar que Haskell es perezoso.</p>
 <p>De hecho, si se es un poco pedante, se debería decir que <a href="http://www.haskell.org/haskellwiki/Lazy_vs._non-strict">Haskell es no-estricto.</a>. Pereza es solo una implementación común de lenguajes no-estrictos.</p>
 <p>¿Pero qué significa “no-estricto”? Desde la wiki de Haskell:</p>
@@ -1038,8 +1027,7 @@ so if you have (a+(b*c)) then you first reduce + first, then you reduce the inne
 </ul>
 <p>Prepárate, las respuestas pueden ser complejas. Pero son realmente gratificantes.</p>
 <h2 id="lidiando-con-io-entradasalida">Lidiando con IO (Entrada/Salida)</h2>
-<p><img src="../../img/haskellhard/shot11.jpg" class="img-responsive" /><br />
-</p>
+<p><img src="../../img/haskellhard/shot11.jpg" /></p>
 <p><em>TL;DR</em>:</p>
 <p>Una función típica haciendo IO es muy parecida a un programa imperativo:</p>
 <div class="sourceCode" id="cb126"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="ot">f ::</span> <span class="dt">IO</span> a</span>
@@ -1166,8 +1154,7 @@ números.</code></pre>
 <p>Ejercicios: * Hacer un programa que sume todos sus argumentos. Pista: Usa la función <code>getArgs</code>.</p></li>
 </ul>
 <h2 id="el-truco-de-la-entradasalida-io-explicado">El truco de la entrada/salida (IO) explicado</h2>
-<p><img src="../../img/haskellhard/shot12.jpg" class="img-responsive" /><br />
-</p>
+<p><img src="../../img/haskellhard/shot12.jpg" /></p>
 <p>TL;DR*:</p>
 <p>Para separar las partes puras de las impuras, <code>main</code> es la función que modifica el estado del mundo exterior</p>
 <div class="sourceCode" id="cb143"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="ot">main ::</span> <span class="dt">World</span> <span class="ot">-&gt;</span> <span class="dt">World</span></span></code></pre></div>
@@ -1277,8 +1264,7 @@ números.</code></pre>
 <p>Y</p>
 <div class="sourceCode" id="cb160"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb160-1"><a href="#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> (_,w1) <span class="ot">=</span> action1 w0 <span class="kw">in</span></span>
 <span id="cb160-2"><a href="#cb160-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> (y,w2) <span class="ot">=</span> action2 w1 <span class="kw">in</span></span></code></pre></div>
-<p><img src="../../img/haskellhard/shot13.jpg" class="img-responsive" /><br />
-</p>
+<p><img src="../../img/haskellhard/shot13.jpg" /></p>
 <p>Ahora, haremos un truco de magia. Haremos que el símbolo del mundo temporal “desaparezca”. Haremos un <code>bind</code> a las dos lineas. Dinamos la función <code>bind</code>. Su tipo es un poco intimidarte al principio:</p>
 <div class="sourceCode" id="cb161"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb161-1"><a href="#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="ot">bind ::</span> (<span class="dt">World</span> <span class="ot">-&gt;</span> (a,<span class="dt">World</span>))</span>
 <span id="cb161-2"><a href="#cb161-2" aria-hidden="true" tabindex="-1"></a>        <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> (<span class="dt">World</span> <span class="ot">-&gt;</span> (b,<span class="dt">World</span>)))</span>
@@ -1394,8 +1380,7 @@ números.</code></pre>
 <p>Puedes compilar este código y verificar que funciona.</p>
 <p>Imagina como se vería sin el <code>(&gt;&gt;)</code> y <code>(&gt;&gt;=)</code>.</p>
 <h2 id="monads">Monads</h2>
-<p><img src="../../img/haskellhard/shot14.jpg" class="img-responsive" /><br />
-</p>
+<p><img src="../../img/haskellhard/shot14.jpg" /></p>
 <p>Ahora el secreto puede ser revelado: <code>IO</code> es un <em>monad</em>. Ser un monad significa que se tiene acceso a azúcar sintáctica con la notación <code>do</code>. Pero principalmente, se tiene acceso al patrón que facilitará el flujo del código.</p>
 <pre><code>Aclaraciones importantes:
 
@@ -1522,8 +1507,7 @@ lineas. Obtienes esto gratuitamente, gracias a la pereza (laziness).</code></pre
 <span id="cb188-6"><a href="#cb188-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span> x <span class="ot">=</span> <span class="dt">Just</span> x</span></code></pre></div>
 <p>El monad <code>Maybe</code> probó ser útil en este ejemplo. Vimos la utilidad de el monad <code>IO</code>. Pero vamos por un mejor ejemplo, las listas.</p>
 <h3 id="el-monad-lista">El monad lista</h3>
-<p><img src="../../img/haskellhard/shot15.jpg" class="img-responsive" /><br />
-</p>
+<p><img src="../../img/haskellhard/shot15.jpg" /></p>
 <p>El monad lista ayuda a simular cómputos no determinístico:</p>
 <div class="sourceCode" id="cb189"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb189-1"><a href="#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="dt">Control.Monad</span> (guard)</span>
 <span id="cb189-2"><a href="#cb189-2" aria-hidden="true" tabindex="-1"></a></span>

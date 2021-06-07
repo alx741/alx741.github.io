@@ -32,18 +32,17 @@
 
         <div id="main" class="container is-max-desktop">
             <article class="post">
-    <h1 class="is-size-2 has-text-weight-medium has-text-left">Seamlessly Vim-Tmux-WindowManager-Monitor navigation</h2>
+    <h1 class="is-size-2 has-text-weight-medium has-text-left">Seamless Vim-Tmux-WindowManager-Monitor navigation</h2>
     <aside class="date has-text-left">June 24, 2016</aside>
 
     <section id="post-content">
-        <p><img src="../../img/navigator/thumbnail.jpg" class="img-responsive" /></p>
-<p><a href="https://robots.thoughtbot.com/seamlessly-navigate-vim-and-tmux-splits">This Thoughtbot post</a> describes how to make Vim and Tmux <em>work together in Harmony</em> based on <a href="https://github.com/christoomey/vim-tmux-navigator">this crhistoomey’s plugin</a>, allowing you to traverse both your Vim and Tmux windows and panes respectively.</p>
+        <p><a href="https://robots.thoughtbot.com/seamlessly-navigate-vim-and-tmux-splits">This Thoughtbot post</a> describes how to make Vim and Tmux work together in Harmony based on <a href="https://github.com/christoomey/vim-tmux-navigator">this crhistoomey’s plugin</a>, allowing you to traverse both your Vim and Tmux windows and panes respectively.</p>
+<p>Having the ability to traverse Vim and Tmux splits without having to think about it using <code>ctrl-h</code>, <code>ctrl-j</code>, <code>ctrl-k</code>, <code>ctrl-l</code> is brilliant! But I still had an annoyance source from the window manager (Ratpoison) and the multi monitor setup.</p>
+<p>So I took the same concept and extend it to those uses cases. Now I use <code>ctrl-h</code>, <code>ctrl-j</code>, <code>ctrl-k</code>, <code>ctrl-l</code> to move through my <strong>Window Manager splits</strong>, my <strong>Tmux panes</strong>, my <strong>Vim windows</strong> and my <strong>Monitors</strong> with minimum mental overhead. Here is how.</p>
 <!--more-->
-<p>Having the ability to traverse Vim and Tmux splits without having to think about it using <code>ctrl-h</code>, <code>ctrl-j</code>, <code>ctrl-k</code>, <code>ctrl-l</code> is fantastic! But I still had an annoyance source from the window manager (Ratpoison) and the multi monitor setup.</p>
-<p>So I took the same concept and extend it to those uses cases, so now I use <code>ctrl-h</code>, <code>ctrl-j</code>, <code>ctrl-k</code>, <code>ctrl-l</code> to move through my <strong>Window Manager splits</strong>, my <strong>Tmux panes</strong>, my <strong>Vim windows</strong> and my <strong>Monitors</strong> with minimum mental overhead. Here is how.</p>
-<p>Some of the scripts are a bit of complex, so instead of explaining them in detail the general algorithm is described.</p>
+<p>Some scripts are a bit of complex, so instead of explaining them in detail, the general algorithm is described.</p>
 <h1 id="frame-monitor-navigation">Frame-Monitor Navigation</h1>
-<p><img src="../../img/navigator/shot1.jpg" class="img-left" /></p>
+<p><img src="../../img/navigator/thumbnail.jpg" /></p>
 <p>When traversing frames (Ratpoison splits) it stops at the end of the current monitor, so first I needed to change to the left or right monitor when a movement command is triggered at the edge of the current one.</p>
 <p>The script <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/frame-mon_navigator.sh">frame-mon_navigator.sh</a> calculates if the current frame is the rightmost or the leftmost in the current monitor, if it is, it goes to the next of previous monitor depending on the movement command.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/sh</span></span>
@@ -91,8 +90,8 @@
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
 <span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
 <span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Go to previous screen if currently if leftmost frame</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Go to next screen if currently if rightmost frame</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Go to previous screen if currently in leftmost frame</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Go to next screen if currently in rightmost frame</span></span>
 <span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Execute frame focus otherwise</span></span>
 <span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;left&quot;</span> <span class="kw">]];</span> <span class="cf">then</span></span>
 <span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="ex">is_leftmost</span><span class="kw">;</span> <span class="cf">then</span></span>
@@ -110,7 +109,7 @@
 <h1 id="ratpoison-tmux-navigator">Ratpoison-Tmux Navigator</h1>
 <p><img src="../../img/navigator/shot2.jpg" class="img-left" /></p>
 <p>We need a way to pass movement commands to Tmux so Vim-Tmux navigation works as always, but we also need to pass movement commands from Tmux to Ratpoison when a movement command is triggered from Tmux edge pane.</p>
-<p>The script <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/rat_tmux-navigator.sh">rat_tmux-navigator.sh</a> is able to tell if the terminal emulator (Urxvt) is currently focused and, if so, send the movement commands to Tmux so it can handle panes traversing as usual. It also define functions that Tmux can use to know if a edge pane is reached and send the movement commands to Ratpoison through the <strong>frame-mon_navigator.sh</strong> script so Frame-Monitor navigation is included in the process.</p>
+<p>The script <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/rat_tmux-navigator.sh">rat_tmux-navigator.sh</a> is able to tell if the terminal emulator (Urxvt) is currently focused and, if so, send the movement commands to Tmux, so it can handle panes traversing as usual. It also defines functions that Tmux can use to know if an edge pane is reached and send the movement commands to Ratpoison through the <strong>frame-mon_navigator.sh</strong> script so Frame-Monitor navigation is included in the process.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span> <span class="ot">==</span> <span class="st">&quot;rat&quot;</span> <span class="kw">]];</span> <span class="cf">then</span></span>
@@ -243,7 +242,7 @@
 <span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a>    <span class="cf">esac</span></span>
 <span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span></code></pre></div>
 <h1 id="vim-tmux-navigator">Vim-Tmux Navigator</h1>
-<p>Modifying Tmux mappings to use above scripts will make it work for Tmux-Ratpoison traversing but when a Vim instance is on an Tmux edge pane it will not jump to the appropriate Ratpoison split. To solve it I forked the <code>vim-tmux-navigator</code> project and made the right changes to it in the <a href="https://github.com/alx741/vim-tmux-navigator/tree/vim-tmux-wm-monitor">vim-tmux-wm-monitor branch</a></p>
+<p>Modifying Tmux mappings to use above scripts will make it work for Tmux-Ratpoison traversing but when a Vim instance is on a Tmux edge pane it will not jump to the appropriate Ratpoison split. To solve it I forked the <code>vim-tmux-navigator</code> project and made the right changes to it in the <a href="https://github.com/alx741/vim-tmux-navigator/tree/vim-tmux-wm-monitor">vim-tmux-wm-monitor branch</a></p>
 <p>Then using <a href="https://github.com/junegunn/vim-plug">vim-plug</a> I install it in my <code>.vimrc</code> with:</p>
 <pre><code>Plug 'alx741/vim-tmux-navigator', { 'branch': 'vim-tmux-wm-monitor' }</code></pre>
 <h1 id="mappings">Mappings</h1>
@@ -255,7 +254,7 @@ definekey top C-j exec ~/.scripts/ratpoison/rat_tmux-navigator.sh rat down
 definekey top C-l exec ~/.scripts/ratpoison/rat_tmux-navigator.sh rat right
 definekey top C-h exec ~/.scripts/ratpoison/rat_tmux-navigator.sh rat left</code></pre>
 <h2 id="tmux">Tmux</h2>
-<p>Finally these lines on <code>.tmux.conf</code> are basically modified versions of the <code>vim-tmux-navigator</code> plugin ones.</p>
+<p>Finally, these lines on <code>.tmux.conf</code> are basically modified versions of the <code>vim-tmux-navigator</code> plugin ones.</p>
 <pre><code>is_vim=&quot;ps -o state= -o comm= -t '#{pane_tty}' \
     | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'&quot;
 bind-key C-h if-shell &quot;$is_vim&quot; &quot;send-keys C-h&quot;  &quot;run '~/.scripts/ratpoison/rat_tmux-navigator.sh tmux left'&quot;

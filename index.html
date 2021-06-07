@@ -190,14 +190,8 @@
 
     <section class="post-content">
         
-            <p><img src="./img/vimhask/thumbnail.png" id="thumbnail" /><br />
-</p>
-<p>So you’re writing in the right language using the right tool already, but let’s put some extra magic under our sleeves.<br />
-<br />
-<br />
-<br />
-</p>
-<h2 id="expectations">Expectations</h2>
+            <p>So you’re writing in the right language using the right tool already, let’s put some extra magic under your sleeves.</p>
+<p>This is what we expect to accomplish:</p>
 <ul>
 <li>Omnicompletion</li>
 <li>Compilation and testing
@@ -222,7 +216,7 @@
 <li>Hlint integration
 <ul>
 <li>Linting</li>
-<li>Managing the locationlist</li>
+<li>Managing the location list</li>
 </ul></li>
 <li>Code formatting
 <ul>
@@ -252,9 +246,7 @@
 
     <section class="post-content">
         
-            <p><img src="./img/picuart/thumbnail.png" id="thumbnail" /><br />
-</p>
-<p>NOTE: This post is available in Spanish only. Please use a software translator.</p>
+            <p><em>Note:</em> This post is available in Spanish only. Please use a software translator.</p>
 <p>He dejado de usar microcontroladores PIC por los motivos explicados <a href="http://www.sillybytes.net/2016/06/from-pic-to-avr.html">aquí</a>; Pero voy a dedicar este post para escribir y explicar un programa sencillo escrito en ensamblador para el <strong>PIC16F876A</strong>.</p>
 <p>El objetivo es el siguiente:</p>
 <p>Se desea usar el microcontrolador para llevar a cabo la conversión analógica-digital de una tensión variable (un LDR o un potenciómetro por ejemplo) y transmitir el resultado usando la UART. Además debe ser posible recibir por la UART un byte que debe alterar la configuración del Conversor Análogo Digital (DAC) interno del microcontrolador para, por ejemplo, cambiar el canal de entrada de la señal analógica o modificar la velocidad del reloj de conversión.</p>
@@ -275,10 +267,9 @@
 
     <section class="post-content">
         
-            <p><img src="./img/ratfuzzy/thumbnail.png" id="thumbnail" /><br />
-</p>
-<p>A nice feature to have is the ability to jump to an arbitrary window by performing a quick fuzzy search with just a few characters. We can achieve this by using Ratpoison’s flexibility and the fantastic <a href="https://github.com/junegunn/fzf">FZF tool</a>.</p>
-<p>The <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/window_select.sh">window_select.sh</a> script will do the trick using <strong>FZF</strong> 
+            <p>A nice feature to have is the ability to jump to an arbitrary window by performing a quick fuzzy search with just a few characters. We can achieve this by using Ratpoison’s flexibility and the fantastic <a href="https://github.com/junegunn/fzf">FZF tool</a>.</p>
+<p>The <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/window_select.sh">window_select.sh</a> script will do the trick using <strong>FZF</strong></p>
+
         
     </section>
 
@@ -295,12 +286,10 @@
 
     <section class="post-content">
         
-            <p><img src="./img/haskellhard/thumbnail.jpg" id="thumbnail" /><br />
-</p>
-<p>Esta es la traducción al español del artículo <a href="http://yannesposito.com/Scratch/en/blog/Haskell-the-Hard-Way/">Haskell the hard way</a> por Yann Esposito.</p>
+            <p>Esta es la traducción al español del artículo <a href="http://yannesposito.com/Scratch/en/blog/Haskell-the-Hard-Way/">Haskell the hard way</a> por Yann Esposito.</p>
 <p>TL;DR*: Un corto y denso tutorial para aprender Haskell.</p>
-<h1 id="asómbrate-con-haskell">Asómbrate con Haskell</h1>
-<p>De verdad pienso que todos los desarrolladores deberían aprender Haskell. No creo que todos necesitan convertirse en ninjas de Haskell, pero deberían al menos descubrir que es lo que Haskell tiene para ofrecer. Aprender Haskell abre tu mente. 
+<p>Asómbrate con Haskell. De verdad pienso que todos los desarrolladores deberían aprender Haskell. No creo que todos necesitan convertirse en ninjas de Haskell, pero deberían al menos descubrir que es lo que Haskell tiene para ofrecer. Aprender Haskell abre tu mente.</p>
+
         
     </section>
 
@@ -311,14 +300,15 @@
 
 <article class="post">
     <h2 class="is-size-2 has-text-weight-medium has-text-left">
-        <a href="./2016/06/seamlessly-vim-tmux-windowmanager_24.html">Seamlessly Vim-Tmux-WindowManager-Monitor navigation</a>
+        <a href="./2016/06/seamlessly-vim-tmux-windowmanager_24.html">Seamless Vim-Tmux-WindowManager-Monitor navigation</a>
     </h2>
     <aside class="date has-text-left">June 24, 2016</aside>
 
     <section class="post-content">
         
-            <p><img src="./img/navigator/thumbnail.jpg" class="img-responsive" /></p>
-<p><a href="https://robots.thoughtbot.com/seamlessly-navigate-vim-and-tmux-splits">This Thoughtbot post</a> describes how to make Vim and Tmux <em>work together in Harmony</em> based on <a href="https://github.com/christoomey/vim-tmux-navigator">this crhistoomey’s plugin</a>, allowing you to traverse both your Vim and Tmux windows and panes respectively.</p>
+            <p><a href="https://robots.thoughtbot.com/seamlessly-navigate-vim-and-tmux-splits">This Thoughtbot post</a> describes how to make Vim and Tmux work together in Harmony based on <a href="https://github.com/christoomey/vim-tmux-navigator">this crhistoomey’s plugin</a>, allowing you to traverse both your Vim and Tmux windows and panes respectively.</p>
+<p>Having the ability to traverse Vim and Tmux splits without having to think about it using <code>ctrl-h</code>, <code>ctrl-j</code>, <code>ctrl-k</code>, <code>ctrl-l</code> is brilliant! But I still had an annoyance source from the window manager (Ratpoison) and the multi monitor setup.</p>
+<p>So I took the same concept and extend it to those uses cases. Now I use <code>ctrl-h</code>, <code>ctrl-j</code>, <code>ctrl-k</code>, <code>ctrl-l</code> to move through my <strong>Window Manager splits</strong>, my <strong>Tmux panes</strong>, my <strong>Vim windows</strong> and my <strong>Monitors</strong> with minimum mental overhead. Here is how.</p>
 
         
     </section>
@@ -336,11 +326,9 @@
 
     <section class="post-content">
         
-            <p><img src="./img/clang/thumbnail.png" id="thumbnail" /><br />
-</p>
-<p>Matt wrote a very interesting and totally recommended post about <a href="https://matt.sh/howto-c">how to C (as of 2016)</a>. Keith Thompson wrote later a very detailed and rather useful <a href="https://github.com/Keith-S-Thompson/how-to-c-response/blob/master/README.md">critique</a> with some extra notes about Matt’s post. Go ahead and read both articles now.</p>
-<p>Here I would like to point out some things about tooling.</p>
-<p><img src="./img/clang/shot1.jpg" class="img-responsive" /> 
+            <p>Matt wrote a very interesting and totally recommended post about <a href="https://matt.sh/howto-c">how to C (as of 2016)</a>. Keith Thompson wrote later a very detailed and rather useful <a href="https://github.com/Keith-S-Thompson/how-to-c-response/blob/master/README.md">critique</a> with some extra notes about Matt’s post. I urge you to go ahead and read both articles.</p>
+<p>Here I’d like to point out some things about tooling.</p>
+
         
     </section>
 
@@ -357,9 +345,7 @@
 
     <section class="post-content">
         
-            <p><img src="./img/picavr/thumbnail.png" id="thumbnail" /><br />
-</p>
-<p>This is my humble contribution to the <em>PIC vs AVR holy war</em>.</p>
+            <p>This is my humble contribution to the <em>PIC vs AVR holy war</em>.</p>
 <p>TL;DR: I was a PIC user but decided I hate it, switched to AVR and love it!</p>
 <p><a href="https://en.wikipedia.org/wiki/PIC_microcontroller">PIC</a> from Microchip and <a href="https://en.wikipedia.org/wiki/Atmel_AVR">AVR</a> from Atmel are both wonderful microcontrollers for hobbyist and professional as well (I am a hobbyist only if you’re wondering).</p>
 <p>I used to love PIC microcontrollers and originally choose them because they are the most widely available in my location. But there are just so many annoyances that AVR solves so wonderfully! 
@@ -379,9 +365,7 @@
 
     <section class="post-content">
         
-            <p><img src="./img/mozrepl/thumbnail.png" id="thumbnail" /><br />
-</p>
-<p>I’m not going to lie to you, what you’re about to read is really cool.</p>
+            <p>I’m not going to lie to you, what you’re about to read is really cool.</p>
 <p>Controlling all sort of stuff with Ratpoison, as you can see in my previous posts, is pretty neat and you can extend it to control your browser as well.</p>
 <p>These are the current capabilities:</p>
 <p>Every command start with the Ratpoison prefix + ‘f’ like in <code>C-t f</code>:</p>
