@@ -172,7 +172,6 @@
 <blockquote>
 <p>This is a physical toy traffic light to be used with software development TDD (and testing in general) tools. It will not boost your productivity nor make you a better programmer or TDD practitioner, but it looks cool :)</p>
 </blockquote>
-<p>Let’s explain how it works, it’s very simple:</p>
 
         
     </section>
@@ -359,16 +358,24 @@
 
 <article class="post">
     <h2 class="is-size-2 has-text-weight-medium has-text-left">
-        <a href="./2016/05/firefox-control-on-steroids-firefox.html">Firefox control on steroids [Firefox + Ratpoison + Mozrepl]</a>
+        <a href="./2016/05/firefox-control-on-steroids-firefox.html">Firefox control on steroids (Firefox + Ratpoison + Mozrepl)</a>
     </h2>
     <aside class="date has-text-left">May 27, 2016</aside>
 
     <section class="post-content">
         
-            <p>I’m not going to lie to you, what you’re about to read is really cool.</p>
-<p>Controlling all sort of stuff with Ratpoison, as you can see in my previous posts, is pretty neat and you can extend it to control your browser as well.</p>
-<p>These are the current capabilities:</p>
-<p>Every command start with the Ratpoison prefix + ‘f’ like in <code>C-t f</code>:</p>
+            <p>Here is what We expect to achieve. Every command starts with Ratpoison’s prefix + ‘f’ like in <code>C-t f</code>:</p>
+<pre><code>**Command**     **Action**
+
+    f           Facebook
+    y           Youtube
+    r           Reddit
+    g           Github
+    o           Open a new tab
+    w           Open a new window
+    s           Search for the current content in the clipboard
+    /           Jump to the tab with url mathing a user input
+    l           Open a new tab with the lyrics of the currenlty playing song (mpd)</code></pre>
 
         
     </section>

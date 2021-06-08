@@ -32,15 +32,11 @@
 
         <div id="main" class="container is-max-desktop">
             <article class="post">
-    <h1 class="is-size-2 has-text-weight-medium has-text-left">Firefox control on steroids [Firefox + Ratpoison + Mozrepl]</h2>
+    <h1 class="is-size-2 has-text-weight-medium has-text-left">Firefox control on steroids (Firefox + Ratpoison + Mozrepl)</h2>
     <aside class="date has-text-left">May 27, 2016</aside>
 
     <section id="post-content">
-        <p>I’m not going to lie to you, what you’re about to read is really cool.</p>
-<p>Controlling all sort of stuff with Ratpoison, as you can see in my previous posts, is pretty neat and you can extend it to control your browser as well.</p>
-<p>These are the current capabilities:</p>
-<p>Every command start with the Ratpoison prefix + ‘f’ like in <code>C-t f</code>:</p>
-<!--more-->
+        <p>Here is what We expect to achieve. Every command starts with Ratpoison’s prefix + ‘f’ like in <code>C-t f</code>:</p>
 <pre><code>**Command**     **Action**
 
     f           Facebook
@@ -52,19 +48,17 @@
     s           Search for the current content in the clipboard
     /           Jump to the tab with url mathing a user input
     l           Open a new tab with the lyrics of the currenlty playing song (mpd)</code></pre>
-<p>What does this do?, you might be wondering…</p>
-<p>…Well, this does a little bit more than what you’re probably thinking.</p>
-<p>Take for instance the <code>f</code> command, it has the <em>“Facebook”</em> action which means that:</p>
-<p>No matter where you are, which window currently has the focus, or even if Firefox is not currently running. Firefox will be started (if needed) and will acquire the focus.</p>
-<p>Then all your tabs will be parsed (starting from the last one), and if a Facebook tab is found then jump to it; if there is no Facebook tab opened then start a new one.</p>
-<p>The same is applied to any of the other pages available (The list can be extended to suit you needs).</p>
-<p>The <code>o</code> commands is self explanatory, the only advantage of this one is the ability to have a fast new tab no matter where you are, which window has the focus, or if Firefox is running or not.</p>
-<p>The <code>s</code> command is quite nice, here is an use case:</p>
-<p>You’re compiling some code, but the compiler complains with a cryptic message, so you use <a href="https://github.com/alx741/dotfiles/blob/master/tmux/.tmux.conf#L55-L59">tmux to copy the error message</a>, then issue the key sequence <code>C-t f /</code> and BANG!, no matter what, a new Firefox tab is just in front of you with the Google results of your error message. And this is applicable to any content in your clipboard as well!</p>
-<p>The <code>/</code> command prompts the user for a query and jumps to the tab which URL contains the query as a substring.</p>
-<p>The <code>l</code> will take the name of the currently playing song in MPD, google it, and open the first google result for the song lyrics in a new tab.</p>
+<!--more-->
+<p>This does a bit more than what you’re probably thinking. Take for instance the <code>f</code> command with the <em>“Facebook”</em> action, it will afford you this:</p>
+<p>No matter where you are, which window has the focus, or even if Firefox is currently running or not. Firefox will be started (if needed) and acquire the focus, then all your tabs will be parsed (starting from the last one), and if a Facebook tab is found then jump to it, if there is no Facebook tab then start a new one.</p>
+<p>The same is extended to any of the other sites available (The list can be extended to suit you needs).</p>
+<p>The <code>o</code> commands is self-explanatory, the only advantage of this one is the ability to quickly get a new tab no matter where you are, which window has the focus, or if Firefox is running or not.</p>
+<p>The <code>s</code> command is quite nice, imagine this:</p>
+<p>You’re trying to compile some code, but the compiler complains with a cryptic message, so you use <a href="https://github.com/alx741/dotfiles/blob/master/tmux/.tmux.conf#L55-L59">tmux to copy the error message</a>, then issue the key sequence <code>C-t f /</code> and BANG!, you get a new Firefox tab in front of you with the search engine results for the error message. And this is applicable to any content in your clipboard as well!</p>
+<p>The <code>/</code> command prompts the user for a query and jumps to the tab with a URL that contains the query as a substring.</p>
+<p>The <code>l</code> command will take the name of the currently playing song in MPD, search for it, and open the first result for the song lyrics in a new tab.</p>
 <h1 id="how-to">How to</h1>
-<p>The main dependencies of all this are:</p>
+<p>So you’re sold, let’s make it happen. The main dependencies are:</p>
 <ul>
 <li>Firefox</li>
 <li><a href="https://github.com/bard/mozrepl">Mozrepl</a></li>
@@ -72,7 +66,7 @@
 <li>Expect</li>
 </ul>
 <p>You can install them all with the system package manager, except for Mozrepl which you can get from Firefox addons.</p>
-<p>This also depends on a Ratpoison <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/app_select.sh">script</a> introduced in the previous posts, so be sure to have it.</p>
+<p>This also depends on a Ratpoison <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/app_select.sh">script</a> introduced in a previous post, so make sure to get that first.</p>
 <p>Some extra <code>~/.ratpoisonrc</code> is needed for the new mappings:</p>
 <pre><code>newkmap firefox
 definekey firefox f exec ~/.scripts/ratpoison/firefox.sh select_tab facebook
@@ -86,7 +80,7 @@ definekey firefox s exec ~/.scripts/ratpoison/firefox.sh clipboard_search
 definekey firefox l exec ~/.scripts/ratpoison/firefox.sh search_lyrics
 definekey firefox slash exec ~/.scripts/ratpoison/firefox.sh search_tab
 bind f readkey firefox</code></pre>
-<p>Most of the magic is performed thanks to the amazing <em>Mozrepl</em>. Unfortunately I couldn’t get it to load an external script, but <em>Expect</em> is needed for the communication with it anyways, so lets give it the script line by line.</p>
+<p>Most of the magic is performed by <em>Mozrepl</em>. Unfortunately, I couldn’t get it to load an external script, though <em>Expect</em> is needed for the communication with it anyways, so let’s use it to hand the script line by line.</p>
 <p>The <code>select_tab.js</code> <a href="https://github.com/alx741/dotfiles/blob/master/mozrepl/.mozrepl/select_tab.js">script</a> is on charge of parsing the tabs to find one that matches the query and jump to it.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">selectTab</span>(page) {</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> numTabs<span class="op">=</span>gBrowser<span class="op">.</span><span class="at">browsers</span><span class="op">.</span><span class="at">length</span><span class="op">;</span></span>
@@ -122,7 +116,7 @@ bind f readkey firefox</code></pre>
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        <span class="bu">exit</span> 1</span>
 <span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="er">}</span></span>
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span></code></pre></div>
-<p>Now the <code>firefox.sh</code> <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/firefox.sh">script</a>, invoked from the Ratpoison configuration, will glue it all together.</p>
+<p>Now the <code>firefox.sh</code> <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/firefox.sh">script</a>, invoked from Ratpoison, will glue it all together.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="va">URL</span><span class="op">=</span><span class="st">&quot;&quot;</span></span>

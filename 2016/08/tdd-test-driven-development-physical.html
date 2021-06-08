@@ -45,16 +45,14 @@
 <blockquote>
 <p>This is a physical toy traffic light to be used with software development TDD (and testing in general) tools. It will not boost your productivity nor make you a better programmer or TDD practitioner, but it looks cool :)</p>
 </blockquote>
-<p>Let’s explain how it works, it’s very simple:</p>
 <!--more-->
 <h1 id="hardware">Hardware</h1>
-<p>The <strong>atmega328p</strong> AVR microcontroller is very popular and cheap, but if you buy them on Ebay for example, chances are it comes with the Arduino bootloader, which gets in the way because we can perfectly use the internal oscillator instead of an external 16Mhz crystal. So the first thing to do is change the fuses to the default ones:</p>
+<p>The <em>atmega328p</em> AVR chip is very popular and cheap, so much so, that chances are high you got it with the Arduino bootloader, which gets in the way as we can perfectly use the internal oscillator at 1Mhz instead of an external 16Mhz crystal. Fix this by changing the fuses:</p>
 <pre class="shell"><code># avrdude -p m328p -c usbasp -U lfuse:w:0x62:m -U hfuse:w:0xd9:m</code></pre>
-<p>Now we are using the internal 1MHz oscillator, perfect!</p>
-<p>The circuit is simple enough to mount in some perfboard. Additionally, I added some small neodymium magnets in the back to stick it easily close to my monitors.</p>
+<p>The circuit is simple enough to mount in some perfboard. Additionally, I added some small neodymium magnets in the back for mounting purposes.</p>
 <p><img src="../../img/tddlight/img1.jpg" class="img-responsive" /> <img src="../../img/tddlight/img2.jpg" class="img-responsive" /> <img src="../../img/tddlight/img3.jpg" class="img-responsive" /> <img src="../../img/tddlight/img4.jpg" class="img-responsive" /> <img src="../../img/tddlight/img5.jpg" class="img-responsive" /> <img src="../../img/tddlight/img6.jpg" class="img-responsive" /> <img src="../../img/tddlight/img7.jpg" class="img-responsive" /> <img src="../../img/tddlight/img8.jpg" class="img-responsive" /></p>
 <h1 id="software">Software</h1>
-<p>The firmware is no more than some UART boilerplate with <code>4800</code> baud rate, so it’s stable with at 1MHz clock speed.</p>
+<p>The firmware is no more than some UART boilerplate with a <code>4800</code> baud rate so that it’s stable at 1MHz.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;avr/io.h&gt;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;util/delay.h&gt;</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -80,7 +78,7 @@
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">((</span>UCSR0A <span class="op">&amp;</span> <span class="op">(</span><span class="dv">1</span> <span class="op">&lt;&lt;</span> RXC0<span class="op">))</span> <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{}</span></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> UDR0<span class="op">;</span></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<p>Notice how if another character is received the output is cleared so all the LEDs are off.</p>
+<p>Notice how if any other character is received the output gets cleared.</p>
 <p>The host software configures the serial port with a <code>4800</code> baud rate:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> serial_init<span class="op">(</span><span class="dt">char</span><span class="op">*</span> port<span class="op">)</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
