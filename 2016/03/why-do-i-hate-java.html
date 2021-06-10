@@ -36,55 +36,30 @@
     <aside class="date has-text-left">March 28, 2016</aside>
 
     <section id="post-content">
-        <p><img src="../../img/hatejava/thumbnail.jpg" id="thumbnail" /><br />
-</p>
-<h1 id="everything-is-an-object">Everything is an object…</h1>
-<p>… No, it’s not!</p>
-<p>Not everything is a object. Have you ever carefully read Java code? It’s full of actions disguised like objects: <em>Mutator</em>, <em>Traverser</em>, <em>Factory</em>, <em>Maker</em>, <em>Creator</em>, <em>Generator</em>, <em>Mediator</em>. So you don’t <em>mutate</em>, <em>traverse</em>, <em>make</em>, <em>create</em> or <em>generate</em> anything, instead you force an object that can do that.</p>
-<p>Ok some of that stuff can be useful for well used design patterns and a good design, but most of the time is not!</p>
+        <h1 id="everything-is-an-object">Everything is an object</h1>
+<p>No, not everything is a object. Java code is riddled with actions disguised as objects: <em>Mutator</em>, <em>Traverser</em>, <em>Factory</em>, <em>Maker</em>, <em>Creator</em>, <em>Generator</em>, <em>Mediator</em>. So you don’t <em>mutate</em>, <em>traverse</em>, <em>make</em>, <em>create</em> or <em>generate</em> anything in a straight forward way, instead you force into existence an object that can perform the required action. This is one the primary sources of clumsiness and messiness in Java, it causes <a href="http://www.j-paine.org/objects/objects/objects.html">astonishment and improper behaviors that you are forced to get used to</a>.</p>
+<p>A reasonable language has <em>OOP</em> as a <strong>feature</strong>, to instead force it everywhere makes everything unnecessarily convoluted. As Steve Yegge puts it in his article: <a href="http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html">Execution in kingdom of nouns</a>, verbs should not be second class citizens.</p>
 <!--more-->
-<p>Classes are good when they fit, and a good language has <em>OOP</em> as a <strong>feature</strong>. But forcing objects everywhere is bad.</p>
-<p>As Steve Yegge puts it in his article: <a href="http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html">Execution in kingdom of nouns</a>, verbs should not be second class citizens.</p>
-<p>Java stupidity causes lots of <a href="http://www.j-paine.org/objects/objects/objects.html">astonishment and improper behaviors that you are forced to get used to</a>.</p>
 <h1 id="s.o.s">S.O.S</h1>
-<p>Ok, you hit a problem, <em>javac</em> is throwing a completely incomprehensible error and, of course, you go to Google/Duckduckgo hoping you get some answers, and you do:</p>
+<p>Picture this familiar scenario: you’re trying to compile your program, but <em>javac</em> is yelling at you with a completely incomprehensible error, so you head to your search engine of choice hoping to get some answers. And you do:</p>
 <ul>
-<li>Click that button</li>
-<li>A pop up widow appears</li>
+<li>Click that button over there</li>
+<li>A pop up widow will appear</li>
 <li>Fill up those text fields</li>
 <li>Mark that check box</li>
 <li>Click the yellow icon</li>
-<li>Click “ok”</li>
-<li>Then restart your IDE</li>
+<li>Click “OK”</li>
+<li>Finally, restart the IDE</li>
 </ul>
-<blockquote>
-<p>Are you kidding me?</p>
-</blockquote>
-<p>The freaking 99% of “solutions” you find, are a sequence of clicks and actions in a graphical user interface of an IDE, What if I’m not using that specific IDE? What if I’m not using an IDE at all!!??</p>
-<p>Are you people stupid? I’m probably not even in a Xorg server session and writing the code comfortably in my preferred text editor in a nice tmux or screen session in a remote machine, how I’m I supposed to “click” here and there? I have no icons! And this is a perfectly valid scenario.</p>
-<p>How is that, an error produced because Java can’t find a library or something similar, requires a sequence of GUI actions using a mouse? And worse, how is that the ONLY way to fix it!?</p>
-<p>You guys are aware that code is plain text right?… RIGHT??</p>
-<h1 id="use-and-ide">Use and IDE!</h1>
+<p>It would seem that almost every possible problem you encounter with Java is somehow related with the IDE, except you might be using a completely different IDE, or not be using an IDE at all, and yet somehow, solutions outside of one seem to be alien in the Java world.</p>
+<h1 id="use-and-ide">Use and IDE</h1>
 <p>James Gosling (aka Java’s father) says: <a href="http://www.computerworld.com.au/article/207799/don_t_use_emacs_says_java_father/">Don’t use Emacs</a>.</p>
-<p>Yes, if you’re writing Java and you’re not using an IDE, but a good text editor instead, you’re going to have some hard times, but for a good reason. Java programming gets hard with Vim or Emacs because Java sucks very hard, and this symptom tells more about the language than it says about de editors.</p>
-<p>The language needs, and is dependent on, a huge, bloated and slow specific tailored program to use it. The IDE becomes a really big support to hold everything where the language fails.</p>
-<p>So the language is not aimed for humans, it requires an extra layer, an interface (the IDE) for the user to actually use.</p>
-<p>More on that in: <a href="http://www.sillybytes.net/2016/03/why-do-i-hate-ides.html">Why I hate IDEs</a>.</p>
-<h1 id="ide-dependent-projects">IDE dependent projects</h1>
-<p>If your project use, lets say, Eclipse, the other person will have to use it as well if she doesn’t want to die trying to maintain it in Netbeans for example.</p>
-<p>Yes it is possible, but you get way to many headaches.</p>
-<p>Found a nice example in the internet about something you need? Great! Lets hope it uses the exact same IDE you use though… Otherwise, keep looking.</p>
-<p>Have you tried to compile an IDE generated project without the IDE? If your not feeling extremely adventurous or not willing to do it with lots of horrible hacks, then you better go and install that stupid IDE.</p>
-<p>IDE dependent projects is already too bad, but projects that are dependent on the IDE specific version?? Yeah… You might as well go and shoot yourself in the head now.</p>
-<h1 id="why-documentation-when-you-have-a-mouse">Why documentation when you have a mouse?</h1>
-<p>Real documentation is almost nonexistent if the IDE has an <em>automagical</em> GUI button for doing that, so if you have to do it, you must use the IDE so you can press the goddamn button!</p>
-<p>Trying to write a SOAP interface for a JSF application? No problem just click here and there!. But if you don’t use the IDE you’re pretty screwed, because good documentation about how to actually write it is stupid or nonexistent.</p>
-<h1 id="conclusion">Conclusion</h1>
-<ul>
-<li>There are lots of stupid programmers, and Java is one of the things to <a href="http://www.joelonsoftware.com/articles/ThePerilsofJavaSchools.html">blame</a>.</li>
-<li>If you can’t easily write software in a language without an IDE, then the language sucks.</li>
-<li>Because of the Java dependency on IDEs as <a href="https://dzone.com/articles/ide-bad-programming-language">bad programming language enablers</a>, lots of the problems with Java are just the intersection with IDE’s problems.</li>
-</ul>
+<p>If you’re writing Java and you’re not using an IDE, but a good text editor instead, you’re going to have some hard times. This symptom, however tells us more about the language than it says about de editors.</p>
+<p>The language needs, and is dependent upon, a gigantic and bloated program to be usable. The IDE is the support to hold the crumbling parts, and the afterthought to try and amend the language shortcomings.</p>
+<p>In the sense, it’s almost as if the language is not appropriate for direct human use, instead, it requires an extra layer, an interface (the IDE) between the human and the language.</p>
+<!-- TODO -->
+<!-- More on that in: [Why I hate -->
+<!-- IDEs](http://www.sillybytes.net/2016/03/why-do-i-hate-ides.html). -->
     </section>
 </article>
 
