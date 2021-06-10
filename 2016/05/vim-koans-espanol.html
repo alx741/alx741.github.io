@@ -32,19 +32,17 @@
 
         <div id="main" class="container is-max-desktop">
             <article class="post">
-    <h1 class="is-size-2 has-text-weight-medium has-text-left">Vim Kōans [Español]</h2>
+    <h1 class="is-size-2 has-text-weight-medium has-text-left">Vim Kōans</h2>
     <aside class="date has-text-left">May  4, 2016</aside>
 
     <section id="post-content">
-        <p><img src="../../img/vimkoans/thumbnail.png" id="thumbnail" /><br />
-</p>
-<p>Esta es la traducción al español de los <a href="http://blog.sanctum.geek.nz/vim-koans/">vim kōans</a> por Tom Ryder.</p>
+        <p>Esta es la traducción al español del arículo <a href="http://blog.sanctum.geek.nz/vim-koans/">vim kōans</a> por Tom Ryder.</p>
 <p><a href="https://es.wikipedia.org/wiki/K%C5%8Dan"><strong>¿Qué es un Kōan?</strong></a></p>
 <h1 id="el-maestro-wq-y-el-desarrollador-de-windows">El maestro <em>Wq</em> y el desarrollador de Windows</h1>
-<p>El maestro <em>Wq</em> se encontraba ayudado a algunos novatos de Vim. Luego de sus enseñanzas sobre las virtudes de Vim, pregunto si habían preguntas. Un hombre joven levantó la mano.</p>
+<p>El maestro <em>Wq</em> se encontraba ayudado a algunos principiantes de Vim. Luego de sus enseñanzas sobre las virtudes de Vim, atendió preguntas de sus estudiantes. Un hombre joven levantó la mano.</p>
 <!--more-->
 <blockquote>
-<p>Maestro, como puedo filtrar la segunda columna de una tabla de texto plano para todas las filas que contienen la cadena ‘tcp’?</p>
+<p>Maestro, ¿cómo puedo filtrar la segunda columna de una tabla de texto plano para todas las filas que contienen la cadena ‘tcp’?</p>
 </blockquote>
 <p>El maestro <em>Wq</em> no dijo nada, se volteó al pizarrón detrás de él, y escribió:</p>
 <pre><code>:%!awk '/tcp/ {print $2}'</code></pre>
@@ -57,18 +55,18 @@
 <pre><code>:v/tcp/d
 :g/tcp/s/\S\+\s\+\(\S\+\)\s.*/\1/</code></pre>
 <blockquote>
-<p>Qué!!? Eso es muy complicado para una tarea tan simple!</p>
+<p>¿Qué? Eso es muy complicado para una tarea tan simple!</p>
 </blockquote>
 <p>Replicó el estudiante.</p>
 <p>El maestro <em>Wq</em> se volteó nuevamente, borró el comando, y escribió:</p>
 <pre><code>Microsoft Excel</code></pre>
 <p>En ese momento, el estudiante fue iluminado.</p>
 <h1 id="no-hay-diferencia">No hay diferencia</h1>
-<p>Un dia un monje visitó al maestro <em>Wq</em>, y preguntó</p>
+<p>Un día un monje visitó al maestro <em>Wq</em> y le preguntó:</p>
 <blockquote>
-<p>Maestro, ¿Cómo será mi código diferente cuando haya dominado Vim?</p>
+<p>Maestro, ¿Será mi código diferente cuando haya aprendido Vim?</p>
 </blockquote>
-<p>El maestro <em>Wq</em> respondió</p>
+<p>El maestro <em>Wq</em> respondió:</p>
 <blockquote>
 <p>Antes de Vim: declarar, definir, procesar, imprimir. Después de Vim: declarar, definir, procesar, imprimir.</p>
 </blockquote>
@@ -79,11 +77,11 @@
 </blockquote>
 <p>Dijo el acólito</p>
 <blockquote>
-<p>Casi he terminado las macros de Vim que permiten traducir de Markdown a HTML. Mis funciones se entrelazan, mi parser es muy eficiente y los resultados casi perfectos. Puede decirse que he dominado el Vimscript, y mi trabajo validará Vim como un editor moderno para los desarrolladores iluminados! He hecho bien?</p>
+<p>Casi he terminado las macros de Vim que permiten traducir de Markdown a HTML. Mis funciones se entrelazan, mi parser es muy eficiente y los resultados casi perfectos. Puede decirse que he dominado el Vimscript, y mi trabajo validará Vim como un editor moderno para los desarrolladores iluminados! ¿Lo he hecho bien?</p>
 </blockquote>
 <p>El maestro <em>Wq</em> leyó el código del acólito por varios minutos sin decir palabra alguna. Luego abrió un documento markdown, y escribió:</p>
 <pre><code>:%!markdown</code></pre>
-<p>El buffer se llenó de HTML al instante. El acólito se echó a llorar.</p>
+<p>El <em>buffer</em> se llenó de HTML al instante. El acólito se echó a llorar.</p>
 <h1 id="el-maestro-wq-y-el-maestro-unix">El maestro <em>Wq</em> y el maestro Unix</h1>
 <p>Un viejo maestro Unix vino al maestro <em>Wq</em>.</p>
 <blockquote>
@@ -104,95 +102,95 @@
 <p>No lo se, no importa.</p>
 </blockquote>
 <p>El maestro <em>Wq</em> asintió. El maestro Unix se sentó desconcertado por un momento y cerro el documento sin guardarlo.</p>
-<h1 id="no-la-mejor-herramienta">No la mejor herramienta</h1>
-<p>Una noche durante una tormenta, la casa del maestro <em>Wq</em> colapsó. A la mañana siguiente empezó a reconstruirla usando sus viejas herramientas. Su aprendiz acudió a ayudarlo, y construyeron por un momento he hicieron un buen progreso. Mientras trabajaban, el aprendiz empezó a contar al maestro <em>Wq</em> sobre sus últimos logros.</p>
+<h1 id="no-existe-la-mejor-herramienta">No existe la mejor herramienta</h1>
+<p>Una noche, durante una tormenta, la casa del maestro <em>Wq</em> colapsó. A la mañana siguiente empezó a reconstruirla usando sus viejas herramientas. Su aprendiz acudió a ayudarlo, construyeron por un momento he hicieron un buen progreso. Mientras trabajaban, el aprendiz empezó a contar al maestro <em>Wq</em> sobre sus últimos logros.</p>
 <blockquote>
-<p>Maestro, He desarrollado un grandioso script de Vim que da todo tipo de información útil sobre el documento. Cuenta palabras, sentencias, párrafos, he incluso dice sobre el tipo de documento es, usando las reglas de resaltado. Lo uso en mis pipelines todo el tiempo. Es una cosa fabulosa y estoy muy orgulloso. Realmente, Vim es la mejor herramienta.</p>
+<p>Maestro, He desarrollado un grandioso script de Vim que brinda todo tipo de información útil sobre el documento. Cuenta palabras, sentencias, párrafos, he incluso dice que tipo de documento es, usando las reglas de resaltado. Lo uso en mi trabajo todo el tiempo. Es una cosa fabulosa y estoy muy orgulloso. Realmente, Vim es la mejor herramienta.</p>
 </blockquote>
 <p>El maestro <em>Wq</em> no respondió. Pensando que había molestado a su maestro, el aprendiz permaneció en silencio y continuó trabajando.</p>
-<p>El aprendiz termino de alinear dos vigas y había posicionado un clavo listo para clavarlo en la madera, pero notó que el martillo estaba lejos de él.</p>
+<p>El aprendiz terminó de alinear dos vigas y había posicionado un clavo listo para clavarlo en la madera, pero notó que el martillo estaba lejos de él.</p>
 <blockquote>
-<p>Me alcanzaría el martillo, maestro?</p>
+<p>¿Me alcanzaría el martillo, maestro?</p>
 </blockquote>
-<p>El maestro <em>Wq</em> le pasó al aprendiz una cierra.</p>
+<p>El maestro <em>Wq</em> le pasó una cierra al aprendiz.</p>
 <p>En ese momento, el aprendiz fue iluminado.</p>
 <h1 id="el-sueño-del-maestro-pope">El sueño del maestro Pope</h1>
-<p><a href="https://github.com/tpopea">El maestro Pope</a> soñó una vez que era un usuario de Emacs. Cuando despertó dijo:</p>
+<p>El <a href="https://github.com/tpopea">maestro Pope</a> soñó una vez que era un usuario de Emacs. Cuando despertó dijo:</p>
 <blockquote>
 <p>No se si soy Tim Pope soñado que soy un usuario de Emacs, o un usuario de Emacs soñando que soy Tim Pope.</p>
 </blockquote>
 <h1 id="el-mejor-editor">El mejor editor</h1>
-<p><a href="http://vimcasts.org/">El maestro Neil</a> y <a href="http://derekwyatt.org/">el maestro Wyatt</a> gozaban de gran fama por sus instrucciones sobre la filosofía de Vim, y viajaban alrededor del país enseñando.</p>
+<p>El <a href="http://vimcasts.org/">maestro Neil</a> y el <a href="http://derekwyatt.org/">maestro Wyatt</a> gozaban de gran fama por sus instrucciones sobre la filosofía de Vim, y viajaban ofreciendo sus enseñanzas.</p>
 <p>El maestro Neil habla calmada y pausadamente, su acento se pasea sobre sus palabras. Pero el maestro Wyatt es muy entusiasta, empieza y termina, su habla es rápida y enérgica, y su alma fluye sobre sus enseñanzas.</p>
-<p>Un día un estudiante preguntó</p>
+<p>Un día un estudiante preguntó:</p>
 <blockquote>
 <p>¿Cuál es la mejor forma de enseñar Vim?</p>
 </blockquote>
-<p>Los maestros Neil y Wyatt respondieron al unisono</p>
+<p>Los maestros Neil y Wyatt respondieron al unisono:</p>
 <blockquote>
 <p>¿Cuál es el mejor editor: vi o ex?</p>
 </blockquote>
 <p>En ese momento, el estudiante fue iluminado.</p>
 <h1 id="la-desesperación-del-estudiante-lento">La desesperación del estudiante lento</h1>
-<p>El maestro <em>Wq</em> se encontraba comiendo cuando un estudiante entró en su habitación y cayó sobre sus rodillas. Lagrimas estaban en sus ojos y se veía profundamente frustrado. El maestro <em>Wq</em> dejó el plato y preguntó</p>
+<p>El maestro <em>Wq</em> se encontraba comiendo cuando un estudiante entró en su habitación y cayó sobre sus rodillas. Lagrimas salían de sus ojos y se veía profundamente frustrado. El maestro <em>Wq</em> dejó el plato y preguntó:</p>
 <blockquote>
-<p>¿Qué te perturba tanto, hombre joven?</p>
+<p>¿Qué te perturba tanto, joven estudiante?</p>
 </blockquote>
 <blockquote>
-<p>Maestro, me doy por vencido. Jamas alcanzaré el dominio de Vim!, Nunca aprenderé la filosofía de los grandes patriarcas! Nunca alcanzaré la simplicidad brutal, la divina eficiencia del uso de Vim!</p>
+<p>Maestro, me doy por vencido. Jamas alcanzaré el dominio de Vim!, Nunca aprenderé la filosofía de los grandes sabios! Nunca alcanzaré la simplicidad brutal, la divina eficiencia del uso de Vim!</p>
 </blockquote>
 <blockquote>
 <p>¿Por qué lo dices?</p>
 </blockquote>
 <blockquote>
-<p>Soy tu peor estudiante. Mientras yo lucho escribiendo una simple macro, mis compañeros escriben macros recursivas con facilidad. Cuando yo intento recordar la expresión regular para caracteres vacíos, mis compañeros escriben test de Vimscript de gran complejidad. Soy demasiado lento, y estoy avergonzado, me temo y he fracasado.</p>
+<p>Soy tu peor estudiante. Mientras yo lucho escribiendo una simple macro, mis compañeros escriben macros recursivas con facilidad. Cuando yo intento recordar la expresión regular para caracteres vacíos, mis compañeros escriben test de Vimscript de gran complejidad. Soy demasiado lento, y estoy avergonzado, me temo que he fracasado.</p>
 </blockquote>
-<p>El maestro <em>Wq</em> se puso de pie y dijo</p>
+<p>El maestro <em>Wq</em> se puso de pie y dijo:</p>
 <blockquote>
 <p>Ven conmigo a la ventana</p>
 </blockquote>
-<p>El estudiante siguió al maestro <em>Wq</em> a la ventana y miró a la casa del vecino del maestro <em>Wq</em>. A través de la ventana ambos podían ver a un hombre joven en traje y corbata, trabajando sobre un documento.</p>
+<p>El estudiante siguió al maestro <em>Wq</em> a la ventana y observó la casa del vecino. A través de la ventana ambos podían ver un hombre joven en traje y corbata, trabajando sobre un documento.</p>
 <blockquote>
-<p>¿Qué vez?</p>
+<p>¿Qué puedes ver?</p>
 </blockquote>
 <p>Pregunto el maestro <em>Wq</em>. El estudiante observó por un momento.</p>
 <blockquote>
-<p>Ese hombre está usando Microsoft Excel para generar una hoja de calculo. Esta actualizando cada celda a mano. No sabe ni siquiera como usar formulas. Escribe letras mayúsculas presionando Caps Lock, y luego presionándolo otra vez cuando escribió la letra. Es lento! No comprendo. Como puede estar tan contento?</p>
+<p>Ese hombre está usando Microsoft Excel para generar una hoja de calculo. Está actualizando cada celda a mano. No sabe ni siquiera como usar formulas. Escribe letras mayúsculas presionando Caps Lock, y luego presionándolo otra vez cuando termina. Es lento! No comprendo, ¿Cómo puede estar tan contento?</p>
 </blockquote>
 <blockquote>
-<p>Viendo a este hombre, como puedes tu no estarlo?</p>
+<p>Viendo a este hombre, ¿cómo puedes tu no estarlo?</p>
 </blockquote>
 <p>Respondió el maestro <em>Wq</em>.</p>
-<p>El estudiante fue inmediatamente iluminado. Su nombre era Qa, y se convirtió luego en uno de los mejores maestros.</p>
+<p>El estudiante fue inmediatamente iluminado. Su nombre era <em>Qa</em>, y se convirtió en uno de los mejores maestros.</p>
 <h1 id="dominio-de-vimscript">Dominio de Vimscript</h1>
-<p>Un estudiante pregunto al maestro <em>Wq</em></p>
+<p>Un estudiante pregunto al maestro <em>Wq</em>:</p>
 <blockquote>
-<p>¿Cuándo sabré que he dominado el Vimscrip?</p>
+<p>¿Cuándo sabré que he dominado Vimscrip?</p>
 </blockquote>
-<p>El maestro <em>Wq</em> respondió</p>
+<p>El maestro <em>Wq</em> respondió:</p>
 <blockquote>
 <p>Cuando nunca lo uses</p>
 </blockquote>
 <h1 id="la-elegía-de-vim">La elegía de Vim</h1>
-<p>Un hombre joven suplico una audiencia con el maestro <em>Wq</em> para leer su ultimo trabajo, una elegía de las glorias de Vim. Con ojos lagrimosos leyó sus profundas palabras, vertiendo su alma en su veneración por el editor de texto.</p>
+<p>Un hombre joven suplicó una audiencia con el maestro <em>Wq</em> para leer su ultimo trabajo, una elegía de las glorias de Vim. Con ojos lagrimosos leyó sus profundas palabras, vertiendo su alma en su veneración por el editor de texto.</p>
 <p>El maestro se sentó y escuchó al poeta por un momento. Luego del décimo verso, levanto su mano.</p>
 <blockquote>
-<p>Por favor, no más. Tu poema es terrible</p>
+<p>Por favor, no más. Tu poema es terrible.</p>
 </blockquote>
 <p>El hombre enfureció.</p>
 <blockquote>
-<p>Maestro <em>Wq</em>, seguramente tu puedes apreciar el poema, tu que conoces la gran belleza del editor. Como puedes ser tan terso, tan desdeñoso? Incluso escribí este poema en Vim!</p>
+<p>Maestro <em>Wq</em>, seguramente tu puedes apreciar el poema, tu que conoces la gran belleza del editor. ¿Cómo puedes ser tan terso, tan desdeñoso? Incluso escribí este poema en Vim!</p>
 </blockquote>
-<p>El maestro respondió</p>
+<p>El maestro respondió:</p>
 <blockquote>
-<p>Lo escribiste en Vim, pero tu métrica es dispareja, tu rítmica inconsistente, tus metáforas mezcladas. Has escrito un poema muy malo usando una herramienta muy buena. No eres un poeta, y Vim no te hará uno. Muchos estudiantes no son programadores, y Vim no les ayudara con eso tampoco.</p>
+<p>Lo escribiste en Vim, pero tu métrica es dispareja, tu rítmica inconsistente, tus metáforas mezcladas. Has escrito un poema muy malo usando una herramienta muy buena. No eres un poeta, y Vim no te hará uno. Muchos estudiantes no son programadores, y Vim no les ayudará con eso tampoco.</p>
 </blockquote>
-<p>El hombre protestó</p>
+<p>El hombre protestó:</p>
 <blockquote>
 <p>Vim es eternamente bello. Merece tener una Elegía.</p>
 </blockquote>
 <blockquote>
-<p>Vim no es permanente. Nvi no es permanente. Vi mismo no es permanente, solamente la naturaleza de Vi. Emacs tiene naturaleza de Vi, nano tiene naturaleza de Vi, incluso bloc de notas tiene naturaleza de Vi. Tu visión estrecha que has desarrollado no te permite ajustarte al verdadero valor del tema de tu poema. Debes irte. Regresa cuando hayas dominado Emacs.</p>
+<p>Vim no es permanente. Nvi no es permanente. Vi mismo no es permanente, solamente la naturaleza de Vi. Emacs tiene naturaleza de Vi, nano tiene naturaleza de Vi, incluso bloc de notas tiene naturaleza de Vi. La visión estrecha que has desarrollado no te permite ajustarte al verdadero valor del tema de tu poema. Debes irte. Regresa cuando hayas dominado Emacs.</p>
 </blockquote>
 <p>El poeta se fue, profundamente avergonzado. No regresó nunca más.</p>
     </section>
