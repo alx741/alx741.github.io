@@ -1197,7 +1197,7 @@ END</code></pre>
     <id>http://www.sillybytes.net/2016/06/aprende-haskell-rapido-y-dificil_29.html</id>
     <published>2016-06-29</published>
     <updated>2016-06-29T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>Esta es la traducción al español del artículo <a href="http://yannesposito.com/Scratch/en/blog/Haskell-the-Hard-Way/">Haskell the hard way</a> por Yann Esposito.</p>
+    <summary type="html"><![CDATA[<p>Esta es la traducción al español del artículo <a href="http://yannesposito.com/Scratch/en/blog/Haskell-the-Hard-Way/">“Haskell the hard way”</a> por Yann Esposito.</p>
 <p>TL;DR*: Un corto y denso tutorial para aprender Haskell.</p>
 <p>Asómbrate con Haskell. De verdad pienso que todos los desarrolladores deberían aprender Haskell. No creo que todos necesitan convertirse en ninjas de Haskell, pero deberían al menos descubrir que es lo que Haskell tiene para ofrecer. Aprender Haskell abre tu mente.</p>
 <!--more-->

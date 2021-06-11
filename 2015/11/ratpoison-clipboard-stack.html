@@ -36,33 +36,28 @@
     <aside class="date has-text-left">November  2, 2015</aside>
 
     <section id="post-content">
-        <p><img src="../../img/ratclip/thumbnail.png" id="thumbnail" /><br />
-</p>
-<p>This is the second post about the <a href="http://www.nongnu.org/ratpoison/">Ratpoison window manager</a>.</p>
-<p>How many times did you found your self keeping snippets of text in a text editor just so you can use them later because your clipboard will be overwritten with the new selection?</p>
-<p>Here is a very neat solution using Ratpoison: a clipboard stack.</p>
-<p>Using <code>xclip</code>, a simple shell script and the appropriate Ratpoison key bindings we could accomplish the following:</p>
+        <p>This is the second post about the <a href="http://www.nongnu.org/ratpoison/">Ratpoison window manager</a>.</p>
+<p>How many times have you found your self keeping snippets of text in a text editor just so you can use them later because your clipboard will be overwritten with a new selection?</p>
+<p>Here is a neat solution using Ratpoison: a clipboard stack.</p>
+<p>Using <code>xclip</code>, a simple shell script and the appropriate Ratpoison key bindings we can accomplish the following:</p>
 <!--more-->
-<p>Note that <code>C-t</code> is the default Ratpoison escape sequence.</p>
-<p>With <code>C-t =</code> the clipboard stack is displayed using <em>ratmen</em>, so we can select the snippet we want to be the current one.</p>
-<p><img src="../../img/ratclip/shot1.png" class="img-responsive" /></p>
-<p>With <code>C-t #</code> a <em>ratmen</em> menu is displayed so we can perform operations on the stack such as:</p>
+<p>Note that <code>C-t</code> is Ratpoison’s default escape sequence.</p>
+<p>With <code>C-t =</code> the clipboard stack is displayed using <code>ratmen</code>, so we can select the snippet we want and bring it to the clipboard.</p>
+<p><img src="../../img/ratclip/shot1.png" /></p>
+<p>With <code>C-t #</code> a <code>ratmen</code> menu is displayed so we can perform operations on the stack such as:</p>
 <ul>
 <li>Push: Push the current selection into the stack</li>
 <li>Pop: Take the latest snippet in the stack as the current selection (so we can paste it with <code>Ctrl+v</code> as usual)</li>
-<li>Delete: Display the list of snippets in the stack so we can select one to delete it</li>
+<li>Delete: Display the list of snippets in the stack so we can select one to delete</li>
 <li>Purge: Completely purge the content of the clipboard stack</li>
 </ul>
-<p><img src="../../img/ratclip/shot2.png" class="img-responsive" /></p>
+<p><img src="../../img/ratclip/shot2.png" /></p>
 <p>We get this functionality using the Ratpoison bindings:</p>
 <pre><code>bind numbersign  exec clipboard_stack.sh menu
 bind equal  exec clipboard_stack.sh select</code></pre>
-<p>This snippet appears in my <code>.ratpoisonrc</code> file that you can read entirely <a href="https://github.com/alx741/dotfiles/blob/master/ratpoison/.ratpoisonrc">here</a>.</p>
-<p>Note that I’ve used key bindings that corresponds to the default ones that <em>tmux</em> uses for the same task.</p>
-<p>So now we can push into the stack the selections we know we could use latter and select them from the list when needed.</p>
-<p>The script depends on <em>ratmen</em> and <em>xclip</em></p>
-<p>And you can get it from my <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/clipboard_stack.sh">Dotfiles</a>.</p>
-<p>To try it out be sure to define your Ratpoison bindings referencing the right location of the script.</p>
+<p>This snippet appears in my <a href="https://github.com/alx741/dotfiles/blob/master/ratpoison/.ratpoisonrc"><code>.ratpoisonrc</code> file</a>.</p>
+<p>Notice how I’ve used key bindings that correspond to the default ones that <em>tmux</em> use for a similar purpose, this gets us some consistency all across.</p>
+<p>Now we can push into the stack any selections we know we could use latter and just grab them from the list when needed.</p>
     </section>
 </article>
 

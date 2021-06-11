@@ -36,36 +36,31 @@
     <aside class="date has-text-left">November  4, 2015</aside>
 
     <section id="post-content">
-        <p><img src="../../img/ratet/thumbnail.png" id="thumbnail" /><br />
-</p>
-<p>This is the third post about the <a href="http://www.nongnu.org/ratpoison/">Ratpoison window manager</a>.</p>
-<p>This one is not a productivity improvement, nor a <em>do-more-with-less</em> feature, but a playful way to achieve a pretty common task: SSH to my home lab.</p>
-<p>Remember that scene in <a href="https://en.wikipedia.org/wiki/E.T._the_Extra-Terrestrial">E.T.</a> In which he says: “ET phone home” and points with his finger to the sky? Well…</p>
-<p>When I hit <code>C-t E</code> this pops up in my screen:</p>
-<p><img src="../../img/ratet/shot1.png" class="img-responsive" /></p>
+        <p>This is the third post about the <a href="http://www.nongnu.org/ratpoison/">Ratpoison window manager</a>.</p>
+<p>This one is not about productivity improvement, nor a <em>do-more-with-less</em> feature, but a playful way to achieve a pretty common task: SSH to my home lab.</p>
+<p>Remember that scene from <em>E.T.</em>, “ET phone home”? Well… When I hit <code>C-t E</code> this pops up in my screen:</p>
 <!--more-->
-<p>Then a new tmux window is opened with a SSH connection to my home lab.</p>
+<p><img src="../../img/ratet/shot1.png" /></p>
+<p>Then a new tmux window appears with an SSH connection to my home lab.</p>
 <p>This is achieved using the <em>xcowsay</em> program and its ability to use a custom image, in this case:</p>
-<p><img src="../../img/ratet/shot2.png" class="img-responsive" /></p>
+<p><img src="../../img/ratet/shot2.png" /></p>
 <p>Using the following Ratpoison configuration snippet:</p>
 <pre><code>bind E exec et_phone_home.sh</code></pre>
-<p>This snippet appears in my <code>.ratpoisonrc</code> file that you can read entirely <a href="https://github.com/alx741/dotfiles/blob/master/ratpoison/.ratpoisonrc">here</a>.</p>
-<p>The <code>et_phone_home.sh</code> script does the following:</p>
+<p>This snippet appears in my <a href="https://github.com/alx741/dotfiles/blob/master/ratpoison/.ratpoisonrc"><code>.ratpoisonrc</code> file</a>.</p>
+<p>The <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/et_phone_home.sh"><code>et_phone_home.sh</code> script</a> does the following:</p>
 <ul>
 <li>Show the E.T image with the “ET phone home…” message</li>
 <li>Switch to terminal emulator window</li>
 <li>Create a new tmux window with the SSH connection</li>
 </ul>
-<p>The ET image is displayed using <em>xcowsay</em>:</p>
+<p>The E.T. image is displayed using <em>xcowsay</em>:</p>
 <pre><code>xcowsay --image et.png &quot;ET phone home...&quot; --think</code></pre>
 <p>Then switch to the terminal emulator window (urxvt in my case):</p>
 <pre><code>ratpoison -c &quot;select urxvt&quot;</code></pre>
 <p>Or using the script I use for this purpose:</p>
-<p><a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/app_select.sh">app_select.sh</a> terminal</p>
+<pre><code>[app_select.sh](https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/app_select.sh) terminal</code></pre>
 <p>And finally create a new tmux window with the SSH connection:</p>
 <pre><code>tmux new-window -c ~ -n &quot;ssh_connection&quot; ssh $IP</code></pre>
-<p>The script depends on <em>xcowsay</em> And you can get it from my <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/et_phone_home.sh">Dotfiles</a>.</p>
-<p>To try it out be sure to define your Ratpoison bindings referencing the right location of the script.</p>
     </section>
 </article>
 
