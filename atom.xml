@@ -91,7 +91,7 @@ listeners:
 <p>Make sure to change the <code>port</code> option if you’re reverse forwarding from a fronted server like <em>Nginx</em> or <em>Apache</em> (more on this later).</p>
 <p>If you’re serving your application over SSL (and you should), uncomment the <em>HTTPS</em> section, then point the <code>key</code> option to your <code>privkey.pem</code> file, and the <code>certificate</code> option to your <code>fullchain.pem</code> file.</p>
 <p>The <code>env</code> option, keeps pairs of <em>keys</em> and <em>values</em>. The main set of values you’ll need here are your Database credentials. You’ve probably already configured database credentials in the <code>database</code> section in the <code>config/settings.yaml</code> file, so you’ll notice you need some environment variables like <code>MYSQL_USER</code>, <code>MYSQL_PASSWORD</code>, etc. If you’re using MySQL/MariaDB; Or <code>PGUSER</code>, <code>PGPASS</code>, etc. If you’re using PostgreSQL. You get the idea.</p>
-<p>This is how it will look like for a PostgreSQL Database where only the user and password are different between the development and production servers (be sure to keep the quotes!).</p>
+<p>This is how it will look like for a PostgreSQL Database where only the user and password are different between the development and production servers (be sure to keep the quotes).</p>
 <pre><code>env:
     PGUSER: &quot;user&quot;
     PGPASS: &quot;password&quot;</code></pre>
@@ -118,7 +118,7 @@ listeners:
 <pre><code>listeners:
     - host: &quot;*4&quot; # Listen on all IPv4 hosts
       port: 4321</code></pre>
-<p>Then you have a problem. If you try to connect to <code>http://blog.example.com</code> you’ll get the aforementioned error message, telling you that “127.0.0.1:4321, is not recognized”. It makes sense if you think about it, <em>Nginx</em> will redirect the connection to <code>127.0.0.1:4321</code> so <em>Keter</em> can handle it, but there is no application that responds to <code>127.0.0.1:4321</code>, and notice the port number here, as it is significant for <em>Keter</em> when trying to find a corresponding application!</p>
+<p>Then you have a problem. If you try to connect to <code>http://blog.example.com</code> you’ll get the aforementioned error message, telling you that “127.0.0.1:4321, is not recognized”. It makes sense if you think about it, <em>Nginx</em> will redirect the connection to <code>127.0.0.1:4321</code> so <em>Keter</em> can handle it, but there is no application that responds to <code>127.0.0.1:4321</code>, and notice the port number here, as it is significant for <em>Keter</em> when trying to find a corresponding application.</p>
 <p>To fix this, we must allow our application to respond to <code>127.0.0.1:4321</code> as well:</p>
 <pre><code>hosts:
     - blog.example.com

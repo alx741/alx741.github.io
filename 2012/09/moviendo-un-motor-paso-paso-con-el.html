@@ -32,24 +32,20 @@
 
         <div id="main" class="container is-max-desktop">
             <article class="post">
-    <h1 class="is-size-2 has-text-weight-medium has-text-left">Moviendo un motor paso a paso con el puerto paralelo sin integrados (Jugando con hardware)</h2>
+    <h1 class="is-size-2 has-text-weight-medium has-text-left">Moviendo un motor paso a paso con el puerto paralelo sin integrados</h2>
     <aside class="date has-text-left">September 30, 2012</aside>
 
     <section id="post-content">
-        <p><img src="../../img/stepper/thumbnail.png" id="thumbnail" /><br />
-</p>
-<p>Esta vez vamos a jugar un poco con hardware, específicamente lo que haremos será mover un motor <em>PAP</em> (paso a paso) a través de la PC haciendo uso únicamente de transistores y sin usar ningún circuito integrado.</p>
-<p>Para empezar es conveniente documentarse un poco del funcionamiento de este tipo de motores: http://es.wikipedia.org/wiki/Motor_paso_a_paso</p>
-<p>Sabemos que para hacer girar un motor PAP Bipolar tenemos que dar pulsos secuenciales en sus 4 cables (Que llamaremos A, B, C y D), pero alternando la polaridad, por lo que la circuito necesario se complica un poco, mientras que para los Unipolares este problema desaparece, así que empezaremos por jugar con los motores PAP Unipolares.</p>
+        <p>Para rotar un motor PAP Bipolar tenemos que dar pulsos secuenciales en sus 4 cables (Que llamaremos A, B, C y D), pero alternando la polaridad, por lo que la circuito necesario se complica un poco, mientras que para los Unipolares este problema desaparece, así que empezaremos con uno de estos.</p>
 <!--more-->
 <h1 id="unipolares">Unipolares</h1>
 <p>Esquema de conexión en el puerto paralelo:</p>
-<p><img src="../../img/stepper/scheme1.png" class="img-responsive" /></p>
-<p>Me parece que es bastante evidente, pero vale aclarar que los pines del esquema son los correspondientes del puerto paralelo, y que estamos usando el nibble bajo del byte del puerto; además se puede ver como los 2 cables <em>comunes</em> del motor unipolar se conectan al positivo de la fuente de alimentación, la cual corresponde con la tensión que requiere nuestro motor (en mi caso 9V), y los cables A,B,C y D serán conectados al negativo de la fuente al saturarse los transistores con la señal del puerto.</p>
-<p>Aquí se puede apreciar de color Rojo los 8 pines de datos del puerto, de los cuales hemos usado 4 (del pin 2 al 5) es decir 4 bits.</p>
-<p><img src="../../img/stepper/scheme2.jpg" class="img-responsive" /></p>
-<p>Aquí se pude observar el circuito que yo he montado y he usado un cable de puerto paralelo de una vieja impresora.</p>
-<p><img src="../../img/stepper/shot1.jpg" class="img-responsive" /> <img src="../../img/stepper/shot2.jpg" class="img-responsive" /> <img src="../../img/stepper/shot3.jpg" class="img-responsive" /></p>
+<p><img src="../../img/stepper/scheme1.png" /></p>
+<p>Merece la pena aclarar que los pines del esquema son los mismos correspondientes del puerto paralelo, y que estamos usando el nibble bajo del byte del puerto. Además, se puede ver como los 2 cables <em>comunes</em> del motor unipolar se conectan al positivo de la fuente de alimentación, la cual corresponde con la tensión que requiere nuestro motor (en mi caso 9V), y los cables A,B,C y D serán conectados al negativo de la fuente al saturarse los transistores con la señal del puerto.</p>
+<p>Aquí se puede apreciar en color rojo los 8 pines de datos del puerto, de los cuales hemos usado 4 (del pin 2 al 5) es decir 4 bits.</p>
+<p><img src="../../img/stepper/scheme2.jpg" /></p>
+<p>Aquí se pude observar el circuito montado y usando un cable de puerto paralelo de una vieja impresora.</p>
+<p><img src="../../img/stepper/thumbnail.png" /> <img src="../../img/stepper/shot1.jpg" /> <img src="../../img/stepper/shot2.jpg" /> <img src="../../img/stepper/shot3.jpg" /></p>
 <h2 id="código">Código</h2>
 <p>Con el circuito montado lo que necesitamos ahora es el código que saque las señales correctas en el orden correcto por el puerto paralelo para mover nuestro motor, y tomando en cuenta también los distintos modos a los que puede trabajar el motor (Simple Step, Double Step, Half Step).</p>
 <h3 id="secuencias">Secuencias</h3>
@@ -58,7 +54,7 @@
 <li>Double Step: <code>AB-BC-CD-DA</code></li>
 <li>Half Step: <code>A-AB-B-BC-C-CD-D-DA</code></li>
 </ul>
-<p>El código no pretende ser un ejemplo de elegancia ni mucho menos, pero funciona. Es solamente una clase la cual usaremos con otro código para controlar el motor.</p>
+<p>El código no pretende ser un ejemplo de elegancia ni mucho menos, pero funciona. Es solamente una clase, la cual usaremos con otro código para controlar el motor.</p>
 <p><a href="https://github.com/alx741/pp_steppers/blob/master/unipolar.cpp">Código en Github</a></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"> * =====================================================================================</span></span>
@@ -184,7 +180,7 @@
 <span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a>    current_step <span class="op">=</span> sequence<span class="op">;</span><span class="co">//colocamos el paso actual al principio de ka secuencia</span></span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a>    current_step <span class="op">=</span> sequence<span class="op">;</span><span class="co">//colocamos el paso actual al principio de la secuencia</span></span>
 <span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a></span>
@@ -296,10 +292,10 @@
 <span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h1 id="bipolares">Bipolares</h1>
 <p>Esquema de conexión en el puerto paralelo:</p>
-<p><img src="../../img/stepper/scheme3.png" class="img-responsive" /></p>
-<p>Aquí he implementado 2 <em>puentes H</em> de transistores para controlar ambas bobinas del motor alternando las polaridades usando nuevamente 4 pines de los 8 del puerto</p>
+<p><img src="../../img/stepper/scheme3.png" /></p>
+<p>Aquí he implementado 2 <em>puentes H</em> de transistores para controlar ambas bobinas del motor, alternando las polaridades usando nuevamente 4 pines de los 8 del puerto.</p>
 <h2 id="código-1">Código</h2>
-<p>En este caso el código es más simple puesto que en los motores PAP Bipolares no tenemos distintos modos de paso.</p>
+<p>En este caso el código es más simple ya que en los motores PAP Bipolares no tenemos distintos modos de paso.</p>
 <p><a href="https://github.com/alx741/pp_steppers/blob/master/bipolar.cpp">Código en Github</a></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"> * =====================================================================================</span></span>
@@ -443,8 +439,8 @@
 <span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h1 id="haciendo-girar-el-motor">Haciendo girar el motor</h1>
-<p>Ahora que tenemos las clases necesarias para mover el motor cuyo circuito ya tenemos montado en el puerto paralelo, usaremos un código que a su vez aproveche dichas clases para jugar con el motor.</p>
-<p>Así que ha manera de ejemplo yo he agregado la función <code>main()</code> para el fuente de <em>unipolar.cpp</em>, quedando así:</p>
+<p>Ahora que tenemos las clases necesarias para mover el motor, cuyo circuito ya tenemos montado en el puerto paralelo, usaremos un programa que a su vez aproveche dichas clases para jugar con el motor.</p>
+<p>Así que ha manera de ejemplo, he agregado la función <code>main()</code> para la fuente de <em>unipolar.cpp</em>, quedando así:</p>
 <p><a href="https://github.com/alx741/pp_steppers/blob/master/rotate.cpp">Código en Github</a></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"> * =====================================================================================</span></span>
