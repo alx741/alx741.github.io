@@ -45,7 +45,7 @@
 <ol type="1">
 <li><p>Completely port <em>Silly Bytes</em> to <em>Hakyll</em> and <em>GitHub pages</em>. Write every post in <em>markdown</em> only, and have them automatically generated.</p></li>
 <li><p>Further customize the design. While I’ve managed to get pretty far with Blogger’s custom CSS option, there are still some aspects that doesn’t quite fit what I want.</p></li>
-<li><p>Preserve all the links to previous posts</p></li>
+<li><p>Preserve all the links to previous posts.</p></li>
 </ol>
 <h1 id="the-initial-setup">The initial setup</h1>
 <p>We’ll strive to keep the old blog completely functional till the last moment when we finally change where the domain name points to.</p>
@@ -53,7 +53,7 @@
 <p>The <em>GitHub pages</em> <a href="https://help.github.com/articles/user-organization-and-project-pages/">naming convections</a> state that, in order to create a dedicated repo for a personal or organizational page, we must have a repository named <code>user.github.io</code> or <code>organization.github.io</code> respectively, this way GitHub will read and serve any <em>index</em> file in the repository root; This supposes a problem though, We want to keep our generated site inside a directory to keep compiled files separated from the sources.</p>
 <p>There are a couple of solutions for this, but they all use some Git branches trickery, juggling with a CI service, or both; It feels way to hacky to me, not saying that my solution is better, but it just fits better with the work flow I’m looking for.</p>
 <p><em>GitHub pages</em> offers project specific pages as well, those are served from a dedicated <code>docs</code> directory on it, so this is what we’re going to use instead.</p>
-<p>I’ve created a <code>sillybytes</code> <a href="https://github.com/sillybytes/sillybytes">repository</a> in the <code>sillybytes</code> organization. Then in <code>settings -&gt; GitHub Pages -&gt; Source</code> I’ve selected <code>master branch /docs folder</code> as the page source.</p>
+<p>I’ve created a <code>sillybytes</code> <a href="https://github.com/sillybytes/sillybytes">repository</a> in the <code>sillybytes</code> organization. Then in <code>settings → GitHub Pages → Source</code> I’ve selected <code>master branch /docs folder</code> as the page source.</p>
 <h2 id="hakyll-site">Hakyll site</h2>
 <p>For the content of that repository, this will create the initial Hakyll scaffolding:</p>
 <pre><code>$ hakyll-init sillybytes
@@ -96,7 +96,7 @@ $ stack build</code></pre>
 $ stack exec site rebuild</code></pre>
 <p>And the generated site will now be on <code>docs</code>.</p>
 <h2 id="deploying">Deploying</h2>
-<p>The deployment process boils down to regenerating the site:</p>
+<p>The deployment process consists of regenerating the site:</p>
 <pre><code>$ stack exec site rebuild</code></pre>
 <p>Committing the changes on <code>docs</code>:</p>
 <pre><code>$ git add docs
@@ -162,7 +162,7 @@ $ git commit -m &quot;Build&quot;</code></pre>
 <h1 id="the-migration">The migration</h1>
 <p>The only thing left is the actual migration by pointing the domain name to the new site.</p>
 <p>At this point a bigger problem arises. Given that we are serving the blog from <code>sillybytes/docs</code> we’ll need a <em>URL Redirect</em> record pointing to <code>sillybytes.github.io/sillybytes</code> rather than a <em>CNAME</em> to just <code>sillybytes.github.io</code>. If you’re fine with that, then you’re done.</p>
-<p>I really wanted a proper <em>CNAME</em> record though, so I had to change the set up a bit:</p>
+<p>I really wanted a proper <em>CNAME</em> record though, so I had to change the setup a bit:</p>
 <ul>
 <li>Have two repositories: <code>sillybytes</code> for the sources, and <code>sillybytes.github.io</code> for the generated page.</li>
 <li>A <em>deployment</em> consists of copying the content of the <code>docs</code> directory to the <code>sillybytes.github.io</code> repository.</li>

@@ -44,7 +44,7 @@
 <p>Various series are available: F0, F1, F2, …, F7. You can identify your chip series after the <em>STM32</em> prefix, I’m using a board with the “STM32F103C8” chip, so the series is <em>F1</em>.</p>
 <h2 id="hardware">Hardware</h2>
 <p>These chips are relatively inexpensive and widely available, often mounted in convenient development or breakout boards.</p>
-<p>Individual chips can be bought from electronic stores like Digi-Key or Mouser, but for the current purpose making your own PCB to mount them is quite inconvenient.</p>
+<p>Individual chips can be bought from electronic stores like Digi-Key or Mouser. For the current purpose though, making your own PCB to mount them is quite inconvenient.</p>
 <p>The other option is to get one of the nice development boards ST offers:</p>
 <ul>
 <li><a href="http://www.st.com/content/st_com/en/products/evaluation-tools/product-evaluation-tools/mcu-eval-tools/stm32-mcu-eval-tools/stm32-mcu-eval-boards.html?querycriteria=productId=LN1199">Eval</a></li>
@@ -52,7 +52,7 @@
 <li><a href="http://www.st.com/content/st_com/en/products/evaluation-tools/product-evaluation-tools/mcu-eval-tools/stm32-mcu-eval-tools/stm32-mcu-discovery-kits.html?querycriteria=productId=LN1848">Discovery</a></li>
 </ul>
 <p><img src="../../img/stm32/shot1.png" /></p>
-<p>Although these are cheap and amazing, we can go even cheaper with some breakout boards available on Ebay and others. You can get a STM32F103 chip in a nice board for less than $5 USD.</p>
+<p>Although these are cheap and amazing, we can go even cheaper with some breakout boards available on Ebay and others. You can get a STM32F103 chip in a nice board for less than $ 5 USD.</p>
 <p><img src="../../img/stm32/shot2.png" /> <img src="../../img/stm32/shot3.png" /></p>
 <h3 id="programmer">Programmer</h3>
 <p>STM32 chips are programmed using a <a href="https://en.wikipedia.org/wiki/ARM_architecture">ST-LINK</a> device, which is an in-circuit debugger and programmer that interfaces with the chip using JTAG or Serial Wire Debugging (<a href="http://www.arm.com/products/system-ip/debug-trace/coresight-soc-components/serial-wire-debug.php">SWD</a>). This is similar to the USBASP for AVR or the PICkit for PIC.</p>
@@ -80,7 +80,7 @@
 <li>arm-none-eabi-binutils</li>
 <li>stlink</li>
 </ul>
-<p>You should be able to install them all of from your distribution repositories. But in case you can’t find <code>stlink</code> on them, get it from the <a href="https://github.com/texane/stlink">GitHub repository</a>.</p>
+<p>You should be able to install them all of from your distribution repositories. In case you can’t find <code>stlink</code> on them, get it from the <a href="https://github.com/texane/stlink">GitHub repository</a>.</p>
 <p>The <code>stlink</code> package provides these executables:</p>
 <ul>
 <li><code>st-flash</code> - Write and Read a program from the target chip</li>

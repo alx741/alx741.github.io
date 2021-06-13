@@ -57,7 +57,7 @@
 <p>Tony Hoare himself calls <em>NULL</em> the <a href="https://en.wikipedia.org/wiki/Nullable_type#Compared_with_null_pointers">“Billion-Dollar mistake”</a>.</p>
 <h2 id="useless-pointers">Useless pointers</h2>
 <p>So java is cluttered with pointers, useless pointers. In <em>C/C++</em> pointers are one of the most powerful constructs, they allow you to get closer to the machine and control its actions with scalpel precision; In Java you get your programs to crash due to <em>NULL</em> pointers while getting no benefit in exchange.</p>
-<p>But pointers in Java percolate up in even more creative ways, take for instance the Equality comparison problem: When you perform equality comparison <code>==</code> what you’re actually comparing is <em>pointer equality</em>, not <em>value equality</em> for which you need a special method <code>equal()</code>, this is a low level language trait that, unlike other low level languages, won’t put the power on the programmers hand but just the burden.</p>
+<p>Pointers in Java percolate up in even more creative ways, take for instance the Equality comparison problem: When you perform equality comparison <code>==</code> what you’re actually comparing is <em>pointer equality</em>, not <em>value equality</em> for which you need a special method <code>equal()</code>, this is a low level language trait that, unlike other low level languages, won’t put the power on the programmers hand but just the burden.</p>
 <h1 id="the-bad-the-worst-and-the-ugly">The bad, the worst and the ugly</h1>
 <p>Java has a lot of additional traits that make it not only a low level language in disguise, but also in my opinion a bad language in general.</p>
 <p><img src="../img/javawrong/good_bad_ugly.jpg" class="img-responsive" /></p>
@@ -70,7 +70,7 @@
 <p>And it gets progressively uglier like that. Java’s way of dealing with this to some extent, is the empty <em>diamond</em> operator <code>&lt;&gt;</code>, so instead we could write:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Vector</span><span class="op">&lt;</span><span class="bu">Vector</span><span class="op">&lt;</span><span class="bu">Integer</span><span class="op">&gt;&gt;</span> vector <span class="op">=</span> <span class="kw">new</span> <span class="bu">Vector</span><span class="op">&lt;&gt;();</span></span></code></pre></div>
 <p>But that’s pretty much as far as it gets. <em>C++11</em> on the other hand has the <code>auto</code> keyword to let the compiler do what compilers do best: mechanical, repetitive, deterministic tasks; Type inference is one of those tasks.</p>
-<p>Every time, everywhere a time annotation is needed, you provide one only if it’s absolutely necessary to avoid ambiguity, otherwise, just use <code>auto</code> and let the compiler do it for you.</p>
+<p>Every time, everywhere a time annotation is needed, you provide one only if it’s necessary to avoid ambiguity, otherwise, just use <code>auto</code> and let the compiler do it for you.</p>
 <h2 id="resource-un-safety">Resource un-safety</h2>
 <p>One of the main Java selling points is <em>Memory Safety</em>, you see, in C you have to free your memory with <code>free()</code> in the right place, at the right time after every memory allocation with <code>malloc()</code> and friends. If you forget to free your memory you’ll have memory leaks, if you free it twice, or if you free it at the wrong time you’ll have a segmentation fault.</p>
 <p>Java on the other hand leverages the Garbage Collector to do it for you, the problem is, this works for memory only!</p>
@@ -113,13 +113,13 @@
 <p>Java is both fast and slow, depending on what language you compare it with. When you compare it with higher level languages, Java is reasonably faster, but when you compare it with C or C++, Java is miserably slow and heavy on resources.</p>
 <p>Taking into account that Java is more of a low level language rather than a high level one as we have seen, it should be compared to its closes cousins C and C++, in which case you inevitably conclude that it’s just slow, very slow.</p>
 <h1 id="java-sits-in-a-dead-spot">Java sits in a dead spot</h1>
-<p>As we’ve seen, Java is mostly a low level programming language that doesn’t really provide the benefits of one, while at the same time it pretends to be a high level language and fails miserably.</p>
+<p>As we’ve seen, Java is mostly a low level programming language that doesn’t really provide the benefits of one, while it pretends to be a high level language and fails miserably.</p>
 <p>This leads to the current situation:</p>
 <pre><code>| C | C++ | Rust | Java | Ruby | Python | PHP | Perl | Earlang | OCaml | Haskell
 
 |--- Low Level --| ???  |---                  High Level                    ---|</code></pre>
 <h2 id="java-is-a-bad-low-level-language">Java is a bad low level language</h2>
-<p>From the low level languages extreme, Java can perfectly be replaced by C++, Rust and others. Both of these languages provide low level capabilities, and are good for systems programming, while at the same time providing better high level traits like C++’s RAII or Rust’s statically guaranteed safety. Both of these languages will avoid Java’s <code>NullPointerException</code> and resource leaks.</p>
+<p>From the low level languages extreme, Java can perfectly be replaced by C++, Rust and others. Both of these languages provide low level capabilities, and are good for systems programming, while providing better high level traits like C++’s RAII or Rust’s statically guaranteed safety. Both of these languages will avoid Java’s <code>NullPointerException</code> and resource leaks.</p>
 <h2 id="java-is-a-bad-high-level-language">Java is a bad high level language</h2>
 <p>From the high level languages extreme, Java can be replaced by pretty much <strong>any</strong> other language. Almost any of them will provide a nicer syntax, better and more powerful ways of abstraction, better terseness, better tooling, better everything.</p>
 <p>This makes Java completely replaceable by any other language, it serves no particular purpose and is particularly good at nothing.</p>
