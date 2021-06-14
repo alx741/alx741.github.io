@@ -15,23 +15,28 @@
     <body>
 
         <header>
-            <navbar class="navbar" role="navigation" aria-label="main navigation">
-                <div class="navbar-brand">
-                    <a class="navbar-item" href="./index.html">
-                        <b id="logo">Silly Bytes</b>
-                    </a>
-                </div>
 
-                <div class="navbar-end">
-                    <a href="./index.html" class="navbar-item">Home</a>
-                    <a href="./about.html" class="navbar-item">About</a>
-                </div>
-            </navbar>
-        </header>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="./index.html">
+                <b id="logo">Silly Bytes</b>
+            </a>
+        </div>
+
+        <div id="sillybytesnavbar" class="navbar-menu">
+            <div class="navbar-end">
+                <a href="./index.html" class="navbar-item">Home</a>
+                <a href="./about.html" class="navbar-item">About</a>
+            </div>
+        </div>
+    </nav>
+
+</header>
 
 
         <div id="main" class="container is-max-desktop">
-            <section id="about-content">
+            <div class="container is-fluid">
+                <section id="about-content">
     <h1 id="about-me">About me</h1>
 <p>Hey! I’m Daniel Campoverde, a systems engineer based in Cuenca, Ecuador.</p>
 <p>I develop full stack. Really mean that: from hardware design &amp; firmware development, to systems programming, all the way up to web &amp; mobile development, machine &amp; deep learning, pure functional programming and everything in between. I just love everything that can go <em>beep beep boop</em>: electronics, computers, software, and also like my maths and stats as well.</p>
@@ -73,12 +78,7 @@
 <p><a href="https://sillybytes.net">Silly Bytes</a> by Daniel Campoverde C. is licensed under a <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">Creative Commons Attribution-ShareAlike 3.0 Unported License</a></p>
 </section>
 
-
-            <nav class="pagination is-medium">
-                
-
-                
-            </nav>
+            </div>
         </div>
 
     </body>
