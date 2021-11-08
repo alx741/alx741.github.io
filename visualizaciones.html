@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang"es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no,
+        initial-scalable=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <link rel="stylesheet" href="main.css">
+
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.4.2.min.js"></script>
+
+    <title>Visualizaciones de Datos</title>
+</head>
+<body>
+
+
+    <h1>Timeline</h1>
+    <h2>Linea Temporal del nacimiento de sistemas operativos tipo Unix</h2>
+    <img src="img/timeline.png">
+
+    <p>
+        Funte de datos: <a href="https://en.wikipedia.org/wiki/History_of_Unix">History of Unix, Wikipedia</a>
+    </p>
+
+
+
+    <hr>
+
+    <h1>Circular Dendrogram</h1>
+    <h2>Dendrograma circular de géneros literarios de libros populares</h2>
+
+    <svg></svg>
+
+    <script>
+        var data = {
+            name: 'Géneros',
+            children: [
+
+                { name: 'Fantasía',
+                children: [
+
+                    { name: 'Historia alternativa',
+                        children: [
+                            { name: 'Jonathan Strange & Mr Norrell'},
+                            { name: 'Wild Cards I'},
+                            { name: 'His Majesty\'s Dragon'},
+                        ] },
+
+                    { name: 'Historia infantil',
+                        children: [
+                            { name: 'The Lion, the Witch and the Wardrobe'},
+                            { name: 'A Wrinkle in Time'},
+                            { name: 'The Phantom Tollbooth'},
+                        ] },
+                ],
+                },
+
+
+                { name: 'Terror',
+                children: [
+
+                    { name: 'Corporal',
+                        children: [
+                            { name: 'Annihilation'},
+                            { name: 'The Girl With All the Gifts'},
+                            { name: 'The Troop'},
+                        ] },
+
+                    { name: 'Gotico',
+                        children: [
+                            { name: 'Dracula'},
+                            { name: 'The Picture of Dorian Gray'},
+                            { name: 'Wuthering Heights'},
+                        ] },
+                ],
+                },
+
+
+                { name: 'Misterio',
+                children: [
+
+                    { name: 'Detective',
+                        children: [
+                            { name: 'A Willing Murder'},
+                            { name: 'Small Town Spin'},
+                            { name: 'Prose and Cons'},
+                        ] },
+
+                    { name: 'Paranormal',
+                        children: [
+                            { name: 'Final Shadows'},
+                            { name: 'Secondhand Spirits: A Witchcraft Mystery'},
+                            { name: 'Better Read Than Dead'},
+                        ] },
+                ],
+                },
+
+
+                { name: 'Romance',
+                children: [
+
+                    { name: 'Millonarios',
+                        children: [
+                            { name: 'Fifty Shades of Grey'},
+                            { name: 'The Marriage Bargain'},
+                            { name: 'Bared to You'},
+                        ] },
+
+                    { name: 'Adulto Joven',
+                        children: [
+                            { name: 'King of Scars'},
+                            { name: 'Be The Girl'},
+                            { name: 'Even if I Fall'},
+                        ] },
+                ],
+                },
+
+
+                { name: 'Ciencia Ficción',
+                children: [
+
+                    { name: 'Aliens',
+                        children: [
+                            { name: 'Galactic Pot-Healer'},
+                            { name: 'Foreigner'},
+                            { name: 'The Mount'},
+                        ] },
+
+                    { name: 'Cyberpunk',
+                        children: [
+                            { name: 'Neuromancer'},
+                            { name: 'Snow Crash'},
+                            { name: 'Software'},
+                        ] },
+
+                    { name: 'Distopía',
+                        children: [
+                            { name: 'Fahrenheit 451'},
+                            { name: 'Do Androids Dream of Electric Sheep?'},
+                            { name: 'A Clockwork Orange'},
+                        ] },
+                ],
+                },
+
+
+                { name: 'Suspenso',
+                children: [
+
+                    { name: 'Acción',
+                        children: [
+                            { name: 'The Killer Collective'},
+                            { name: 'The Cleaner'},
+                            { name: 'Freedom Road'},
+                        ] },
+
+                    { name: 'Crimen',
+                        children: [
+                            { name: 'Connections in Death'},
+                            { name: 'The Wedding Guest'},
+                            { name: 'A Merciful Fate'},
+                        ] },
+
+                    { name: 'Desastre',
+                        children: [
+                            { name: 'The Virus'},
+                            { name: 'the Last Tribe'},
+                            { name: 'Quake'},
+                        ] },
+                ],
+                },
+
+            ],
+        };
+
+        const width = 750,
+            height = 750,
+            radius = width / 2;
+
+        const tree = d3.cluster().size([2 * Math.PI, radius - 100]);
+
+        const root = tree(
+            d3
+            .hierarchy(data)
+            .sort((a, b) => d3.ascending(a.data.name, b.data.name))
+        );
+
+        const svg = d3
+            .select('svg')
+            .attr('width', width)
+            .attr('height', height)
+            .append('g')
+            .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
+
+        svg
+            .append('g')
+            .attr('fill', 'none')
+            .attr('stroke', '#555')
+            .attr('stroke-opacity', 0.4)
+            .attr('stroke-width', 1.5)
+            .selectAll('path')
+            .data(root.links())
+            .join('path')
+            .attr(
+            'd',
+            d3
+                .linkRadial()
+                .angle((d) => d.x)
+                .radius((d) => d.y)
+            );
+
+        svg
+            .append('g')
+            .selectAll('circle')
+            .data(root.descendants())
+            .join('circle')
+            .attr(
+            'transform',
+            (d) => `
+            rotate(${(d.x * 180) / Math.PI - 90})
+            translate(${d.y},0)
+        `
+            )
+            .attr('fill', (d) => (d.children ? '#555' : '#999'))
+            .attr('r', 2.5);
+
+        svg
+            .append('g')
+            .attr('font-family', 'sans-serif')
+            .attr('font-size', 10)
+            .attr('stroke-linejoin', 'round')
+            .attr('stroke-width', 3)
+            .selectAll('text')
+            .data(root.descendants())
+            .join('text')
+            .attr(
+            'transform',
+            (d) => `
+            rotate(${(d.x * 180) / Math.PI - 90})
+            translate(${d.y},0)
+            rotate(${d.x >= Math.PI ? 180 : 0})
+        `
+            )
+            .attr('dy', '0.31em')
+            .attr('x', (d) => (d.x < Math.PI === !d.children ? 6 : -6))
+            .attr('text-anchor', (d) =>
+            d.x < Math.PI === !d.children ? 'start' : 'end'
+            )
+            .text((d) => d.data.name)
+            .clone(true)
+            .lower()
+            .attr('stroke', 'white');
+    </script>
+
+    <p>
+        Funte de datos: <a href="https://www.servicescape.com/blog/144-genres-and-subgenres-for-fiction-writing">Thompson, Tonya. 2019. 144 Genres and Subgenres for Fiction Writing</a>
+    </p>
+
+
+    <hr>
+
+    <h1>Contour Plot</h1>
+    <h2>Gráfico de contorno de la cantidad de respuestas a los Tweets de Joe Biden comparado con likes y retweets</h2>
+
+    <div id="plot" style="width:800px;height:500px;"></div>
+
+    <script>
+        PLOT = document.getElementById('plot');
+
+        var data = [ {
+        x: [23546, 9277, 19, 39, 25021, 2106, 1028, 43271, 129, 33434, 49227, 183500, 909690, 63781, 11385, 1923, 10432, 54519, 8, 25, 25813, 40, 14, 2319, 38, 1590, 10632, 85322, 3663, 68160, 5229, 9692, 807, 3, 3210, 3856, 38019, 13923, 2135, 184, 18307, 34301, 1640, 8286, 11474, 17335, 1334092, 37885, 50572, 40, 1540, 1902, 2521, 451512, 168198, 38005, 464, 4744, 7565, 15, 19041, 68052, 7204, 2304, 137, 1658, 4145, 4, 37367, 28154, 35584, 45839, 12090, 39347, 1660, 31305, 50500, 2068, 2737, 20205, 6711, 11749, 197797, 986, 2926, 65199, 2467, 1589, 12165, 4153, 581, 3099, 9989, 428, 4866, 670281, 49335, 24501, 56, 15825],
+        y: [5550, 2159, 107, 123, 3390, 420, 242, 8933, 1049, 7286, 8603, 19940, 134675, 9370, 3336, 391, 1653, 22419, 26, 203, 4541, 160, 52, 450, 123, 230, 1973, 13205, 890, 14074, 940, 1933, 472, 9, 263, 829, 10176, 3543, 407, 67, 3542, 6339, 349, 893, 1778, 5628, 219653, 9305, 10179, 266, 220, 704, 537, 66780, 22859, 7554, 200, 785, 2198, 99, 4188, 21324, 1908, 505, 31, 222, 1148, 15, 7612, 4631, 5061, 6775, 3221, 10404, 369, 6322, 12729, 311, 228, 6432, 1094, 2129, 24528, 285, 988, 9603, 440, 312, 3307, 1190, 163, 447, 2696, 87, 948, 81696, 10223, 3386, 119, 3356],
+        z: [2000, 447, 17, 20, 2979, 333, 131, 1274, 94, 2407, 3935, 14333, 27376, 3345, 2438, 265, 2966, 3492, 10, 40, 2232, 35, 25, 217, 103, 69, 487, 3018, 103, 5574, 704, 827, 147, 5, 80, 392, 3058, 572, 227, 3, 542, 544, 602, 356, 1657, 2157, 44558, 3461, 3845, 75, 243, 141, 54, 18992, 6502, 857, 114, 58, 415, 39, 665, 3516, 957, 419, 22, 192, 3056, 7, 1635, 3437, 1555, 2101, 772, 4008, 202, 4800, 2229, 104, 172, 544, 354, 2912, 25568, 148, 315, 1739, 443, 251, 1399, 273, 89, 144, 446, 69, 797, 29968, 3941, 1963, 22, 1002],
+        type: 'contour',
+            }
+        ];
+
+        var layout = {
+            title: 'Respuestas a los tweets de Joe Biden',
+            xaxis: { title: 'Likes'},
+            yaxis: { title: 'Retweets'}
+        }
+
+        Plotly.newPlot(PLOT, data, layout);
+    </script>
+
+    <p>
+        Funte de datos: <a href="https://www.kaggle.com/rohanrao/joe-biden-tweets">Vopani. 2020. Joe Biden Tweets (2007-2020). Kaggle</a>
+    </p>
+
+
+</body>
+</html>
