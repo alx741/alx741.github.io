@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang"es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no,
+        initial-scalable=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <link rel="stylesheet" href="main.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.2/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
+
+    <title></title>
+</head>
+<body>
+
+    <div>
+        <div id='date'>
+            <span id='year'></span>
+            <br>
+            <span id='month'></span>
+        </div>
+
+        <canvas id="chart"></canvas>
+        <span id='ylabel'>Volumen de Transacciones (Millones)</span>
+        <span id='xlabel'>Monedas en Circulación (Millones)</span>
+    </div>
+
+    <div>
+        <button autofocus onclick="next()">Avanzar</button>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="main.js"></script>
+
+</body>
+</html>
