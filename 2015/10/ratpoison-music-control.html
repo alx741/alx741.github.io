@@ -42,11 +42,19 @@
     <aside class="date has-text-left">October 23, 2015</aside>
 
     <section id="post-content">
-        <p>This is the first of a series of posts about the <a href="http://www.nongnu.org/ratpoison/">Ratpoison window manager</a>.</p>
-<p>Ratpoison’s ability to bind custom keys and run external scripts affords us some pretty neat flexibility. Let’s start with music and go further in future posts.</p>
-<p>Some people use a graphical music players like <em>Amarok</em> or just play some <em>Youtube</em> videos, others prefer text players like <em>MOC</em> or <em>CMUS</em>, but we can reach the apex of flexibility by using a music daemon like <em>MPD</em>. Although you can reach out for a client like <em>MPC</em>, <em>Ncmpcpp</em> or <em>Vimpc</em>, you still need to interact with its interface, and that means briefly interrupting your workflow to control your music. We can do better.</p>
+        <p>This is the first of a series of posts about the <a href="http://www.nongnu.org/ratpoison/">Ratpoison window
+manager</a>.</p>
+<p>Ratpoison’s ability to bind custom keys and run external scripts affords us some
+pretty neat flexibility. Let’s start with music and go further in future posts.</p>
+<p>Some people use a graphical music players like <em>Amarok</em> or just play some
+<em>Youtube</em> videos, others prefer text players like <em>MOC</em> or <em>CMUS</em>, but we can
+reach the apex of flexibility by using a music daemon like <em>MPD</em>. Although you
+can reach out for a client like <em>MPC</em>, <em>Ncmpcpp</em> or <em>Vimpc</em>, you still need to
+interact with its interface, and that means briefly interrupting your workflow
+to control your music. We can do better.</p>
 <!--more-->
-<p>Using Ratpoison’s key mapping functionality, we can define a sub-map bounded to a master key, so using the key <code>m</code> a range of music commands becomes available:</p>
+<p>Using Ratpoison’s key mapping functionality, we can define a sub-map bounded to
+a master key, so using the key <code>m</code> a range of music commands becomes available:</p>
 <pre><code>newkmap music
 definekey music space exec ~/music_control.sh toggle
 definekey music l exec ~/music_control.sh select_song
@@ -66,8 +74,10 @@ definekey music y exec ~/music_control.sh playback single
 definekey music c exec ~/music_control.sh playback consume
 definekey music question help music
 bind m readkey music</code></pre>
-<p>This snippet appears in my <a href="https://github.com/alx741/dotfiles/blob/master/ratpoison/.ratpoisonrc"><code>.ratpoisonrc</code> file</a>.</p>
-<p>Here we define a keymap <code>music</code> and, at the end, bind it to the <code>m</code> key, so we can get to it with:</p>
+<p>This snippet appears in my <a href="https://github.com/alx741/dotfiles/blob/master/ratpoison/.ratpoisonrc"><code>.ratpoisonrc</code>
+file</a>.</p>
+<p>Here we define a keymap <code>music</code> and, at the end, bind it to the <code>m</code> key, so we
+can get to it with:</p>
 <pre><code>C-t m</code></pre>
 <p>Note that <code>C-t</code> is Ratpoison’s default escape sequence.</p>
 <p>And then pressing the respective music command:</p>
@@ -88,13 +98,16 @@ z       Toggle -random-
 y       Toggle -single-
 c       Toggle -consume-
 ?       Print binded keys help</code></pre>
-<p>So, for instance, we could visualize the current playing song, and modes state with:</p>
+<p>So, for instance, we could visualize the current playing song, and modes state
+with:</p>
 <pre><code>C-t m i</code></pre>
 <p><img src="../../img/ratmusic/shot.png" /></p>
 <p>Here, the first line represents the playing status:</p>
 <pre><code>[|]  Paused
 [&gt;]  Playing</code></pre>
-<p>The second line is the song currently playing/paused. The third line is the song number in the playlist and the time played/remaining. The fourth line displays the modes state.</p>
+<p>The second line is the song currently playing/paused. The third line is the song
+number in the playlist and the time played/remaining. The fourth line displays
+the modes state.</p>
     </section>
 </article>
 

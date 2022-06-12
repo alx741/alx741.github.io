@@ -42,27 +42,51 @@
     <aside class="date has-text-left">October 14, 2012</aside>
 
     <section id="post-content">
-        <p>Hoy he visto en una repisa el último auto RC de mi infancia que aún quedaba sin desarmar para convertir en algo diferente. Su destino fue adaptarlo para poder controlarlo desde la PC usando las teclas de dirección del teclado.</p>
+        <p>Hoy he visto en una repisa el último auto RC de mi infancia que aún quedaba sin
+desarmar para convertir en algo diferente. Su destino fue adaptarlo para poder
+controlarlo desde la PC usando las teclas de dirección del teclado.</p>
 <!--more-->
 <h1 id="hardware">Hardware</h1>
-<p>En la imagen pueden ver al auto y su control, el cual tomaremos y desarmaremos para sacar por completo su placa de circuito.</p>
+<p>En la imagen pueden ver al auto y su control, el cual tomaremos y desarmaremos
+para sacar por completo su placa de circuito.</p>
 <p>Desarmamos y extraemos la circuitería del juguete en cuestión:</p>
 <p><img src="../../img/rccar/shot1.jpg" /></p>
 <p><img src="../../img/rccar/shot2.jpg" /></p>
-<p>Soldamos cables en los puntos de alimentación, y sobre cada uno de los 4 contactos de los actuadores metálicos.</p>
-<p><img src="../../img/rccar/shot3.jpg" /> <img src="../../img/rccar/shot4.jpg" /> <img src="../../img/rccar/shot5.jpg" /></p>
-<p>Tomaremos la señal emitida por el puerto paralelo de la PC para saturar un transistor, el cual “unirá” a través de estos cables los contactos del interruptor del control, que a su vez accionara el auto.</p>
+<p>Soldamos cables en los puntos de alimentación, y sobre cada uno de los 4
+contactos de los actuadores metálicos.</p>
+<p><img src="../../img/rccar/shot3.jpg" />
+<img src="../../img/rccar/shot4.jpg" />
+<img src="../../img/rccar/shot5.jpg" /></p>
+<p>Tomaremos la señal emitida por el puerto paralelo de la PC para saturar un
+transistor, el cual “unirá” a través de estos cables los contactos del
+interruptor del control, que a su vez accionara el auto.</p>
 <p>El esquema de conexión es el siguiente:</p>
 <p><img src="../../img/rccar/scheme1.png" /></p>
 <p>El montaje en <em>protoboard</em> luce así:</p>
-<p><img src="../../img/rccar/shot6.jpg" /> <img src="../../img/rccar/shot7.jpg" /></p>
-<p>La alimentación la he tomado también del puerto paralelo como se puede ver, pero lo ideal sería usar una batería de 9V separada, para potenciar mejor la placa y tener un mayor alcance, para hacer esto debemos dejar conectado el cable a masa (PIN 25 del puerto) y retirar simplemente la conexión del PIN 1 para conectar la batería (tanto positivo como negativo).</p>
-<p>Aquí se ve como conecté en el puerto paralelo (usé el cable de una vieja impresora para facilitarme el acceso al puerto, pero se puede hacer directamente en el puerto del mainboard):</p>
+<p><img src="../../img/rccar/shot6.jpg" />
+<img src="../../img/rccar/shot7.jpg" /></p>
+<p>La alimentación la he tomado también del puerto paralelo como se puede ver, pero
+lo ideal sería usar una batería de 9V separada, para potenciar mejor la placa y
+tener un mayor alcance, para hacer esto debemos dejar conectado el cable a masa
+(PIN 25 del puerto) y retirar simplemente la conexión del PIN 1 para conectar la
+batería (tanto positivo como negativo).</p>
+<p>Aquí se ve como conecté en el puerto paralelo (usé el cable de una vieja
+impresora para facilitarme el acceso al puerto, pero se puede hacer directamente
+en el puerto del mainboard):</p>
 <p><img src="../../img/rccar/shot8.jpg" /></p>
 <h1 id="software">Software</h1>
-<p>Este auto RC en particular funciona accionando cada par de ruedas laterales de forma independiente, es decir: para cada movimiento es necesario accionar simultáneamente 2 interruptores en la combinación adecuada. Para dar marcha hacia adelante o atrás hay que accionar simultáneamente 2 interruptores del control, para girar se accionan 2 interruptores opuestos, de forma que un par de ruedas giren en un sentido y el otro par de ruedas en el sentido opuesto haciendo así girar el auto.</p>
-<p>El software que escribí hace trabajar a el auto de esta forma. Si se quiere usar un auto cuya dirección es distinta se debe adaptar el código.</p>
-<p>Además, el software está escrito para sistemas <em>Unix, yo específicamente he usado una distribución GNU/Linux. Recuerda asegurarte de tener instalada la librería </em>ncurses* en tu sistema.</p>
+<p>Este auto RC en particular funciona accionando cada par de ruedas laterales de
+forma independiente, es decir: para cada movimiento es necesario accionar
+simultáneamente 2 interruptores en la combinación adecuada. Para dar marcha
+hacia adelante o atrás hay que accionar simultáneamente 2 interruptores del
+control, para girar se accionan 2 interruptores opuestos, de forma que un par de
+ruedas giren en un sentido y el otro par de ruedas en el sentido opuesto
+haciendo así girar el auto.</p>
+<p>El software que escribí hace trabajar a el auto de esta forma. Si se quiere usar
+un auto cuya dirección es distinta se debe adaptar el código.</p>
+<p>Además, el software está escrito para sistemas <em>Unix, yo específicamente he
+usado una distribución GNU/Linux. Recuerda asegurarte de tener instalada la
+librería </em>ncurses* en tu sistema.</p>
 <p><a href="https://github.com/alx741/rc_car_pc_control">Código en Github</a></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"> * ============================================================================</span></span>
@@ -134,13 +158,21 @@
 <span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
 <span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<p>He usado la librería <em>ncurses</em> para manejar las pulsaciones de teclado, sin embargo lo precario del código y la falta de investigación sobre la librería me ha obligado a usar un mecanismo de <em>parada</em>, así pues si pulsamos la tecla dirección <em>adelante</em> el auto avanzará y no se detendrá hasta que pulsemos la barra espaciadora, y lo mismo sucederá con el resto de teclas. Quizás solucione este inconveniente usando SDL en otro momento.</p>
-<p>Nos ubicamos en el directorio del código y compilamos con (asegúrate de obtener el <em>makefile</em> del repositorio en Github):</p>
+<p>He usado la librería <em>ncurses</em> para manejar las pulsaciones de teclado, sin
+embargo lo precario del código y la falta de investigación sobre la librería me
+ha obligado a usar un mecanismo de <em>parada</em>, así pues si pulsamos la tecla
+dirección <em>adelante</em> el auto avanzará y no se detendrá hasta que pulsemos la
+barra espaciadora, y lo mismo sucederá con el resto de teclas. Quizás solucione
+este inconveniente usando SDL en otro momento.</p>
+<p>Nos ubicamos en el directorio del código y compilamos con (asegúrate
+de obtener el <em>makefile</em> del repositorio en Github):</p>
 <pre><code>$ make</code></pre>
 <p>Ejecutamos como root:</p>
 <pre><code># ./rc</code></pre>
-<p>El programa esperará por nuestras pulsaciones en el teclado y sacara los bits pertinentes por el puerto paralelo, accionando el auto RC.</p>
-<p>Como vemos en el código, lo correcto para finalizar el programa es presionar la tecla <code>Esc</code> para que la terminal vuelva a la normalidad.</p>
+<p>El programa esperará por nuestras pulsaciones en el teclado y sacara los bits
+pertinentes por el puerto paralelo, accionando el auto RC.</p>
+<p>Como vemos en el código, lo correcto para finalizar el programa es presionar la
+tecla <code>Esc</code> para que la terminal vuelva a la normalidad.</p>
 <p>Aquí un video de el auto en acción:</p>
 <div class="video embed-responsive embed-responsive-16by9">
 <iframe src="https://www.youtube.com/embed/mINnOYImaY8" frameborder="0" allowfullscreen>

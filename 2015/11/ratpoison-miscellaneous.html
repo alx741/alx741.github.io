@@ -42,7 +42,8 @@
     <aside class="date has-text-left">November  7, 2015</aside>
 
     <section id="post-content">
-        <p>This is the fifth post about the <a href="http://www.nongnu.org/ratpoison/">Ratpoison window manager</a>.</p>
+        <p>This is the fifth post about the <a href="http://www.nongnu.org/ratpoison/">Ratpoison window
+manager</a>.</p>
 <p>Here are a few extra things I use in Ratpoison to make it comfy.</p>
 <!--more-->
 <h1 id="volume-control">Volume Control</h1>
@@ -62,7 +63,9 @@ bind backslash  exec volume_control.sh mute</code></pre>
 }       Set to maximum value (100%)
 |       Set to medium value (50%)
 /       Prompt for volume value</code></pre>
-<p>This is achieved using the <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/volume_control.sh"><code>volume_control.sh</code> script</a>. It depends on <em>amixer</em>.</p>
+<p>This is achieved using the <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/volume_control.sh"><code>volume_control.sh</code>
+script</a>.
+It depends on <em>amixer</em>.</p>
 <h1 id="vi-like-bindings">Vi like bindings</h1>
 <p>Using this Ratpoison configuration we can make it behave more like vi:</p>
 <pre><code>bind j focusdown
@@ -75,29 +78,36 @@ bind K exchangeup
 bind L exchangeright
 bind s vsplit
 bind v hsplit</code></pre>
-<p>Now we can move between splits with <code>{h,j,k,l}</code>, swap splits with <code>{H,J,K,L}</code> and create horizontal and vertical splits with <code>{s,v}</code> respectively.</p>
+<p>Now we can move between splits with <code>{h,j,k,l}</code>, swap splits with <code>{H,J,K,L}</code>
+and create horizontal and vertical splits with <code>{s,v}</code> respectively.</p>
 <h1 id="fast-application-switching">Fast application switching</h1>
-<p>Using this Ratpoison configuration we can bind some keys dedicated to fast switch to the most common applications we use, <em>urxvt</em> and <em>firefox</em> in my case:</p>
+<p>Using this Ratpoison configuration we can bind some keys dedicated to fast
+switch to the most common applications we use, <em>urxvt</em> and <em>firefox</em> in my case:</p>
 <pre><code>bind c exec app_select.sh terminal
 bind e exec app_select.sh firefox</code></pre>
 <p>We can now fast switch to them with:</p>
-<p><code>C-s e</code> Firefox (mnemonic ‘explorer’) <code>C-s c</code> Terminal emulator</p>
-<p>This is achieved using the <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/app_select.sh"><code>app_select.sh</code> script</a>.</p>
+<p><code>C-s e</code> Firefox (mnemonic ‘explorer’)
+<code>C-s c</code> Terminal emulator</p>
+<p>This is achieved using the <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/app_select.sh"><code>app_select.sh</code>
+script</a>.</p>
 <h1 id="interactive-window-selection">Interactive window selection</h1>
 <p>Using this Ratpoison configuration:</p>
 <pre><code>bind w exec window_select.sh</code></pre>
 <p>We can interactively select and change windows from a menu:</p>
 <p><img src="../../img/ratmisc/shot.png" /></p>
-<p>This is achieved using the <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/window_select.sh"><code>window_select</code> script</a>.</p>
+<p>This is achieved using the <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/window_select.sh"><code>window_select</code>
+script</a>.</p>
 <h1 id="screenshots">Screenshots</h1>
 <p>Using this Ratpoison configuration:</p>
 <pre><code>bind at exec scrot -u -z -q 100 -e 'mv $f ~/.shots/'</code></pre>
-<p>We can take screenshots with <code>C-t @</code> that will be saved in <code>~/.shots</code>. This is achieved using <em>scrot</em>.</p>
+<p>We can take screenshots with <code>C-t @</code> that will be saved in <code>~/.shots</code>. This is
+achieved using <em>scrot</em>.</p>
 <h1 id="fast-calculator">Fast calculator</h1>
 <p>Using this Ratpoison configuration:</p>
 <pre><code>bind C exec calculator.sh</code></pre>
 <p>We can get a prompt for arithmetic operations.</p>
-<p>This is achieved using the <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/calculator.sh"><code>calculator.sh</code> script</a>.</p>
+<p>This is achieved using the <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/calculator.sh"><code>calculator.sh</code>
+script</a>.</p>
 <h1 id="backlight-control">Backlight control</h1>
 <p>Using this Ratpoison configuration:</p>
 <pre><code>bind parenright exec backlight_control.sh inc
@@ -109,8 +119,10 @@ bind S exec xset dpms force off</code></pre>
 (     Decrement backlight
 _     Toggle between full and medium light
 S     Turn off the screen</code></pre>
-<p>This is achieved using the <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/backlight_control.sh"><code>backlight_control.sh</code> script</a>.</p>
-<p>You can find a lot of additional handy stuff in my <a href="https://github.com/alx741/dotfiles/blob/master/ratpoison/.ratpoisonrc">.ratpoisonrc file</a>.</p>
+<p>This is achieved using the <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/backlight_control.sh"><code>backlight_control.sh</code>
+script</a>.</p>
+<p>You can find a lot of additional handy stuff in my <a href="https://github.com/alx741/dotfiles/blob/master/ratpoison/.ratpoisonrc">.ratpoisonrc
+file</a>.</p>
     </section>
 </article>
 

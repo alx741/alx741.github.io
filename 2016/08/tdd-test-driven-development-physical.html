@@ -44,21 +44,40 @@
     <section id="post-content">
         <p>Robert C. Martin <em>(Uncle Bob)</em> said in a talk:</p>
 <blockquote>
-<p>Imagine you have a button that you can push, it will test your code and if everything is working a green light will come up, but if something is broken, a red light will come up […]</p>
+<p>Imagine you have a button that you can push, it will test your code and if
+everything is working a green light will come up, but if something is broken,
+a red light will come up […]</p>
 </blockquote>
-<p>He was of course talking about TDD. It got me inspired to build this little tool.</p>
-<p>Hardware schematics, firmware and host software is available in <a href="https://github.com/alx741/tdd_traffic-light">this GitHub repository</a>. Along with information on how to compile and use.</p>
+<p>He was of course talking about TDD. It got me inspired to build this little
+tool.</p>
+<p>Hardware schematics, firmware and host software is available in <a href="https://github.com/alx741/tdd_traffic-light">this GitHub
+repository</a>. Along with information
+on how to compile and use.</p>
 <blockquote>
-<p>This is a physical toy traffic light to be used with software development TDD (and testing in general) tools. It will not boost your productivity nor make you a better programmer or TDD practitioner, but it looks cool :)</p>
+<p>This is a physical toy traffic light to be used with software development TDD
+(and testing in general) tools. It will not boost your productivity nor make
+you a better programmer or TDD practitioner, but it looks cool :)</p>
 </blockquote>
 <!--more-->
 <h1 id="hardware">Hardware</h1>
-<p>The <em>atmega328p</em> AVR chip is very popular and cheap, so much so, that chances are high you got it with the Arduino bootloader, which gets in the way as we can perfectly use the internal oscillator at 1Mhz instead of an external 16Mhz crystal. Fix this by changing the fuses:</p>
+<p>The <em>atmega328p</em> AVR chip is very popular and cheap, so much so, that chances
+are high you got it with the Arduino bootloader, which gets in the way as we can
+perfectly use the internal oscillator at 1Mhz instead of an external 16Mhz
+crystal. Fix this by changing the fuses:</p>
 <pre class="shell"><code># avrdude -p m328p -c usbasp -U lfuse:w:0x62:m -U hfuse:w:0xd9:m</code></pre>
-<p>The circuit is simple enough to mount in some perfboard. Additionally, I added some small neodymium magnets in the back for mounting purposes.</p>
-<p><img src="../../img/tddlight/img1.jpg" class="img-responsive" /> <img src="../../img/tddlight/img2.jpg" class="img-responsive" /> <img src="../../img/tddlight/img3.jpg" class="img-responsive" /> <img src="../../img/tddlight/img4.jpg" class="img-responsive" /> <img src="../../img/tddlight/img5.jpg" class="img-responsive" /> <img src="../../img/tddlight/img6.jpg" class="img-responsive" /> <img src="../../img/tddlight/img7.jpg" class="img-responsive" /> <img src="../../img/tddlight/img8.jpg" class="img-responsive" /></p>
+<p>The circuit is simple enough to mount in some perfboard. Additionally, I added
+some small neodymium magnets in the back for mounting purposes.</p>
+<p><img src="../../img/tddlight/img1.jpg" class="img-responsive" />
+<img src="../../img/tddlight/img2.jpg" class="img-responsive" />
+<img src="../../img/tddlight/img3.jpg" class="img-responsive" />
+<img src="../../img/tddlight/img4.jpg" class="img-responsive" />
+<img src="../../img/tddlight/img5.jpg" class="img-responsive" />
+<img src="../../img/tddlight/img6.jpg" class="img-responsive" />
+<img src="../../img/tddlight/img7.jpg" class="img-responsive" />
+<img src="../../img/tddlight/img8.jpg" class="img-responsive" /></p>
 <h1 id="software">Software</h1>
-<p>The firmware is no more than some UART boilerplate with a <code>4800</code> baud rate so that it’s stable at 1MHz.</p>
+<p>The firmware is no more than some UART boilerplate with a <code>4800</code> baud rate so
+that it’s stable at 1MHz.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;avr/io.h&gt;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;util/delay.h&gt;</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -71,7 +90,8 @@
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">((</span>UCSR0A <span class="op">&amp;</span> <span class="op">(</span><span class="dv">1</span> <span class="op">&lt;&lt;</span> RXC0<span class="op">))</span> <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{}</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> UDR0<span class="op">;</span></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<p>The main loop will wait for a command <code>r</code>, <code>y</code> or <code>g</code> and turn on the pin corresponding to the color LED.</p>
+<p>The main loop will wait for a command <code>r</code>, <code>y</code> or <code>g</code> and turn on the pin
+corresponding to the color LED.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;avr/io.h&gt;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;util/delay.h&gt;</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -126,7 +146,8 @@
 <span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    COM_FD <span class="op">=</span> fd<span class="op">;</span></span></code></pre></div>
 <p>With that, controlling the LEDs is as simple as:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>write<span class="op">(</span>COM_FD<span class="op">,</span> <span class="st">&quot;r&quot;</span><span class="op">,</span> <span class="dv">1</span><span class="op">);</span></span></code></pre></div>
-<p>Find more information about how to use it in the <a href="https://github.com/alx741/tdd_traffic-light">GitHub repository</a>.</p>
+<p>Find more information about how to use it in the <a href="https://github.com/alx741/tdd_traffic-light">GitHub
+repository</a>.</p>
     </section>
 </article>
 

@@ -43,11 +43,24 @@
 
     <section id="post-content">
         <h1 id="everything-is-an-object">Everything is an object</h1>
-<p>No, not everything is an object. Java code is riddled with actions disguised as objects: <em>Mutator</em>, <em>Traverser</em>, <em>Factory</em>, <em>Maker</em>, <em>Creator</em>, <em>Generator</em>, <em>Mediator</em>. So you don’t <em>mutate</em>, <em>traverse</em>, <em>make</em>, <em>create</em> or <em>generate</em> anything in a straight forward way, instead you force into existence an object that can perform the required action. This is one of the primary sources of clumsiness and messiness in Java, it causes <a href="http://www.j-paine.org/objects/objects/objects.html">astonishment and improper behaviors that you are forced to get used to</a>.</p>
-<p>A reasonable language has <em>OOP</em> as a <strong>feature</strong>, to instead force it everywhere makes everything unnecessarily convoluted. As Steve Yegge puts it in his article: <a href="http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html">Execution in kingdom of nouns</a>, verbs should not be second class citizens.</p>
+<p>No, not everything is an object. Java code is riddled with actions disguised as
+objects: <em>Mutator</em>, <em>Traverser</em>, <em>Factory</em>, <em>Maker</em>, <em>Creator</em>, <em>Generator</em>,
+<em>Mediator</em>. So you don’t <em>mutate</em>, <em>traverse</em>, <em>make</em>, <em>create</em> or <em>generate</em>
+anything in a straight forward way, instead you force into existence an object
+that can perform the required action. This is one of the primary sources of
+clumsiness and messiness in Java, it causes <a href="http://www.j-paine.org/objects/objects/objects.html">astonishment and improper behaviors
+that you are forced to get used
+to</a>.</p>
+<p>A reasonable language has <em>OOP</em> as a <strong>feature</strong>, to instead force it everywhere
+makes everything unnecessarily convoluted. As Steve Yegge puts it in his
+article: <a href="http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html">Execution in kingdom of
+nouns</a>,
+verbs should not be second class citizens.</p>
 <!--more-->
 <h1 id="s.o.s">S.O.S</h1>
-<p>Picture this way to familiar scenario: you’re trying to compile your program, but <em>javac</em> is yelling at you with a completely incomprehensible error, so you head to your search engine of choice hoping to get some answers. And you do:</p>
+<p>Picture this way to familiar scenario: you’re trying to compile your program,
+but <em>javac</em> is yelling at you with a completely incomprehensible error, so you
+head to your search engine of choice hoping to get some answers. And you do:</p>
 <ul>
 <li>Click that button over there</li>
 <li>A pop-up widow will appear</li>
@@ -57,12 +70,22 @@
 <li>Click “OK”</li>
 <li>Finally, restart the IDE</li>
 </ul>
-<p>It would seem that almost every possible problem you encounter with Java is somehow related with the IDE, except you might be using a completely different IDE, or not be using an IDE at all, and yet somehow, solutions outside of one seem to be alien in the Java world.</p>
+<p>It would seem that almost every possible problem you encounter with Java is
+somehow related with the IDE, except you might be using a completely different
+IDE, or not be using an IDE at all, and yet somehow, solutions outside of one
+seem to be alien in the Java world.</p>
 <h1 id="use-and-ide">Use and IDE</h1>
-<p>James Gosling (aka Java’s father) says: <a href="http://www.computerworld.com.au/article/207799/don_t_use_emacs_says_java_father/">Don’t use Emacs</a>.</p>
-<p>If you’re writing Java, and you’re not using an IDE but a good text editor instead, you’re going to have some hard times. This symptom, however tells us more about the language than it says about de editors.</p>
-<p>The language needs, and is dependent upon, a gigantic and bloated program to be usable. The IDE is the support to hold the crumbling parts, and the afterthought to try and amend the language shortcomings.</p>
-<p>In the sense, it’s almost as if the language is not appropriate for direct human use, instead, it requires an extra layer, an interface (the IDE) between the human and the language.</p>
+<p>James Gosling (aka Java’s father) says: <a href="http://www.computerworld.com.au/article/207799/don_t_use_emacs_says_java_father/">Don’t use
+Emacs</a>.</p>
+<p>If you’re writing Java, and you’re not using an IDE but a good text editor
+instead, you’re going to have some hard times. This symptom, however tells us
+more about the language than it says about de editors.</p>
+<p>The language needs, and is dependent upon, a gigantic and bloated program to be
+usable. The IDE is the support to hold the crumbling parts, and the afterthought
+to try and amend the language shortcomings.</p>
+<p>In the sense, it’s almost as if the language is not appropriate for direct human
+use, instead, it requires an extra layer, an interface (the IDE) between the
+human and the language.</p>
     </section>
 </article>
 

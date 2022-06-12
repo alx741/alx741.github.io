@@ -42,25 +42,44 @@
     <aside class="date has-text-left">September 30, 2012</aside>
 
     <section id="post-content">
-        <p>Para rotar un motor PAP Bipolar tenemos que dar pulsos secuenciales en sus 4 cables (Que llamaremos A, B, C y D), pero alternando la polaridad, por lo que la circuito necesario se complica un poco, mientras que para los Unipolares este problema desaparece, así que empezaremos con uno de estos.</p>
+        <p>Para rotar un motor PAP Bipolar tenemos que dar pulsos
+secuenciales en sus 4 cables (Que llamaremos A, B, C y D), pero alternando la
+polaridad, por lo que la circuito necesario se complica un poco, mientras que
+para los Unipolares este problema desaparece, así que empezaremos con uno de
+estos.</p>
 <!--more-->
 <h1 id="unipolares">Unipolares</h1>
 <p>Esquema de conexión en el puerto paralelo:</p>
 <p><img src="../../img/stepper/scheme1.png" /></p>
-<p>Merece la pena aclarar que los pines del esquema son los mismos correspondientes del puerto paralelo, y que estamos usando el nibble bajo del byte del puerto. Además, se puede ver como los 2 cables <em>comunes</em> del motor unipolar se conectan al positivo de la fuente de alimentación, la cual corresponde con la tensión que requiere nuestro motor (en mi caso 9V), y los cables A,B,C y D serán conectados al negativo de la fuente al saturarse los transistores con la señal del puerto.</p>
-<p>Aquí se puede apreciar en color rojo los 8 pines de datos del puerto, de los cuales hemos usado 4 (del pin 2 al 5) es decir 4 bits.</p>
+<p>Merece la pena aclarar que los pines del esquema son los mismos correspondientes
+del puerto paralelo, y que estamos usando el nibble bajo del byte del puerto.
+Además, se puede ver como los 2 cables <em>comunes</em> del motor unipolar se conectan
+al positivo de la fuente de alimentación, la cual corresponde con la tensión que
+requiere nuestro motor (en mi caso 9V), y los cables A,B,C y D serán conectados
+al negativo de la fuente al saturarse los transistores con la señal del puerto.</p>
+<p>Aquí se puede apreciar en color rojo los 8 pines de datos del puerto, de los
+cuales hemos usado 4 (del pin 2 al 5) es decir 4 bits.</p>
 <p><img src="../../img/stepper/scheme2.jpg" /></p>
-<p>Aquí se pude observar el circuito montado y usando un cable de puerto paralelo de una vieja impresora.</p>
-<p><img src="../../img/stepper/thumbnail.png" /> <img src="../../img/stepper/shot1.jpg" /> <img src="../../img/stepper/shot2.jpg" /> <img src="../../img/stepper/shot3.jpg" /></p>
+<p>Aquí se pude observar el circuito montado y usando un cable de
+puerto paralelo de una vieja impresora.</p>
+<p><img src="../../img/stepper/thumbnail.png" />
+<img src="../../img/stepper/shot1.jpg" />
+<img src="../../img/stepper/shot2.jpg" />
+<img src="../../img/stepper/shot3.jpg" /></p>
 <h2 id="código">Código</h2>
-<p>Con el circuito montado lo que necesitamos ahora es el código que saque las señales correctas en el orden correcto por el puerto paralelo para mover nuestro motor, y tomando en cuenta también los distintos modos a los que puede trabajar el motor (Simple Step, Double Step, Half Step).</p>
+<p>Con el circuito montado lo que necesitamos ahora es el código que saque las
+señales correctas en el orden correcto por el puerto paralelo para mover nuestro
+motor, y tomando en cuenta también los distintos modos a los que puede trabajar
+el motor (Simple Step, Double Step, Half Step).</p>
 <h3 id="secuencias">Secuencias</h3>
 <ul>
 <li>Simple Step: <code>A-B-C-D</code></li>
 <li>Double Step: <code>AB-BC-CD-DA</code></li>
 <li>Half Step: <code>A-AB-B-BC-C-CD-D-DA</code></li>
 </ul>
-<p>El código no pretende ser un ejemplo de elegancia ni mucho menos, pero funciona. Es solamente una clase, la cual usaremos con otro código para controlar el motor.</p>
+<p>El código no pretende ser un ejemplo de elegancia ni mucho menos, pero
+funciona. Es solamente una clase, la cual usaremos con otro código para
+controlar el motor.</p>
 <p><a href="https://github.com/alx741/pp_steppers/blob/master/unipolar.cpp">Código en Github</a></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"> * =====================================================================================</span></span>
@@ -299,10 +318,14 @@
 <h1 id="bipolares">Bipolares</h1>
 <p>Esquema de conexión en el puerto paralelo:</p>
 <p><img src="../../img/stepper/scheme3.png" /></p>
-<p>Aquí he implementado 2 <em>puentes H</em> de transistores para controlar ambas bobinas del motor, alternando las polaridades usando nuevamente 4 pines de los 8 del puerto.</p>
+<p>Aquí he implementado 2 <em>puentes H</em> de transistores para controlar ambas bobinas
+del motor, alternando las polaridades usando nuevamente 4 pines de los 8 del
+puerto.</p>
 <h2 id="código-1">Código</h2>
-<p>En este caso el código es más simple ya que en los motores PAP Bipolares no tenemos distintos modos de paso.</p>
-<p><a href="https://github.com/alx741/pp_steppers/blob/master/bipolar.cpp">Código en Github</a></p>
+<p>En este caso el código es más simple ya que en los motores PAP Bipolares no
+tenemos distintos modos de paso.</p>
+<p><a href="https://github.com/alx741/pp_steppers/blob/master/bipolar.cpp">Código en
+Github</a></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"> * =====================================================================================</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"> *</span></span>
@@ -445,8 +468,11 @@
 <span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h1 id="haciendo-girar-el-motor">Haciendo girar el motor</h1>
-<p>Ahora que tenemos las clases necesarias para mover el motor, cuyo circuito ya tenemos montado en el puerto paralelo, usaremos un programa que a su vez aproveche dichas clases para jugar con el motor.</p>
-<p>Así que ha manera de ejemplo, he agregado la función <code>main()</code> para la fuente de <em>unipolar.cpp</em>, quedando así:</p>
+<p>Ahora que tenemos las clases necesarias para mover el motor, cuyo circuito ya
+tenemos montado en el puerto paralelo, usaremos un programa que a su vez
+aproveche dichas clases para jugar con el motor.</p>
+<p>Así que ha manera de ejemplo, he agregado la función <code>main()</code> para la fuente de
+<em>unipolar.cpp</em>, quedando así:</p>
 <p><a href="https://github.com/alx741/pp_steppers/blob/master/rotate.cpp">Código en Github</a></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"> * =====================================================================================</span></span>
@@ -503,7 +529,8 @@
 <span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>    motor<span class="op">.</span>rotate<span class="op">(</span>valor<span class="op">,</span>direccion<span class="op">);</span></span>
 <span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
 <span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<p>Una vez compilado con <code>g++ unipolar.cpp -o rotate</code>, lo ejecutamos obteniendo este resultado:</p>
+<p>Una vez compilado con <code>g++ unipolar.cpp -o rotate</code>, lo ejecutamos obteniendo
+este resultado:</p>
 <div class="video embed-responsive embed-responsive-16by9">
 <iframe src="https://www.youtube.com/embed/3VUYgr4zwLU" frameborder="0" allowfullscreen>
 </iframe>

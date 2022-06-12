@@ -42,10 +42,20 @@
     <aside class="date has-text-left">April 11, 2017</aside>
 
     <section id="post-content">
-        <p>As a user of the <a href="http://www.yesodweb.com/">Yesod</a> framework, I’ve come to know and love the <a href="https://www.stackage.org/haddock/lts-8.4/shakespeare-2.0.12.1/Text-Cassius.html#v:cassius">Cassius</a> CSS templating language, although its reliance on Template Haskell is meant to fit better with Yesod’s needs and makes it a bit cumbersome to use everywhere else, I still like the templating language itself and its features a lot. That’s why I used it for styles generation in <a href="https://sillybytes.net">Silly Bytes</a> together with <a href="https://jaspervdj.be/hakyll/">Hakyll</a>. In this post I will describe the process.</p>
+        <p>As a user of the <a href="http://www.yesodweb.com/">Yesod</a> framework, I’ve come to know
+and love the
+<a href="https://www.stackage.org/haddock/lts-8.4/shakespeare-2.0.12.1/Text-Cassius.html#v:cassius">Cassius</a>
+CSS templating language, although its reliance on Template Haskell is meant to
+fit better with Yesod’s needs and makes it a bit cumbersome to use everywhere
+else, I still like the templating language itself and its features a lot. That’s
+why I used it for styles generation in <a href="https://sillybytes.net">Silly Bytes</a>
+together with <a href="https://jaspervdj.be/hakyll/">Hakyll</a>. In this post I will
+describe the process.</p>
 <!--more-->
 <h1 id="cassius-files">Cassius files</h1>
-<p>Our <code>.cassius</code> files will live inside the <code>css</code> directory, together with a <code>Gen.hs</code> Haskell module that will take the <em>Cassius</em> sources and compile them to <em>CSS</em>:</p>
+<p>Our <code>.cassius</code> files will live inside the <code>css</code> directory, together with a
+<code>Gen.hs</code> Haskell module that will take the <em>Cassius</em> sources and compile them to
+<em>CSS</em>:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ot">{-# LANGUAGE TemplateHaskell #-}</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">module</span> <span class="dt">Gen</span> <span class="kw">where</span></span>
@@ -62,10 +72,16 @@
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>def <span class="ot">=</span> <span class="op">$</span>(cassiusFile <span class="st">&quot;default.cassius&quot;</span>) ()</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>post <span class="ot">=</span> <span class="op">$</span>(cassiusFile <span class="st">&quot;post.cassius&quot;</span>) ()</span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>postList <span class="ot">=</span> <span class="op">$</span>(cassiusFile <span class="st">&quot;post-list.cassius&quot;</span>) ()</span></code></pre></div>
-<p>This module, when executed (<code>runhaskell Gen.hs</code>), will compile the <em>Cassius</em> sources <code>default.cassius</code>, <code>post.cassius</code> and <code>post-list.cassius</code> to the corresponding <em>CSS</em> files that the -untouched- <em>CSS</em> rule in <code>site.hs</code> will take and use in the generated site.</p>
+<p>This module, when executed (<code>runhaskell Gen.hs</code>), will compile the <em>Cassius</em>
+sources <code>default.cassius</code>, <code>post.cassius</code> and <code>post-list.cassius</code> to the
+corresponding <em>CSS</em> files that the -untouched- <em>CSS</em> rule in <code>site.hs</code> will
+take and use in the generated site.</p>
 <h1 id="compiling">Compiling</h1>
-<p>The <em>Cassius</em> compilation doesn’t happen when we <code>stack exec site build</code>, as we haven’t defined a rule, nor a compiler for them in <code>site.hs</code> and we won’t, because the Template Haskell requirements mess things up.</p>
-<p>So instead we are going to have a <code>Makefile</code> that will watch for changes in all the <code>css/*.cassius</code> files and perform the recompilation by executing <code>Gen.hs</code>:</p>
+<p>The <em>Cassius</em> compilation doesn’t happen when we <code>stack exec site build</code>, as we
+haven’t defined a rule, nor a compiler for them in <code>site.hs</code> and we won’t,
+because the Template Haskell requirements mess things up.</p>
+<p>So instead we are going to have a <code>Makefile</code> that will watch for changes in all
+the <code>css/*.cassius</code> files and perform the recompilation by executing <code>Gen.hs</code>:</p>
 <pre class="make"><code>.PHONY: build test css
 
 build: css
@@ -77,7 +93,9 @@ css:
 
 watch:
 	while true; do make css; inotifywait -qre close_write css/*.cassius; done</code></pre>
-<p>This way, we can execute <code>make watch</code> and it will recompile the <em>Cassius</em> files when needed. A normal <code>stack exec site watch</code> can be running alongside to take care of everything else.</p>
+<p>This way, we can execute <code>make watch</code> and it will recompile the <em>Cassius</em> files
+when needed. A normal <code>stack exec site watch</code> can be running alongside to take
+care of everything else.</p>
     </section>
 </article>
 

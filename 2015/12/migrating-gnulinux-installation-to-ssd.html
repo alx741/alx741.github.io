@@ -42,7 +42,9 @@
     <aside class="date has-text-left">December 17, 2015</aside>
 
     <section id="post-content">
-        <p>When your new SSD arrives you’re probably very exited and want to boost your system’s speed, but don’t quite feel like reinstalling your whole system on it, so let’s migrate it instead.</p>
+        <p>When your new SSD arrives you’re probably very exited and want to boost your
+system’s speed, but don’t quite feel like reinstalling your whole system on it,
+so let’s migrate it instead.</p>
 <p>Note: I use Gentoo, but this is perfectly applicable to every distribution.</p>
 <p>My current HDD partitioning scheme is like this:</p>
 <pre><code>Device     Boot     Start       End   Sectors   Size Id Type
@@ -67,11 +69,17 @@
 <li><em>/dev/sda2</em> is the GNU/Linux system installation</li>
 <li><em>/dev/sda3</em> is my /home partition (with just the more important data)</li>
 </ul>
-<p>This way I can keep my system as it was before, and the new (smaller) <em>/home</em> will contain the data of daily use. Other stuff like videos, music, books, etc, will remain in the old HDD.</p>
+<p>This way I can keep my system as it was before, and the new (smaller) <em>/home</em>
+will contain the data of daily use. Other stuff like videos, music, books, etc,
+will remain in the old HDD.</p>
 <h1 id="backup">Backup</h1>
-<p>DO NOT delete, nor modify the old HDD partition structure before the system is ported AND tested in the SSD, you don’t want to lose your system or data, do you?</p>
-<p>While playing with your storage devices is a good idea to keep a completely separate and isolated backup so your data will survive if you mess something up.</p>
-<p>I made a backup for my <code>/home</code> and <code>/</code> partitions using a 1TB external USB drive like so:</p>
+<p>DO NOT delete, nor modify the old HDD partition structure before the system is
+ported AND tested in the SSD, you don’t want to lose your system or data, do
+you?</p>
+<p>While playing with your storage devices is a good idea to keep a completely
+separate and isolated backup so your data will survive if you mess something up.</p>
+<p>I made a backup for my <code>/home</code> and <code>/</code> partitions using a 1TB external USB drive
+like so:</p>
 <pre><code>/mnt/
 |
 +-- alx/        # /home/alx
@@ -83,15 +91,19 @@
 # rsync -av --progress /home/axl /mnt/alx/
 # rsync -av --progress / /mnt/gentoo/ --exclude /mnt --exclude /home \
     --exclude /proc --exclude /tmp --exclude /sys --exclude /dev</code></pre>
-<p>The <code>-a</code> option will preserve all the meta data your system needs, use it! Now put this hard drive safe in a drawer and don’t touch it until you are completely sure you haven’t lose any data in the process.</p>
+<p>The <code>-a</code> option will preserve all the meta data your system needs, use it! Now
+put this hard drive safe in a drawer and don’t touch it until you are completely
+sure you haven’t lose any data in the process.</p>
 <h1 id="partitioning">Partitioning</h1>
-<p>You can connect the SSD to another SATA port if you’re using a desktop, but can also use a SATA-USB converter.</p>
+<p>You can connect the SSD to another SATA port if you’re using a desktop, but can
+also use a SATA-USB converter.</p>
 <p>Using <em>cfdisk</em> the resulting partitioning is:</p>
 <pre><code>Device     Boot  Size Id Type
 /dev/sdb1            1G 82 Linux swap / Solaris
 /dev/sdb2  *        70G 83 Linux
 /dev/sdb3         40.8G 83 Linux</code></pre>
-<p>Note that the last partition is actually 40GB and not 50GB, the reason is that the SSD turns out to have <em>~112GB</em> of usable storage.</p>
+<p>Note that the last partition is actually 40GB and not 50GB, the reason is that
+the SSD turns out to have <em>~112GB</em> of usable storage.</p>
 <p>Now give the partitions the appropriate file systems:</p>
 <pre><code># mkswap /dev/sdb1
 # mkfs.ext4 /dev/sdb2
@@ -103,7 +115,8 @@
 # rsync -av --progress / /mnt/ --exclude /mnt \
     --exclude /home --exclude /proc --exclude /tmp \
     --exclude /sys --exclude /dev</code></pre>
-<p>Now mount the new <code>/home</code> and copy all the information you need into it selectively. Remember to copy all the dotfiles:</p>
+<p>Now mount the new <code>/home</code> and copy all the information you need into it
+selectively. Remember to copy all the dotfiles:</p>
 <pre><code># umount /mnt
 # mount /dev/sdb3 /mnt
 # cp -av /home/alx/.* /mnt

@@ -42,37 +42,55 @@
     <aside class="date has-text-left">August 10, 2013</aside>
 
     <section id="post-content">
-        <p>Para esto usaremos el protocolo ICSP, que es especifico de los microcontroladores <em>PIC</em> de <em>Microchip</em>. Este protocolo nos permitirá comunicarnos desde la computadora con el uC para entregarle el binario del programa que queremos almacene en su memoria.</p>
-<p>Primero necesitamos algo de hardware para conectar la PC y el uC, y el software que implemente debidamente el protocolo ICSP, y que nos permita llevar a cabo el cometido.</p>
+        <p>Para esto usaremos el protocolo ICSP, que es especifico de los
+microcontroladores <em>PIC</em> de <em>Microchip</em>. Este protocolo nos permitirá
+comunicarnos desde la computadora con el uC para entregarle el binario del
+programa que queremos almacene en su memoria.</p>
+<p>Primero necesitamos algo de hardware para conectar la PC y el uC, y el software
+que implemente debidamente el protocolo ICSP, y que nos permita llevar a cabo el
+cometido.</p>
 <!--more-->
 <h1 id="hardware">Hardware</h1>
 <p>El protocolo ICSP emplea 5 pines del uC, que son:</p>
 <ul>
 <li><code>Vss</code> Masa o <em>GND</em></li>
 <li><code>Vdd</code> Alimentación de +5V</li>
-<li><code>Vpp</code> Alimentación de +13.2V. En la mayoría de los casos nos bastará con +12V. Se usa para indicarle al uC que empezaremos a comunicarnos con él mediante ICSP</li>
+<li><code>Vpp</code> Alimentación de +13.2V. En la mayoría de los casos nos bastará con +12V.
+Se usa para indicarle al uC que empezaremos a comunicarnos con él mediante
+ICSP</li>
 <li><code>Data</code> Señal de datos de entrada y salida, <em>TTL</em></li>
 <li><code>Clock</code> Señal de reloj, <em>TTL</em></li>
 </ul>
-<p>El hardware hace uso del puerto paralelo de la PC, seguramente esto será un impedimento para muchos, pero existe una gran posibilidad de que si andas en estas cosas, tendrás un PC viejito que tenga puerto paralelo, la ventaja es que el hardware que construiremos es muy barato y simple.</p>
+<p>El hardware hace uso del puerto paralelo de la PC, seguramente esto será un
+impedimento para muchos, pero existe una gran posibilidad de que si andas en
+estas cosas, tendrás un PC viejito que tenga puerto paralelo, la ventaja es que
+el hardware que construiremos es muy barato y simple.</p>
 <p><img src="../../img/pic/scheme1.png" /></p>
 <ol type="1">
-<li>En el diseño los pines verde etiquetados como <code>PPx</code> (donde <em>x</em> es un número) corresponden con los pines del puerto paralelo. Así, el pin <code>PP2</code> se conecta en el pin <em>#2</em> del puerto paralelo.</li>
+<li>En el diseño los pines verde etiquetados como <code>PPx</code> (donde <em>x</em> es un número)
+corresponden con los pines del puerto paralelo. Así, el pin <code>PP2</code> se conecta en
+el pin <em>#2</em> del puerto paralelo.</li>
 </ol>
 <p><img src="../../img/pic/scheme2.png" /></p>
 <ol start="2" type="1">
-<li>En el diseño los pines que terminan en un pequeño circulo y que tienen una etiqueta son los cables que irán finalmente a los pines ICSP del uC (PIC) [Vpp,Vdd,Data,Clock].</li>
+<li>En el diseño los pines que terminan en un pequeño circulo y que tienen una
+etiqueta son los cables que irán finalmente a los pines ICSP del uC (PIC)
+[Vpp,Vdd,Data,Clock].</li>
 </ol>
 <p><img src="../../img/pic/shot3.jpg" class="img-responsive" /></p>
 <p><img src="../../img/pic/shot5.jpg" class="img-responsive" /></p>
 <h1 id="software">Software</h1>
-<p>Ahora bien, tenemos el hardware construido y debidamente conectado. Necesitamos el software (para sistemas *unix, GNU/Linux en nuestro caso) para interactuar con el uC (PIC) mediante el protocolo ICSP.</p>
-<p>Para esto usaremos el software <em>Odyssey</em> que podemos descargar de aquí: <a href="https://github.com/alx741/odyssey">Odyssey</a></p>
+<p>Ahora bien, tenemos el hardware construido y debidamente conectado. Necesitamos
+el software (para sistemas *unix, GNU/Linux en nuestro caso) para interactuar
+con el uC (PIC) mediante el protocolo ICSP.</p>
+<p>Para esto usaremos el software <em>Odyssey</em> que podemos descargar de aquí:
+<a href="https://github.com/alx741/odyssey">Odyssey</a></p>
 <p>Lo instalamos:</p>
 <pre><code>$ tar -jxvf odyssey-0.6.tar.bz2 $ cd odyssey-0.6 $ ./configure
 $ make
 $ sudo make install</code></pre>
-<p>Necesitamos indicarle a <em>Odyssey</em> que drivers usar, que puerto usar, que pines del puerto usar, he incluso si la lógica de algún pin está invertida:</p>
+<p>Necesitamos indicarle a <em>Odyssey</em> que drivers usar, que puerto usar, que pines
+del puerto usar, he incluso si la lógica de algún pin está invertida:</p>
 <pre><code>[io]
 driver=linuxppdev
 port=0
@@ -85,19 +103,26 @@ rdatapin=10
 wdatapin=2
 vpppin=-6
 pwrpin=4  # No usado en este circuito</code></pre>
-<p>Lo guardamos en un fichero de nombre <code>odyssey.conf</code>, y lo ubicamos en su lugar con:</p>
+<p>Lo guardamos en un fichero de nombre <code>odyssey.conf</code>, y lo ubicamos
+en su lugar con:</p>
 <pre><code># mv odyssey.conf /usr/local/etc/</code></pre>
 <p>Luego, ejecutando</p>
 <pre><code>$ odyssey test</code></pre>
-<p>Obtendremos una ventana que esperará nuestras instrucciones y nos indicará que pin esta encendido (1) o apagado (0). Una vez aquí podremos probar los respectivos pines activándolos con un signo (+) y desactivándolos con un signo (-)</p>
+<p>Obtendremos una ventana que esperará nuestras instrucciones y nos indicará que
+pin esta encendido (1) o apagado (0). Una vez aquí podremos probar los
+respectivos pines activándolos con un signo (+) y desactivándolos con un signo
+(-)</p>
 <ul>
 <li>Vpp = v</li>
 <li>Data = d</li>
 <li>Clock = c</li>
 </ul>
-<p>De esta forma, para activar el pin <code>Vpp</code> usamos <code>+v</code> y lo desactivamos usando <code>-v</code>.</p>
-<p>Luego de hacer varias pruebas y estar seguros de que todo funciona según lo esperado, podemos conectarlo a los pines correspondientes del uC.</p>
-<p>Para verificar si <em>Odyssey</em> se comunica bien con el PIC, y si el PIC que le indicamos se corresponde con el que hemos colocado:</p>
+<p>De esta forma, para activar el pin <code>Vpp</code> usamos <code>+v</code> y lo desactivamos usando
+<code>-v</code>.</p>
+<p>Luego de hacer varias pruebas y estar seguros de que todo funciona según lo
+esperado, podemos conectarlo a los pines correspondientes del uC.</p>
+<p>Para verificar si <em>Odyssey</em> se comunica bien con el PIC, y si el PIC que le
+indicamos se corresponde con el que hemos colocado:</p>
 <pre><code>$ odyssey PIC18F4550 check</code></pre>
 <p>Nótese que las letras contenidas en el nombre del PIC son en mayúsculas</p>
 <p>Para borrar el programa del PIC:</p>
@@ -109,7 +134,9 @@ pwrpin=4  # No usado en este circuito</code></pre>
 <p>Para leer el programa que contiene el PIC:</p>
 <pre><code>$ odyssey PIC18F4550 read programa.hex</code></pre>
 <p><code>programa.hex</code> es el fichero donde se escribirá el programa que leamos del PIC.</p>
-<p>En GNU/Linux podemos escribir el código para el uC en lenguaje C y compilarlo con <em>SDCC</em> (Small Device C Compiler). El binario resultante será un fichero <code>programa.hex</code>, que será el que grabemos en el uC (PIC)</p>
+<p>En GNU/Linux podemos escribir el código para el uC en lenguaje C y compilarlo
+con <em>SDCC</em> (Small Device C Compiler). El binario resultante será un fichero
+<code>programa.hex</code>, que será el que grabemos en el uC (PIC)</p>
     </section>
 </article>
 

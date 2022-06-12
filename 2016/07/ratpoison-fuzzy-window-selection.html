@@ -42,8 +42,13 @@
     <aside class="date has-text-left">July 13, 2016</aside>
 
     <section id="post-content">
-        <p>A nice feature to have is the ability to jump to an arbitrary window by performing a quick fuzzy search with just a few characters. We can achieve this by using Ratpoison’s flexibility and the fantastic <a href="https://github.com/junegunn/fzf">FZF tool</a>.</p>
-<p>The <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/window_select.sh">window_select.sh</a> script will do the trick using <strong>FZF</strong></p>
+        <p>A nice feature to have is the ability to jump to an arbitrary window by
+performing a quick fuzzy search with just a few characters. We can achieve
+this by using Ratpoison’s flexibility and the fantastic <a href="https://github.com/junegunn/fzf">FZF
+tool</a>.</p>
+<p>The
+<a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/window_select.sh">window_select.sh</a>
+script will do the trick using <strong>FZF</strong></p>
 <!--more-->
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> fzf_select</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
@@ -73,7 +78,8 @@
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        <span class="ex">fzf_select</span></span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">;;</span></span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="cf">esac</span></span></code></pre></div>
-<p>This will use Ratpoison to prompt for a fuzzy string and will take you immediately to the matched window.</p>
+<p>This will use Ratpoison to prompt for a fuzzy string and will take you
+immediately to the matched window.</p>
 <p>In order to invoke this, a Ratpoison mapping is required:</p>
 <pre><code>bind w exec window_select.sh fzf</code></pre>
     </section>

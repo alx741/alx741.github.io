@@ -42,24 +42,31 @@
     <aside class="date has-text-left">November  6, 2015</aside>
 
     <section id="post-content">
-        <p>This is the fourth post about the <a href="http://www.nongnu.org/ratpoison/">Ratpoison window manager</a>.</p>
-<p>When managing tasks there is no better interface than task warrior’s CLI, that’s for sure, but sometimes having a few-strokes-interface for listing the current tasks or adding a new simple one comes in handy.</p>
+        <p>This is the fourth post about the <a href="http://www.nongnu.org/ratpoison/">Ratpoison window
+manager</a>.</p>
+<p>When managing tasks there is no better interface than task warrior’s CLI, that’s
+for sure, but sometimes having a few-strokes-interface for listing the current
+tasks or adding a new simple one comes in handy.</p>
 <p>Let’s use Ratpoison goodies for this.</p>
 <!--more-->
-<p>We can create a new mapping for the letter <code>t</code> and assign some bindings for it using the following Ratpoison configuration snippet:</p>
+<p>We can create a new mapping for the letter <code>t</code> and assign some bindings for it
+using the following Ratpoison configuration snippet:</p>
 <pre><code>newkmap task
 definekey task l exec task_control.sh list
 definekey task p exec task_control.sh list_projects
 definekey task a exec task_control.sh add
 definekey task question help task
 bind t readkey task</code></pre>
-<p>This snippet appears in my <a href="https://github.com/alx741/dotfiles/blob/master/ratpoison/.ratpoisonrc"><code>.ratpoisonrc</code> file</a>.</p>
+<p>This snippet appears in my <a href="https://github.com/alx741/dotfiles/blob/master/ratpoison/.ratpoisonrc"><code>.ratpoisonrc</code>
+file</a>.</p>
 <p>Now, triggering the keymap with <code>C-t t</code> and one of the commands:</p>
 <pre><code>l       List task
 p       Lists projects
 a       Add new task
 ?       Print binded keys help</code></pre>
-<p>The <code>Add task</code> feature is achieved using a script that prompts for a string that then goes straight to task warrior’s CLI, so think of it as introducing a new task with the CLI without invoking task as the command but only its arguments.</p>
+<p>The <code>Add task</code> feature is achieved using a script that prompts for a string that
+then goes straight to task warrior’s CLI, so think of it as introducing a new
+task with the CLI without invoking task as the command but only its arguments.</p>
     </section>
 </article>
 

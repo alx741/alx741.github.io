@@ -42,18 +42,34 @@
     <aside class="date has-text-left">February 15, 2016</aside>
 
     <section id="post-content">
-        <p>Esta es la traducción al español del artículo <a href="http://fms.komkon.org/EMUL8/HOWTO.html">“Cómo escribir un emulador de computadora”</a> por <em>Marat Fayzullin</em></p>
-<p>Escribí este documento luego de recibir varios correos electrónicos de personas a las que les gustaría escribir un emulador de una u otra computadora, pero que no saben por donde empezar. Las opiniones y consejos contenidos en este artículo son únicamente mios y no deberían ser tomados como verdad absoluta. El documento trata principalmente sobre los llamados emuladores “interpretes”, contrario a los “compiladores”, pues no tengo mucha experiencia con técnicas de recompilación. Se proporcionan un par de enlences donde se puede encontrar información sobre estas técnicas.</p>
-<p>Si considera que hace falta algo en este documento, o desea hacer una corrección, siéntase libre de enviarme un email con sus comentarios. Sin embargo, <strong>NO</strong> respondo a solicitudes de imágenes ROM. Si conoce enlaces que pudiesen ser útiles aquí, avíseme, lo mismo aplica para preguntas frecuentes que no se encuentran en el documento.</p>
+        <p>Esta es la traducción al español del artículo <a href="http://fms.komkon.org/EMUL8/HOWTO.html">“Cómo escribir un emulador de
+computadora”</a> por <em>Marat Fayzullin</em></p>
+<p>Escribí este documento luego de recibir varios correos electrónicos de personas
+a las que les gustaría escribir un emulador de una u otra computadora, pero que
+no saben por donde empezar. Las opiniones y consejos contenidos en este artículo
+son únicamente mios y no deberían ser tomados como verdad absoluta. El documento
+trata principalmente sobre los llamados emuladores “interpretes”, contrario a
+los “compiladores”, pues no tengo mucha experiencia con técnicas de
+recompilación. Se proporcionan un par de enlences donde se puede encontrar
+información sobre estas técnicas.</p>
+<p>Si considera que hace falta algo en este documento, o desea hacer una
+corrección, siéntase libre de enviarme un email con sus comentarios. Sin
+embargo, <strong>NO</strong> respondo a solicitudes de imágenes ROM. Si conoce enlaces que
+pudiesen ser útiles aquí, avíseme, lo mismo aplica para preguntas frecuentes que
+no se encuentran en el documento.</p>
 <!--more-->
 <h1 id="contenidos">Contenidos</h1>
-<p>Así que decidió escribir un emulador, muy bien, en ese caso este documento podría ayudarle. Cubre algunas preguntas técnicas que las personas se preguntan sobre el tema. También provee algunas muestras sobre el el diseño interno de los emuladores que podría usar para guiarse en cierta medida.</p>
+<p>Así que decidió escribir un emulador, muy bien, en ese caso este documento
+podría ayudarle. Cubre algunas preguntas técnicas que las personas se preguntan
+sobre el tema. También provee algunas muestras sobre el el diseño interno de los
+emuladores que podría usar para guiarse en cierta medida.</p>
 <h2 id="general">General</h2>
 <ul>
 <li>¿Qué puede ser emulado?</li>
 <li>¿Qué es un “emulador” y en que se diferencia de un “simulador”?</li>
 <li>¿Es legal emular hardware propietario?</li>
-<li>¿Qué es un emulador “interpretador” y por que es diferente de uno “recompilador”?</li>
+<li>¿Qué es un emulador “interpretador” y por que es diferente de uno
+“recompilador”?</li>
 <li>Quiero escribir un emulador. ¿Por dónde debo empezar?</li>
 <li>¿Qué lenguaje de programación debería usar?</li>
 <li>¿Dónde puedo obtener información del hardware a emular?</li>
@@ -71,7 +87,9 @@
 <li>¿Cómo hacer un programa portable?</li>
 </ul>
 <h1 id="qué-puede-ser-emulado">¿Qué puede ser emulado?</h1>
-<p>Básicamente todo aquello que tiene un microprocesador dentro. Desde luego, solamente dispositivos ejecutando programas más o menos flexibles son interesantes de emular. Estos incluyen:</p>
+<p>Básicamente todo aquello que tiene un microprocesador dentro. Desde luego,
+solamente dispositivos ejecutando programas más o menos flexibles son
+interesantes de emular. Estos incluyen:</p>
 <ul>
 <li>Computadoras</li>
 <li>Calculadoras</li>
@@ -79,54 +97,100 @@
 <li>Vídeo juegos de Arcade</li>
 <li>etc.</li>
 </ul>
-<p>Es necesario notar que se puede emular cualquier sistema de computo, incluso si es muy complejo (como por ejemplo una computadora Commodore Amiga). Aunque el rendimiento será muy bajo.</p>
+<p>Es necesario notar que se puede emular cualquier sistema de computo, incluso si
+es muy complejo (como por ejemplo una computadora Commodore Amiga). Aunque el
+rendimiento será muy bajo.</p>
 <h1 id="qué-es-un-emulador-y-en-cómo-se-diferencia-de-un-simulador">¿Qué es un “emulador” y en cómo se diferencia de un “simulador”?</h1>
-<p>La emulación es el intento de imitar el diseño interno de un dispositivo. Simulación es un intento por imitar las funciones del dispositivo. Por ejemplo: un programa imitando el hardware de Pacman árcade y ejecutando una ROM real de Pacman es un emulador. Un juego de Pacman escrito para su computadora, pero usando gráficos similares a los del juego de árcade real, es un simulador.</p>
+<p>La emulación es el intento de imitar el diseño interno de un dispositivo.
+Simulación es un intento por imitar las funciones del dispositivo. Por ejemplo:
+un programa imitando el hardware de Pacman árcade y ejecutando una ROM real de
+Pacman es un emulador. Un juego de Pacman escrito para su computadora, pero
+usando gráficos similares a los del juego de árcade real, es un simulador.</p>
 <h1 id="es-legal-emular-hardware-propietario">¿Es legal emular hardware propietario?</h1>
-<p>Aunque este tema está en el “área gris”, aparentemente es legar emular hardware propietario, siempre y cuando la información sobre este no haya sido obtenida por medios ilegales. Debería también estar consiente de que es ilegal distribuir ROM’s de sistemas (BIOS, etc.) con un emulador, si estos están bajo copyright.</p>
+<p>Aunque este tema está en el “área gris”, aparentemente es legar emular hardware
+propietario, siempre y cuando la información sobre este no haya sido obtenida
+por medios ilegales. Debería también estar consiente de que es ilegal
+distribuir ROM’s de sistemas (BIOS, etc.) con un emulador, si estos están bajo
+copyright.</p>
 <h1 id="qué-es-un-emulador-interpretador-y-por-que-es-diferente-de-uno-recompilador">¿Qué es un emulador “interpretador” y por que es diferente de uno “recompilador”?</h1>
-<p>Existen tres esquemas básicos usados para diseñar un emulador. Pueden también ser combinados para obtener mejores resultados.</p>
+<p>Existen tres esquemas básicos usados para diseñar un emulador. Pueden también
+ser combinados para obtener mejores resultados.</p>
 <h1 id="interpretación">Interpretación</h1>
-<p>El emulador lee el código emulado byte por byte, lo decodifica, y realiza los comandos adecuando en los registros emulados, memoria y I/O. El algoritmo general es el síguete:</p>
+<p>El emulador lee el código emulado byte por byte, lo decodifica, y realiza los
+comandos adecuando en los registros emulados, memoria y I/O. El algoritmo
+general es el síguete:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span><span class="op">(</span>CPUIsRunning<span class="op">)</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>	Fetch OpCode</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>	Interpret OpCode</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<p>Las virtudes de este modelo incluyen la facilidad para depurar, portabilidad y facilidad de sincronización (se puede simplemente contar ciclos de reloj y enlazar el resto de la emulación a este conteo). La única y gran debilidad es el bajo rendimiento. La interpretación toma mucho tiempo de CPU y será necesaria una computadora veloz para ejecutar el código a una velocidad decente.</p>
+<p>Las virtudes de este modelo incluyen la facilidad para depurar, portabilidad y
+facilidad de sincronización (se puede simplemente contar ciclos de reloj y
+enlazar el resto de la emulación a este conteo). La única y gran debilidad es
+el bajo rendimiento. La interpretación toma mucho tiempo de CPU y será
+necesaria una computadora veloz para ejecutar el código a una velocidad
+decente.</p>
 <h2 id="recompilación-estática">Recompilación estática</h2>
-<p>En esta técnica, se toma el programa emulado y se intenta traducirlo al código assembly de la computadora emuladora. El resultado generalmente será un ejecutable que se puede usar directamente en la computadora sin ninguna herramienta especial. Mientras que la recompilación estática suena muy bien, no siempre es posible. Por ejemplo: no se puede usar con código auto modificado (mutable) pues no existe forma de saber en que se convertirá al ejecutarlo. Para evitar estas situaciones, se puede intentar combinar esta técnica con un interprete o un recompilador dinámico.</p>
+<p>En esta técnica, se toma el programa emulado y se intenta traducirlo al código
+assembly de la computadora emuladora. El resultado generalmente será un
+ejecutable que se puede usar directamente en la computadora sin ninguna
+herramienta especial. Mientras que la recompilación estática suena muy bien, no
+siempre es posible. Por ejemplo: no se puede usar con código auto modificado
+(mutable) pues no existe forma de saber en que se convertirá al ejecutarlo.
+Para evitar estas situaciones, se puede intentar combinar esta técnica con un
+interprete o un recompilador dinámico.</p>
 <h2 id="recompilación-dinámica">Recompilación dinámica</h2>
-<p>La recompilación dinámica es esencialmente lo mismo que la estática, pero ocurre durante la ejecución el programa. En lugar de intentar recompilar todo el código a la vez, se realiza sobre la marcha cuando se encuentra una instrucción CALL o JUMP. Para incrementar la velocidad, esta técnica puede ser combinada con la recompilación estática. Se puede leer más sobre esta técnica en el <a href="http://www.ardi.com/MacHack/machack.html">paper de Ardi</a>, creadores de el emulador recompilador de Macintosh.</p>
+<p>La recompilación dinámica es esencialmente lo mismo que la estática, pero ocurre
+durante la ejecución el programa. En lugar de intentar recompilar todo el código
+a la vez, se realiza sobre la marcha cuando se encuentra una instrucción CALL o
+JUMP. Para incrementar la velocidad, esta técnica puede ser combinada con la
+recompilación estática. Se puede leer más sobre esta técnica en el <a href="http://www.ardi.com/MacHack/machack.html">paper de
+Ardi</a>, creadores de el emulador
+recompilador de Macintosh.</p>
 <h1 id="quiero-escribir-un-emulador.-por-dónde-debo-empezar">Quiero escribir un emulador. ¿Por dónde debo empezar?</h1>
-<p>Para escribir un emulador, se debe tener un buen conocimiento general sobre programación y electrónica. Tener algo de experiencia con assembly es útil también.</p>
+<p>Para escribir un emulador, se debe tener un buen conocimiento general sobre
+programación y electrónica. Tener algo de experiencia con assembly es útil
+también.</p>
 <ul>
 <li>Seleccionar un lenguaje de programación.</li>
 <li>Encontrar información sobre el hardware a emular.</li>
 <li>Escribir u obtener un emulador de la CPU.</li>
-<li>Escribir código de prueba para emular el resto del hardware, al menos parcialmente.</li>
-<li>En este punto, es útil escribir un pequeño depurador sobre el mismo emulador, de forma que permita detener la emulación y observar que está haciendo el programa. Se podría necesitar un desensamblador del sistema emulado o escribir uno si no existe.</li>
+<li>Escribir código de prueba para emular el resto del hardware, al menos
+parcialmente.</li>
+<li>En este punto, es útil escribir un pequeño depurador sobre el mismo emulador,
+de forma que permita detener la emulación y observar que está haciendo el
+programa. Se podría necesitar un desensamblador del sistema emulado o escribir
+uno si no existe.</li>
 <li>Intentar ejecutar programas en el emulador.</li>
-<li>Usar un desensamblador y depurador para ver como el programa usa el hardware y ajustar el código apropiadamente.</li>
+<li>Usar un desensamblador y depurador para ver como el programa usa el hardware y
+ajustar el código apropiadamente.</li>
 </ul>
 <h1 id="qué-lenguaje-de-programación-debería-usar">¿Qué lenguaje de programación debería usar?</h1>
-<p>Las alternativas más evidentes son <em>C</em> y <em>Assembly</em>. Aquí algunos pros y contras de cada uno:</p>
+<p>Las alternativas más evidentes son <em>C</em> y <em>Assembly</em>. Aquí algunos pros y
+contras de cada uno:</p>
 <h2 id="assembly">Assembly</h2>
 <ul>
 <li>Generalmente, produce código más veloz.</li>
-<li>Los registros de la CPU emuladora se puede usar directamente para almacenar registros de la CPU emulada.</li>
-<li>Varios <em>opcodes</em> pueden ser emulados con <em>opcodes</em> similares de la CPU emuladora.</li>
-<li>El código no es portable, no se puede ejecutar en una computadora con distinta arquitectura.</li>
+<li>Los registros de la CPU emuladora se puede usar directamente para almacenar
+registros de la CPU emulada.</li>
+<li>Varios <em>opcodes</em> pueden ser emulados con <em>opcodes</em> similares de la CPU
+emuladora.</li>
+<li>El código no es portable, no se puede ejecutar en una computadora con distinta
+arquitectura.</li>
 <li>Es mas difícil de depurar y mantener.</li>
 </ul>
 <h2 id="c">C</h2>
 <ul>
 <li>El código puede hacerse portable.</li>
 <li>Es relativamente sencillo depurar y mantener.</li>
-<li>Diferentes hipótesis de como funciona el hardware real se puede implementar rápidamente.</li>
+<li>Diferentes hipótesis de como funciona el hardware real se puede implementar
+rápidamente.</li>
 <li>C es mas lento que assembly puro.</li>
 </ul>
-<p>Un buen conocimiento sobre el lenguaje elegido es necesario para escribir un emulador funcional, es un proyecto complejo y el código debe ser optimizado para funcionar lo más veloz posible. La emulación de computadoras NO es un proyecto con el cual aprender un nuevo lenguaje de programación.</p>
+<p>Un buen conocimiento sobre el lenguaje elegido es necesario para escribir un
+emulador funcional, es un proyecto complejo y el código debe ser optimizado
+para funcionar lo más veloz posible. La emulación de computadoras NO es un
+proyecto con el cual aprender un nuevo lenguaje de programación.</p>
 <h1 id="dónde-puedo-obtener-información-del-hardware-a-emular">¿Dónde puedo obtener información del hardware a emular?</h1>
 <p>Aquí hay una lista de lugares para revisar:</p>
 <h2 id="grupos-usenet">Grupos usenet</h2>
@@ -149,7 +213,11 @@
 <li><a href="http://www.classicgaming.com/EPR/">Recuso de programadores de emulación</a></li>
 </ul>
 <h1 id="cómo-emular-una-cpu">¿Cómo emular una CPU?</h1>
-<p>Primeramente, si solamente necesita emular una CPU estándar Z80 o 6502, puede usar uno de los <a href="http://www.komkon.org/fms/EMUL8/">emuladores que he escrito</a>. Aunque ciertas condiciones aplican. Para aquellos que desean escribir sus propios emuladores de CPU, proveo abajo el esqueleto de un emulador típico en C. En un emulador real, se debería saltar y agregar las partes que se desea.</p>
+<p>Primeramente, si solamente necesita emular una CPU estándar Z80 o 6502, puede
+usar uno de los <a href="http://www.komkon.org/fms/EMUL8/">emuladores que he escrito</a>.
+Aunque ciertas condiciones aplican. Para aquellos que desean escribir sus
+propios emuladores de CPU, proveo abajo el esqueleto de un emulador típico en C.
+En un emulador real, se debería saltar y agregar las partes que se desea.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Counter<span class="op">=</span>InterruptPeriod<span class="op">;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>PC<span class="op">=</span>InitialPC<span class="op">;</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -174,24 +242,55 @@
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>		<span class="cf">if</span><span class="op">(</span>ExitRequired<span class="op">)</span> <span class="cf">break</span><span class="op">;</span></span>
 <span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>	<span class="op">}</span></span>
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<p>Primero asignamos los valores iniciales a contador <code>counter</code> de ciclos de la CPU, y el contador de programa PC:</p>
+<p>Primero asignamos los valores iniciales a contador <code>counter</code> de ciclos de la
+CPU, y el contador de programa PC:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Counter<span class="op">=</span>InterruptPeriod<span class="op">;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>PC<span class="op">=</span>InitialPC<span class="op">;</span></span></code></pre></div>
-<p><code>Counter</code> contiene el numero de ciclos de CPU que quedan hasta la siguiente interrupción. Nótese que la interrupción no debería necesariamente ocurrir cuando el contador expira, se puede usar para varios otros propósitos, como sincronización de temporizadores, o actualizar la pantalla. Más sobre esto luego. El <code>PC</code> contiene la dirección de memoria desde la que la CPU emulada leerá el siguiente <em>opcode</em>. Luego de que los valores iniciales fueron asignados, se inicial el loop principal:</p>
+<p><code>Counter</code> contiene el numero de ciclos de CPU que quedan hasta la siguiente
+interrupción. Nótese que la interrupción no debería necesariamente ocurrir
+cuando el contador expira, se puede usar para varios otros propósitos, como
+sincronización de temporizadores, o actualizar la pantalla. Más sobre esto
+luego. El <code>PC</code> contiene la dirección de memoria desde la que la CPU emulada
+leerá el siguiente <em>opcode</em>. Luego de que los valores iniciales fueron
+asignados, se inicial el loop principal:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span><span class="op">(;;)</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span></code></pre></div>
 <p>Nótese que este loop también se puede implementar como:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span><span class="op">(</span>CPUIsRunning<span class="op">)</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span></code></pre></div>
-<p>Donde <code>CPUIsRunning</code> es una variable booleana. Esto tiene ventajas, pues se puede terminar el loop en cualquier momento con <code>CPUIsRunning=0.</code> Desafortunadamente, revisar esta variable en cada pasada requiere tiempo de CPU, y debería ser evitado de ser posible. Además no implemente el loop así:</p>
+<p>Donde <code>CPUIsRunning</code> es una variable booleana. Esto tiene ventajas, pues se
+puede terminar el loop en cualquier momento con <code>CPUIsRunning=0.</code>
+Desafortunadamente, revisar esta variable en cada pasada requiere tiempo de
+CPU, y debería ser evitado de ser posible. Además no implemente el loop así:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span><span class="op">(</span><span class="dv">1</span><span class="op">)</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span></code></pre></div>
-<p>Porque, en este caso, algunos compiladores generarán código para revisar si <code>1</code> es true o false. Ciertamente no quiere que el compilador haga trabajo innecesario en cada pasada del loop. Ahora, cuando estamos en el loop, lo primero es leer el siguiente <em>opcode</em> y modificar el contador de programa:</p>
+<p>Porque, en este caso, algunos compiladores generarán código para revisar si <code>1</code>
+es true o false. Ciertamente no quiere que el compilador haga trabajo
+innecesario en cada pasada del loop. Ahora, cuando estamos en el loop, lo
+primero es leer el siguiente <em>opcode</em> y modificar el contador de programa:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>OpCode<span class="op">=</span>Memory<span class="op">[</span>PC<span class="op">++];</span></span></code></pre></div>
-<p>Nótese que mientras esta es la forma más simple y rápida de leer la memoria emulada, <strong>no siempre es la mejor</strong>. Una forma más universal de acceder la memoria se presenta más adelante en este documento. Luego de que se obtiene el <em>opcode</em>, se decrementa el contador de ciclos de la CPU. Tome en cuenta que algunos <em>opcodes</em> (como los saltos condicionales o llamadas a subrutinas) pueden tomar distintos números de ciclos, dependiendo de los argumentos. Esto se puede ajustar luego en el código. Ahora es momento de interpretar el <em>opcode</em> y ejecutarlo:</p>
+<p>Nótese que mientras esta es la forma más simple y rápida de leer la memoria
+emulada, <strong>no siempre es la mejor</strong>. Una forma más universal de acceder la
+memoria se presenta más adelante en este documento. Luego de que se obtiene el
+<em>opcode</em>, se decrementa el contador de ciclos de la CPU. Tome en cuenta que
+algunos <em>opcodes</em> (como los saltos condicionales o llamadas a subrutinas) pueden
+tomar distintos números de ciclos, dependiendo de los argumentos. Esto se puede
+ajustar luego en el código. Ahora es momento de interpretar el <em>opcode</em> y
+ejecutarlo:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">switch</span><span class="op">(</span>OpCode<span class="op">)</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span></code></pre></div>
-<p>Es un error común pensar que <code>switch()</code> es ineficiente, pues se compila como <code>if() ... else if() ...</code>; Mientras que esto es verdad para un pequeño numero de casos, un <code>switch()</code> grande (100-200 o más casos) siempre se compila como una tabla de saltos, lo que es más eficiente. Existen dos alternativas para interpretar <em>opcodes</em>. La primera es hacer una tabla de funciones y llamar a la apropiada. La segunda es hacer una tabla de etiquetas, y usar <code>goto.</code> Mientra que este método es un poco más veloz que un <code>switch(),</code> solamente funcionará en compiladores que soporten “etiquetas pre-computadas”. Otros compiladores no le permitirán crear un array de etiquetas. Luego de una interpretación exitosa de un <em>opcode</em>, es necesario revisar si son necesarias interrupciones. En este momento se puede realizar cualquier tarea que necesite ser sincronizada con el reloj del sistema.</p>
+<p>Es un error común pensar que <code>switch()</code> es ineficiente, pues se compila como
+<code>if() ... else if() ...</code>; Mientras que esto es verdad para un pequeño numero de
+casos, un <code>switch()</code> grande (100-200 o más casos) siempre se compila como una
+tabla de saltos, lo que es más eficiente. Existen dos alternativas para
+interpretar <em>opcodes</em>. La primera es hacer una tabla de funciones y llamar a la
+apropiada. La segunda es hacer una tabla de etiquetas, y usar <code>goto.</code> Mientra
+que este método es un poco más veloz que un <code>switch(),</code> solamente funcionará en
+compiladores que soporten “etiquetas pre-computadas”. Otros compiladores no le
+permitirán crear un array de etiquetas. Luego de una interpretación exitosa de
+un <em>opcode</em>, es necesario revisar si son necesarias interrupciones. En este
+momento se puede realizar cualquier tarea que necesite ser sincronizada con el
+reloj del sistema.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span><span class="op">(</span>Counter<span class="op">&lt;=</span><span class="dv">0</span><span class="op">)</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>	<span class="co">/* Revisar interrupciones y hacer otras emulaciones aquí */</span></span>
@@ -200,30 +299,42 @@
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>	<span class="cf">if</span><span class="op">(</span>ExitRequired<span class="op">)</span> <span class="cf">break</span><span class="op">;</span></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>Estas tareas cíclicas se cubren luego en el documento.</p>
-<p>Nótese que no asignamos simplemente <code>Counter=InterruptPeriod,</code> pero hacemos <code>Counter+=InterruptPeriod,</code> esto hace el conteo más preciso, pues pueden haber algunos números negativos de ciclos en <code>Counter.</code> También observe:</p>
+<p>Nótese que no asignamos simplemente <code>Counter=InterruptPeriod,</code> pero hacemos
+<code>Counter+=InterruptPeriod,</code> esto hace el conteo más preciso, pues pueden haber
+algunos números negativos de ciclos en <code>Counter.</code> También observe:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span><span class="op">(</span>ExitRequired<span class="op">)</span> <span class="cf">break</span><span class="op">;</span></span></code></pre></div>
-<p>Como es muy costoso revisar una salida en cada pasada del loop, solo lo hacemos cuando <code>Counter</code> expira, así saldremos de la emulación cuando <code>ExitRequired=1,</code> y no tomará mucho tiempo de CPU.</p>
+<p>Como es muy costoso revisar una salida en cada pasada del loop, solo lo hacemos
+cuando <code>Counter</code> expira, así saldremos de la emulación cuando <code>ExitRequired=1,</code>
+y no tomará mucho tiempo de CPU.</p>
 <h1 id="cómo-manejo-el-acceso-a-la-memoria-emulada">¿Cómo manejo el acceso a la memoria emulada?</h1>
-<p>La forma más simple de acceder a la memoria emulada es tratarla como un array de bytes (palabras, etc.). Acceder es entonces trivial:</p>
+<p>La forma más simple de acceder a la memoria emulada es tratarla como un array
+de bytes (palabras, etc.). Acceder es entonces trivial:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Data<span class="op">=</span>Memory<span class="op">[</span>Address1<span class="op">];</span> <span class="co">/* Leer de Address1 */</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>Memory<span class="op">[</span>Address2<span class="op">]=</span>Data<span class="op">;</span> <span class="co">/* Escribir en Address2  */</span></span></code></pre></div>
 <h2 id="un-acceso-tan-simple-no-siempre-es-posible-por-algunas-razones">Un acceso tan simple no siempre es posible por algunas razones:</h2>
 <ul>
 <li>Memoria paginada.</li>
-<li>La dirección de memoria puede ser fragmentada en paginas intercambiables (bancos). Esto se hace para expandir la memoria direccionable.</li>
+<li>La dirección de memoria puede ser fragmentada en paginas intercambiables
+(bancos). Esto se hace para expandir la memoria direccionable.</li>
 <li>Memoria reflejada.</li>
 </ul>
 <h2 id="un-área-de-memoria-puede-ser-accedida-desde-diferentes-direcciones.">Un área de memoria puede ser accedida desde diferentes direcciones.</h2>
 <ul>
 <li>Protección de ROM.</li>
-<li>Algunos programas basados en cartuchos intenta escribir en la ROM y se reusa a funcionar si tiene éxito al hacerlo. Esto se hace por protección de copia.</li>
+<li>Algunos programas basados en cartuchos intenta escribir en la ROM y se reusa a
+funcionar si tiene éxito al hacerlo. Esto se hace por protección de copia.</li>
 <li>I/O mapeada en memoria.</li>
-<li>Pueden existir dispositivos I/O mapeados en memoria en el sistema. Acceder a esas posiciones de memoria produce efectos especiales y deben ser rastreados.</li>
+<li>Pueden existir dispositivos I/O mapeados en memoria en el sistema. Acceder a
+esas posiciones de memoria produce efectos especiales y deben ser rastreados.</li>
 </ul>
 <p>Para solucionar estos problemas, se introducen unas funciones:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Data<span class="op">=</span>ReadMemory<span class="op">(</span>Address1<span class="op">);</span>  <span class="co">/* Leer de Address1 */</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>WriteMemory<span class="op">(</span>Address2<span class="op">,</span>Data<span class="op">);</span> <span class="co">/* Escribir en Address2  */</span></span></code></pre></div>
-<p>Todo el procesamiento especial como paginas de acceso, espejos, I/O, etc. Se realiza en estas funciones. <code>ReadMemory()</code> y <code>WriteMemory()</code> usualmente causan mucha sobrecarga en la emulación, pues se invoca con mucha frecuencia. Y por tanto, deben ser lo más eficientes posible. Aquí hay un ejemplo para acceder a memoria paginada:</p>
+<p>Todo el procesamiento especial como paginas de acceso, espejos, I/O, etc. Se
+realiza en estas funciones. <code>ReadMemory()</code> y <code>WriteMemory()</code> usualmente causan
+mucha sobrecarga en la emulación, pues se invoca con mucha frecuencia. Y por
+tanto, deben ser lo más eficientes posible. Aquí hay un ejemplo para acceder a
+memoria paginada:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dt">static</span> <span class="kw">inline</span> byte ReadMemory<span class="op">(</span><span class="dt">register</span> word Address<span class="op">)</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>	<span class="cf">return</span><span class="op">(</span>MemoryPage<span class="op">[</span>Address<span class="op">&gt;&gt;</span><span class="dv">13</span><span class="op">][</span>Address<span class="op">&amp;</span><span class="bn">0x1FFF</span><span class="op">]);</span></span>
@@ -235,11 +346,22 @@
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>	MemoryPage<span class="op">[</span>Address<span class="op">&gt;&gt;</span><span class="dv">13</span><span class="op">][</span>Address<span class="op">&amp;</span><span class="bn">0x1FFF</span><span class="op">]=</span>Value<span class="op">;</span></span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<p>Nótese el <code>inline</code>. Esto causará que el compilador coloque el código directamente, en lugar de hacer llamadas a la función. Si el compilador no lo soporta, intente hacer la función <code>static</code>. Algunos compiladores (como WatcomC) optimizarán funciones estáticas pequeñas haciéndolas inline. También tenga en mente que en muchos casos <code>ReadMemory()</code> es llamada muchas veces y con más frecuencia que <code>WriteMemory().</code> Por lo tanto es importante implementar la mayor parte del código en <code>WriteMemory(),</code> dejando <code>ReadMemory()</code> pequeña.</p>
+<p>Nótese el <code>inline</code>. Esto causará que el compilador coloque el código
+directamente, en lugar de hacer llamadas a la función. Si el compilador no lo
+soporta, intente hacer la función <code>static</code>. Algunos compiladores (como WatcomC)
+optimizarán funciones estáticas pequeñas haciéndolas inline. También tenga en
+mente que en muchos casos <code>ReadMemory()</code> es llamada muchas veces y con más
+frecuencia que <code>WriteMemory().</code> Por lo tanto es importante implementar la mayor
+parte del código en <code>WriteMemory(),</code> dejando <code>ReadMemory()</code> pequeña.</p>
 <h3 id="una-nota-sobre-la-memoria-reflejada">Una nota sobre la memoria reflejada</h3>
-<p>Como lo dicho anteriormente, muchas computadoras tienen RAM reflejada donde un valor escrito en una posición aparecerá en otras. Mientras que esta situación puede ser manejada en <code>ReadMemory(),</code> es usualmente no deseable, pues <code>ReadMemory()</code> es llama con mucha más frecuencia que <code>WriteMemory()</code>. Una forma más eficiente es implementar memoria reflejada en <code>WriteMemory()</code>.</p>
+<p>Como lo dicho anteriormente, muchas computadoras tienen RAM reflejada donde un
+valor escrito en una posición aparecerá en otras. Mientras que esta situación
+puede ser manejada en <code>ReadMemory(),</code> es usualmente no deseable, pues
+<code>ReadMemory()</code> es llama con mucha más frecuencia que <code>WriteMemory()</code>. Una forma
+más eficiente es implementar memoria reflejada en <code>WriteMemory()</code>.</p>
 <h1 id="tareas-cíclicas-qué-son">Tareas cíclicas: ¿qué son?</h1>
-<p>Las tareas cíclicas son cosas que deben ocurrir periódicamente en la maquina, como:</p>
+<p>Las tareas cíclicas son cosas que deben ocurrir periódicamente en la maquina,
+como:</p>
 <ul>
 <li>Refrescar la pantalla</li>
 <li>Interrupciones VBlank y HBlank</li>
@@ -248,48 +370,96 @@
 <li>Actualizar estado de joysticks/teclados</li>
 <li>etc.</li>
 </ul>
-<p>Para emular estas tareas, se debe mantenerlas unidas a un cierto numero de ciclos de CPU. Por ejemplo: si la CPU corre a 2.5MHz y la pantalla usa una frecuencia de refrescamiento de 50Hz (vídeo PAL estándar), la interrupción VBlank debe ocurrir cada</p>
+<p>Para emular estas tareas, se debe mantenerlas unidas a un cierto numero de
+ciclos de CPU. Por ejemplo: si la CPU corre a 2.5MHz y la pantalla usa una
+frecuencia de refrescamiento de 50Hz (vídeo PAL estándar), la interrupción
+VBlank debe ocurrir cada</p>
 <pre><code>2500000/50 = 50000 ciclos de CPU</code></pre>
-<p>Ahora, si se asume que la pantalla completa (incluyendo VBlank) es 256 lineas de alto y 212 de ellas son mostradas en la pantalla (otras 44 caen en VBlank), debemos hacer que el emulador refresque la pantalla cada</p>
+<p>Ahora, si se asume que la pantalla completa (incluyendo VBlank) es 256 lineas
+de alto y 212 de ellas son mostradas en la pantalla (otras 44 caen en VBlank),
+debemos hacer que el emulador refresque la pantalla cada</p>
 <pre><code>50000/256 ~= 195 ciclos de CPU</code></pre>
-<p>Luego de eso, se debe generar la interrupción VBlank y no hacer nada hasta terminar VBlank, por</p>
+<p>Luego de eso, se debe generar la interrupción VBlank y no hacer nada hasta
+terminar VBlank, por</p>
 <pre><code>(256-212)*50000/256 = 44*50000/256 ~= 8594 ciclos de CPU</code></pre>
-<p>Calcular con cuidado los ciclos de CPU necesarios para cada tarea, y usar el <strong>máximo común divisor</strong> para <code>InterruptPeriod</code> y atar todas las tareas a este (no se deben ejecutar necesariamente cada expiración de <code>Counter</code>).</p>
+<p>Calcular con cuidado los ciclos de CPU necesarios para cada tarea, y usar el
+<strong>máximo común divisor</strong> para <code>InterruptPeriod</code> y atar todas las tareas a este
+(no se deben ejecutar necesariamente cada expiración de <code>Counter</code>).</p>
 <h1 id="cómo-optimizo-código-c">¿Cómo optimizo código C?</h1>
-<p>Primeramente, mucha de la eficiencia se puede lograr eligiendo las opciones de optimización del compilador. Basado en mi experiencia, seguir la combinación de opciones nos dará las mejores velocidades de ejecución:</p>
+<p>Primeramente, mucha de la eficiencia se puede lograr eligiendo las opciones de
+optimización del compilador. Basado en mi experiencia, seguir la combinación de
+opciones nos dará las mejores velocidades de ejecución:</p>
 <pre><code>Watcom C++      -oneatx -zp4 -5r -fp3
 GNU C++         -O3 -fomit-frame-pointer
 Borland C++</code></pre>
 <p>Si encuentra mejores opciones para estos compiladores, por favor, déjeme saber.</p>
 <h2 id="sobre-los-loop-unrolling">Sobre los loop unrolling</h2>
-<p>Puede parecer útil usar la opción “loop unrolling” del optimizador. Esta opción intentará convertir los pequeños en piezas de código lineal. Mi experiencia muestra sin embargo que esta opción no produce mejoras en la eficiencia. Activarla puede también dañar su código en casos especiales. Optimizar código C es algo mas complicado que elegir las opciones del compilador, y generalmente depende de la CPU para la que se compila. Varias reglas generales aplican para todas las CPUs. No las tome como reglas absolutas, todo puede variar:</p>
+<p>Puede parecer útil usar la opción “loop unrolling” del optimizador. Esta opción
+intentará convertir los pequeños en piezas de código lineal. Mi experiencia
+muestra sin embargo que esta opción no produce mejoras en la eficiencia.
+Activarla puede también dañar su código en casos especiales. Optimizar código C
+es algo mas complicado que elegir las opciones del compilador, y generalmente
+depende de la CPU para la que se compila. Varias reglas generales aplican para
+todas las CPUs. No las tome como reglas absolutas, todo puede variar:</p>
 <h2 id="use-el-profiler">Use el <em>profiler</em>!</h2>
-<p>Ejecutar el programa con un <em>profiler</em> (GPROF viene a mi mente) puede revelar muchas cosas que jamas sospecharía. Encontrará que piezas insignificantes de código se ejecutan mucho mas frecuentemente que el resto y ralentizan todo el programa. Reescribir estas en assembly puede mejorar el programa.</p>
+<p>Ejecutar el programa con un <em>profiler</em> (GPROF viene a mi mente) puede revelar
+muchas cosas que jamas sospecharía. Encontrará que piezas insignificantes de
+código se ejecutan mucho mas frecuentemente que el resto y ralentizan todo el
+programa. Reescribir estas en assembly puede mejorar el programa.</p>
 <h2 id="evite-c">Evite C++</h2>
-<p>Evite usar construcciones que lo fuercen a compilar su programa con un compilador de C++, use C plano. Compiladores C++ usualmente añaden más sobrecarga al código.</p>
+<p>Evite usar construcciones que lo fuercen a compilar su programa con un
+compilador de C++, use C plano. Compiladores C++ usualmente añaden más
+sobrecarga al código.</p>
 <h2 id="tamaño-de-los-enteros">Tamaño de los enteros</h2>
-<p>Procure usar solamente enteros de la base del tamaño soportado por la CPU como <code>int</code> en lugar de <code>short</code> o <code>long</code>. Esto reduce el tamaño del código que el compilador genera para convertir entre diferentes longitudes de enteros. También puede reducir los tiempos de acceso a memoria, pues algunas CPUs trabajan más rápido cuando leen/escriben datos basados en el tamaño alineado al tamaño de los limites de direcciones.</p>
+<p>Procure usar solamente enteros de la base del tamaño soportado por la CPU como
+<code>int</code> en lugar de <code>short</code> o <code>long</code>. Esto reduce el tamaño del código que el
+compilador genera para convertir entre diferentes longitudes de enteros.
+También puede reducir los tiempos de acceso a memoria, pues algunas CPUs
+trabajan más rápido cuando leen/escriben datos basados en el tamaño alineado al
+tamaño de los limites de direcciones.</p>
 <h2 id="asignación-de-registro">Asignación de registro</h2>
-<p>Use tan pocas variables como sea posible en cada bloque y declare las más frecuentes como <em>register</em>. Esto tiene más sentido para CPUs con muchos registros de propósito general (PowerPC) que en los que tienen registros dedicados (Intel 80x86).</p>
+<p>Use tan pocas variables como sea posible en cada bloque y declare las más
+frecuentes como <em>register</em>. Esto tiene más sentido para CPUs con muchos
+registros de propósito general (PowerPC) que en los que tienen registros
+dedicados (Intel 80x86).</p>
 <h2 id="desenvolver-loops-pequeños">Desenvolver loops pequeños</h2>
-<p>Si tiene loops pequeños que se ejecutan pocas veces, es buena idea desenvolverlos manualmente en código lineal.</p>
+<p>Si tiene loops pequeños que se ejecutan pocas veces, es buena idea
+desenvolverlos manualmente en código lineal.</p>
 <h2 id="desplazamiento-vs-multiplicacióndivisión">Desplazamiento vs multiplicación/división</h2>
-<p>Siempre use desplazamientos cuando necesite multiplicar o dividir para potencias de 2^n (J/128==J&gt;&gt;7). Se ejecutan mas rápido. También use <code>AND</code> para obtener el modulo (J%128==J&amp;0x7F).</p>
+<p>Siempre use desplazamientos cuando necesite multiplicar o dividir para
+potencias de 2^n (J/128==J&gt;&gt;7). Se ejecutan mas rápido. También use <code>AND</code> para
+obtener el modulo (J%128==J&amp;0x7F).</p>
 <h1 id="qué-es-lowhigh-endiness">¿Qué es low/high-endiness?</h1>
-<p>Todas las CPU’s se dividen en clases, dependiendo de que como almacenen los datos en memoria. Mientras que hay algunas muy peculiares, la mayoría caen en dos clases:</p>
+<p>Todas las CPU’s se dividen en clases, dependiendo de que como almacenen los
+datos en memoria. Mientras que hay algunas muy peculiares, la mayoría caen en
+dos clases:</p>
 <h2 id="high-endian">High-endian</h2>
-<p>Almacenan los datos de forma que los bytes más altos de la palabra siempre aparece primero en la memoria. Por ejemplo, si almacena 0x012345678 la memoria será:</p>
+<p>Almacenan los datos de forma que los bytes más altos de la palabra siempre
+aparece primero en la memoria. Por ejemplo, si almacena 0x012345678 la memoria
+será:</p>
 <pre><code> 0  1  2  3
 +--+--+--+--+
 |12|34|56|78|
 +--+--+--+--+</code></pre>
 <h2 id="low-endian">Low-endian</h2>
-<p>Almacenan los datos de forma que los bytes más bajos de la palabra siempre aparece primero en la memoria. Por ejemplo, si almacena 0x012345678 la memoria será:</p>
+<p>Almacenan los datos de forma que los bytes más bajos de la palabra siempre
+aparece primero en la memoria. Por ejemplo, si almacena 0x012345678 la memoria
+será:</p>
 <pre><code> 0  1  2  3
 +--+--+--+--+
 |12|34|56|78|
 +--+--+--+--+</code></pre>
-<p>Ejemplos típicos de CPUs high-endian son 6809, Motorola 680x0, PowerPC, Sun SPARC. CPUs low-endian como 6502 y sucesores 65816, Zilog Z80, la mayoria de los chips Intel (8080, 80x86), DEC Alpha, etc. Cuando se escribe un emulador, se debe estar consiente de el endianess de la CPU emulada así como de la emuladora. Digamos que quiere emular un Z80 (low-endian). Esto es, Z80 almacena sus palabras de 16 bites con el byte bajo primero. Si quiere usar una CPU low-endian como Intel 80x86 para esto, todo ocurre de forma natural. Pero si quiere usar una CPU high-endian como PowerPC, de repente hay un problema al colocar los datos de 16 bits en la memoria. Aún peor si su programa debe funcionar en ambas arquitecturas, necesitará alguna forma de conocer el <em>endiness</em>. Una forma de manejar el problema del <em>endiness</em> es:</p>
+<p>Ejemplos típicos de CPUs high-endian son 6809, Motorola 680x0, PowerPC, Sun
+SPARC. CPUs low-endian como 6502 y sucesores 65816, Zilog Z80, la mayoria de los
+chips Intel (8080, 80x86), DEC Alpha, etc. Cuando se escribe un emulador, se
+debe estar consiente de el endianess de la CPU emulada así como de la emuladora.
+Digamos que quiere emular un Z80 (low-endian). Esto es, Z80 almacena sus
+palabras de 16 bites con el byte bajo primero. Si quiere usar una CPU low-endian
+como Intel 80x86 para esto, todo ocurre de forma natural. Pero si quiere usar
+una CPU high-endian como PowerPC, de repente hay un problema al colocar los
+datos de 16 bits en la memoria. Aún peor si su programa debe funcionar en ambas
+arquitecturas, necesitará alguna forma de conocer el <em>endiness</em>. Una forma de
+manejar el problema del <em>endiness</em> es:</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">union</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -305,7 +475,11 @@ Borland C++</code></pre>
 <span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>	<span class="op">}</span> B<span class="op">;</span></span>
 <span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> word<span class="op">;</span></span></code></pre></div>
-<p>Como puede ver, una palabra puede ser accedida usando <code>W</code>. Cada vez que la emulación necesite acceder como byte separados deberá usar <code>B.l</code> y <code>B.h</code> lo que preserva el orden. Si su programa será compilado para varias plataformas, usted querrá probar que fue compilado con la opción correcta de <em>endiness</em> antes de ejecutar algo importante. Aquí hay una forma de probarlo:</p>
+<p>Como puede ver, una palabra puede ser accedida usando <code>W</code>. Cada vez que la
+emulación necesite acceder como byte separados deberá usar <code>B.l</code> y <code>B.h</code> lo que
+preserva el orden. Si su programa será compilado para varias plataformas, usted
+querrá probar que fue compilado con la opción correcta de <em>endiness</em> antes de
+ejecutar algo importante. Aquí hay una forma de probarlo:</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> <span class="op">*</span>T<span class="op">;</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>T<span class="op">=(</span><span class="dt">int</span> <span class="op">*)</span><span class="st">&quot;</span><span class="sc">\01\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0</span><span class="st">&quot;</span><span class="op">;</span></span>
@@ -316,7 +490,17 @@ Borland C++</code></pre>
 <p>Por ser escrito…</p>
 </blockquote>
 <h1 id="por-qué-debería-hacer-un-programa-modular">¿Por qué debería hacer un programa modular?</h1>
-<p>La mayoría de los sistemas de computo son echos a partir de grandes chips, los cuales realizan ciertas tareas del sistema. Así existe una CPU, un controlador de vídeo, un generador de sonido, etc. Algunos de estos chips pueden tener su propia memoria y otro hardware. Un emulador típico debería repetir el diseño del sistema original implementando cada subsistema en un modulo separado. Esto hace la depuración más sencilla, pues todos los bugs se localizan en los módulos. Además, la arquitectura modular permite reusar módulos en otros emuladores. El hardware de computadora está bastante estandarizado, puede esperar encontrar la misma CPU o chip de vídeo en muchos modelos de computadoras. Es mas fácil emular el chip una vez que implementarlo una y otra vez para cada computadora usando ese chip.</p>
+<p>La mayoría de los sistemas de computo son echos a partir de grandes chips, los
+cuales realizan ciertas tareas del sistema. Así existe una CPU, un controlador
+de vídeo, un generador de sonido, etc. Algunos de estos chips pueden tener su
+propia memoria y otro hardware. Un emulador típico debería repetir el diseño del
+sistema original implementando cada subsistema en un modulo separado. Esto hace
+la depuración más sencilla, pues todos los bugs se localizan en los módulos.
+Además, la arquitectura modular permite reusar módulos en otros emuladores. El
+hardware de computadora está bastante estandarizado, puede esperar encontrar la
+misma CPU o chip de vídeo en muchos modelos de computadoras. Es mas fácil emular
+el chip una vez que implementarlo una y otra vez para cada computadora usando
+ese chip.</p>
     </section>
 </article>
 

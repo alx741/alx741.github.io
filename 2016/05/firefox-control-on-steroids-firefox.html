@@ -55,14 +55,29 @@
     /           Jump to the tab with url mathing a user input
     l           Open a new tab with the lyrics of the currenlty playing song (mpd)</code></pre>
 <!--more-->
-<p>This does a bit more than what you’re probably thinking. Take for instance the <code>f</code> command with the <em>“Facebook”</em> action, it will afford you this:</p>
-<p>No matter where you are, which window has the focus, or even if Firefox is currently running or not. Firefox will be started (if needed) and acquire the focus, then all your tabs will be parsed (starting from the last one), and if a Facebook tab is found then jump to it, if there is no Facebook tab then start a new one.</p>
-<p>The same is extended to any of the other sites available (The list can be extended to suit you needs).</p>
-<p>The <code>o</code> commands is self-explanatory, the only advantage of this one is the ability to quickly get a new tab no matter where you are, which window has the focus, or if Firefox is running or not.</p>
+<p>This does a bit more than what you’re probably thinking. Take for instance the
+<code>f</code> command with the <em>“Facebook”</em> action, it will afford you this:</p>
+<p>No matter where you are, which window has the focus, or even if Firefox is
+currently running or not. Firefox will be started (if needed) and acquire the
+focus, then all your tabs will be parsed (starting from the last one), and if a
+Facebook tab is found then jump to it, if there is no Facebook tab then start a
+new one.</p>
+<p>The same is extended to any of the other sites available (The list can be
+extended to suit you needs).</p>
+<p>The <code>o</code> commands is self-explanatory, the only advantage of this one is the
+ability to quickly get a new tab no matter where you are, which window has the
+focus, or if Firefox is running or not.</p>
 <p>The <code>s</code> command is quite nice, imagine this:</p>
-<p>You’re trying to compile some code, but the compiler complains with a cryptic message, so you use <a href="https://github.com/alx741/dotfiles/blob/master/tmux/.tmux.conf#L55-L59">tmux to copy the error message</a>, then issue the key sequence <code>C-t f /</code> and BANG!, you get a new Firefox tab in front of you with the search engine results for the error message. And this is applicable to any content in your clipboard as well!</p>
-<p>The <code>/</code> command prompts the user for a query and jumps to the tab with a URL that contains the query as a substring.</p>
-<p>The <code>l</code> command will take the name of the currently playing song in MPD, search for it, and open the first result for the song lyrics in a new tab.</p>
+<p>You’re trying to compile some code, but the compiler complains with a cryptic
+message, so you use <a href="https://github.com/alx741/dotfiles/blob/master/tmux/.tmux.conf#L55-L59">tmux to copy the error
+message</a>,
+then issue the key sequence <code>C-t f /</code> and BANG!, you get a new Firefox tab in
+front of you with the search engine results for the error message. And this is
+applicable to any content in your clipboard as well!</p>
+<p>The <code>/</code> command prompts the user for a query and jumps to the tab with a URL
+that contains the query as a substring.</p>
+<p>The <code>l</code> command will take the name of the currently playing song in MPD, search
+for it, and open the first result for the song lyrics in a new tab.</p>
 <h1 id="how-to">How to</h1>
 <p>So you’re sold, let’s make it happen. The main dependencies are:</p>
 <ul>
@@ -71,8 +86,11 @@
 <li>Ratpoison</li>
 <li>Expect</li>
 </ul>
-<p>You can install them all with the system package manager, except for Mozrepl which you can get from Firefox addons.</p>
-<p>This also depends on a Ratpoison <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/app_select.sh">script</a> introduced in a previous post, so make sure to get that first.</p>
+<p>You can install them all with the system package manager, except for Mozrepl
+which you can get from Firefox addons.</p>
+<p>This also depends on a Ratpoison
+<a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/app_select.sh">script</a>
+introduced in a previous post, so make sure to get that first.</p>
 <p>Some extra <code>~/.ratpoisonrc</code> is needed for the new mappings:</p>
 <pre><code>newkmap firefox
 definekey firefox f exec ~/.scripts/ratpoison/firefox.sh select_tab facebook
@@ -86,8 +104,13 @@ definekey firefox s exec ~/.scripts/ratpoison/firefox.sh clipboard_search
 definekey firefox l exec ~/.scripts/ratpoison/firefox.sh search_lyrics
 definekey firefox slash exec ~/.scripts/ratpoison/firefox.sh search_tab
 bind f readkey firefox</code></pre>
-<p>Most of the magic is performed by <em>Mozrepl</em>. Unfortunately, I couldn’t get it to load an external script, though <em>Expect</em> is needed for the communication with it anyways, so let’s use it to hand the script line by line.</p>
-<p>The <code>select_tab.js</code> <a href="https://github.com/alx741/dotfiles/blob/master/mozrepl/.mozrepl/select_tab.js">script</a> is on charge of parsing the tabs to find one that matches the query and jump to it.</p>
+<p>Most of the magic is performed by <em>Mozrepl</em>. Unfortunately, I couldn’t get it to
+load an external script, though <em>Expect</em> is needed for the communication with it
+anyways, so let’s use it to hand the script line by line.</p>
+<p>The <code>select_tab.js</code>
+<a href="https://github.com/alx741/dotfiles/blob/master/mozrepl/.mozrepl/select_tab.js">script</a>
+is on charge of parsing the tabs to find one that matches the query and jump to
+it.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">selectTab</span>(page) {</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> numTabs<span class="op">=</span>gBrowser<span class="op">.</span><span class="at">browsers</span><span class="op">.</span><span class="at">length</span><span class="op">;</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> url<span class="op">=</span><span class="st">&quot;&quot;</span><span class="op">;</span></span>
@@ -100,7 +123,10 @@ bind f readkey firefox</code></pre>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<p>Use <em>Expect</em> and the <code>select_tab.expect</code> <a href="https://github.com/alx741/dotfiles/blob/master/mozrepl/.mozrepl/select_tab.expect">script</a> to perform the telnet communication with <em>Mozrepl</em> and send the script and commands as well.</p>
+<p>Use <em>Expect</em> and the <code>select_tab.expect</code>
+<a href="https://github.com/alx741/dotfiles/blob/master/mozrepl/.mozrepl/select_tab.expect">script</a>
+to perform the telnet communication with <em>Mozrepl</em> and send the script and
+commands as well.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/expect</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> page [lindex <span class="va">$argv</span> 0]</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> port 4242</span>
@@ -122,7 +148,9 @@ bind f readkey firefox</code></pre>
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        <span class="bu">exit</span> 1</span>
 <span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="er">}</span></span>
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span></code></pre></div>
-<p>Now the <code>firefox.sh</code> <a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/firefox.sh">script</a>, invoked from Ratpoison, will glue it all together.</p>
+<p>Now the <code>firefox.sh</code>
+<a href="https://github.com/alx741/dotfiles/blob/master/scripts/.scripts/ratpoison/firefox.sh">script</a>,
+invoked from Ratpoison, will glue it all together.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="va">URL</span><span class="op">=</span><span class="st">&quot;&quot;</span></span>
@@ -214,7 +242,8 @@ bind f readkey firefox</code></pre>
 <span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>        <span class="ex">search_lyrics</span></span>
 <span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a>        <span class="cf">;;</span></span>
 <span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a><span class="cf">esac</span></span></code></pre></div>
-<p>You can find all those scripts and configuration bits in my <a href="https://github.com/alx741/dotfiles">Dotfiles</a>.</p>
+<p>You can find all those scripts and configuration bits in my
+<a href="https://github.com/alx741/dotfiles">Dotfiles</a>.</p>
     </section>
 </article>
 

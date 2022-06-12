@@ -42,8 +42,11 @@
     <aside class="date has-text-left">February 20, 2015</aside>
 
     <section id="post-content">
-        <p>Vim’s help system provides convenient tags for jumping between sections, moving the cursor to the tag itself though is less than convenient.</p>
-<p>When the cursor is on a tag, one can follow it with <code>ctrl-]</code>, but we need the cursor to be there in the first place. So let’s use <code>]g</code> and <code>[g</code> to quickly jump to the next and previous tag respectively by adding this to your <code>vimrc</code>:</p>
+        <p>Vim’s help system provides convenient tags for jumping between sections, moving
+the cursor to the tag itself though is less than convenient.</p>
+<p>When the cursor is on a tag, one can follow it with <code>ctrl-]</code>, but we need the
+cursor to be there in the first place. So let’s use <code>]g</code> and <code>[g</code> to quickly
+jump to the next and previous tag respectively by adding this to your <code>vimrc</code>:</p>
 <!--more-->
 <pre class="vim"><code>nmap [g &lt;Plug&gt;HelpTagPrevious
 nmap ]g &lt;Plug&gt;HelpTagNext

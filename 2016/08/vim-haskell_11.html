@@ -42,7 +42,8 @@
     <aside class="date has-text-left">August 11, 2016</aside>
 
     <section id="post-content">
-        <p>So you’re writing in the right language using the right tool already, let’s put some extra magic under your sleeves.</p>
+        <p>So you’re writing in the right language using the right tool already, let’s put
+some extra magic under your sleeves.</p>
 <p>This is what we expect to accomplish:</p>
 <ul>
 <li>Omnicompletion</li>
@@ -82,8 +83,12 @@
 <li>Yesod Haskell web framework</li>
 </ul>
 <!--more-->
-<p>Most of this functionality is achieved by using already available tools and already available Vim plugins for those tools. So I’ll assume you have your way to install the plugins (I’m using <a href="https://github.com/junegunn/vim-plug">vim-plug</a>).</p>
-<p>Here is my complete <a href="https://github.com/alx741/dotfiles/blob/master/nvim/.config/nvim/init.vim">.vimrc</a>.</p>
+<p>Most of this functionality is achieved by using already available tools and
+already available Vim plugins for those tools. So I’ll assume you have your way
+to install the plugins (I’m using
+<a href="https://github.com/junegunn/vim-plug">vim-plug</a>).</p>
+<p>Here is my complete
+<a href="https://github.com/alx741/dotfiles/blob/master/nvim/.config/nvim/init.vim">.vimrc</a>.</p>
 <p><strong>Important</strong>: Every line of vimrc used should be enclosed in an <code>:h :augroup</code>:</p>
 <pre class="vim"><code>augroup ft_haskell
     au!
@@ -92,20 +97,31 @@
 
 augroup END</code></pre>
 <h3 id="omnicompletion">Omnicompletion</h3>
-<p>The <a href="https://github.com/eagletmt/neco-ghc">neco-ghc</a> plugin declares a complete omnifunction. Use it by defining the local <code>omnifunc</code>:</p>
+<p>The <a href="https://github.com/eagletmt/neco-ghc">neco-ghc</a> plugin declares a complete
+omnifunction. Use it by defining the local <code>omnifunc</code>:</p>
 <pre class="vim"><code>au FileType haskell setlocal omnifunc=necoghc#omnifunc</code></pre>
 <p><img src="../../img/vimhask/shot1.gif" /></p>
 <h3 id="compilation-and-testing">Compilation and testing</h3>
-<p>I’ve contributed the GHC compiler plugin to upstream Vim recently, but it may take a while before you get the latest vim runtime from your distribution. So in the meantime you can install it like any other plugin from the GitHub repository here: https://github.com/alx741/ghc.vim. <strong>Update:</strong> It’s been merged into vim’s runtime, you should have it by default now.</p>
+<p>I’ve contributed the GHC compiler plugin to upstream Vim recently, but it may
+take a while before you get the latest vim runtime from your distribution. So in
+the meantime you can install it like any other plugin from the GitHub repository
+here: https://github.com/alx741/ghc.vim. <strong>Update:</strong> It’s been merged into vim’s
+runtime, you should have it by default now.</p>
 <p>Then load it for the Haskell <em>filetype</em> in you <em>vimrc</em>:</p>
 <pre class="vim"><code>au FileType haskell compiler ghc</code></pre>
-<p>Taking advantage of vim 8 asynchronous job control using the <a href="https://github.com/skywind3000/asyncrun.vim">asyncrun.vim</a> plugin, we can define some convenient mappings for building and testing using Haskell <em>stack</em>:</p>
+<p>Taking advantage of vim 8 asynchronous job control using the
+<a href="https://github.com/skywind3000/asyncrun.vim">asyncrun.vim</a> plugin, we can
+define some convenient mappings for building and testing using Haskell <em>stack</em>:</p>
 <pre class="vim"><code>au FileType haskell setlocal makeprg=stack
 au FileType haskell nnoremap &lt;buffer&gt; gj :write&lt;CR&gt; :exec &quot;AsyncRun &quot; . &amp;makeprg . &quot; build&quot;&lt;CR&gt;
 au FileType haskell nnoremap &lt;buffer&gt; gk :write&lt;CR&gt; :exec &quot;AsyncRun &quot; . &amp;makeprg . &quot; test&quot;&lt;CR&gt;</code></pre>
 <p>After running one of those the results will be loaded into the <em>quickfix</em> list.</p>
 <h3 id="ghci-integration">GHCI integration</h3>
-<p>There are plugins that offer much more tight integration but for me, it is enough to start GHCI from the current vim instance in a Tmux pane loaded with the current project or Haskell source, so taking advantage of the <a href="https://github.com/benmills/vimux">vimux</a> Tmux integration plugin, lets define a function:</p>
+<p>There are plugins that offer much more tight integration but for me, it is
+enough to start GHCI from the current vim instance in a Tmux pane loaded with
+the current project or Haskell source, so taking advantage of the
+<a href="https://github.com/benmills/vimux">vimux</a> Tmux integration plugin, lets define
+a function:</p>
 <pre class="vim"><code>function! RunGhci(type)
     call VimuxRunCommand(&quot; stack ghci &amp;&amp; exit&quot;)
     if a:type
@@ -116,60 +132,83 @@ endfunction</code></pre>
 <p>And some mappings:</p>
 <pre class="vim"><code>au FileType haskell nmap &lt;silent&gt;&lt;buffer&gt; &lt;leader&gt;gg :call RunGhci(1)&lt;CR&gt;
 au FileType haskell nmap &lt;silent&gt;&lt;buffer&gt; &lt;leader&gt;gs :call RunGhci(0)&lt;CR&gt;</code></pre>
-<p>So doing <code>\gg</code> will start a GHCI session loaded with the current file and <code>\gs</code> will load a GHCI session for the current stack project.</p>
+<p>So doing <code>\gg</code> will start a GHCI session loaded with the current file and <code>\gs</code>
+will load a GHCI session for the current stack project.</p>
 <h3 id="hoogle-integration">Hoogle integration</h3>
-<p>Vim uses <code>K</code> (upper case k) to look up a keyword under the cursor, so we can leverage that and just define the right <code>keywordprg</code>:</p>
+<p>Vim uses <code>K</code> (upper case k) to look up a keyword under the cursor, so we can
+leverage that and just define the right <code>keywordprg</code>:</p>
 <pre class="vim"><code>au FileType haskell set kp=hoogle</code></pre>
-<p>Or, if you prefer having your results within Vim, you can use the [vim-hoogle](https://github.com/Twinside/vim-hoogle] plugin, and remap <code>K</code>:</p>
+<p>Or, if you prefer having your results within Vim, you can use the
+[vim-hoogle](https://github.com/Twinside/vim-hoogle] plugin, and remap <code>K</code>:</p>
 <pre class="vim"><code>au FileType haskell nnoremap K :HoogleInfo&lt;CR&gt;</code></pre>
 <h3 id="convenient-mappings">Convenient mappings</h3>
-<p>When editing a function’s arguments we would like to have a text object so doing <code>cia</code> (change inner argument) or <code>daa</code> (delete all argument) will work; These will to the trick:</p>
+<p>When editing a function’s arguments we would like to have a text object so doing
+<code>cia</code> (change inner argument) or <code>daa</code> (delete all argument) will work; These
+will to the trick:</p>
 <pre class="vim"><code>au FileType haskell onoremap &lt;silent&gt; ia :&lt;c-u&gt;silent execute &quot;normal! ?-&gt;\r:nohlsearch\rwvf-ge&quot;&lt;CR&gt;
 au FileType haskell onoremap &lt;silent&gt; aa :&lt;c-u&gt;silent execute &quot;normal! ?-&gt;\r:nohlsearch\rhvEf-ge&quot;&lt;CR&gt;</code></pre>
 <p>In order to easily jump between functions we could define a function:</p>
 <pre class="vim"><code>function! JumpHaskellFunction(reverse)
     call search('\C[[:alnum:]]*\s*::', a:reverse ? 'bW' : 'W')
 endfunction</code></pre>
-<p>And some mappings such that <code>[[</code> or <code>]]</code> will take us to the previous and next function:</p>
+<p>And some mappings such that <code>[[</code> or <code>]]</code> will take us to the previous and next
+function:</p>
 <pre class="vim"><code>au FileType haskell nnoremap &lt;buffer&gt;&lt;silent&gt; ]] :call JumpHaskellFunction(0)&lt;CR&gt;
 au FileType haskell nnoremap &lt;buffer&gt;&lt;silent&gt; [[ :call JumpHaskellFunction(1)&lt;CR&gt;</code></pre>
-<p>Let’s add some extra convenience and use <code>gI</code> for jumping to the first <em>import</em> statement and <code>gC</code> to edit the <em>.cabal</em> file:</p>
+<p>Let’s add some extra convenience and use <code>gI</code> for jumping to the first <em>import</em>
+statement and <code>gC</code> to edit the <em>.cabal</em> file:</p>
 <pre class="vim"><code>au FileType haskell nnoremap &lt;buffer&gt; gI gg /\cimport&lt;CR&gt;&lt;ESC&gt;:noh&lt;CR&gt;
 au FileType haskell nnoremap &lt;buffer&gt; gC :e *.cabal&lt;CR&gt;</code></pre>
 <h3 id="ghc-mod-integration">Ghc-mod integration</h3>
-<p><a href="https://hackage.haskell.org/package/ghc-mod">ghc-mod</a> is the <em>Happy Haskell Programming package</em>! With a bunch of functionality, here we will be using just a few:</p>
+<p><a href="https://hackage.haskell.org/package/ghc-mod">ghc-mod</a> is the <em>Happy Haskell
+Programming package</em>! With a bunch of functionality, here we will be using
+just a few:</p>
 <ul>
 <li>Type inserting</li>
 <li>Case splitting</li>
 <li>Type asserting</li>
 </ul>
-<p>You need the <em>ghc-mod</em> package: <code>stack install ghc-mod</code> and the <a href="https://github.com/eagletmt/ghcmod-vim">ghcmod-vim plugin</a>.</p>
+<p>You need the <em>ghc-mod</em> package: <code>stack install ghc-mod</code> and the <a href="https://github.com/eagletmt/ghcmod-vim">ghcmod-vim
+plugin</a>.</p>
 <pre class="vim"><code>au FileType haskell nnoremap &lt;silent&gt;&lt;buffer&gt; git :GhcModTypeInsert&lt;CR&gt;
 au FileType haskell nnoremap &lt;silent&gt;&lt;buffer&gt; gfs :GhcModSplitFunCase&lt;CR&gt;
 au FileType haskell nnoremap &lt;silent&gt;&lt;buffer&gt; gtt :GhcModType&lt;CR&gt;</code></pre>
-<p><code>git</code> (<em>g insert type</em>) will insert the missing type declaration of an expression, take for instance this Haskell code:</p>
+<p><code>git</code> (<em>g insert type</em>) will insert the missing type declaration of an
+expression, take for instance this Haskell code:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">module</span> <span class="dt">Hello</span> <span class="kw">where</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>f (<span class="dt">Just</span> a) <span class="ot">=</span> <span class="dt">Left</span> a</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>f <span class="dt">Nothing</span> <span class="ot">=</span> <span class="dt">Right</span> ()</span></code></pre></div>
-<p>With the cursor in the first <code>f</code> (the function name) using the <code>tt</code> mapping will produce:</p>
+<p>With the cursor in the first <code>f</code> (the function name) using the <code>tt</code> mapping will
+produce:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">module</span> <span class="dt">Hello</span> <span class="kw">where</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ot">f ::</span> <span class="dt">Maybe</span> a <span class="ot">-&gt;</span> <span class="dt">Either</span> a ()</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>f (<span class="dt">Just</span> a) <span class="ot">=</span> <span class="dt">Left</span> a</span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>f <span class="dt">Nothing</span> <span class="ot">=</span> <span class="dt">Right</span> ()</span></code></pre></div>
 <p><img src="../../img/vimhask/shot2.gif" /></p>
-<p>Neat!, go ahead and play around with the other mappings, you won’t be disappointed.</p>
+<p>Neat!, go ahead and play around with the other mappings, you won’t be
+disappointed.</p>
 <h3 id="hlint-integration">Hlint integration</h3>
-<p>By default, <a href="https://github.com/neomake/neomake">Neomake</a> will use <em>hlint</em> on the current file when the <code>:Neomake</code> command is invoked on a Haskell source file, so by adding a mapping:</p>
+<p>By default, <a href="https://github.com/neomake/neomake">Neomake</a> will use <em>hlint</em> on
+the current file when the <code>:Neomake</code> command is invoked on a Haskell source
+file, so by adding a mapping:</p>
 <pre class="vim"><code>au FileType haskell nnoremap &lt;buffer&gt; gll :Neomake&lt;CR&gt;</code></pre>
-<p><code>gll</code> will open the location list with the lints, which takes us to some convenience mappings:</p>
+<p><code>gll</code> will open the location list with the lints, which takes us to some
+convenience mappings:</p>
 <pre class="vim"><code>au FileType haskell nnoremap &lt;buffer&gt;&lt;silent&gt; gl&lt;space&gt; :call ToggleLocationList()&lt;CR&gt;
 au FileType haskell nnoremap &lt;buffer&gt;&lt;silent&gt; glc :sign unplace *&lt;CR&gt;</code></pre>
-<p>So now is possible to toggle the location list with <code>gl&lt;space&gt;</code> and clear it with <code>glc</code>.</p>
-<p>You will need the Stack tool of course, and <em>hlint</em> that you can install with <code>stack install hlint</code>.</p>
+<p>So now is possible to toggle the location list with <code>gl&lt;space&gt;</code> and clear it
+with <code>glc</code>.</p>
+<p>You will need the Stack tool of course, and <em>hlint</em> that you can install with
+<code>stack install hlint</code>.</p>
 <h3 id="code-formatting-and-beautifying">Code formatting and beautifying</h3>
-<p><em>Hindent</em> allows beautifying Haskell code, you could use it by setting the <code>formatprg</code> option and then trigger it with the <code>=</code> command, but there is a problem: if your code happens to have any syntax errors, it will be replaced with a nasty error message. To handle this we’re going to use the <a href="https://github.com/alx741/vim-hindent">vim-hindent</a> plugin instead, so each time we save a Haskell source file it will be automatically beatified.</p>
+<p><em>Hindent</em> allows beautifying Haskell code, you could use it by setting the
+<code>formatprg</code> option and then trigger it with the <code>=</code> command, but there is a
+problem: if your code happens to have any syntax errors, it will be replaced
+with a nasty error message. To handle this we’re going to use the
+<a href="https://github.com/alx741/vim-hindent">vim-hindent</a> plugin instead, so each
+time we save a Haskell source file it will be automatically beatified.</p>
 <p>Don’t forget to configure it:</p>
 <pre class="vim"><code>let g:hindent_on_save = 1
 let g:hindent_line_length = 80
@@ -196,7 +235,8 @@ let g:hindent_indent_size = 4</code></pre>
 <p><img src="../../img/vimhask/shot3.gif" /></p>
 <p>So much better!</p>
 <h3 id="easy-arrows-generation">Easy arrows generation</h3>
-<p>In Haskell, operators like <code>-&gt;</code> and <code>=&gt;</code> are very common, and I find it cumbersome to type them manually. Let’s define a function:</p>
+<p>In Haskell, operators like <code>-&gt;</code> and <code>=&gt;</code> are very common, and I find it
+cumbersome to type them manually. Let’s define a function:</p>
 <pre class="vim"><code>function! Make_arrow(type)
     if a:type
         if (matchstr(getline('.'), '\%' . col('.') . 'c.') ==? ' ')
@@ -217,9 +257,12 @@ endfunction</code></pre>
 <p>And some insert mode mappings:</p>
 <pre class="vim"><code>au FileType haskell inoremap &lt;buffer&gt; ;; &lt;ESC&gt;:call Make_arrow(1)&lt;CR&gt;
 au FileType haskell inoremap &lt;buffer&gt; ;: &lt;ESC&gt;:call Make_arrow(0)&lt;CR&gt;</code></pre>
-<p>So while in insert mode typing <code>;;</code> or <code>;:</code> will insert <code>-&gt;</code> or <code>=&gt;</code> respectively. Additionally, it will avoid duplicated spaces between the types and the arrows.</p>
+<p>So while in insert mode typing <code>;;</code> or <code>;:</code> will insert <code>-&gt;</code> or <code>=&gt;</code>
+respectively. Additionally, it will avoid duplicated spaces between the types
+and the arrows.</p>
 <h3 id="types-abbreviations">Types abbreviations</h3>
-<p>Maybe I’m a terrible typist, but writing the first upper case letter of the most common types hurts my pinkie. So by using some insert mode abbreviations:</p>
+<p>Maybe I’m a terrible typist, but writing the first upper case letter of the most
+common types hurts my pinkie. So by using some insert mode abbreviations:</p>
 <pre class="vim"><code>au FileType haskell inoreab &lt;buffer&gt; int Int
 au FileType haskell inoreab &lt;buffer&gt; integer Integer
 au FileType haskell inoreab &lt;buffer&gt; string String
@@ -231,13 +274,22 @@ au FileType haskell inoreab &lt;buffer&gt; maybe Maybe
 au FileType haskell inoreab &lt;buffer&gt; just Just
 au FileType haskell inoreab &lt;buffer&gt; nothing Nothing
 au FileType haskell inoreab &lt;buffer&gt; io IO ()</code></pre>
-<p>Now I can type all lower case without having to bother with the <em>shift</em> key and the capitalized version will be inserted instead.</p>
+<p>Now I can type all lower case without having to bother with the <em>shift</em> key and
+the capitalized version will be inserted instead.</p>
 <h3 id="yesod-haskell-web-framework">Yesod Haskell web framework</h3>
-<p>Some neat integration with Yesod can be achieved by using the <a href="https://github.com/alx741/vim-yesod">vim-yesod</a> plugin which, by default, it gives you some mappings:</p>
-<p><code>gh</code> - Jump to the handler of the route under the cursor in the <code>config/routes</code> file.</p>
-<p><code>gH</code> - Create a new handler for the route under the cursor in the <code>config/routes</code> file.</p>
+<p>Some neat integration with Yesod can be achieved by using the
+<a href="https://github.com/alx741/vim-yesod">vim-yesod</a> plugin which, by default, it
+gives you some mappings:</p>
+<p><code>gh</code> - Jump to the handler of the route under the cursor in the <code>config/routes</code>
+file.</p>
+<p><code>gH</code> - Create a new handler for the route under the cursor in the
+<code>config/routes</code> file.</p>
 <p><code>gm</code> - Jump to or create the i18n message under the cursor in a template file.</p>
-<p><em>vim-yesod</em> gives you <code>config/routes</code>, <code>config/models</code> and i18n <code>messages/</code> syntax highlighting, but it doesn’t support shakesperean templates syntax so be sure to install the <a href="https://github.com/pbrisbin/vim-syntax-shakespeare">vim-syntax-shakespeare</a> as well.</p>
+<p><em>vim-yesod</em> gives you <code>config/routes</code>, <code>config/models</code> and i18n <code>messages/</code>
+syntax highlighting, but it doesn’t support shakesperean templates syntax so be
+sure to install the
+<a href="https://github.com/pbrisbin/vim-syntax-shakespeare">vim-syntax-shakespeare</a> as
+well.</p>
     </section>
 </article>
 
