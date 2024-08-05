@@ -6,7 +6,9 @@
     <id>http://www.sillybytes.net/atom.xml</id>
     <author>
         <name>Daniel Campoverde [alx741]</name>
+        
         <email>alx@sillybytes.net</email>
+        
     </author>
     <updated>2017-05-04T00:00:00Z</updated>
     <entry>
@@ -1080,9 +1082,9 @@ that it’s stable at 1MHz.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;avr/io.h&gt;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;util/delay.h&gt;</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define F_CPU 1000000</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define BAUD 4800</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define BAUD_PRESCALE ((((F_CPU/16) + (BAUD/2)) / (BAUD)) - 1)</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define F_CPU </span><span class="dv">1000000</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define BAUD </span><span class="dv">4800</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define BAUD_PRESCALE </span><span class="op">((((</span><span class="pp">F_CPU</span><span class="op">/</span><span class="dv">16</span><span class="op">)</span><span class="pp"> </span><span class="op">+</span><span class="pp"> </span><span class="op">(</span><span class="pp">BAUD</span><span class="op">/</span><span class="dv">2</span><span class="op">))</span><span class="pp"> </span><span class="op">/</span><span class="pp"> </span><span class="op">(</span><span class="pp">BAUD</span><span class="op">))</span><span class="pp"> </span><span class="op">-</span><span class="pp"> </span><span class="dv">1</span><span class="op">)</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> getchar<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
@@ -1094,9 +1096,9 @@ corresponding to the color LED.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;avr/io.h&gt;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;util/delay.h&gt;</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define F_CPU 1000000</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define BAUD 4800</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define BAUD_PRESCALE ((((F_CPU/16) + (BAUD/2)) / (BAUD)) - 1)</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define F_CPU </span><span class="dv">1000000</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define BAUD </span><span class="dv">4800</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define BAUD_PRESCALE </span><span class="op">((((</span><span class="pp">F_CPU</span><span class="op">/</span><span class="dv">16</span><span class="op">)</span><span class="pp"> </span><span class="op">+</span><span class="pp"> </span><span class="op">(</span><span class="pp">BAUD</span><span class="op">/</span><span class="dv">2</span><span class="op">))</span><span class="pp"> </span><span class="op">/</span><span class="pp"> </span><span class="op">(</span><span class="pp">BAUD</span><span class="op">))</span><span class="pp"> </span><span class="op">-</span><span class="pp"> </span><span class="dv">1</span><span class="op">)</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> getchar<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
@@ -1812,8 +1814,8 @@ imperativos:</p>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> name<span class="op">[</span><span class="dv">666</span><span class="op">];</span> <span class="co">// &lt;- An Evil Number!</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">// What if my name is more than 665 character long?</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;What is your name?</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">);</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    scanf<span class="op">(</span><span class="st">&quot;%s&quot;</span><span class="op">,</span> name<span class="op">);</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;Hello %s!</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">,</span> name<span class="op">);</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    scanf<span class="op">(</span><span class="st">&quot;</span><span class="sc">%s</span><span class="st">&quot;</span><span class="op">,</span> name<span class="op">);</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;Hello </span><span class="sc">%s</span><span class="st">!</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">,</span> name<span class="op">);</span></span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>La estructura es la misma, pero hay diferencias en la sintaxis. La parte
@@ -1936,37 +1938,37 @@ f :: Num a =&gt; a -&gt; a -&gt; a</code></pre>
 comprenderlo, solo mira una lista de ejemplos progresivos:</p>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>El tipo</th>
 <th>Su significado</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>Int</td>
 <td>El tipo Int</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Int -&gt; Int</td>
 <td>El tipo de función de Int a Int</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Float -&gt; Int</td>
 <td>El tipo de función de Float a Int</td>
 </tr>
-<tr class="even">
+<tr>
 <td>a -&gt; Int</td>
 <td>El tipo de función de cualquier tipo a Int</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>a -&gt; a</td>
 <td>El tipo de función de cualquier tipo al mismo tipo a</td>
 </tr>
-<tr class="even">
+<tr>
 <td>a -&gt; a -&gt; a</td>
 <td>El tipo de función de dos argumentos de cualquier tipo a al</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>mismo tipo a</td>
 <td></td>
 </tr>

@@ -39,7 +39,7 @@
             <div class="container is-fluid">
                 <article class="post">
     <h1 class="is-size-2 has-text-weight-medium has-text-left">TDD (Test-Driven Development) Physical Traffic Light</h2>
-    <aside class="date has-text-left">August 28, 2016</aside>
+    <!-- <aside class="date has-text-left">August 28, 2016</aside> -->
 
     <section id="post-content">
         <p>Robert C. Martin <em>(Uncle Bob)</em> said in a talk:</p>
@@ -81,9 +81,9 @@ that it’s stable at 1MHz.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;avr/io.h&gt;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;util/delay.h&gt;</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define F_CPU 1000000</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define BAUD 4800</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define BAUD_PRESCALE ((((F_CPU/16) + (BAUD/2)) / (BAUD)) - 1)</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define F_CPU </span><span class="dv">1000000</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define BAUD </span><span class="dv">4800</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define BAUD_PRESCALE </span><span class="op">((((</span><span class="pp">F_CPU</span><span class="op">/</span><span class="dv">16</span><span class="op">)</span><span class="pp"> </span><span class="op">+</span><span class="pp"> </span><span class="op">(</span><span class="pp">BAUD</span><span class="op">/</span><span class="dv">2</span><span class="op">))</span><span class="pp"> </span><span class="op">/</span><span class="pp"> </span><span class="op">(</span><span class="pp">BAUD</span><span class="op">))</span><span class="pp"> </span><span class="op">-</span><span class="pp"> </span><span class="dv">1</span><span class="op">)</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> getchar<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
@@ -95,9 +95,9 @@ corresponding to the color LED.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;avr/io.h&gt;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;util/delay.h&gt;</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define F_CPU 1000000</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define BAUD 4800</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define BAUD_PRESCALE ((((F_CPU/16) + (BAUD/2)) / (BAUD)) - 1)</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define F_CPU </span><span class="dv">1000000</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define BAUD </span><span class="dv">4800</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define BAUD_PRESCALE </span><span class="op">((((</span><span class="pp">F_CPU</span><span class="op">/</span><span class="dv">16</span><span class="op">)</span><span class="pp"> </span><span class="op">+</span><span class="pp"> </span><span class="op">(</span><span class="pp">BAUD</span><span class="op">/</span><span class="dv">2</span><span class="op">))</span><span class="pp"> </span><span class="op">/</span><span class="pp"> </span><span class="op">(</span><span class="pp">BAUD</span><span class="op">))</span><span class="pp"> </span><span class="op">-</span><span class="pp"> </span><span class="dv">1</span><span class="op">)</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> getchar<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>

@@ -39,7 +39,7 @@
             <div class="container is-fluid">
                 <article class="post">
     <h1 class="is-size-2 has-text-weight-medium has-text-left">Controlando un auto Radio Control con la PC</h2>
-    <aside class="date has-text-left">October 14, 2012</aside>
+    <!-- <aside class="date has-text-left">October 14, 2012</aside> -->
 
     <section id="post-content">
         <p>Hoy he visto en una repisa el último auto RC de mi infancia que aún quedaba sin
@@ -110,7 +110,7 @@ librería </em>ncurses* en tu sistema.</p>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;ncurses.h&gt;</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;sys/io.h&gt;</span></span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="pp">#define puerto (0x378) </span><span class="co">//Puede ser (0x278)</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="pp">#define puerto </span><span class="op">(</span><span class="bn">0x378</span><span class="op">)</span><span class="pp"> </span><span class="co">//Puede ser (0x278)</span></span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>using namespace std<span class="op">;</span></span>
@@ -139,7 +139,7 @@ librería </em>ncurses* en tu sistema.</p>
 <span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    <span class="co">//bit2,bit4 -&gt; atras</span></span>
 <span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    <span class="co">//bit3,bit2 -&gt; derecha</span></span>
 <span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    <span class="co">//bit4,bit1 -&gt; izquierda</span></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span><span class="op">(</span>true<span class="op">){</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span><span class="op">(</span><span class="kw">true</span><span class="op">){</span></span>
 <span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>		ch<span class="op">=</span>getch<span class="op">();</span></span>
 <span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>		<span class="cf">if</span><span class="op">(</span>ch<span class="op">==</span><span class="dv">32</span><span class="op">)</span> outb<span class="op">(</span><span class="dv">0</span><span class="op">,</span>puerto<span class="op">);</span></span>
